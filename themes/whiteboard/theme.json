@@ -1,0 +1,103 @@
+{
+  "name": "Whiteboard",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Patrick Hand\",\"Comic Sans MS\",system-ui,sans-serif",
+    "headings": "\"Caveat\",\"Patrick Hand\",cursive"
+  },
+  "shape": {
+    "radius": "255px 22px 225px 22px / 22px 225px 22px 255px",
+    "smallRadius": "14px 5px 16px 5px / 5px 16px 5px 14px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 2.6,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef1f3",
+      "card": "#ffffff",
+      "text": "#1f2937",
+      "textMuted": "#5d6875",
+      "border": "#3b4452",
+      "accent": "#2563eb",
+      "accent2": "#2563eb",
+      "highlight": "#fde047",
+      "correct": "#15803d",
+      "wrong": "#dc2626",
+      "partly": "#b45309",
+      "pop1": "#dc2626",
+      "pop2": "#16a34a",
+      "pop3": "#2563eb",
+      "pop4": "#f59e0b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      [
+        "linear-gradient(rgba(37,99,235,.07) 1px,",
+        "transparent 1px) 0 0/32px 32px fixed"
+      ],
+      [
+        "linear-gradient(90deg,rgba(37,99,235,.07) 1px,",
+        "transparent 1px) 0 0/32px 32px fixed"
+      ],
+      "linear-gradient(180deg,#fbfcfd,#eef1f3) fixed"
+    ],
+    "buttonShadow": [
+      "3px 4px 0 rgba(31,41,55,.55)"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 rgba(31,41,55,.55)"
+    ],
+    "panelShadow": [
+      "3px 5px 0 rgba(31,41,55,.22)"
+    ],
+    "pressDepth": "3px"
+  },
+  "dark": {
+    "colors": {
+      "page": "#1d2a25",
+      "card": "#24352e",
+      "text": "#f1f5f2",
+      "textMuted": "#b6c4bc",
+      "border": "#cfe0d6",
+      "accent": "#7cc4ff",
+      "accent2": "#7cc4ff",
+      "highlight": "#ffe66d",
+      "correct": "#8be3a6",
+      "wrong": "#ff9a8f",
+      "partly": "#ffcf70",
+      "pop1": "#ff9a8f",
+      "pop2": "#8be3a6",
+      "pop3": "#7cc4ff",
+      "pop4": "#ffd37a",
+      "onAccent": "#10201a",
+      "onHero": "#10201a"
+    },
+    "background": [
+      [
+        "linear-gradient(rgba(255,255,255,.05) 1px,",
+        "transparent 1px) 0 0/32px 32px fixed"
+      ],
+      [
+        "linear-gradient(90deg,rgba(255,255,255,.05) 1px,",
+        "transparent 1px) 0 0/32px 32px fixed"
+      ],
+      "linear-gradient(180deg,#23342d,#1a2621) fixed"
+    ],
+    "buttonShadow": [
+      "3px 4px 0 rgba(0,0,0,.5)"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 rgba(0,0,0,.5)"
+    ],
+    "panelShadow": [
+      "3px 5px 0 rgba(0,0,0,.35)"
+    ],
+    "pressDepth": "3px"
+  }
+}

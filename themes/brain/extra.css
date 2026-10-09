@@ -1,0 +1,13 @@
+/* Extra touches for the Healthy Brain theme. */
+[data-theme="brain"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="brain"] .unit-title,
+[data-theme="brain"] .verdict,
+[data-theme="brain"] .panel h2 {
+  font-family: var(--font-heading);
+}

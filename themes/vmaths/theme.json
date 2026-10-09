@@ -1,0 +1,69 @@
+{
+  "name": "Vedic Maths",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Baloo 2\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Baloo 2\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "10px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff6e5",
+      "card": "#fffdf7",
+      "text": "#2d1b0e",
+      "textMuted": "#7a5c3c",
+      "border": "#f1d9b0",
+      "accent": "#0f766e",
+      "accent2": "#c2410c",
+      "highlight": "#ffd27a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#e2571f",
+      "pop2": "#0f766e",
+      "pop3": "#7c3aed",
+      "pop4": "#d98a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fff8ea,#ffeccb) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1410",
+      "card": "#271d16",
+      "text": "#fdebd0",
+      "textMuted": "#cdb496",
+      "border": "#46372a",
+      "accent": "#3ccbb9",
+      "accent2": "#ff9a5c",
+      "highlight": "#ebb94e",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff9a6a",
+      "pop2": "#4fd9c8",
+      "pop3": "#b99cff",
+      "pop4": "#ffc35c",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1c1511,#130e0b) fixed"
+    ]
+  }
+}

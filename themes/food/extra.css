@@ -1,0 +1,13 @@
+/* Extra touches for the Food theme. */
+[data-theme="food"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="food"] .unit-title,
+[data-theme="food"] .verdict,
+[data-theme="food"] .panel h2 {
+  font-family: var(--font-heading);
+}

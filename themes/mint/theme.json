@@ -1,0 +1,85 @@
+{
+  "name": "Mint",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1fdf8",
+      "card": "#ffffff",
+      "text": "#213b30",
+      "textMuted": "#587468",
+      "border": "#d1f0e3",
+      "accent": "#a1edcd",
+      "accent2": "#bef4f1",
+      "highlight": "#fde68a",
+      "correct": "#23805f",
+      "wrong": "#c43d5c",
+      "partly": "#8f6508",
+      "pop1": "#a8f0ec",
+      "pop2": "#d890df",
+      "pop3": "#297a58",
+      "pop4": "#986416",
+      "onAccent": "#192e25",
+      "onHero": "#213b30"
+    },
+    "background": [
+      "#f1fdf8"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #77c5a5"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #77c5a5"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px #318160"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#16221d",
+      "card": "#22322b",
+      "text": "#e7f3ee",
+      "textMuted": "#adc2b9",
+      "border": "#395147",
+      "accent": "#99ebc9",
+      "accent2": "#aaeeeb",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fa9",
+      "partly": "#f0c15a",
+      "pop1": "#a1ece9",
+      "pop2": "#d688dd",
+      "pop3": "#abedd2",
+      "pop4": "#f0c36a",
+      "onAccent": "#172620",
+      "onHero": "#172620"
+    },
+    "background": [
+      "#16221d"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #3d8f6d"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #3d8f6d"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

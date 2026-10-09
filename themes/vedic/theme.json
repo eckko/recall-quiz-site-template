@@ -1,0 +1,69 @@
+{
+  "name": "Vedic",
+  "group": "Wellbeing & culture",
+  "fonts": {
+    "body": "\"Marcellus\",\"Cormorant Garamond\",Georgia,serif",
+    "headings": "\"Marcellus\",\"Cormorant Garamond\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "10px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff4de",
+      "card": "#fffaf0",
+      "text": "#3a1d12",
+      "textMuted": "#7a5a45",
+      "border": "#ecd2a6",
+      "accent": "#c2410c",
+      "accent2": "#a21caf",
+      "highlight": "#ffd27a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#e2571f",
+      "pop2": "#b8860b",
+      "pop3": "#7c2d12",
+      "pop4": "#f59e0b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/110px 110px fixed",
+      "linear-gradient(160deg,#fff1d6,#ffe3b8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1f130d",
+      "card": "#2c1b12",
+      "text": "#fbe9d0",
+      "textMuted": "#cdb393",
+      "border": "#4a3220",
+      "accent": "#ff9a4d",
+      "accent2": "#e08cff",
+      "highlight": "#e8b04a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff8a5c",
+      "pop2": "#f0c05a",
+      "pop3": "#d9a066",
+      "pop4": "#ffb84d",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/110px 110px fixed",
+      "linear-gradient(160deg,#241610,#1a0f0a) fixed"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <g fill="none" stroke="#0f766e" stroke-opacity=".28" stroke-width="1.6">
+    <rect x="10" y="10" width="44" height="44"/>
+    <path d="M32 10v44M10 32h44M10 54L54 10M10 32L32 10M32 54L54 32"/>
+  </g>
+  <g
+    fill="#c2410c"
+    fill-opacity=".30"
+    font-family="Arial,sans-serif"
+    font-weight="700"
+    font-size="15">
+    <text x="72" y="36">9</text>
+    <text x="92" y="96">7</text>
+    <text x="20" y="104">3</text>
+    <text x="70" y="84">×</text>
+  </g>
+</svg>

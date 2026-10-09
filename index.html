@@ -1,0 +1,466 @@
+<!doctype html>
+<!--
+  Recall Quiz: a practice page for one book.
+
+  The questions come from questions.json. Everything else is the same for
+  every book. See README.md for how it all fits together.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Recall Quiz</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
+
+  <!-- Styles. Order matters: later files win when rules clash. -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/question.css">
+  <link rel="stylesheet" href="css/question-types.css">
+  <link rel="stylesheet" href="css/results.css">
+  <link rel="stylesheet" href="css/learning.css">
+  <link rel="stylesheet" href="css/cloud-sync.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/phone.css">
+  <!-- HTRAB (optional overlay): delete this line, the two scripts below
+       and the htrab/ folder to remove it. -->
+  <link rel="stylesheet" href="htrab/htrab.css">
+
+  <!-- Apply the saved theme before the page appears, so it never
+       flashes the wrong colours. -->
+  <script src="js/themes-list.js"></script>
+  <script src="js/theme-picker.js"></script>
+</head>
+<body>
+
+<!-- Fixed pill in the top right during a session -->
+<div class="session-pill hidden" id="session-pill" aria-live="off">
+  <span id="session-pill-label">Time left</span>
+  <b id="session-pill-value">0:00</b>
+</div>
+
+<main>
+  <header class="page-header">
+    <div class="mascot" aria-hidden="true"></div>
+    <div class="title-block">
+      <h1 id="book-title">Recall Quiz</h1>
+    </div>
+    <div class="header-tools">
+      <div class="day-streak" id="day-streak"></div>
+      <button type="button" class="settings-button" id="settings-button"
+              aria-expanded="false" aria-controls="settings-screen">
+        <i aria-hidden="true"></i><span>Settings</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- What the book is about, under the header. Hidden in a session. -->
+  <div class="book-notes">
+    <p class="book-summary" id="book-summary"></p>
+    <p class="book-blurb hidden" id="book-blurb"></p>
+  </div>
+
+  <!-- ========================== Settings ========================== -->
+  <!-- A screen of its own: opens over the home screen (Settings button).
+       Wired by js/home-layout.js. -->
+  <section class="settings-screen hidden" id="settings-screen">
+
+    <!-- Filled by js/sync/cloud-sync.js; stays hidden without sync. -->
+    <div class="panel settings-section hidden" id="account-section"
+         aria-live="polite">
+      <h2>Account</h2>
+      <div id="account-body"></div>
+    </div>
+
+    <details class="panel settings-section" id="appearance-section">
+      <summary>
+        <h2>Appearance</h2>
+        <span class="appearance-current" id="appearance-current"></span>
+      </summary>
+      <div class="setting-row">
+        <div class="setting-label"><b>Mode</b></div>
+        <div class="choice-group" id="theme-mode-choice">
+          <button type="button" data-theme-mode="light">Light</button>
+          <button type="button" data-theme-mode="dark">Dark</button>
+          <button type="button" data-theme-mode="system">System</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Theme</b></div>
+        <div class="theme-groups" id="theme-groups"></div>
+        <div class="theme-tiles" id="theme-tiles"></div>
+      </div>
+    </details>
+
+    <div class="panel settings-section" id="practice-section">
+      <h2>Practice defaults</h2>
+      <p class="note settings-note">
+        What the home screen starts with, on every device. You can still
+        change them on the home screen for one visit.
+      </p>
+      <label class="setting-row">
+        <div class="setting-label">
+          <b id="default-unit-label">Chapter</b>
+          <small>Where "Keep me going" and the 5-minute session look.</small>
+        </div>
+        <select id="default-unit"></select>
+      </label>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Timer per question</b>
+          <small>Optional.</small>
+        </div>
+        <div class="choice-group" data-layout="timer">
+          <button type="button" data-value="0">Off</button>
+          <button type="button" data-value="15">15s</button>
+          <button type="button" data-value="30">30s</button>
+          <button type="button" data-value="60">60s</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Confidence check</b>
+          <small>Ask how sure you are before each answer.</small>
+        </div>
+        <div class="choice-group" data-layout="confidence">
+          <button type="button" data-value="off">Off</button>
+          <button type="button" data-value="on">On</button>
+        </div>
+      </div>
+      <!-- HTRAB default switch: added by htrab/htrab.js when the book
+           has tags -->
+      <div id="htrab-setting"></div>
+    </div>
+
+    <div class="panel settings-section" id="home-section">
+      <h2>Home screen</h2>
+      <p class="note settings-note">
+        How each part looks when the home screen opens. Folding things by
+        hand never changes these.
+      </p>
+      <div class="setting-row">
+        <div class="setting-label"><b>Your progress</b>
+          <small>The ring and today's summary.</small></div>
+        <div class="choice-group" data-layout="progress">
+          <button type="button" data-value="open">Open</button>
+          <button type="button" data-value="closed">Folded</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Your recent results</b></div>
+        <div class="choice-group" data-layout="recent">
+          <button type="button" data-value="open">Open</button>
+          <button type="button" data-value="closed">Folded</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>What do you want to do?</b></div>
+        <div class="choice-group" data-layout="setup">
+          <button type="button" data-value="open">Open</button>
+          <button type="button" data-value="closed">Folded</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Where you stand</b>
+          <small>Also "Your ideas".</small></div>
+        <div class="choice-group" data-layout="stand">
+          <button type="button" data-value="open">Open</button>
+          <button type="button" data-value="closed">Folded</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Chapters</b></div>
+        <div class="choice-group" data-layout="chapters">
+          <button type="button" data-value="next">Next one open</button>
+          <button type="button" data-value="open">All open</button>
+          <button type="button" data-value="closed">All closed</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Topics and ideas</b></div>
+        <div class="choice-group" data-layout="inner">
+          <button type="button" data-value="closed">Closed</button>
+          <button type="button" data-value="open">Open</button>
+        </div>
+      </div>
+    </div>
+
+  <div class="panel settings-section" id="progress-file-panel">
+    <h2>Your progress file</h2>
+    <div class="button-row">
+      <button class="button" id="download-progress-button"
+              type="button">Download</button>
+      <button class="button" id="load-progress-button"
+              type="button">Load</button>
+      <button class="button" id="reset-progress-button"
+              type="button">Reset</button>
+      <input type="file" id="progress-file-input"
+             accept="application/json" class="hidden">
+    </div>
+    <p class="note">
+      Progress is saved in this browser on this device. Download a copy to
+      move it to another device or keep a backup.
+    </p>
+  </div>
+
+    <p class="note settings-footer">
+      Saved at once. When you are signed in, every device you use gets the
+      same settings.
+    </p>
+  </section>
+
+  <!-- ============================ Home ============================ -->
+  <section id="home-screen">
+    <!-- Optional sign-in bar, filled by js/sync/cloud-sync.js.
+         Stays hidden while sync-config.js has provider "none". -->
+    <div class="panel cloud-sync-bar hidden" id="cloud-sync-bar"
+         aria-live="polite"></div>
+
+    <div class="panel recent-results hidden" id="recent-results"></div>
+
+    <div class="panel" id="progress-panel">
+      <h2>Your progress</h2>
+      <div class="progress-overview">
+        <svg class="progress-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="progress-ring-gradient"
+                            x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color:var(--color-pop-2)"/>
+              <stop offset="1" style="stop-color:var(--color-pop-3)"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-track" cx="50" cy="50" r="42"
+                  fill="none" stroke-width="9"/>
+          <circle class="ring-arc" id="progress-ring-arc"
+                  cx="50" cy="50" r="42" fill="none" stroke-width="9"
+                  stroke-linecap="round" transform="rotate(-90 50 50)"
+                  stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
+          <text id="progress-ring-text" x="50" y="58"
+                text-anchor="middle">0%</text>
+        </svg>
+        <div>
+          <div class="progress-tally" id="progress-tally"></div>
+          <p class="today-summary" id="today-summary"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="session-setup">
+      <h2>What do you want to do?</h2>
+      <div class="fields">
+
+        <label class="field">
+          <span id="unit-picker-label">Chapter</span>
+          <select id="unit-picker"></select>
+        </label>
+
+        <div class="field">
+          <span>Timer per question (optional)</span>
+          <div class="choice-group" id="question-timer-choice">
+            <button type="button" data-value="0"
+                    aria-pressed="true">Off</button>
+            <button type="button" data-value="15"
+                    aria-pressed="false">15s</button>
+            <button type="button" data-value="30"
+                    aria-pressed="false">30s</button>
+            <button type="button" data-value="60"
+                    aria-pressed="false">60s</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span>Confidence check</span>
+          <div class="choice-group" id="confidence-choice">
+            <button type="button" data-value="off"
+                    aria-pressed="false">Off</button>
+            <button type="button" data-value="on"
+                    aria-pressed="true">Ask how sure I am</button>
+          </div>
+        </div>
+
+        <!-- HTRAB method switch: added by htrab/htrab.js -->
+        <div id="htrab-home-switch"></div>
+
+      </div>
+      <p class="note practice-note">
+        Changes here last until you close this tab. Your defaults are in
+        Settings.
+      </p>
+
+      <!-- Books with ideas: one button that picks what comes next.
+           Hidden for books without ideas. -->
+      <div id="keep-going-block">
+        <button class="start-button" id="keep-going-button"
+                type="button">Keep me going</button>
+        <p class="ready-summary" id="keep-going-summary"></p>
+        <button class="button" id="quick-session-button"
+                type="button">5-minute session: core ideas only</button>
+        <p class="note">Or open any idea below and choose Teach me or
+          Test me. Study in any order you like.</p>
+      </div>
+
+      <details class="custom-practice" id="custom-practice">
+        <summary>Custom practice</summary>
+        <div class="fields">
+
+          <div class="field">
+            <span>Which questions</span>
+            <div class="choice-group" id="question-filter-choice">
+              <button type="button" data-value="due"
+                      aria-pressed="true">Due and new</button>
+              <button type="button" data-value="gaps"
+                      aria-pressed="false">My gaps</button>
+              <button type="button" data-value="all"
+                      aria-pressed="false">Everything</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <span>Session length</span>
+            <div class="choice-group" id="session-length-choice">
+              <button type="button" data-value="questions"
+                      aria-pressed="true">By questions</button>
+              <button type="button" data-value="time"
+                      aria-pressed="false">By time</button>
+            </div>
+
+            <div class="length-row" id="length-by-questions">
+              <input type="number" id="question-count-input" min="1"
+                     max="999" value="10" inputmode="numeric"
+                     aria-label="Number of questions" placeholder="All">
+              <span>questions</span>
+              <button type="button" class="pill-button"
+                      data-fills="question-count-input"
+                      data-fill-value="5">5</button>
+              <button type="button" class="pill-button"
+                      data-fills="question-count-input"
+                      data-fill-value="10">10</button>
+              <button type="button" class="pill-button"
+                      data-fills="question-count-input"
+                      data-fill-value="25">25</button>
+              <button type="button" class="pill-button"
+                      data-fills="question-count-input"
+                      data-fill-value="50">50</button>
+              <button type="button" class="pill-button"
+                      data-fills="question-count-input"
+                      data-fill-value="">All</button>
+            </div>
+
+            <div class="length-row hidden" id="length-by-time">
+              <input type="number" id="minutes-input" min="1" max="240"
+                     value="15" inputmode="numeric" aria-label="Minutes">
+              <span>minutes. Answer as many as you can.</span>
+              <button type="button" class="pill-button"
+                      data-fills="minutes-input"
+                      data-fill-value="5">5</button>
+              <button type="button" class="pill-button"
+                      data-fills="minutes-input"
+                      data-fill-value="10">10</button>
+              <button type="button" class="pill-button"
+                      data-fills="minutes-input"
+                      data-fill-value="15">15</button>
+              <button type="button" class="pill-button"
+                      data-fills="minutes-input"
+                      data-fill-value="30">30</button>
+            </div>
+          </div>
+
+        </div>
+        <button class="start-button" id="start-button"
+                type="button">Start practice</button>
+        <p class="ready-summary" id="ready-summary"></p>
+      </details>
+      <p class="storage-warning" id="storage-warning"></p>
+    </div>
+  </section>
+
+  <!-- Shown when questions.json cannot be read -->
+  <section class="panel hidden" id="load-error">
+    <h2>Could not load the questions</h2>
+    <p class="note">
+      This page reads <b>questions.json</b>, which browsers block when you
+      open the page directly from a folder. On GitHub Pages it loads
+      normally. To use it from a folder, pick the file here, or run
+      <b>python3 -m http.server</b> in the folder and open the address it
+      prints.
+    </p>
+    <div class="button-row">
+      <label class="button file-picker-button">
+        Choose questions.json
+        <input type="file" id="questions-file-input"
+               accept="application/json,.json" class="hidden">
+      </label>
+    </div>
+  </section>
+
+  <!-- ===================== Question / results ===================== -->
+  <!-- js/session.js fills this card with one question at a time,
+       then js/results-screen.js shows the results in it. -->
+  <section class="panel question-card hidden" id="question-card"
+           aria-live="polite"></section>
+
+  <!-- ======================= Where you stand ====================== -->
+  <section class="panel" id="where-you-stand"></section>
+
+
+</main>
+
+<!--
+  Scripts. Each file adds its part to one shared object, window.RecallQuiz.
+  Order matters: helpers first, the screens next, and main.js last
+  because it starts everything.
+-->
+<script src="js/helpers.js"></script>
+<script src="js/transliteration.js"></script>
+<script src="js/math-display.js"></script>
+<script src="js/book.js"></script>
+<script src="js/progress-storage.js"></script>
+<script src="js/spaced-repetition.js"></script>
+<script src="js/learning.js"></script>
+<script src="js/celebration.js"></script>
+<script src="js/timers.js"></script>
+<script src="js/answer-feedback.js"></script>
+<script src="js/question-types/question-types.js"></script>
+<script src="js/question-types/multiple-choice.js"></script>
+<script src="js/question-types/select-all.js"></script>
+<script src="js/question-types/fill-in-the-blank.js"></script>
+<script src="js/question-types/put-in-order.js"></script>
+<script src="js/question-types/match-pairs.js"></script>
+<script src="js/question-types/sort-into-groups.js"></script>
+<script src="js/question-types/recall.js"></script>
+<script src="js/question-types/lesson.js"></script>
+<script src="js/session.js"></script>
+<script src="js/results-screen.js"></script>
+<script src="js/home-layout.js"></script>
+<script src="js/home-screen.js"></script>
+<script src="js/session-settings.js"></script>
+<script src="js/progress-file.js"></script>
+<script src="js/sync/progress-merge.js"></script>
+<script src="js/sync/sync-config.js"></script>
+<script src="js/sync/cloud-sync.js"></script>
+<script src="htrab/htrab-config.js"></script>   <!-- HTRAB -->
+<script src="htrab/htrab.js"></script>          <!-- HTRAB -->
+<script src="js/main.js"></script>
+<script>
+/* If any script failed to load (for example a file missing from the
+   upload), say so on the page instead of leaving it blank. */
+(function reportMissingScripts() {
+  var quiz = window.RecallQuiz || {};
+  var expected = ["helpers", "book", "progress", "memory", "learning", "timers",
+    "answerFeedback", "questionTypes", "session", "resultsScreen",
+    "homeScreen", "settings"];
+  var missing = expected.filter(function (name) { return !quiz[name]; });
+  if (missing.length === 0) { return; }
+  var box = document.createElement("div");
+  box.setAttribute("role", "alert");
+  box.style.cssText = "position:fixed;inset:0 0 auto 0;z-index:99999;" +
+    "padding:16px;background:#b3261e;color:#fff;font:16px/1.4 sans-serif";
+  box.textContent = "The quiz could not start: these parts did not load: " +
+    missing.join(", ") + ". Make sure every file in the js/ folder " +
+    "(including js/helpers.js) is uploaded, then hard-refresh (Ctrl+Shift+R).";
+  document.body.appendChild(box);
+})();
+</script>
+</body>
+</html>

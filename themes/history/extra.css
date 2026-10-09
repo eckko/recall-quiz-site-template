@@ -1,0 +1,13 @@
+/* Extra touches for the Indian History theme. */
+[data-theme="history"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="history"] .unit-title,
+[data-theme="history"] .verdict,
+[data-theme="history"] .panel h2 {
+  font-family: var(--font-heading);
+}

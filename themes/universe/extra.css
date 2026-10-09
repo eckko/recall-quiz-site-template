@@ -1,0 +1,13 @@
+/* Extra touches for the Universe theme. */
+[data-theme="universe"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="universe"] .unit-title,
+[data-theme="universe"] .verdict,
+[data-theme="universe"] .panel h2 {
+  font-family: var(--font-heading);
+}

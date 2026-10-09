@@ -1,0 +1,69 @@
+{
+  "name": "Sanskrit",
+  "group": "Wellbeing & culture",
+  "fonts": {
+    "body": "\"Lora\",Georgia,serif",
+    "headings": "\"Lora\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6efe0",
+      "card": "#fffaf0",
+      "text": "#2c1810",
+      "textMuted": "#78604a",
+      "border": "#e3d2b4",
+      "accent": "#9f1239",
+      "accent2": "#b45309",
+      "highlight": "#f0cf7a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#9f1239",
+      "pop2": "#b45309",
+      "pop3": "#166534",
+      "pop4": "#1e40af",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/150px 90px fixed",
+      "linear-gradient(160deg,#f8f1e3,#efe2c8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c1410",
+      "card": "#2a1f18",
+      "text": "#f6e8d2",
+      "textMuted": "#c5b199",
+      "border": "#463629",
+      "accent": "#f2849f",
+      "accent2": "#f0b25a",
+      "highlight": "#e3b865",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f2849f",
+      "pop2": "#f0b25a",
+      "pop3": "#6fcf8f",
+      "pop4": "#8fb0ff",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/150px 90px fixed",
+      "linear-gradient(160deg,#1e1612,#150f0c) fixed"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120">
+  <g stroke="#b6aad2" stroke-opacity=".26" stroke-width="1.4">
+    <path d="M0 30H160M0 38H160M0 46H160M0 54H160M0 62H160" fill="none"/>
+  </g>
+  <g fill="#c084fc" fill-opacity=".45">
+    <ellipse cx="36" cy="54" rx="6" ry="4.4" transform="rotate(-20 36 54)"/>
+    <ellipse cx="70" cy="38" rx="6" ry="4.4" transform="rotate(-20 70 38)"/>
+    <ellipse cx="108" cy="46" rx="6" ry="4.4" transform="rotate(-20 108 46)"/>
+  </g>
+  <g stroke="#c084fc" stroke-opacity=".45" stroke-width="2">
+    <path d="M41 52V26M75 36V10M113 44V18"/>
+  </g>
+  <g fill="#c084fc" fill-opacity=".30">
+    <ellipse cx="40" cy="104" rx="7" ry="5" transform="rotate(-20 40 104)"/>
+  </g>
+  <path
+    d="M46 102V78l14 4"
+    stroke="#c084fc"
+    stroke-opacity=".30"
+    stroke-width="2.4"
+    fill="none"/>
+</svg>

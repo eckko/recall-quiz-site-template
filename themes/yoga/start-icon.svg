@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="currentColor" stroke="currentColor">
+    <circle cx="12" cy="5" r="2.8"/>
+    <path
+      d="M12 9c-3 0-5 3-5 6v1h10v-1c0-3-2-6-5-6zM3 20c5 3 13 3 18 0-2 3-6 4-9
+        4s-7-1-9-4z"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+/* Extra touches for the Maths theme. */
+[data-theme="maths"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="maths"] .unit-title,
+[data-theme="maths"] .verdict,
+[data-theme="maths"] .panel h2 {
+  font-family: var(--font-heading);
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="currentColor" stroke="currentColor">
+    <path
+      d="M9 17V5l11-2v12"
+      fill="none"
+      stroke-width="2.2"
+      stroke-linejoin="round"/>
+    <ellipse cx="6.500" cy="17.500" rx="3.200" ry="2.500"/>
+    <ellipse cx="17.500" cy="15.500" rx="3.200" ry="2.500"/>
+  </g>
+</svg>

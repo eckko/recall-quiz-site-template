@@ -1,0 +1,85 @@
+{
+  "name": "Butter",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fdfbf1",
+      "card": "#ffffff",
+      "text": "#3b3521",
+      "textMuted": "#746e58",
+      "border": "#f0e9d1",
+      "accent": "#eddba1",
+      "accent2": "#ecf4be",
+      "highlight": "#fde68a",
+      "correct": "#23805f",
+      "wrong": "#c43d5c",
+      "partly": "#8f6508",
+      "pop1": "#e6f0a8",
+      "pop2": "#90d7df",
+      "pop3": "#7a6729",
+      "pop4": "#986416",
+      "onAccent": "#2e2919",
+      "onHero": "#3b3521"
+    },
+    "background": [
+      "#fdfbf1"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #c5b377"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #c5b377"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px #816f31"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#221f16",
+      "card": "#322f22",
+      "text": "#f3f0e7",
+      "textMuted": "#c2bdad",
+      "border": "#514b39",
+      "accent": "#ebd899",
+      "accent2": "#e5eeaa",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fa9",
+      "partly": "#f0c15a",
+      "pop1": "#e2eca1",
+      "pop2": "#88d4dd",
+      "pop3": "#eddeab",
+      "pop4": "#f0c36a",
+      "onAccent": "#262317",
+      "onHero": "#262317"
+    },
+    "background": [
+      "#221f16"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #8f7c3d"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #8f7c3d"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

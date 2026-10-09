@@ -1,0 +1,8 @@
+# Files that belong to one book. A sync from the template never touches them.
+questions.json
+images/
+docs/
+book-structure/
+README.md
+.templatesyncignore
+.github/

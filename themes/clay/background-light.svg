@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 800"
+  preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="a" cx="35%" cy="30%">
+      <stop offset="0" stop-color="#ffd9c9" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ffd9c9" stop-opacity=".55"/>
+    </radialGradient>
+    <radialGradient id="b" cx="35%" cy="30%">
+      <stop offset="0" stop-color="#cdeee8" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#cdeee8" stop-opacity=".55"/>
+    </radialGradient>
+    <radialGradient id="c" cx="35%" cy="30%">
+      <stop offset="0" stop-color="#ffd6e2" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ffd6e2" stop-opacity=".55"/>
+    </radialGradient>
+    <radialGradient id="d" cx="35%" cy="30%">
+      <stop offset="0" stop-color="#e1dcff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#e1dcff" stop-opacity=".55"/>
+    </radialGradient>
+  </defs>
+  <circle cx="80" cy="90" r="190" fill="url(#a)"/>
+  <circle cx="1130" cy="140" r="150" fill="url(#b)"/>
+  <circle cx="1060" cy="760" r="230" fill="url(#c)"/>
+  <circle cx="120" cy="730" r="160" fill="url(#d)"/>
+  <circle cx="620" cy="820" r="110" fill="url(#a)"/>
+</svg>

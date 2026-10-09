@@ -1,0 +1,41 @@
+/* Extra touches for the Clay theme. */
+[data-theme="clay"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 2px 3px 0
+    color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+[data-theme="clay"] .option,
+[data-theme="clay"] .button:not(.primary),
+[data-theme="clay"] .match-item,
+[data-theme="clay"] .order-item,
+[data-theme="clay"] .sort-chip,
+[data-theme="clay"] .fill-input,
+[data-theme="clay"] .choice-group,
+[data-theme="clay"] select {
+  box-shadow:
+    inset -3px -4px 8px rgba(120, 70, 40, 0.1),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.65);
+  border-color: transparent;
+}
+[data-theme="clay"][data-scheme="dark"] .option,
+[data-theme="clay"][data-scheme="dark"] .button:not(.primary),
+[data-theme="clay"][data-scheme="dark"] .match-item,
+[data-theme="clay"][data-scheme="dark"] .order-item,
+[data-theme="clay"][data-scheme="dark"] .sort-chip {
+  box-shadow:
+    inset -3px -4px 8px rgba(0, 0, 0, 0.28),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.07);
+}
+[data-theme="clay"] .option.is-right,
+[data-theme="clay"] .option.is-wrong {
+  border-color: transparent;
+  outline: 3px solid currentColor;
+}
+[data-theme="clay"] .option.is-right {
+  outline-color: var(--color-correct);
+}
+[data-theme="clay"] .option.is-wrong {
+  outline-color: var(--color-wrong);
+}

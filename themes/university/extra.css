@@ -1,0 +1,25 @@
+/* Extra touches for the University theme. */
+[data-theme="university"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+[data-theme="university"] .panel {
+  border-style: double;
+  border-width: 3px;
+}
+[data-theme="university"] .button.primary,
+[data-theme="university"] .start-button {
+  border: 1px solid var(--color-pop-4);
+}
+[data-theme="university"] .question-text {
+  font-size: 1.45rem;
+  line-height: 1.55;
+}
+[data-theme="university"] .unit-chip {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}

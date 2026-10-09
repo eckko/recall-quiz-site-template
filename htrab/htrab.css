@@ -1,0 +1,58 @@
+/*
+ * htrab.css
+ * Styles for the HTRAB overlay only. Uses the site's colour variables so
+ * every theme works. Delete with the rest of the htrab/ folder.
+ */
+
+.htrab-panel {
+  margin: 16px 0;
+}
+
+.htrab-body {
+  margin-top: 8px;
+}
+
+.htrab-count {
+  margin: 8px 0;
+}
+
+.htrab-chip {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.htrab-advice {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--color-pop-4);
+  border-radius: 10px;
+  background: var(--color-pop-4-soft);
+}
+
+.htrab-advice summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.htrab-item {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-pop-4);
+}
+
+.htrab-item p {
+  margin: 4px 0;
+}
+
+.htrab-item blockquote {
+  margin: 6px 0;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-pop-4);
+  font-style: italic;
+}
+
+.htrab-check,
+.htrab-mistake {
+  font-size: 0.92rem;
+}

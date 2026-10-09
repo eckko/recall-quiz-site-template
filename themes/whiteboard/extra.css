@@ -1,0 +1,34 @@
+/* Extra touches for the Whiteboard theme. */
+[data-theme="whiteboard"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-size: 2.1rem;
+  font-weight: 700;
+  text-decoration: underline wavy var(--color-pop-1);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+[data-theme="whiteboard"] .question-text {
+  font-family: "Caveat", "Patrick Hand", cursive;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+[data-theme="whiteboard"] .unit-title,
+[data-theme="whiteboard"] .verdict,
+[data-theme="whiteboard"] .panel h2 {
+  font-family: "Caveat", "Patrick Hand", cursive;
+  font-size: 1.35em;
+  font-weight: 700;
+}
+[data-theme="whiteboard"] .button.primary,
+[data-theme="whiteboard"] .start-button {
+  border: 2px solid var(--color-text);
+}
+[data-theme="whiteboard"] .option,
+[data-theme="whiteboard"] .match-item,
+[data-theme="whiteboard"] .order-item,
+[data-theme="whiteboard"] .sort-chip {
+  box-shadow: 2px 3px 0 color-mix(in srgb, var(--color-text) 25%, transparent);
+}

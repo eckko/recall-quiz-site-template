@@ -1,0 +1,840 @@
+/*
+ * home.css
+ * The start screen: the header, the theme picker, your progress, recent
+ * results, the session settings and "Where you stand".
+ */
+
+/* ------------------------------------------------------------------ */
+/* Header: mascot picture, book title, Theme button and day streak     */
+/* ------------------------------------------------------------------ */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.mascot {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  background: var(--mascot-image) center / contain no-repeat;
+}
+
+.title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-notes {
+  margin: -6px 0 18px;
+}
+
+.book-summary {
+  margin: 4px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.day-streak {
+  padding: 6px 12px;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  background: var(--color-pop-4-soft);
+  border: 1px solid var(--color-pop-4);
+  border-radius: 999px;
+}
+
+.day-streak b {
+  font-weight: 600;
+}
+
+/* During a session the header only shows the picture and the title */
+.in-session .day-streak,
+.in-session .book-notes {
+  display: none;
+}
+
+.theme-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+/* Each tile previews its theme using its own --tile-* colours, which
+   css/themes.css sets per tile. */
+.theme-tile {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 10px 8px 12px;
+  text-align: center;
+  color: var(--tile-text);
+  background: var(--tile-background);
+  background-color: var(--tile-page);
+  border: 2px solid var(--tile-border);
+  border-radius: var(--tile-radius);
+}
+
+.theme-tile:hover {
+  transform: translateY(-2px);
+}
+
+.theme-tile[aria-pressed="true"] {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.tile-mascot {
+  width: 46px;
+  height: 46px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.tile-swatches {
+  display: flex;
+  gap: 4px;
+}
+
+.tile-swatches i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.tile-swatches i:nth-child(1) {
+  background: var(--tile-pop-1);
+}
+
+.tile-swatches i:nth-child(2) {
+  background: var(--tile-pop-2);
+}
+
+.tile-swatches i:nth-child(3) {
+  background: var(--tile-pop-3);
+}
+
+.tile-button {
+  padding: 3px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tile-on-accent);
+  background: var(--tile-accent);
+  border-radius: var(--tile-radius);
+}
+
+.tile-name {
+  padding: 1px 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--tile-card);
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Progress overview: ring, counts and today's line                    */
+/* ------------------------------------------------------------------ */
+
+.progress-overview {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.progress-ring {
+  width: 96px;
+  height: 96px;
+}
+
+.progress-ring text {
+  font: 600 22px var(--font-heading);
+  fill: var(--color-text);
+}
+
+.progress-ring .ring-track {
+  stroke: var(--color-border);
+}
+
+.progress-ring .ring-arc {
+  stroke: url(#progress-ring-gradient);
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.progress-tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.progress-tally div {
+  min-width: 64px;
+}
+
+.progress-tally b {
+  display: block;
+  font: 600 1.5rem/1.1 var(--font-heading);
+}
+
+.progress-tally span {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.progress-tally div:nth-child(1) b {
+  color: var(--color-correct);
+}
+
+.progress-tally div:nth-child(2) b {
+  color: var(--color-pop-4);
+}
+
+.progress-tally div:nth-child(3) b {
+  color: var(--color-pop-3);
+}
+
+.today-summary {
+  margin: 6px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 420px) {
+  .progress-overview {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Recent results (last five sessions)                                 */
+/* ------------------------------------------------------------------ */
+
+.recent-results {
+  padding: 14px 16px;
+}
+
+.recent-results h2 {
+  margin-bottom: 6px;
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.history-row:first-of-type {
+  border-top: 0;
+}
+
+.verdict-chip {
+  padding: 3px 11px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+.verdict-chip.excellent {
+  background: linear-gradient(
+    90deg,
+    var(--color-pop-4),
+    var(--color-pop-1)
+  );
+}
+
+.verdict-chip.pass {
+  background: var(--color-correct);
+}
+
+.verdict-chip.fail {
+  background: var(--color-wrong);
+}
+
+.history-when {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.history-when b {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.history-score {
+  text-align: right;
+  font: 600 1.25rem var(--font-heading);
+}
+
+.history-score small {
+  display: block;
+  color: var(--color-text-muted);
+  font: 400 0.78rem var(--font-body);
+}
+
+/* ------------------------------------------------------------------ */
+/* Session settings                                                    */
+/* ------------------------------------------------------------------ */
+
+.fields {
+  display: grid;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.field > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+/* "10 questions" or "15 minutes", with quick-pick buttons */
+.length-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.length-row input {
+  width: 84px;
+  padding: 9px 10px;
+  font: 600 1.1rem var(--font-body);
+  color: var(--color-text);
+  text-align: center;
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.length-row input:focus {
+  outline: none;
+  border-color: var(--color-pop-3);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.16);
+}
+
+.length-row > span {
+  flex: 1 1 140px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* The big Start button */
+.start-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-on-accent);
+  background: var(--accent-gradient);
+  border: 0;
+  border-radius: var(--radius-small);
+  box-shadow: var(--button-shadow);
+}
+
+.start-button:hover {
+  filter: brightness(1.08);
+}
+
+.start-button:active:not([disabled]) {
+  transform: translateY(var(--press-depth));
+  box-shadow: var(--button-shadow-pressed);
+}
+
+.start-button::before {
+  content: "";
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.5em;
+  vertical-align: -0.2em;
+  background: var(--icon-start) center / contain no-repeat;
+}
+
+.ready-summary {
+  margin: 10px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.storage-warning {
+  margin: 10px 0 0;
+  color: var(--color-wrong);
+  font-size: 0.88rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Where you stand: progress per chapter and per topic                 */
+/* ------------------------------------------------------------------ */
+
+.empty-note {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.unit-progress {
+  border-top: 1px solid var(--color-border);
+}
+
+.unit-progress summary {
+  display: grid;
+  grid-template-columns: 1fr 90px 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.unit-progress summary::-webkit-details-marker {
+  display: none;
+}
+
+.unit-name b {
+  font-weight: 600;
+}
+
+.unit-name span {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.progress-bar {
+  height: 8px;
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.progress-bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-pop-2),
+    var(--color-correct)
+  );
+}
+
+.percent {
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.topic-list {
+  margin: 0;
+  padding: 0 0 10px 0;
+  list-style: none;
+}
+
+.topic-list li {
+  display: grid;
+  grid-template-columns: 1fr 90px 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 0.9rem;
+}
+
+.topic-list .progress-bar i {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-pop-3)
+  );
+}
+
+.topic-list .is-weak {
+  color: var(--color-wrong);
+}
+
+/* The "Choose questions.json" button on the load-error panel */
+.file-picker-button {
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ */
+/* The structure / ideas switch and the topics of a chapter            */
+/* ------------------------------------------------------------------ */
+
+.view-switch {
+  max-width: 340px;
+  margin: 0 0 12px;
+}
+
+.section-list {
+  display: grid;
+  gap: 2px;
+  padding: 0 0 10px;
+}
+
+.section-row > summary {
+  display: grid;
+  grid-template-columns: 1fr 90px 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.section-row > summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-name::before {
+  content: "\25B8";
+  margin-right: 6px;
+  color: var(--color-text-muted);
+}
+
+.section-row[open] .section-name::before {
+  content: "\25BE";
+}
+
+.section-row .progress-bar i {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-pop-3)
+  );
+}
+
+.section-name.is-weak {
+  color: var(--color-wrong);
+}
+
+.section-row .concept-list {
+  margin: 4px 0 10px 14px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Header tools: day streak and Settings button                        */
+/* ------------------------------------------------------------------ */
+
+.header-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 10px;
+}
+
+.settings-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: 999px;
+}
+
+/* A little cog drawn with a dotted ring */
+.settings-button i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 3px dotted currentColor;
+  border-radius: 50%;
+}
+
+.in-session .settings-button {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Folding panels, expand/collapse all                                 */
+/* ------------------------------------------------------------------ */
+
+.panel-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.panel-toggle .chevron {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+
+.panel.is-collapsed .panel-toggle .chevron {
+  transform: rotate(-45deg);
+}
+
+.panel.is-collapsed > :not(h2) {
+  display: none !important;
+}
+
+.panel.is-collapsed > h2 {
+  margin-bottom: 0;
+}
+
+/* A text-style button for small actions */
+.link-button {
+  padding: 4px 2px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------ */
+/* Where you stand: roomier switch and controls                        */
+/* ------------------------------------------------------------------ */
+
+#where-you-stand {
+  padding-top: 18px;
+}
+
+#where-you-stand .view-switch {
+  display: flex;
+  margin: 12px 0 14px;
+}
+
+#where-you-stand .view-switch button {
+  flex: 1;
+  padding: 11px 8px;
+  white-space: nowrap;
+}
+
+.stand-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+}
+
+.stand-count {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.expand-controls {
+  display: flex;
+  gap: 14px;
+}
+
+#where-you-stand .unit-progress summary {
+  padding: 15px 2px;
+}
+
+#where-you-stand .unit-name b {
+  font-size: 1.02rem;
+}
+
+#where-you-stand .unit-name span {
+  margin-top: 3px;
+}
+
+/* ------------------------------------------------------------------ */
+/* What do you want to do?                                             */
+/* ------------------------------------------------------------------ */
+
+.practice-note {
+  margin-top: 10px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Settings screen                                                     */
+/* ------------------------------------------------------------------ */
+
+/* While Settings is open, the home screen steps aside */
+.in-settings #home-screen,
+.in-settings #where-you-stand,
+.in-settings .book-notes,
+.in-settings #load-error {
+  display: none;
+}
+
+.settings-section h2 {
+  margin-bottom: 4px;
+}
+
+.settings-note {
+  margin: 0 0 4px;
+}
+
+.setting-row {
+  display: grid;
+  gap: 8px;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.settings-section h2 + .setting-row,
+.settings-section .settings-note + .setting-row {
+  border-top: 0;
+}
+
+.setting-label {
+  display: grid;
+  gap: 2px;
+}
+
+.setting-label b {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.setting-label small {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.setting-row .choice-group {
+  display: flex;
+  width: 100%;
+}
+
+.setting-row .choice-group button {
+  flex: 1 1 0;
+  min-height: 42px;
+}
+
+.setting-row select {
+  width: 100%;
+  min-height: 44px;
+}
+
+.settings-footer {
+  margin: 4px 4px 18px;
+  text-align: center;
+}
+
+#account-body .button-row {
+  margin-top: 10px;
+}
+
+@media (min-width: 640px) {
+  /* Wider screens: label on the left, control on the right */
+  .setting-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+/* Appearance: folded by default, shows the current theme */
+details.settings-section > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.settings-section > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.settings-section > summary h2 {
+  margin: 0;
+}
+
+.appearance-current {
+  position: relative;
+  padding-right: 20px;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.appearance-current::after {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+
+details.settings-section[open] .appearance-current::after {
+  top: 6px;
+  transform: rotate(-135deg);
+}
+
+details.settings-section[open] > summary {
+  margin-bottom: 4px;
+}
+
+/* Theme groups: one row of chips, one group of tiles at a time */
+.theme-groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.theme-groups button {
+  padding: 7px 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.theme-groups button[aria-pressed="true"] {
+  color: var(--color-on-accent);
+  background: var(--accent-gradient);
+  border-color: transparent;
+}
+
+.theme-tiles {
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+}

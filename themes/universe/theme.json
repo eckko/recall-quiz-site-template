@@ -1,0 +1,85 @@
+{
+  "name": "Universe",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Exo 2\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Exo 2\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef0ff",
+      "card": "#ffffff",
+      "text": "#1a1740",
+      "textMuted": "#5d5f8c",
+      "border": "#d4d8f5",
+      "accent": "#4f46e5",
+      "accent2": "#a21caf",
+      "highlight": "#ffe27a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#7c3aed",
+      "pop2": "#0ea5e9",
+      "pop3": "#db2777",
+      "pop4": "#f59e0b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/140px 140px fixed",
+      [
+        "radial-gradient(600px 400px at 85% 0%,#e0d4ff,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(500px 400px at 0% 100%,#cfe8ff,",
+        "transparent 70%) fixed"
+      ],
+      "#eef0ff fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#070816",
+      "card": "#0f1130",
+      "text": "#e8eaff",
+      "textMuted": "#a6aad6",
+      "border": "#272b5a",
+      "accent": "#8b8cff",
+      "accent2": "#f0a6ff",
+      "highlight": "#ffd966",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#b794ff",
+      "pop2": "#4cc9f0",
+      "pop3": "#ff7ac6",
+      "pop4": "#ffc65c",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/140px 140px fixed",
+      [
+        "radial-gradient(700px 500px at 85% 0%,#2b1b6b,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(600px 500px at 0% 100%,#0b2a5c,",
+        "transparent 70%) fixed"
+      ],
+      "#070816 fixed"
+    ]
+  }
+}

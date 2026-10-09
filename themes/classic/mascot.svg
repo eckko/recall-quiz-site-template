@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle
+    cx="28"
+    cy="34"
+    r="22"
+    fill="none"
+    stroke="#2743d6"
+    stroke-width="2.5"/>
+  <circle
+    cx="28"
+    cy="34"
+    r="14"
+    fill="none"
+    stroke="#7c5cff"
+    stroke-width="2.5"/>
+  <circle cx="28" cy="34" r="6" fill="#ffe14d"/>
+  <g stroke="#ff5d73" stroke-width="3" stroke-linecap="round">
+    <path d="M46 14l14-6M48 24l14-6M50 34l12-4"/>
+  </g>
+</svg>

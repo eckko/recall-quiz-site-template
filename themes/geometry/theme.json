@@ -1,0 +1,69 @@
+{
+  "name": "Geometry",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Josefin Sans\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Josefin Sans\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f8f4ff",
+      "card": "#ffffff",
+      "text": "#261a4d",
+      "textMuted": "#6b5f8f",
+      "border": "#ddd3f5",
+      "accent": "#6d28d9",
+      "accent2": "#0e7490",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#e11d48",
+      "pop2": "#0e7490",
+      "pop3": "#6d28d9",
+      "pop4": "#ea580c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/140px 140px fixed",
+      "linear-gradient(160deg,#faf6ff,#ede5ff) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#14102a",
+      "card": "#1d173b",
+      "text": "#efe9ff",
+      "textMuted": "#b1a6d6",
+      "border": "#352c5c",
+      "accent": "#a78bfa",
+      "accent2": "#5fd3ee",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff7a99",
+      "pop2": "#5fd3ee",
+      "pop3": "#b79cff",
+      "pop4": "#ffa05c",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/140px 140px fixed",
+      "linear-gradient(160deg,#15112b,#0e0b1d) fixed"
+    ]
+  }
+}

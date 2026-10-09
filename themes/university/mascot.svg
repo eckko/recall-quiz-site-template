@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path
+    d="M32 4l22 8v18c0 14-9 24-22 30C19 54 10 44 10 30V12z"
+    fill="#7a1f2b"
+    stroke="#b8860b"
+    stroke-width="3"
+    stroke-linejoin="round"/>
+  <path
+    d="M18 26c5-3 10-3 14 0 4-3 9-3 14 0v16c-5-3-10-3-14 0-4-3-9-3-14 0z"
+    fill="#f5efe0"
+    stroke="#b8860b"
+    stroke-width="1.5"
+    stroke-linejoin="round"/>
+  <path d="M32 26v16" stroke="#b8860b" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,38 @@
+/* Extra touches for the Watercolor theme. */
+[data-theme="watercolor"] h1 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-pop-1) 70%,
+    var(--color-accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 2.15rem;
+  font-weight: 700;
+}
+[data-theme="watercolor"] .panel {
+  background-image:
+    radial-gradient(
+      120% 90% at 0% 0%,
+      color-mix(in srgb, var(--color-pop-3) 12%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      120% 90% at 100% 100%,
+      color-mix(in srgb, var(--color-pop-1) 12%, transparent),
+      transparent 60%
+    );
+}
+[data-theme="watercolor"] .unit-title,
+[data-theme="watercolor"] .verdict,
+[data-theme="watercolor"] .panel h2 {
+  font-family: "Caveat", "Nunito", cursive;
+  font-size: 1.3em;
+  font-weight: 700;
+}
+[data-theme="watercolor"] .question-text {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+}

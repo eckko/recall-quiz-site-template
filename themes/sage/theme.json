@@ -1,0 +1,85 @@
+{
+  "name": "Sage",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6fbf4",
+      "card": "#ffffff",
+      "text": "#2b3626",
+      "textMuted": "#636f5d",
+      "border": "#ddead7",
+      "accent": "#bfdeb0",
+      "accent2": "#c9e9ca",
+      "highlight": "#fde68a",
+      "correct": "#23805f",
+      "wrong": "#c43d5c",
+      "partly": "#8f6508",
+      "pop1": "#b7e1b8",
+      "pop2": "#9d9dd2",
+      "pop3": "#496a39",
+      "pop4": "#986416",
+      "onAccent": "#222a1d",
+      "onHero": "#2b3626"
+    },
+    "background": [
+      "#f6fbf4"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #96b587"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #96b587"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px #517141"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1b1f19",
+      "card": "#282f25",
+      "text": "#ecf1e9",
+      "textMuted": "#b5beb1",
+      "border": "#434c3e",
+      "accent": "#b9dca8",
+      "accent2": "#b6e2b8",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fa9",
+      "partly": "#f0c15a",
+      "pop1": "#afdfb1",
+      "pop2": "#9696cf",
+      "pop3": "#c5e1b7",
+      "pop4": "#f0c36a",
+      "onAccent": "#1d231a",
+      "onHero": "#1d231a"
+    },
+    "background": [
+      "#1b1f19"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #5e7e4e"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #5e7e4e"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

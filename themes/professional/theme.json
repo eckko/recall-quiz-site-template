@@ -1,0 +1,97 @@
+{
+  "name": "Professional",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Inter\",system-ui,sans-serif",
+    "headings": "\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "1px"
+  },
+  "iconStroke": {
+    "width": 2.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f4f6f9",
+      "card": "#ffffff",
+      "text": "#111827",
+      "textMuted": "#5b6472",
+      "border": "#dde2ea",
+      "accent": "#1f5fd1",
+      "accent2": "#1f5fd1",
+      "highlight": "#fde68a",
+      "correct": "#15803d",
+      "wrong": "#b91c1c",
+      "partly": "#b45309",
+      "pop1": "#b91c1c",
+      "pop2": "#15803d",
+      "pop3": "#1f5fd1",
+      "pop4": "#b45309",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      [
+        "radial-gradient(rgba(16,24,40,.07) 1px,",
+        "transparent 1.3px) 0 0/22px 22px fixed"
+      ],
+      "linear-gradient(180deg,#f8fafc,#eef2f7) fixed"
+    ],
+    "buttonShadow": [
+      "0 1px 2px rgba(16,24,40,.25)"
+    ],
+    "buttonShadowPressed": [
+      "0 0 0 rgba(16,24,40,0)"
+    ],
+    "panelShadow": [
+      "0 1px 2px rgba(16,24,40,.06)",
+      "0 10px 28px -14px rgba(16,24,40,.2)"
+    ],
+    "pressDepth": "1px"
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f141b",
+      "card": "#171d26",
+      "text": "#e6eaf0",
+      "textMuted": "#98a3b3",
+      "border": "#2a3342",
+      "accent": "#5b9cff",
+      "accent2": "#5b9cff",
+      "highlight": "#d6bf5c",
+      "correct": "#3fd183",
+      "wrong": "#f87171",
+      "partly": "#fbbf24",
+      "pop1": "#f87171",
+      "pop2": "#3fd183",
+      "pop3": "#5b9cff",
+      "pop4": "#fbbf24",
+      "onAccent": "#0b1220",
+      "onHero": "#0b1220"
+    },
+    "background": [
+      [
+        "radial-gradient(rgba(255,255,255,.05) 1px,",
+        "transparent 1.3px) 0 0/22px 22px fixed"
+      ],
+      "linear-gradient(180deg,#0f141b,#0b1017) fixed"
+    ],
+    "buttonShadow": [
+      "0 1px 2px rgba(0,0,0,.5)"
+    ],
+    "buttonShadowPressed": [
+      "0 0 0 rgba(0,0,0,0)"
+    ],
+    "panelShadow": [
+      "0 1px 2px rgba(0,0,0,.4)",
+      "0 10px 28px -14px rgba(0,0,0,.6)"
+    ],
+    "pressDepth": "1px"
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <path
+    d="M0 0H120M0 40H120M0 80H120M0 120H120M0 0V120M40 0V120M80 0V120M120
+      0V120"
+    stroke="#9bb3d3"
+    stroke-opacity=".16"
+    stroke-width="1"
+    fill="none"/>
+  <g
+    stroke="#6aa2ff"
+    stroke-opacity=".32"
+    stroke-width="3"
+    stroke-linecap="round"
+    fill="none">
+    <path d="M16 22h14M23 15v14"/>
+    <path d="M82 24h14"/>
+    <path d="M60 84h16M60 92h16"/>
+    <path d="M98 88l12 12M110 88l-12 12"/>
+    <path d="M20 90h10M20 100h10M25 86l-6 18" opacity=".0"/>
+  </g>
+  <path
+    d="M10 70h22M14 70l-2 12M28 70l1 12"
+    stroke="#6aa2ff"
+    stroke-opacity=".32"
+    stroke-width="3"
+    stroke-linecap="round"
+    fill="none"/>
+</svg>

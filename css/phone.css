@@ -1,0 +1,148 @@
+/*
+ * phone.css
+ * Changes for narrow screens (560px wide or less). Loaded last so these
+ * rules win. Keep every phone tweak here so it is easy to find.
+ */
+
+@media (max-width: 560px) {
+  /* Every size set in rem grows a little, for easier reading */
+  html {
+    font-size: 17px;
+  }
+
+  main {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .panel {
+    padding: 16px 14px;
+  }
+
+  /* Header: picture and title on one row, Theme and streak below */
+  .page-header {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+  }
+
+  .page-header > .mascot {
+    width: 52px;
+    height: 52px;
+  }
+
+  .title-block {
+    flex: 1 1 calc(100% - 72px);
+  }
+
+  h1 {
+    font-size: 1.45rem;
+  }
+
+  .book-summary {
+    font-size: 0.9rem;
+  }
+
+  .header-tools {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  .settings-button {
+    min-height: 40px;
+  }
+
+  .day-streak {
+    padding: 9px 14px;
+  }
+
+  /* During a session the pill and question get the whole screen */
+  .in-session .page-header {
+    display: none;
+  }
+
+  .in-session main {
+    padding-top: 58px;
+  }
+
+  .session-pill {
+    top: 8px;
+    right: 8px;
+    font-size: 0.85rem;
+  }
+
+  /* Small text gets a floor of about 14px */
+  .key-hint,
+  .question-kind,
+  .key-number,
+  .tile-button,
+  .progress-tally span,
+  .note,
+  .empty-note,
+  .question-meta .topic-line,
+  .tile-name,
+  .pill-button {
+    font-size: 0.85rem;
+  }
+
+  /* Big, comfortable tap targets */
+  .button,
+  .start-button,
+  .choice-group button,
+  .option,
+  .pill-button,
+  select,
+  .length-row input {
+    min-height: 44px;
+  }
+
+  .choice-group {
+    flex-wrap: wrap;
+  }
+
+  .choice-group button {
+    padding: 8px 4px;
+    font-size: 0.92rem;
+  }
+
+  /* Session length: number and label on one row, the quick-pick
+     buttons share the next row evenly */
+  .length-row {
+    gap: 8px;
+  }
+
+  .length-row > span {
+    flex: 1 1 calc(100% - 100px);
+    min-width: 0;
+  }
+
+  .length-row .pill-button {
+    flex: 1 1 0;
+    min-width: 48px;
+    padding: 8px 6px;
+    text-align: center;
+  }
+
+  /* Question types that sit side by side on wide screens stack */
+  .match-grid,
+  .sort-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .topic-list li {
+    grid-template-columns: 1fr 64px 38px;
+  }
+
+  .theme-tiles {
+    grid-template-columns: repeat(auto-fill, minmax(98px, 1fr));
+    gap: 8px;
+  }
+
+  .theme-tile {
+    padding: 8px 4px 10px;
+  }
+
+  .result-score {
+    font-size: 4.2rem;
+  }
+}

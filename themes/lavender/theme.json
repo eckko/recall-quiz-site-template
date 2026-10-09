@@ -1,0 +1,85 @@
+{
+  "name": "Lavender",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f5f1fd",
+      "card": "#ffffff",
+      "text": "#29213b",
+      "textMuted": "#605874",
+      "border": "#dad1f0",
+      "accent": "#b8a1ed",
+      "accent2": "#e2bef4",
+      "highlight": "#fde68a",
+      "correct": "#23805f",
+      "wrong": "#c43d5c",
+      "partly": "#8f6508",
+      "pop1": "#d8a8f0",
+      "pop2": "#dfc290",
+      "pop3": "#41297a",
+      "pop4": "#986416",
+      "onAccent": "#1f192e",
+      "onHero": "#29213b"
+    },
+    "background": [
+      "#f5f1fd"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #8f77c5"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #8f77c5"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px #493181"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1622",
+      "card": "#272232",
+      "text": "#ebe7f3",
+      "textMuted": "#b3adc2",
+      "border": "#403951",
+      "accent": "#b199eb",
+      "accent2": "#d7aaee",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fa9",
+      "partly": "#f0c15a",
+      "pop1": "#d3a1ec",
+      "pop2": "#ddbe88",
+      "pop3": "#bfabed",
+      "pop4": "#f0c36a",
+      "onAccent": "#1c1726",
+      "onHero": "#1c1726"
+    },
+    "background": [
+      "#1a1622"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #563d8f"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #563d8f"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

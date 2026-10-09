@@ -1,0 +1,69 @@
+{
+  "name": "Maths",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Lexend\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Lexend\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1f6ff",
+      "card": "#ffffff",
+      "text": "#12264a",
+      "textMuted": "#566b8c",
+      "border": "#cfdcf2",
+      "accent": "#1d4ed8",
+      "accent2": "#0891b2",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#dc2626",
+      "pop2": "#0d9488",
+      "pop3": "#7c3aed",
+      "pop4": "#d97706",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f6f9ff,#e7efff) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0c1a2e",
+      "card": "#132640",
+      "text": "#e6f0ff",
+      "textMuted": "#9bb3d3",
+      "border": "#25405f",
+      "accent": "#6aa2ff",
+      "accent2": "#4fd1e6",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff8a80",
+      "pop2": "#4fd6c4",
+      "pop3": "#b79cff",
+      "pop4": "#ffb74d",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0d1c31,#09131f) fixed"
+    ]
+  }
+}

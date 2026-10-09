@@ -1,0 +1,13 @@
+/* Extra touches for the Talk to People theme. */
+[data-theme="social"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="social"] .unit-title,
+[data-theme="social"] .verdict,
+[data-theme="social"] .panel h2 {
+  font-family: var(--font-heading);
+}

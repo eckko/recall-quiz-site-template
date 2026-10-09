@@ -1,0 +1,1121 @@
+{
+  "id": "clock-arithmetic-sample",
+  "book": "Clock Arithmetic (sample course)",
+  "labels": {
+    "unit": "Lesson",
+    "units": "lessons",
+    "topic": "Idea",
+    "whole": "Whole course"
+  },
+  "concepts": [
+    {
+      "id": "remainders",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "title": "Remainders and the clock",
+      "requires": [],
+      "card": {
+        "paragraphs": [
+          "A clock face only has the numbers 1 to 12. When the hour hand passes 12 it does not go on to 13; it starts again. So the time 17:00 shows as 5 o'clock.",
+          "The reason is division with remainder. 17 hours is one full turn of 12 hours plus 5 more: \\(17 = 1 \\times 12 + 5\\). The full turns do not change where the hand points; only the 5 left over does.",
+          "We write \\(17 \\bmod 12 = 5\\), read '17 mod 12 is 5'. In general \\(a \\bmod n\\) is the remainder when a is divided by n. It is always one of 0, 1, 2, and so on up to \\(n - 1\\). On the clock, the top position 12 plays the part of remainder 0."
+        ],
+        "example": "Where does the hour hand point 29 hours after midnight? Divide by 12: \\(29 = 2 \\times 12 + 5\\). Two full turns change nothing, so the hand points to 5, and \\(29 \\bmod 12 = 5\\).",
+        "rule": "\\(a \\bmod n\\) is the remainder of a divided by n, a number from 0 to \\(n - 1\\).",
+        "limits": "It describes whole numbers divided by a positive whole number n. It says nothing about fractions, and the choice of n matters: 17 leaves 5 on a 12-hour clock but 3 on a 7-day week."
+      },
+      "question": "What is left over when a number wraps around a clock?",
+      "core": true
+    },
+    {
+      "id": "congruence",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "title": "Congruence: same remainder",
+      "requires": [
+        "remainders"
+      ],
+      "card": {
+        "paragraphs": [
+          "Many numbers leave the same remainder: 5, 17 and 29 all leave remainder 5 when divided by 12. On a clock they all point to 5. Mathematicians give this a short name.",
+          "We write \\(a \\equiv b \\pmod{n}\\), read 'a is congruent to b mod n', when a and b leave the same remainder after division by n. For example \\(17 \\equiv 5 \\pmod{12}\\) and \\(29 \\equiv 17 \\pmod{12}\\).",
+          "There is a second test that needs no remainders. \\(a \\equiv b \\pmod{n}\\) exactly when n divides \\(a - b\\), meaning \\(a - b\\) is a whole multiple of n. For instance \\(29 - 17 = 12\\), and 12 is a multiple of 12, so \\(29 \\equiv 17 \\pmod{12}\\)."
+        ],
+        "example": "Is \\(40 \\equiv 16 \\pmod{12}\\)? Remainders: \\(40 = 3 \\times 12 + 4\\) and \\(16 = 12 + 4\\), both 4, so yes. Difference test: \\(40 - 16 = 24 = 2 \\times 12\\), also yes.",
+        "rule": "\\(a \\equiv b \\pmod{n}\\) means a and b leave the same remainder when divided by n; equivalently, \\(a - b\\) is a multiple of n.",
+        "limits": "Congruence is always relative to one chosen n. Two numbers can be congruent mod 12 and not congruent mod 5, so name n every time."
+      },
+      "question": "When do two numbers point to the same place on a clock?",
+      "core": false
+    },
+    {
+      "id": "add-multiply",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "title": "Reduce first, then add or multiply",
+      "requires": [
+        "congruence"
+      ],
+      "card": {
+        "paragraphs": [
+          "To find the remainder of a sum, you do not need the sum itself. Replace each number by its remainder, add those, and reduce once more if the result is n or bigger.",
+          "Multiplication works the same way: replace each factor by its remainder, multiply, and reduce again.",
+          "Why does this work? \\(38 = 3 \\times 12 + 2\\). The part \\(3 \\times 12\\) is whole turns of the clock. Adding or multiplying whole turns only produces more whole turns, so it never changes the final remainder. Only the 2 matters."
+        ],
+        "example": "Find \\(38 \\times 27 \\bmod 12\\). Reduce: \\(38 \\equiv 2\\) and \\(27 \\equiv 3\\). Multiply: \\(2 \\times 3 = 6\\). Check the long way: \\(38 \\times 27 = 1026 = 85 \\times 12 + 6\\). Same answer, far less work.",
+        "rule": "Reduce, then add or multiply, then reduce again.",
+        "limits": "It works for adding, subtracting and multiplying. Division does not behave this way: you cannot simply divide remainders."
+      },
+      "question": "Why may you reduce before you add or multiply?",
+      "core": true
+    },
+    {
+      "id": "negatives",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "title": "Going backwards",
+      "requires": [
+        "add-multiply"
+      ],
+      "card": {
+        "paragraphs": [
+          "Clocks also run backwards in our heads: 5 hours before 2 o'clock is 9 o'clock. In numbers, \\(2 - 5 = -3\\), so -3 must point to 9 on the clock.",
+          "Check with the difference test: \\(9 - (-3) = 12\\), a multiple of 12, so \\(-3 \\equiv 9 \\pmod{12}\\). The remainder of -3 mod 12 is 9, not 3.",
+          "To reduce a negative number, add n (as many times as needed) until the result lies between 0 and \\(n - 1\\). Adding n is one full turn, so it never changes the position. Subtraction then works like addition: reduce, subtract, and fix a negative result by adding n."
+        ],
+        "example": "Find \\((15 - 22) \\bmod 12\\). Reduce: \\(15 \\equiv 3\\) and \\(22 \\equiv 10\\). Subtract: \\(3 - 10 = -7\\). Add 12: \\(-7 + 12 = 5\\). Check: \\(15 - 22 = -7\\), and \\(5 - (-7) = 12\\).",
+        "rule": "A remainder mod n is always from 0 to \\(n - 1\\); reduce a negative number by adding n until it is.",
+        "limits": "The wrap-around rule still gives a result from 0 to n - 1, but different languages and calculators sometimes print a negative remainder, so check what your tool does."
+      },
+      "question": "How does a negative number land on a clock?",
+      "core": false
+    },
+    {
+      "id": "weekdays",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "title": "Days of the week",
+      "requires": [
+        "add-multiply"
+      ],
+      "card": {
+        "paragraphs": [
+          "The week is a clock with 7 positions: Monday, Tuesday, ..., Sunday, then Monday again. So questions about weekdays are arithmetic mod 7.",
+          "To find the weekday N days from today, only \\(N \\bmod 7\\) matters. Every 7 days is one full week and brings you back to the same weekday. Find the remainder r, then count r days forward, starting with tomorrow as day 1."
+        ],
+        "example": "Today is Tuesday. What day is it in 100 days? \\(100 = 14 \\times 7 + 2\\). Fourteen whole weeks change nothing, so count 2 days on: Wednesday (1), Thursday (2). It will be a Thursday.",
+        "rule": "To move N days, move \\(N \\bmod 7\\) weekdays forward.",
+        "limits": "It works for a repeating cycle of fixed length. Calendars with irregular cycles, such as months of different lengths, need a different method."
+      },
+      "question": "How far forward does a long stretch of days really move the weekday?",
+      "core": true
+    },
+    {
+      "id": "last-digits",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "title": "Last digits and powers",
+      "requires": [
+        "add-multiply"
+      ],
+      "card": {
+        "paragraphs": [
+          "The last digit of a whole number is its remainder mod 10. For example \\(347 = 34 \\times 10 + 7\\), so it ends in 7 and \\(347 \\equiv 7 \\pmod{10}\\).",
+          "So everything about reducing first applies: the last digit of a sum or product depends only on the last digits of the numbers involved.",
+          "Powers are repeated multiplication, so each new last digit comes from the previous last digit times the base. For powers of 7: 7, then \\(7 \\times 7 = 49\\) ends in 9, then \\(9 \\times 7 = 63\\) gives 3, then \\(3 \\times 7 = 21\\) gives 1, then \\(1 \\times 7 = 7\\) again. The last digits repeat in the cycle 7, 9, 3, 1."
+        ],
+        "example": "Last digit of \\(7^{10}\\): the cycle 7, 9, 3, 1 has length 4, and \\(10 = 2 \\times 4 + 2\\). Two full cycles, then the 2nd entry: 9. Check: \\(7^{10} = 282475249\\).",
+        "rule": "Last digit means remainder mod 10; for a power, find the cycle of last digits and see where the exponent falls in it.",
+        "limits": "Cycle-finding works for last digits (mod 10). For other moduli the cycle can be much longer, and some powers do not repeat in a short cycle."
+      },
+      "question": "Where does the last digit of a power fall in its cycle?",
+      "core": false
+    }
+  ],
+  "questions": [
+    {
+      "id": "remainders-p",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "A clock shows 9 o'clock. What time does it show 5 hours later?",
+      "options": [
+        "14 o'clock",
+        "2 o'clock",
+        "1 o'clock",
+        "5 o'clock"
+      ],
+      "answer": 1,
+      "explain": "Count on from 9: 10, 11, 12, 1, 2. After 12 the clock starts again, so 9 + 5 = 14 hours shows as 2 o'clock. The next card shows why this is a remainder.",
+      "optionExplain": [
+        "9 + 5 = 14 is the right sum, but a clock face stops at 12, so 14 o'clock is never shown.",
+        "Right: the hand passes 12 and goes on 2 more hours, since 14 is one turn of 12 plus 2.",
+        "This is one hour short, which happens if you count 9 itself as the first hour: 9, 10, 11, 12, 1.",
+        "5 is how many hours pass, not where the hand ends up; the count has to start from 9."
+      ],
+      "rule": "A clock starts again after 12."
+    },
+    {
+      "id": "remainders-1",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "Fill in the remainder: \\(23 \\bmod 12 = \\) ____",
+      "accept": [
+        "11",
+        "eleven"
+      ],
+      "explain": "\\(23 = 1 \\times 12 + 11\\), so the remainder is 11. On a clock, 23:00 shows as 11 o'clock.",
+      "rule": "Take away whole twelves; what is left, from 0 to 11, is the answer."
+    },
+    {
+      "id": "remainders-2",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "It is 10 o'clock now. A train journey takes 27 hours. What does a 12-hour clock show when the train arrives?",
+      "options": [
+        "3 o'clock",
+        "13 o'clock",
+        "1 o'clock",
+        "10 o'clock"
+      ],
+      "answer": 2,
+      "explain": "The arrival is 10 + 27 = 37 hours on from 12. Since \\(37 = 3 \\times 12 + 1\\), the clock shows 1 o'clock.",
+      "optionExplain": [
+        "3 is \\(27 \\bmod 12\\), the remainder of the journey alone. It forgets to start counting from 10 o'clock.",
+        "10 + 3 = 13 adds the right remainder but forgets to wrap around a second time: 13 o'clock is 1 o'clock.",
+        "Right: \\(10 + 27 = 37\\) and \\(37 = 3 \\times 12 + 1\\), so the hand points to 1.",
+        "27 hours feels like 'about a day', but only multiples of 12 bring the hand back; \\(27 = 2 \\times 12 + 3\\)."
+      ],
+      "hint": "Add the journey to the start time first, then remove whole twelves.",
+      "rule": "Add first, then wrap around as many times as needed."
+    },
+    {
+      "id": "remainders-3",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "extend",
+      "rung": 3,
+      "kind": "multi",
+      "q": "Select every number that leaves remainder 5 when divided by 12.",
+      "options": [
+        "17",
+        "15",
+        "29",
+        "41",
+        "50",
+        "53"
+      ],
+      "answers": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "explain": "17, 29, 41 and 53 are \\(12 + 5\\), \\(2 \\times 12 + 5\\), \\(3 \\times 12 + 5\\) and \\(4 \\times 12 + 5\\). Each is 12 more than the one before, so they all point to 5 on the clock.",
+      "optionExplain": [
+        "Right: \\(17 = 12 + 5\\).",
+        "15 ends in 5, which is tempting, but \\(15 = 12 + 3\\), so its remainder is 3.",
+        "Right: \\(29 = 2 \\times 12 + 5\\).",
+        "Right: \\(41 = 3 \\times 12 + 5\\), one more full turn than 29.",
+        "50 is close to 53, but \\(50 = 4 \\times 12 + 2\\), so its remainder is 2.",
+        "Right: \\(53 = 4 \\times 12 + 5\\)."
+      ],
+      "rule": "Numbers with the same remainder mod 12 are 12 apart.",
+      "teaches": "The numbers with remainder 5 mod 12 form a list 5, 17, 29, 41, 53, ... in which each is 12 more than the last, because adding a full turn never moves the hand."
+    },
+    {
+      "id": "remainders-4",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "discriminate",
+      "rung": 4,
+      "kind": "sort",
+      "q": "Each question is answered by one part of a division with remainder. Sort them: is the answer the quotient (number of full rounds) or the remainder (what is left over)?",
+      "items": [
+        {
+          "t": "How many full turns the hour hand makes in 29 hours",
+          "g": 0
+        },
+        {
+          "t": "Which number the hour hand points to after 29 hours",
+          "g": 1
+        },
+        {
+          "t": "How many full boxes 50 eggs fill, 12 to a box",
+          "g": 0
+        },
+        {
+          "t": "How many loose eggs remain after boxing 50 eggs, 12 to a box",
+          "g": 1
+        },
+        {
+          "t": "How many complete weeks there are in 45 days",
+          "g": 0
+        },
+        {
+          "t": "How many extra days there are beyond the complete weeks in 45 days",
+          "g": 1
+        }
+      ],
+      "groups": [
+        "The quotient (full rounds)",
+        "The remainder (left over)"
+      ],
+      "explain": "\\(29 = 2 \\times 12 + 5\\), \\(50 = 4 \\times 12 + 2\\) and \\(45 = 6 \\times 7 + 3\\). The quotients 2, 4 and 6 count full rounds; the remainders 5, 2 and 3 say where you end up.",
+      "rule": "The quotient counts full rounds; the remainder says where you land."
+    },
+    {
+      "id": "remainders-5",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Remainders",
+      "concept": "remainders",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "A kitchen timer's minute hand starts at 0 and runs for 175 minutes. Which minute mark does the minute hand point to at the end?",
+      "options": [
+        "55",
+        "7",
+        "2",
+        "75"
+      ],
+      "answer": 0,
+      "explain": "The minute hand goes round once every 60 minutes, so divide by 60: \\(175 = 2 \\times 60 + 55\\). It points to minute 55.",
+      "optionExplain": [
+        "Right: the cycle for minutes has length 60, and \\(175 = 2 \\times 60 + 55\\).",
+        "\\(175 \\bmod 12 = 7\\). Dividing by 12 is a habit from the hour hand, but the minute hand needs 60 minutes, not 12, to go round.",
+        "2 is the quotient: the number of full turns. It says how often the hand went round, not where it points.",
+        "175 minus 100 is 75, but a minute hand has no 75 mark; take away whole 60s until less than 60 is left."
+      ],
+      "hint": "How many minutes does the minute hand need to go all the way round?",
+      "rule": "Divide by the length of the cycle.",
+      "teaches": "The number you divide by (the modulus) is the length of the cycle, so the same method works for any cycle: 60 for minutes, 24 for a 24-hour clock, 12 for hours."
+    },
+    {
+      "id": "congruence-p",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "tf",
+      "q": "On a 12-hour clock, the hour hand points to the same number 3 hours after midnight and 15 hours after midnight.",
+      "answer": true,
+      "explain": "15 hours is one full turn of 12 hours plus 3, and a full turn leaves the hand where it was. The next card gives this 'same position' a name.",
+      "rule": "Numbers that differ by a full turn land in the same place."
+    },
+    {
+      "id": "congruence-1",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "mcq",
+      "q": "Which statement means the same as \\(38 \\equiv 14 \\pmod{12}\\)?",
+      "options": [
+        "38 divided by 12 gives 14",
+        "38 minus 14 is exactly 12",
+        "14 is the remainder of 38 divided by 12",
+        "38 and 14 leave the same remainder when divided by 12"
+      ],
+      "answer": 3,
+      "explain": "Congruence means equal remainders. Here both are 2: \\(38 = 3 \\times 12 + 2\\) and \\(14 = 12 + 2\\). Their difference 24 is a multiple of 12, as the second test needs.",
+      "optionExplain": [
+        "The symbol looks a bit like a division sum, but \\(38 \\div 12\\) is about 3.2, not 14.",
+        "The difference must be a multiple of 12, not 12 itself. Here 38 - 14 = 24, which is 2 x 12, and that is enough.",
+        "A remainder mod 12 is always below 12, so it cannot be 14; the remainder of 38 is 2.",
+        "Right: both leave remainder 2, which is exactly what \\(\\equiv\\) says."
+      ],
+      "rule": "\\(\\equiv\\) means 'same remainder', not 'equals the remainder'."
+    },
+    {
+      "id": "congruence-2",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "apply",
+      "rung": 2,
+      "kind": "multi",
+      "q": "Select every true statement.",
+      "options": [
+        "\\(29 \\equiv 5 \\pmod{12}\\)",
+        "\\(26 \\equiv 6 \\pmod{12}\\)",
+        "\\(40 \\equiv 4 \\pmod{12}\\)",
+        "\\(33 \\equiv 3 \\pmod{12}\\)",
+        "\\(50 \\equiv 2 \\pmod{12}\\)",
+        "\\(19 \\equiv 9 \\pmod{12}\\)"
+      ],
+      "answers": [
+        0,
+        2,
+        4
+      ],
+      "explain": "Use the difference test: is the difference a multiple of 12? 24, 36 and 48 are; 20, 30 and 10 are not.",
+      "optionExplain": [
+        "True: \\(29 - 5 = 24 = 2 \\times 12\\).",
+        "False: \\(26 - 6 = 20\\), not a multiple of 12. Both numbers end in 6, which is tempting, but \\(26 \\bmod 12 = 2\\).",
+        "True: \\(40 - 4 = 36 = 3 \\times 12\\).",
+        "False: both contain the digit 3, but \\(33 - 3 = 30\\) is not a multiple of 12; \\(33 \\bmod 12 = 9\\).",
+        "True: \\(50 - 2 = 48 = 4 \\times 12\\).",
+        "False: both end in 9, but \\(19 - 9 = 10\\), which is not a multiple of 12; \\(19 \\bmod 12 = 7\\)."
+      ],
+      "rule": "Subtract and ask: is the difference a multiple of n? Matching last digits prove nothing mod 12."
+    },
+    {
+      "id": "congruence-3",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "extend",
+      "rung": 3,
+      "kind": "fill",
+      "q": "\\(26 \\equiv 2 \\pmod{12}\\) is true. The largest n for which \\(26 \\equiv 2 \\pmod{n}\\) is also true is ____.",
+      "accept": [
+        "24",
+        "twenty-four",
+        "twenty four"
+      ],
+      "explain": "\\(26 \\equiv 2 \\pmod{n}\\) holds exactly when n divides \\(26 - 2 = 24\\). So it holds for n = 1, 2, 3, 4, 6, 8, 12 and 24, and the largest is 24.",
+      "hint": "Work out 26 - 2 first. Which numbers divide it?",
+      "rule": "\\(a \\equiv b \\pmod{n}\\) holds for exactly the n that divide \\(a - b\\).",
+      "teaches": "One subtraction answers the question for every modulus at once: \\(a \\equiv b\\) is true mod each divisor of \\(a - b\\) and false for every other n."
+    },
+    {
+      "id": "congruence-4",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "predict",
+      "rung": 4,
+      "kind": "tf",
+      "q": "Suppose you know that \\(a \\equiv b \\pmod{12}\\). Then \\(a \\equiv b \\pmod{6}\\) must also be true.",
+      "answer": true,
+      "explain": "If \\(a - b\\) is a multiple of 12, it is also a multiple of 6, since 12 = 2 x 6. The reverse fails: \\(8 \\equiv 2 \\pmod{6}\\) but not mod 12, because 6 is not a multiple of 12.",
+      "rule": "Congruent mod n means congruent mod every divisor of n, but not the other way round."
+    },
+    {
+      "id": "congruence-5",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "match",
+      "q": "Match each congruence with the everyday description of the whole number x that means the same thing.",
+      "pairs": [
+        [
+          "\\(x \\equiv 0 \\pmod{2}\\)",
+          "x is even"
+        ],
+        [
+          "\\(x \\equiv 1 \\pmod{2}\\)",
+          "x is odd"
+        ],
+        [
+          "\\(x \\equiv 0 \\pmod{5}\\)",
+          "x ends in the digit 0 or 5"
+        ],
+        [
+          "\\(x \\equiv 0 \\pmod{12}\\)",
+          "x eggs fill whole boxes of 12 exactly"
+        ]
+      ],
+      "explain": "Remainder 0 mod 2 means x splits into pairs: even. Remainder 1 mod 2 means one is left over: odd. The multiples of 5 are 5, 10, 15, 20, ..., which end in 5 or 0. Remainder 0 mod 12 means whole dozens with none left over.",
+      "rule": "'Even', 'odd' and 'a multiple of' are all congruence statements.",
+      "teaches": "Ideas you already knew are congruences in disguise: even means \\(x \\equiv 0 \\pmod 2\\), odd means \\(x \\equiv 1 \\pmod 2\\), and 'a multiple of k' means \\(x \\equiv 0 \\pmod k\\)."
+    },
+    {
+      "id": "congruence-6",
+      "unit": "Lesson 1",
+      "unitTitle": "Wrapping around",
+      "section": "Same remainder",
+      "concept": "congruence",
+      "role": "spot-error",
+      "rung": 6,
+      "kind": "mcq",
+      "q": "Sam checks whether \\(52 \\equiv 4 \\pmod{12}\\). Step 1: \\(52 - 4 = 48\\). Step 2: 48 is not 12, so 52 and 4 are not congruent mod 12. Which step is wrong?",
+      "options": [
+        "Step 1: the difference must be 4 - 52, not 52 - 4",
+        "Step 2: 48 only has to be a multiple of 12, and 48 = 4 x 12",
+        "Neither step: 52 and 4 really are not congruent mod 12",
+        "Step 1: you must divide by 12 first and never subtract"
+      ],
+      "answer": 1,
+      "explain": "The test asks whether \\(a - b\\) is a multiple of n, not whether it equals n. \\(48 = 4 \\times 12\\), so \\(52 \\equiv 4 \\pmod{12}\\); indeed \\(52 = 4 \\times 12 + 4\\).",
+      "optionExplain": [
+        "Order does not matter: 4 - 52 = -48 is a multiple of 12 exactly when 48 is.",
+        "Right: 'n divides a - b' means a - b is some multiple of n. Four full turns is as good as one.",
+        "Tempting if you trust Step 2, but \\(52 = 4 \\times 12 + 4\\) leaves remainder 4, the same as 4.",
+        "Both tests are valid; the difference test is often quicker. The mistake is in how Step 2 reads the result."
+      ],
+      "rule": "Multiple of n, not equal to n."
+    },
+    {
+      "id": "add-multiply-p",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "38 leaves remainder 2 and 27 leaves remainder 3 when divided by 12. What remainder does 38 + 27 leave when divided by 12?",
+      "options": [
+        "5",
+        "6",
+        "1",
+        "You cannot tell without working out 38 + 27"
+      ],
+      "answer": 0,
+      "explain": "Adding the remainders works: 2 + 3 = 5, and indeed \\(65 = 5 \\times 12 + 5\\). The next card shows why the remainders are all you need.",
+      "optionExplain": [
+        "Right: 2 + 3 = 5, and the full sum 65 also leaves 5.",
+        "6 is 2 x 3; that is the rule for a product, but here the numbers are added.",
+        "1 might come from 65 having digits 6 and 5; digits do not give remainders mod 12.",
+        "It feels safer to compute 65 first, but the remainders are enough: \\(65 = 5 \\times 12 + 5\\)."
+      ],
+      "rule": "The remainder of a sum depends only on the remainders of its parts."
+    },
+    {
+      "id": "add-multiply-1",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "\\(17 \\equiv 5\\) and \\(19 \\equiv 7 \\pmod{12}\\). So \\(17 \\times 19 \\bmod 12 = \\) ____",
+      "accept": [
+        "11",
+        "eleven"
+      ],
+      "explain": "Multiply the remainders: \\(5 \\times 7 = 35\\). 35 is 12 or more, so reduce again: \\(35 = 2 \\times 12 + 11\\). Check: \\(17 \\times 19 = 323 = 26 \\times 12 + 11\\).",
+      "hint": "Multiply the remainders. Is the result already below 12?",
+      "rule": "After multiplying the remainders, reduce again."
+    },
+    {
+      "id": "add-multiply-2",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "apply",
+      "rung": 2,
+      "kind": "order",
+      "q": "Eggs are packed in boxes of 12. Farm A sends 47 eggs and farm B sends 58. Put the steps for finding how many loose eggs are left over in order.",
+      "items": [
+        "Reduce each number: \\(47 \\equiv 11\\) and \\(58 \\equiv 10 \\pmod{12}\\)",
+        "Add the remainders: \\(11 + 10 = 21\\)",
+        "21 is 12 or more, so reduce again: \\(21 = 12 + 9\\)",
+        "Answer: 9 eggs are left over"
+      ],
+      "explain": "Reduce, add, reduce again. Check: \\(47 + 58 = 105 = 8 \\times 12 + 9\\), so 8 full boxes and 9 loose eggs.",
+      "rule": "Reduce, add, reduce again."
+    },
+    {
+      "id": "add-multiply-3",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "What is \\(13^{50} \\bmod 12\\)? (\\(13^{50}\\) means fifty 13s multiplied together.)",
+      "options": [
+        "2",
+        "0",
+        "1",
+        "It is too big to find without a computer"
+      ],
+      "answer": 2,
+      "explain": "A power is repeated multiplication, so each 13 can be reduced: \\(13 \\equiv 1 \\pmod{12}\\), and \\(1^{50} = 1\\). So \\(13^{50} \\equiv 1 \\pmod{12}\\).",
+      "optionExplain": [
+        "2 is \\(50 \\bmod 12\\). That reduces the exponent, but the exponent counts how many times you multiply; it is the base 13 that may be reduced.",
+        "0 would mean 12 divides the number, but every factor is 13, which leaves remainder 1, never 0.",
+        "Right: each factor 13 becomes 1, and fifty 1s multiplied together give 1.",
+        "The number has 56 digits, but you never need it: reduce each factor first."
+      ],
+      "hint": "13 is one more than 12. What does each factor 13 become?",
+      "rule": "In a power, reduce the base, never the exponent.",
+      "teaches": "Powers can be reduced too, because a power is repeated multiplication: replace the base by its remainder, \\(13^{50} \\equiv 1^{50}\\), but leave the exponent alone."
+    },
+    {
+      "id": "add-multiply-4",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "spot-error",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "Lee computes \\(2^{13} \\bmod 12\\). Step 1: \\(13 \\equiv 1 \\pmod{12}\\). Step 2: so \\(2^{13} \\equiv 2^{1} = 2\\). Step 3: the answer is 2. Which step goes wrong?",
+      "options": [
+        "No step: the answer really is 2",
+        "Step 1: \\(13 \\bmod 12\\) is 11, not 1",
+        "Step 1: numbers may only be reduced at the very end",
+        "Step 2: the exponent cannot be reduced mod 12; the answer is 8"
+      ],
+      "answer": 3,
+      "explain": "The exponent 13 counts multiplications, so it must stay 13. Doubling mod 12 gives 2, 4, 8, 4, 8, 4, ... and odd exponents from 3 on give 8: \\(2^{13} = 8192 = 682 \\times 12 + 8\\).",
+      "optionExplain": [
+        "It looks like the earlier trick, but that trick reduced the base. \\(2^{13} = 8192\\), which leaves 8.",
+        "Step 1 is correct arithmetic: \\(13 = 12 + 1\\). The error is using that 1 as an exponent.",
+        "Reducing early is allowed and is the whole point of the card. Reducing an exponent is what fails.",
+        "Right: reduce the base, never the exponent. \\(2^{13} = 8192\\) leaves remainder 8."
+      ],
+      "rule": "Exponents are counts, not remainders mod n."
+    },
+    {
+      "id": "add-multiply-5",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "fill",
+      "q": "Since \\(10 \\equiv 1 \\pmod{9}\\), the number \\(4325 = 4 \\times 1000 + 3 \\times 100 + 2 \\times 10 + 5\\) leaves remainder ____ when divided by 9.",
+      "accept": [
+        "5",
+        "five"
+      ],
+      "explain": "Each power of 10 is a product of 10s, so \\(1000 \\equiv 100 \\equiv 10 \\equiv 1 \\pmod{9}\\). Then \\(4325 \\equiv 4 + 3 + 2 + 5 = 14\\), and \\(14 = 9 + 5\\). Check: \\(4325 = 480 \\times 9 + 5\\).",
+      "hint": "What is \\(100 \\bmod 9\\)? And \\(1000 \\bmod 9\\)?",
+      "rule": "A number and the sum of its digits leave the same remainder mod 9.",
+      "teaches": "Because 10 leaves remainder 1 mod 9, every number leaves the same remainder mod 9 as the sum of its digits; this is the old 'casting out nines' check."
+    },
+    {
+      "id": "add-multiply-6",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Add and multiply",
+      "concept": "add-multiply",
+      "role": "predict",
+      "rung": 6,
+      "kind": "recall",
+      "q": "\\(38 \\times 27\\) leaves remainder 6 when divided by 12. Without multiplying anything out, predict the remainder of \\(50 \\times 27\\) mod 12 and say why.",
+      "a": "Still 6. 50 and 38 both leave remainder 2 mod 12 (\\(50 = 4 \\times 12 + 2\\)), and only the remainders of the factors matter, so both products reduce to \\(2 \\times 3 = 6\\). Check: \\(50 \\times 27 = 1350 = 112 \\times 12 + 6\\).",
+      "rule": "Swapping a number for another with the same remainder never changes the result mod n."
+    },
+    {
+      "id": "negatives-p",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "It is 2 o'clock now. What time was it 5 hours ago?",
+      "options": [
+        "3 o'clock",
+        "9 o'clock",
+        "7 o'clock",
+        "10 o'clock"
+      ],
+      "answer": 1,
+      "explain": "Count back: 1, 12, 11, 10, 9. Going back past 12 wraps around to the high numbers. The next card shows how to do this with negative numbers.",
+      "optionExplain": [
+        "2 - 5 = -3, and dropping the minus sign gives 3. But 3 o'clock is one hour after 2, not five hours before.",
+        "Right: counting back five hours from 2 passes 12 and lands on 9.",
+        "7 is 2 + 5, the time five hours later, not earlier.",
+        "This is one hour short, which happens if you count 2 itself as the first hour back."
+      ],
+      "rule": "Going back past 12 wraps around to 11, 10, 9, ..."
+    },
+    {
+      "id": "negatives-1",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "Fill in the remainder: \\(-1 \\bmod 12 = \\) ____",
+      "accept": [
+        "11",
+        "eleven"
+      ],
+      "explain": "Add 12 once: \\(-1 + 12 = 11\\), which lies between 0 and 11. On a clock, one hour before 12 is 11.",
+      "rule": "To reduce a negative number, add n."
+    },
+    {
+      "id": "negatives-2",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "apply",
+      "rung": 2,
+      "kind": "order",
+      "q": "Put these numbers in order of their remainder mod 12, smallest remainder first.",
+      "items": [
+        "\\(26\\)",
+        "\\(40\\)",
+        "\\(-7\\)",
+        "\\(-15\\)",
+        "\\(-1\\)"
+      ],
+      "explain": "Remainders: \\(26 \\to 2\\), \\(40 \\to 4\\), \\(-7 \\to -7 + 12 = 5\\), \\(-15 \\to -15 + 24 = 9\\), \\(-1 \\to 11\\). Note that -15 needs 12 added twice, and its remainder is 9, not 3.",
+      "hint": "For each negative number, keep adding 12 until you reach 0 to 11.",
+      "rule": "Never just drop the minus sign: -15 leaves 9, not 3."
+    },
+    {
+      "id": "negatives-3",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "apply",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "A night shift ends at 6 o'clock and lasted 11 hours. At what time on a 12-hour clock did it start?",
+      "options": [
+        "5 o'clock",
+        "17 o'clock",
+        "7 o'clock",
+        "8 o'clock"
+      ],
+      "answer": 2,
+      "explain": "Go back 11 hours: \\(6 - 11 = -5\\), and \\(-5 + 12 = 7\\). The shift started at 7 o'clock.",
+      "optionExplain": [
+        "6 - 11 = -5, and dropping the sign gives 5. But -5 must be wrapped by adding 12, not by deleting the minus.",
+        "6 + 11 = 17 goes forward instead of back, and 17 o'clock is not on a 12-hour clock either.",
+        "Right: \\(6 - 11 = -5 \\equiv 7 \\pmod{12}\\). Check: 7 o'clock plus 11 hours is 18, which shows as 6.",
+        "This is one hour off, the usual slip when counting hours on fingers."
+      ],
+      "hint": "Subtract, then add 12 if the result is negative.",
+      "rule": "Subtract, then add n to fix a negative result."
+    },
+    {
+      "id": "negatives-4",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "extend",
+      "rung": 4,
+      "kind": "tf",
+      "q": "On a 12-hour clock, going back 5 hours lands on the same time as going forward 7 hours.",
+      "answer": true,
+      "explain": "Going back 5 means adding -5, and \\(-5 \\equiv 7 \\pmod{12}\\) because \\(7 - (-5) = 12\\). So subtracting 5 and adding 7 always give the same remainder.",
+      "rule": "Subtracting b is the same as adding \\(n - b\\).",
+      "teaches": "Subtraction can always be turned into addition: \\(a - b \\equiv a + (n - b) \\pmod{n}\\), so going back b steps is the same as going forward \\(n - b\\) steps."
+    },
+    {
+      "id": "negatives-5",
+      "unit": "Lesson 2",
+      "unitTitle": "Calculating with remainders",
+      "section": "Negatives and subtraction",
+      "concept": "negatives",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "A combination lock dial has the numbers 0 to 39, increasing clockwise. It points at 5 and must reach 33. What is the shortest turn?",
+      "options": [
+        "28 steps clockwise",
+        "12 steps anticlockwise",
+        "33 steps clockwise",
+        "7 steps anticlockwise"
+      ],
+      "answer": 1,
+      "explain": "Clockwise is \\(33 - 5 = 28\\) steps. Going the other way needs \\(40 - 28 = 12\\) steps: \\(5 - 12 = -7 \\equiv 33 \\pmod{40}\\). 12 is shorter.",
+      "optionExplain": [
+        "28 clockwise does reach 33, but going the other way round is shorter.",
+        "Right: \\(5 - 12 = -7\\), and \\(-7 + 40 = 33\\). 12 steps beat 28.",
+        "33 is where the dial must end, not how far it moves; from 5, 33 steps clockwise reaches 38.",
+        "-7 is \\(5 - 12\\), the number before wrapping, not the size of the turn. 7 steps anticlockwise from 5 reaches 38."
+      ],
+      "hint": "This dial wraps after 40, not 12. Compare the clockwise distance with the distance the other way.",
+      "rule": "Any move of r steps mod n can be made as \\(n - r\\) steps the other way.",
+      "teaches": "Every move round a cycle of length n can be made forward r steps or backward \\(n - r\\) steps, so the shortest way is whichever of r and \\(n - r\\) is smaller."
+    },
+    {
+      "id": "weekdays-p",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "tf",
+      "q": "Today is Monday. 15 days from now it will be a Tuesday.",
+      "answer": true,
+      "explain": "14 days is exactly two weeks and brings you back to Monday; one more day makes it Tuesday. The next card shows how to do this for any number of days.",
+      "rule": "Every 7 days the weekday repeats."
+    },
+    {
+      "id": "weekdays-1",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "Today is Wednesday. 30 days from now it will be a ____.",
+      "accept": [
+        "Friday",
+        "Fri"
+      ],
+      "explain": "\\(30 = 4 \\times 7 + 2\\). Four whole weeks bring you back to Wednesday; then count 2 on: Thursday (1), Friday (2).",
+      "rule": "Throw away whole weeks, then count the remainder forward."
+    },
+    {
+      "id": "weekdays-2",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "Today is Monday. What weekday will it be 1000 days from now?",
+      "options": [
+        "Saturday",
+        "Friday",
+        "Monday",
+        "Sunday"
+      ],
+      "answer": 3,
+      "explain": "\\(1000 = 142 \\times 7 + 6\\). Count 6 days on from Monday: Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.",
+      "optionExplain": [
+        "Saturday is the 6th day if you count Monday itself as day 1. Counting starts with tomorrow.",
+        "\\(1000 \\bmod 12 = 4\\) leads to Friday. Twelve belongs to the clock; a week has 7 days.",
+        "1000 is a round number, but not a multiple of 7: 7 x 142 = 994, leaving 6 days.",
+        "Right: \\(1000 \\equiv 6 \\pmod 7\\), and 6 days after Monday is Sunday."
+      ],
+      "hint": "Divide 1000 by 7 and keep only the remainder.",
+      "rule": "Use 7 for weekdays, and count from tomorrow."
+    },
+    {
+      "id": "weekdays-3",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "A shop opened on a Tuesday. Its first birthday is exactly 365 days later. On which weekday does the birthday fall?",
+      "options": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Monday"
+      ],
+      "answer": 1,
+      "explain": "\\(365 = 52 \\times 7 + 1\\). Fifty-two whole weeks change nothing, and the 1 extra day moves Tuesday to Wednesday.",
+      "optionExplain": [
+        "A year is often thought of as 52 weeks, but 52 x 7 = 364, one day short of 365.",
+        "Right: \\(365 \\equiv 1 \\pmod 7\\), so the date moves forward one weekday.",
+        "Thursday would need 366 days, a leap year: \\(366 \\equiv 2 \\pmod 7\\).",
+        "Monday moves the wrong way: extra days push the weekday forward, not back."
+      ],
+      "rule": "365 days moves the weekday forward by one.",
+      "teaches": "Because \\(365 = 52 \\times 7 + 1\\), a date moves forward one weekday each ordinary year, and two weekdays when a 29 February falls in between (366 leaves remainder 2)."
+    },
+    {
+      "id": "weekdays-4",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "predict",
+      "rung": 4,
+      "kind": "match",
+      "q": "Predict how far the weekday moves forward after each gap.",
+      "pairs": [
+        [
+          "14 days",
+          "The same weekday"
+        ],
+        [
+          "365 days",
+          "1 weekday forward"
+        ],
+        [
+          "366 days",
+          "2 weekdays forward"
+        ],
+        [
+          "10 days",
+          "3 weekdays forward"
+        ],
+        [
+          "1000 days",
+          "6 weekdays forward"
+        ]
+      ],
+      "explain": "Reduce each gap mod 7: \\(14 \\equiv 0\\), \\(365 \\equiv 1\\), \\(366 \\equiv 2\\), \\(10 \\equiv 3\\) and \\(1000 \\equiv 6\\).",
+      "rule": "Only the gap mod 7 matters."
+    },
+    {
+      "id": "weekdays-5",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "Ana swims every 3 days and Ben every 4 days. Both swam today, a Monday. When do they next swim on the same day?",
+      "options": [
+        "In 7 days, on a Monday",
+        "In 12 days, on a Friday",
+        "In 12 days, on a Saturday",
+        "In 24 days, on a Thursday"
+      ],
+      "answer": 2,
+      "explain": "Ana swims on days 3, 6, 9, 12, ... and Ben on days 4, 8, 12, ... The first common day is 12. Then \\(12 = 7 + 5\\), and 5 days after Monday is Saturday.",
+      "optionExplain": [
+        "3 + 4 = 7 adds the two cycles, but Ana swims on days 3, 6, 9 and never on day 7.",
+        "12 days is right, but Friday is only 4 days after Monday; 12 leaves 5 mod 7. Counting Monday as day 1 gives this slip.",
+        "Right: day 12 is the first day in both lists, and \\(12 \\equiv 5 \\pmod 7\\) gives Saturday.",
+        "3 x 4 x 2 = 24 is a common day, but not the first one. (And 24 days after Monday would be Thursday.)"
+      ],
+      "hint": "List Ana's swimming days and Ben's swimming days and look for the first number in both lists.",
+      "rule": "Two cycles meet again after the smallest common multiple of their lengths.",
+      "teaches": "When two repeating cycles run side by side, they line up again after the smallest number that is a multiple of both lengths (here 12 for cycles of 3 and 4)."
+    },
+    {
+      "id": "weekdays-6",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Cycles of days",
+      "concept": "weekdays",
+      "role": "spot-error",
+      "rung": 6,
+      "kind": "multi",
+      "q": "Kim works out the weekday 45 days after a Thursday. Line 1: \\(45 = 6 \\times 7 + 3\\). Line 2: so 45 days is 6 full weeks and 3 extra days. Line 3: counting 3 days: Thursday, Friday, Saturday. Line 4: so the answer is Saturday. Select every line that is wrong.",
+      "options": [
+        "Line 1",
+        "Line 2",
+        "Line 3",
+        "Line 4"
+      ],
+      "answers": [
+        2,
+        3
+      ],
+      "explain": "Line 3 counts Thursday itself as the first day. Counting from tomorrow gives Friday (1), Saturday (2), Sunday (3), so the answer is Sunday, and Line 4 inherits the slip.",
+      "optionExplain": [
+        "Line 1 is correct: \\(6 \\times 7 = 42\\) and \\(42 + 3 = 45\\).",
+        "Line 2 is correct: it just reads Line 1 in words.",
+        "Wrong: the count must start with the day after Thursday. Starting on today is the classic off-by-one slip.",
+        "Wrong: it follows from Line 3's slip. The right answer is Sunday."
+      ],
+      "rule": "Count the remainder from tomorrow, not from today."
+    },
+    {
+      "id": "last-digits-p",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "What is the last digit of \\(23 \\times 47\\)?",
+      "options": [
+        "0",
+        "3",
+        "1",
+        "7"
+      ],
+      "answer": 2,
+      "explain": "Only the last digits matter: \\(3 \\times 7 = 21\\) ends in 1. Indeed \\(23 \\times 47 = 1081\\). The next card shows why.",
+      "optionExplain": [
+        "0 would need a factor ending in 0 or a 5 times an even number; 3 times 7 ends in 1.",
+        "3 is the last digit of 23 alone. The last digit of a product depends on both last digits.",
+        "Right: \\(3 \\times 7 = 21\\), so the product ends in 1 (it is 1081).",
+        "7 is the last digit of 47 alone. Both last digits must be multiplied."
+      ],
+      "rule": "The last digit of a product comes from the last digits of the factors."
+    },
+    {
+      "id": "last-digits-1",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "The last digit of \\(7^{6}\\) is ____.",
+      "accept": [
+        "9",
+        "nine"
+      ],
+      "explain": "Follow the cycle 7, 9, 3, 1, 7, 9: the 6th entry is 9. Equivalently \\(6 = 4 + 2\\), one full cycle then the 2nd entry. Check: \\(7^6 = 117649\\).",
+      "rule": "Powers of 7 end in 7, 9, 3, 1, over and over."
+    },
+    {
+      "id": "last-digits-2",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "What is the last digit of \\(7^{35}\\)?",
+      "options": [
+        "7",
+        "3",
+        "1",
+        "9"
+      ],
+      "answer": 1,
+      "explain": "The cycle 7, 9, 3, 1 has length 4, so divide the exponent by 4: \\(35 = 8 \\times 4 + 3\\). Eight full cycles, then the 3rd entry: 3.",
+      "optionExplain": [
+        "This reduces the exponent mod 10 (\\(7^5\\) ends in 7). The cycle has length 4, so the exponent is reduced mod 4.",
+        "Right: \\(35 \\equiv 3 \\pmod 4\\), and the 3rd entry of 7, 9, 3, 1 is 3.",
+        "35 is a multiple of 7, which is tempting with base 7, but the cycle length is 4, and 35 is not a multiple of 4.",
+        "9 is the 2nd entry: one place too early in the cycle."
+      ],
+      "hint": "How long is the cycle of last digits? Divide the exponent by that, not by 10.",
+      "rule": "Reduce the exponent by the cycle length, not by 10."
+    },
+    {
+      "id": "last-digits-3",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "discriminate",
+      "rung": 3,
+      "kind": "sort",
+      "q": "Sort each question by the number you should divide by to answer it.",
+      "items": [
+        {
+          "t": "What weekday is it 45 days after a Friday?",
+          "g": 0
+        },
+        {
+          "t": "What is the last digit of 45 x 13?",
+          "g": 1
+        },
+        {
+          "t": "What weekday is it 1000 days after a Monday?",
+          "g": 0
+        },
+        {
+          "t": "What is the last digit of 123456 + 789?",
+          "g": 1
+        },
+        {
+          "t": "How many days are left over beyond full weeks in 30 days?",
+          "g": 0
+        },
+        {
+          "t": "Which digit does a price of 37 x 8 pence end in?",
+          "g": 1
+        }
+      ],
+      "groups": [
+        "Divide by 7",
+        "Divide by 10"
+      ],
+      "explain": "A week repeats every 7 days, so weekday questions use mod 7. Digits repeat every 10, so last-digit questions use mod 10.",
+      "rule": "Weekdays: mod 7. Last digits: mod 10."
+    },
+    {
+      "id": "last-digits-4",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "extend",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "Powers of 3 end in 3, 9, 7, 1, and then repeat. What is the last digit of \\(3^{1998}\\)?",
+      "options": [
+        "9",
+        "1",
+        "3",
+        "7"
+      ],
+      "answer": 0,
+      "explain": "The cycle has length 4. Since 100 is a multiple of 4, only the last two digits of 1998 matter: \\(98 = 24 \\times 4 + 2\\), so take the 2nd entry, 9.",
+      "optionExplain": [
+        "Right: \\(1998 \\equiv 98 \\equiv 2 \\pmod 4\\), and the 2nd entry of 3, 9, 7, 1 is 9.",
+        "This uses the exponent's last digit 8 (and \\(3^8\\) ends in 1). But 8 is not the exponent mod 4; 98 leaves 2, not 0.",
+        "3 is the first entry, the answer for exponents leaving remainder 1 mod 4. 1998 leaves 2.",
+        "7 is the 3rd entry: one place too far along the cycle."
+      ],
+      "rule": "For a cycle of length 4, look only at the exponent's last two digits.",
+      "teaches": "Because 100 is a multiple of 4, a huge exponent leaves the same remainder mod 4 as its last two digits, so \\(3^{1998}\\) behaves like \\(3^{98}\\)."
+    },
+    {
+      "id": "last-digits-5",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "transfer",
+      "rung": 5,
+      "kind": "tf",
+      "q": "\\(2^{100}\\) leaves remainder 1 when divided by 3.",
+      "answer": true,
+      "explain": "Powers of 2 mod 3 go 2, 1, 2, 1, ... because \\(2 \\times 2 = 4 \\equiv 1\\) and \\(1 \\times 2 = 2\\). The cycle has length 2, and 100 is even, so the answer is 1.",
+      "hint": "Work out \\(2, 4, 8, 16\\) mod 3 and look for a repeat.",
+      "rule": "Powers repeat in cycles for every modulus, not only mod 10.",
+      "teaches": "The cycle trick is not special to last digits: for any modulus the remainders of powers must eventually repeat, as with 2, 1, 2, 1, ... for powers of 2 mod 3."
+    },
+    {
+      "id": "last-digits-6",
+      "unit": "Lesson 3",
+      "unitTitle": "Putting it to work",
+      "section": "Last digits and powers",
+      "concept": "last-digits",
+      "role": "predict",
+      "rung": 6,
+      "kind": "recall",
+      "q": "Predict: can a power of 7 ever end in the digit 5? Explain why or why not.",
+      "a": "No. Each power's last digit is the previous last digit times 7, reduced mod 10. Starting from 7 this gives 9, 3, 1 and then 7 again, so the same four digits repeat for ever and 5 never appears.",
+      "rule": "Once a cycle returns to its start, it can never reach anything outside it."
+    }
+  ],
+  "summary": "Clock arithmetic keeps only the remainder after dividing, and that one idea makes day-of-week and last-digit puzzles short.",
+  "unitSummaries": {
+    "Lesson 1": "Numbers wrap around after n steps, so only the remainder matters.",
+    "Lesson 2": "You can reduce before or after adding and multiplying, and negatives wrap too.",
+    "Lesson 3": "Remainders answer everyday questions about weekdays and last digits."
+  }
+}

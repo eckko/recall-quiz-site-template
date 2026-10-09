@@ -1,0 +1,13 @@
+/* Extra touches for the Meditation theme. */
+[data-theme="meditation"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="meditation"] .unit-title,
+[data-theme="meditation"] .verdict,
+[data-theme="meditation"] .panel h2 {
+  font-family: var(--font-heading);
+}

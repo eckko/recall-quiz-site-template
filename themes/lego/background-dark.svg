@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80">
+  <g stroke="rgba(255,255,255,.08)" stroke-width="2">
+    <rect
+      x="1"
+      y="1"
+      width="58"
+      height="38"
+      fill="#d01012"
+      fill-opacity="0.13"/>
+    <rect
+      x="61"
+      y="1"
+      width="58"
+      height="38"
+      fill="#0055bf"
+      fill-opacity="0.13"/>
+    <rect
+      x="-29"
+      y="41"
+      width="58"
+      height="38"
+      fill="#00852b"
+      fill-opacity="0.13"/>
+    <rect
+      x="31"
+      y="41"
+      width="58"
+      height="38"
+      fill="#f5cd2a"
+      fill-opacity="0.2"/>
+    <rect
+      x="91"
+      y="41"
+      width="58"
+      height="38"
+      fill="#00852b"
+      fill-opacity="0.13"/>
+  </g>
+  <g fill="rgba(255,255,255,.08)">
+    <circle cx="20" cy="20" r="6"/>
+    <circle cx="40" cy="20" r="6"/>
+    <circle cx="80" cy="20" r="6"/>
+    <circle cx="100" cy="20" r="6"/>
+    <circle cx="50" cy="60" r="6"/>
+    <circle cx="70" cy="60" r="6"/>
+    <circle cx="10" cy="60" r="6"/>
+    <circle cx="110" cy="60" r="6"/>
+  </g>
+</svg>

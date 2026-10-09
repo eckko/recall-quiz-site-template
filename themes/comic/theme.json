@@ -1,0 +1,95 @@
+{
+  "name": "Comic book",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"Comic Neue\",\"Comic Sans MS\",system-ui,sans-serif",
+    "headings": "\"Bangers\",\"Impact\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "3px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 4.6,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff3b0",
+      "card": "#ffffff",
+      "text": "#111111",
+      "textMuted": "#444444",
+      "border": "#111111",
+      "accent": "#e63946",
+      "accent2": "#e63946",
+      "highlight": "#ffe600",
+      "correct": "#17874c",
+      "wrong": "#d61f2c",
+      "partly": "#b86800",
+      "pop1": "#e63946",
+      "pop2": "#17a05d",
+      "pop3": "#2b6cff",
+      "pop4": "#ffb703",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      [
+        "radial-gradient(circle at center,rgba(0,0,0,.14) 1.6px,",
+        "transparent 2.3px) 0 0/14px 14px fixed"
+      ],
+      "linear-gradient(135deg,#fff3b0,#ffd6e0 55%,#c9e4ff) fixed"
+    ],
+    "buttonShadow": [
+      "4px 4px 0 #111"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 #111"
+    ],
+    "panelShadow": [
+      "6px 6px 0 #111"
+    ],
+    "pressDepth": "3px"
+  },
+  "dark": {
+    "colors": {
+      "page": "#14121f",
+      "card": "#1e1b30",
+      "text": "#fff6d6",
+      "textMuted": "#c9c3e0",
+      "border": "#f5e9a8",
+      "accent": "#ff5a66",
+      "accent2": "#ff5a66",
+      "highlight": "#ffe600",
+      "correct": "#38d985",
+      "wrong": "#ff6b78",
+      "partly": "#ffb02e",
+      "pop1": "#ff5a66",
+      "pop2": "#38d985",
+      "pop3": "#5b8cff",
+      "pop4": "#ffc933",
+      "onAccent": "#14121f",
+      "onHero": "#14121f"
+    },
+    "background": [
+      [
+        "radial-gradient(circle at center,rgba(255,255,255,",
+        ".08) 1.6px,transparent 2.3px) 0 0/14px 14px fixed"
+      ],
+      "linear-gradient(135deg,#14121f,#231a3d 60%,#2a1830) fixed"
+    ],
+    "buttonShadow": [
+      "4px 4px 0 #000"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 #000"
+    ],
+    "panelShadow": [
+      "6px 6px 0 #000"
+    ],
+    "pressDepth": "3px"
+  }
+}

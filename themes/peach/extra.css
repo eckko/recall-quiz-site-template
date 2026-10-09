@@ -1,0 +1,10 @@
+/* Plain pastel: readable title, calm streak pill. */
+[data-theme="peach"] h1 {
+  color: var(--color-pop-3);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+[data-theme="peach"] .day-streak {
+  background: var(--color-card);
+  border-color: var(--color-border);
+}

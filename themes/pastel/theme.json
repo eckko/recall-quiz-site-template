@@ -1,0 +1,87 @@
+{
+  "name": "Pastel",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"Quicksand\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Quicksand\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "24px",
+    "smallRadius": "16px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fdf6fb",
+      "card": "#ffffff",
+      "text": "#3d3555",
+      "textMuted": "#7b7394",
+      "border": "#eadcf2",
+      "accent": "#a78bfa",
+      "accent2": "#f9a8d4",
+      "highlight": "#fde68a",
+      "correct": "#2f9e77",
+      "wrong": "#e0527f",
+      "partly": "#a97c0a",
+      "pop1": "#f9a8d4",
+      "pop2": "#99e2d0",
+      "pop3": "#c4b5fd",
+      "pop4": "#ffd08a",
+      "onAccent": "#2d2547",
+      "onHero": "#3d3555"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/220px 220px fixed",
+      "linear-gradient(160deg,#fff0f8,#f3eeff 55%,#e9f7ff) fixed"
+    ],
+    "buttonShadow": [
+      "0 5px 0 #7d63d6"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #7d63d6"
+    ],
+    "panelShadow": [
+      "0 12px 28px -14px rgba(167,139,250,.6)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#231d33",
+      "card": "#2e2745",
+      "text": "#f3eefc",
+      "textMuted": "#b9afd3",
+      "border": "#433a63",
+      "accent": "#b79cff",
+      "accent2": "#f7a9d6",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fb8",
+      "partly": "#f0c15a",
+      "pop1": "#f7a9d6",
+      "pop2": "#86dcc9",
+      "pop3": "#b9a8ff",
+      "pop4": "#ffcf8b",
+      "onAccent": "#231d33",
+      "onHero": "#231d33"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/220px 220px fixed",
+      "linear-gradient(160deg,#2a2342,#231d33 60%,#2d2140) fixed"
+    ],
+    "buttonShadow": [
+      "0 5px 0 #6a50c2"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #6a50c2"
+    ],
+    "panelShadow": [
+      "0 12px 28px -14px rgba(0,0,0,.6)"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+/* Extra touches for the Pastel theme. */
+[data-theme="pastel"] h1 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="pastel"] .question-text {
+  font-weight: 600;
+}

@@ -1,0 +1,30 @@
+/*
+ * cloud-sync.css
+ * The "save progress to your account" bar at the top of the home screen
+ * (js/sync/cloud-sync.js). Safe to delete along with js/sync/.
+ */
+
+.cloud-sync-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.cloud-sync-text {
+  flex: 1 1 240px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.cloud-sync-bar .button {
+  font-size: 0.9rem;
+}
+
+.cloud-sync-bar[data-status="error"] .cloud-sync-text {
+  color: var(--color-wrong);
+}

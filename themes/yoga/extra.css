@@ -1,0 +1,13 @@
+/* Extra touches for the Yoga theme. */
+[data-theme="yoga"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="yoga"] .unit-title,
+[data-theme="yoga"] .verdict,
+[data-theme="yoga"] .panel h2 {
+  font-family: var(--font-heading);
+}

@@ -1,0 +1,569 @@
+/*
+ * question.css
+ * The question card during a session: progress, timers, the question
+ * itself, multiple-choice options and the feedback after answering.
+ * Styles for the other question types are in question-types.css.
+ */
+
+/* ------------------------------------------------------------------ */
+/* The card                                                            */
+/* ------------------------------------------------------------------ */
+
+.question-card {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+  border-color: var(--color-accent-soft);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.question-card:focus-within {
+  border-color: var(--color-pop-3);
+  box-shadow:
+    0 0 0 5px rgba(124, 92, 255, 0.16),
+    0 14px 30px -18px rgba(39, 67, 214, 0.4);
+}
+
+/* A faint copy of the theme's mascot in the bottom corner */
+.question-card::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 84px;
+  height: 84px;
+  background: var(--mascot-image) center / contain no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* One segment per question; done, current and still to come */
+.question-progress {
+  display: flex;
+  gap: 4px;
+  padding: 14px 0 0;
+}
+
+.question-progress i {
+  flex: 1;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+.question-progress i.is-done {
+  background: linear-gradient(
+    90deg,
+    var(--color-pop-2),
+    var(--color-accent)
+  );
+}
+
+.question-progress i.is-current {
+  background: var(--color-pop-4);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Timers                                                              */
+/* ------------------------------------------------------------------ */
+
+/* The countdown bar shared by the question timer and session clock */
+.countdown-bar {
+  height: 9px;
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 5px;
+}
+
+.countdown-bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-pop-2),
+    var(--color-accent)
+  );
+}
+
+/* Per-question timer (optional, 15 to 60 seconds) */
+.question-timer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+.countdown-number {
+  min-width: 36px;
+  text-align: right;
+  font: 600 0.95rem var(--font-body);
+}
+
+.question-timer.is-low .countdown-bar i {
+  background: var(--color-pop-4);
+}
+
+.question-timer.is-critical .countdown-bar i {
+  background: var(--color-pop-1);
+}
+
+.question-timer.is-critical .countdown-number {
+  color: var(--color-pop-1);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* Whole-session clock, shown in timed sessions instead of progress */
+.session-clock {
+  padding: 14px 0 0;
+}
+
+.session-clock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.session-clock.is-low .countdown-bar i {
+  background: var(--color-pop-4);
+}
+
+.session-clock.is-critical .countdown-bar i {
+  background: var(--color-pop-1);
+}
+
+.session-clock.is-critical .session-clock-row span {
+  color: var(--color-pop-1);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* The pill in the top right: "Time left 4:12" or "Questions left 3/10" */
+.session-pill {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 40;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--color-card);
+  border: 2px solid var(--color-pop-2);
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -10px rgba(18, 181, 166, 0.6);
+}
+
+.session-pill span {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.session-pill b {
+  min-width: 3ch;
+  text-align: right;
+  font: 600 1.25rem var(--font-heading);
+}
+
+.session-pill.is-low {
+  border-color: var(--color-pop-4);
+}
+
+.session-pill.is-critical {
+  border-color: var(--color-pop-1);
+}
+
+.session-pill.is-critical b {
+  color: var(--color-pop-1);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Where the question comes from: chapter, topic and question type     */
+/* ------------------------------------------------------------------ */
+
+.question-meta {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0 4px;
+}
+
+.unit-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.unit-chip {
+  padding: 2px 9px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-on-accent);
+  background: var(--accent-gradient);
+  border-radius: 6px;
+}
+
+.unit-title {
+  font: 600 1rem/1.3 var(--font-heading);
+}
+
+.topic-line {
+  font-size: 0.92rem;
+}
+
+/* The topic name gets a highlighter stripe */
+.topic-line mark {
+  padding: 0 3px;
+  color: inherit;
+  background: linear-gradient(transparent 38%, var(--color-highlight) 38%);
+}
+
+.question-kind {
+  justify-self: start;
+  padding: 1px 10px;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  background: var(--color-pop-3-soft);
+  border: 1px solid #d5ccff;
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------------ */
+/* The question, with a highlighter that sweeps across it              */
+/* ------------------------------------------------------------------ */
+
+.question-wrap {
+  margin: 14px 0 18px;
+}
+
+.question-text {
+  position: relative;
+  display: inline;
+  max-width: 60ch;
+  margin: 0;
+  padding: 2px 4px;
+  font: 400 1.32rem/1.75 var(--font-heading);
+  background: linear-gradient(transparent 60%, var(--color-highlight) 60%)
+    0 0 / 0% 100% no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: sweep 0.7s 0.1s ease-out forwards;
+}
+
+@keyframes sweep {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+/* A bright highlighter is hard to read light text on, so dark schemes
+   use a softer stripe */
+:root[data-scheme="dark"] .question-text,
+:root[data-scheme="dark"] .topic-line mark {
+  background-image: linear-gradient(
+    transparent 62%,
+    color-mix(in srgb, var(--color-highlight) 32%, transparent) 62%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question-text {
+    background-size: 100% 100%;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Answer options (multiple choice, true or false, select all)         */
+/* ------------------------------------------------------------------ */
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  margin: 9px 0;
+  padding: 12px 14px;
+  text-align: left;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+/* The number badge you can press on the keyboard */
+.option .key-number {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+}
+
+.option:hover:not([disabled]) {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.option:hover:not([disabled]),
+.option:focus-visible:not([disabled]) {
+  animation: wiggle 0.45s ease-in-out;
+}
+
+.option:focus-visible {
+  outline: 3px solid var(--color-pop-3);
+  outline-offset: 3px;
+}
+
+.option[disabled] {
+  cursor: default;
+}
+
+.option.is-right {
+  background: var(--color-correct-soft);
+  border-color: var(--color-correct);
+  animation: pop 0.45s cubic-bezier(0.3, 1.7, 0.5, 1);
+}
+
+.option.is-right .key-number {
+  color: #fff;
+  background: var(--color-correct);
+  border-color: var(--color-correct);
+}
+
+.option.is-wrong {
+  background: var(--color-wrong-soft);
+  border-color: var(--color-wrong);
+  animation: shake 0.4s;
+}
+
+.option.is-wrong .key-number {
+  color: #fff;
+  background: var(--color-wrong);
+  border-color: var(--color-wrong);
+}
+
+.option.is-faded {
+  opacity: 0.55;
+}
+
+/* The first four options each get their own colour */
+.option:nth-of-type(1) .key-number {
+  background: var(--color-pop-1-soft);
+  border-color: var(--color-pop-1);
+}
+
+.option:nth-of-type(2) .key-number {
+  background: var(--color-pop-2-soft);
+  border-color: var(--color-pop-2);
+}
+
+.option:nth-of-type(3) .key-number {
+  background: var(--color-pop-3-soft);
+  border-color: var(--color-pop-3);
+}
+
+.option:nth-of-type(4) .key-number {
+  background: var(--color-pop-4-soft);
+  border-color: var(--color-pop-4);
+}
+
+.option:nth-of-type(-n + 4) .key-number {
+  color: var(--color-text);
+}
+
+.option:nth-of-type(1):hover:not([disabled]) {
+  background: var(--color-pop-1-soft);
+  border-color: var(--color-pop-1);
+}
+
+.option:nth-of-type(2):hover:not([disabled]) {
+  background: var(--color-pop-2-soft);
+  border-color: var(--color-pop-2);
+}
+
+.option:nth-of-type(3):hover:not([disabled]) {
+  background: var(--color-pop-3-soft);
+  border-color: var(--color-pop-3);
+}
+
+.option:nth-of-type(4):hover:not([disabled]) {
+  background: var(--color-pop-4-soft);
+  border-color: var(--color-pop-4);
+}
+
+/* ------------------------------------------------------------------ */
+/* Feedback after answering                                            */
+/* ------------------------------------------------------------------ */
+
+/* "Correct.", "Partly right." or "Not this one." */
+.verdict {
+  margin: 16px 0 0;
+  font: 600 1.05rem var(--font-heading);
+}
+
+.verdict.is-correct {
+  color: var(--color-correct);
+}
+
+.verdict.is-partly {
+  color: var(--color-partly);
+}
+
+.verdict.is-incorrect {
+  color: var(--color-wrong);
+}
+
+/* The explanation from questions.json */
+.explanation {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  font: 400 1.02rem/1.55 var(--font-heading);
+  background: var(--color-highlight-soft);
+  border-left: 4px solid var(--color-pop-4);
+  border-radius: 0 10px 10px 0;
+}
+
+/* "To go deeper, reread Chapter 9, topic ..." */
+.reread-hint {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.reread-hint b {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Shown when you said "Certain" and got it wrong */
+.confident-miss {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  color: var(--color-wrong);
+  font-size: 0.92rem;
+  background: var(--color-pop-1-soft);
+  border-radius: 10px;
+}
+
+/* "Keys: 1 to 4 to answer" */
+.key-hint {
+  margin: 14px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.end-session-button {
+  margin-top: 18px;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* Confidence check: "How sure are you?" before answering              */
+/* ------------------------------------------------------------------ */
+
+.confidence-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  background: var(--color-pop-3-soft);
+  border-radius: var(--radius-small);
+}
+
+.confidence-row span {
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+/* The answer area stays greyed out until you say how sure you are */
+.is-locked {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Self-rating buttons: "Missed it", "Partly", "Got it"                */
+/* ------------------------------------------------------------------ */
+
+.self-rating {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.self-rating button {
+  padding: 12px 6px;
+  font-weight: 600;
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.self-rating button:hover {
+  transform: translateY(-3px);
+}
+
+.self-rating small {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.self-rating .miss {
+  border-color: var(--color-pop-1);
+}
+
+.self-rating .part {
+  border-color: var(--color-pop-4);
+}
+
+.self-rating .got {
+  border-color: var(--color-pop-2);
+}
+
+.self-rating .miss:hover {
+  background: var(--color-pop-1-soft);
+  border-color: var(--color-wrong);
+}
+
+.self-rating .part:hover {
+  background: var(--color-pop-4-soft);
+  border-color: var(--color-partly);
+}
+
+.self-rating .got:hover {
+  background: var(--color-pop-2-soft);
+  border-color: var(--color-correct);
+}
+
+/* ------------------------------------------------------------------ */
+/* Confetti for right answers and good results                         */
+/* ------------------------------------------------------------------ */
+
+.confetti-piece {
+  position: fixed;
+  z-index: 50;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  pointer-events: none;
+}

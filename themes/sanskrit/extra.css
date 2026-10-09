@@ -1,0 +1,13 @@
+/* Extra touches for the Sanskrit theme. */
+[data-theme="sanskrit"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="sanskrit"] .unit-title,
+[data-theme="sanskrit"] .verdict,
+[data-theme="sanskrit"] .panel h2 {
+  font-family: var(--font-heading);
+}

@@ -1,0 +1,961 @@
+{
+ "schema": 1,
+ "levels": [
+  {
+   "id": "elementary",
+   "label": "Elementary",
+   "topics": [
+    {
+     "id": "the-first-level-of-reading-elementary-reading",
+     "label": "The First Level of Reading: Elementary Reading",
+     "chapter": 3,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "stages-of-learning-to-read",
+       "label": "Stages of Learning to Read",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "stages-and-levels",
+       "label": "Stages and Levels",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "higher-levels-of-reading-and-higher-education",
+       "label": "Higher Levels of Reading and Higher Education",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "reading-and-the-democratic-ideal-of-education",
+       "label": "Reading and the Democratic Ideal of Education",
+       "items": 1,
+       "testable": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inspectional",
+   "label": "Inspectional",
+   "topics": [
+    {
+     "id": "the-second-level-of-reading-inspectional-reading",
+     "label": "The Second Level of Reading: Inspectional Reading",
+     "chapter": 4,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "prerequisites-of-inspectional-reading",
+       "label": "Prerequisites of Inspectional Reading",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "inspectional-reading-i-systematic-skimming-or-pre-reading",
+       "label": "Inspectional Reading I: Systematic Skimming or Pre-reading",
+       "items": 23,
+       "testable": true
+      },
+      {
+       "id": "inspectional-reading-ii-superficial-reading",
+       "label": "Inspectional Reading II: Superficial Reading",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "on-reading-speeds",
+       "label": "On Reading Speeds",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "fixations-and-regressions",
+       "label": "Fixations and Regressions",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "the-problem-of-comprehension",
+       "label": "The Problem of Comprehension",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "summary-of-inspectional-reading",
+       "label": "Summary of Inspectional Reading",
+       "items": 10,
+       "testable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "analytical",
+   "label": "Analytical",
+   "topics": [
+    {
+     "id": "pigeonholing-a-book",
+     "label": "Pigeonholing a Book",
+     "chapter": 6,
+     "stage": "1",
+     "subtopics": [
+      {
+       "id": "reading-whole-books",
+       "label": "Reading Whole Books",
+       "items": 1,
+       "testable": false
+      },
+      {
+       "id": "the-importance-of-classifying-books",
+       "label": "The Importance of Classifying Books",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "what-you-can-learn-from-the-title-of-a-book",
+       "label": "What You Can Learn from the Title of a Book",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "practical-vs-theoretical-books",
+       "label": "Practical vs. Theoretical Books",
+       "items": 14,
+       "testable": true
+      },
+      {
+       "id": "kinds-of-theoretical-books",
+       "label": "Kinds of Theoretical Books",
+       "items": 12,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "x-raying-a-book",
+     "label": "X-raying a Book",
+     "chapter": 7,
+     "stage": "1",
+     "subtopics": [
+      {
+       "id": "reading-the-structure",
+       "label": "Reading the Structure",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "of-plots-and-plans-stating-the-unity-of-a-book",
+       "label": "Of Plots and Plans: Stating the Unity of a Book",
+       "items": 17,
+       "testable": true
+      },
+      {
+       "id": "mastering-the-multiplicity-the-art-of-outlining-a-book",
+       "label": "Mastering the Multiplicity: The Art of Outlining a Book",
+       "items": 17,
+       "testable": true
+      },
+      {
+       "id": "the-reciprocal-arts-of-reading-and-writing",
+       "label": "The Reciprocal Arts of Reading and Writing",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "discovering-the-authors-intentions",
+       "label": "Discovering the Author’s Intentions",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "the-first-stage-of-analytical-reading",
+       "label": "The First Stage of Analytical Reading",
+       "items": 9,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "coming-to-terms-with-an-author",
+     "label": "Coming to Terms with an Author",
+     "chapter": 8,
+     "stage": "2",
+     "subtopics": [
+      {
+       "id": "coming-to-terms",
+       "label": "Coming to Terms",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "words-vs-terms",
+       "label": "Words vs. Terms",
+       "items": 14,
+       "testable": true
+      },
+      {
+       "id": "finding-the-key-words",
+       "label": "Finding the Key Words",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "technical-words-and-special-vocabularies",
+       "label": "Technical Words and Special Vocabularies",
+       "items": 16,
+       "testable": true
+      },
+      {
+       "id": "finding-the-meanings",
+       "label": "Finding the Meanings",
+       "items": 20,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "determining-an-authors-message",
+     "label": "Determining an Author’s Message",
+     "chapter": 9,
+     "stage": "2",
+     "subtopics": [
+      {
+       "id": "propositions-and-arguments",
+       "label": "Propositions and Arguments",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "sentences-vs-propositions",
+       "label": "Sentences vs. Propositions",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "finding-the-key-sentences",
+       "label": "Finding the Key Sentences",
+       "items": 19,
+       "testable": true
+      },
+      {
+       "id": "finding-the-propositions",
+       "label": "Finding the Propositions",
+       "items": 17,
+       "testable": true
+      },
+      {
+       "id": "finding-the-arguments",
+       "label": "Finding the Arguments",
+       "items": 23,
+       "testable": true
+      },
+      {
+       "id": "finding-the-solutions",
+       "label": "Finding the Solutions",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "the-second-stage-of-analytical-reading",
+       "label": "The Second Stage of Analytical Reading",
+       "items": 5,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "criticizing-a-book-fairly",
+     "label": "Criticizing a Book Fairly",
+     "chapter": 10,
+     "stage": "3",
+     "subtopics": [
+      {
+       "id": "reading-as-conversation",
+       "label": "Reading as Conversation",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "teachability-as-a-virtue",
+       "label": "Teachability as a Virtue",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "the-role-of-rhetoric",
+       "label": "The Role of Rhetoric",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "the-importance-of-suspending-judgment",
+       "label": "The Importance of Suspending Judgment",
+       "items": 13,
+       "testable": true
+      },
+      {
+       "id": "the-importance-of-avoiding-contentiousness",
+       "label": "The Importance of Avoiding Contentiousness",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "on-the-resolution-of-disagreements",
+       "label": "On the Resolution of Disagreements",
+       "items": 16,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "agreeing-or-disagreeing-with-an-author",
+     "label": "Agreeing or Disagreeing with an Author",
+     "chapter": 11,
+     "stage": "3",
+     "subtopics": [
+      {
+       "id": "understanding-and-agreement",
+       "label": "Understanding and Agreement",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "prejudice-and-judgment",
+       "label": "Prejudice and Judgment",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "judging-the-authors-soundness",
+       "label": "Judging the Author’s Soundness",
+       "items": 15,
+       "testable": true
+      },
+      {
+       "id": "judging-the-authors-completeness",
+       "label": "Judging the Author’s Completeness",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "the-third-stage-of-analytical-reading",
+       "label": "The Third Stage of Analytical Reading",
+       "items": 11,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-practical-books",
+     "label": "How to Read Practical Books",
+     "chapter": 13,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "adapting-the-rules-to-kinds-of-books",
+       "label": "Adapting the Rules to Kinds of Books",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "the-two-kinds-of-practical-books",
+       "label": "The Two Kinds of Practical Books",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "the-role-of-persuasion",
+       "label": "The Role of Persuasion",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "what-does-agreement-entail-in-the-case-of-a-practical-book",
+       "label": "What Does Agreement Entail in the Case of a Practical Book?",
+       "items": 8,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-imaginative-literature",
+     "label": "How to Read Imaginative Literature",
+     "chapter": 14,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "why-imaginative-literature-is-hard-to-read",
+       "label": "Why Imaginative Literature Is Hard to Read",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "how-not-to-read-imaginative-literature",
+       "label": "How Not to Read Imaginative Literature",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "general-rules-for-reading-imaginative-literature",
+       "label": "General Rules for Reading Imaginative Literature",
+       "items": 19,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "suggestions-for-reading-stories-plays-and-poems",
+     "label": "Suggestions for Reading Stories, Plays, and Poems",
+     "chapter": 15,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "the-four-questions-asked-of-imaginative-literature",
+       "label": "The Four Questions Asked of Imaginative Literature",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "how-to-read-stories",
+       "label": "How to Read Stories",
+       "items": 13,
+       "testable": true
+      },
+      {
+       "id": "a-note-about-epics",
+       "label": "A Note About Epics",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "how-to-read-plays",
+       "label": "How to Read Plays",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "a-note-about-tragedy",
+       "label": "A Note About Tragedy",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "how-to-read-lyric-poetry",
+       "label": "How to Read Lyric Poetry",
+       "items": 17,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-history",
+     "label": "How to Read History",
+     "chapter": 16,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "what-history-is",
+       "label": "What History Is",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "the-elusiveness-of-historical-facts",
+       "label": "The Elusiveness of Historical Facts",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "theories-of-history",
+       "label": "Theories of History",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "the-universal-in-history",
+       "label": "The Universal in History",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "questions-to-ask-of-a-historical-book",
+       "label": "Questions to Ask of a Historical Book",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "how-to-read-biography-and-autobiography",
+       "label": "How to Read Biography and Autobiography",
+       "items": 19,
+       "testable": true
+      },
+      {
+       "id": "how-to-read-about-current-events",
+       "label": "How to Read About Current Events",
+       "items": 19,
+       "testable": true
+      },
+      {
+       "id": "a-note-on-digests",
+       "label": "A Note on Digests",
+       "items": 8,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-science-and-mathematics",
+     "label": "How to Read Science and Mathematics",
+     "chapter": 17,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "science-written-for-experts",
+       "label": "Science Written for Experts",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "understanding-the-scientific-enterprise",
+       "label": "Understanding the Scientific Enterprise",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "suggestions-for-reading-classical-scientific-books",
+       "label": "Suggestions for Reading Classical Scientific Books",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "facing-the-problem-of-mathematics",
+       "label": "Facing the Problem of Mathematics",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "handling-the-mathematics-in-scientific-books",
+       "label": "Handling the Mathematics in Scientific Books",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "a-note-on-popular-science",
+       "label": "A Note on Popular Science",
+       "items": 10,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-philosophy",
+     "label": "How to Read Philosophy",
+     "chapter": 18,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "philosophy-begins-in-wonder",
+       "label": "Philosophy Begins in Wonder",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "the-questions-philosophers-ask",
+       "label": "The Questions Philosophers Ask",
+       "items": 15,
+       "testable": true
+      },
+      {
+       "id": "modern-philosophy-and-the-great-tradition",
+       "label": "Modern Philosophy and the Great Tradition",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "on-philosophical-method",
+       "label": "On Philosophical Method",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "on-philosophical-styles",
+       "label": "On Philosophical Styles",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "hints-for-reading-philosophy",
+       "label": "Hints for Reading Philosophy",
+       "items": 17,
+       "testable": true
+      },
+      {
+       "id": "on-making-up-your-own-mind",
+       "label": "On Making Up Your Own Mind",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "a-note-on-theology",
+       "label": "A Note on Theology",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "how-to-read-canonical-books",
+       "label": "How to Read “Canonical” Books",
+       "items": 9,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "how-to-read-social-science",
+     "label": "How to Read Social Science",
+     "chapter": 19,
+     "stage": "kind",
+     "subtopics": [
+      {
+       "id": "the-pervasiveness-of-social-science",
+       "label": "The Pervasiveness of Social Science",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "what-is-social-science",
+       "label": "What Is Social Science?",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "the-apparent-ease-of-reading-social-science",
+       "label": "The Apparent Ease of Reading Social Science",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "difficulties-of-reading-social-science",
+       "label": "Difficulties of Reading Social Science",
+       "items": 15,
+       "testable": true
+      },
+      {
+       "id": "reading-social-science-literature",
+       "label": "Reading Social Science Literature",
+       "items": 8,
+       "testable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "syntopical",
+   "label": "Syntopical",
+   "topics": [
+    {
+     "id": "the-fourth-level-of-reading-syntopical-reading",
+     "label": "The Fourth Level of Reading: Syntopical Reading",
+     "chapter": 20,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "the-paradox-of-syntopical-reading",
+       "label": "The Paradox of Syntopical Reading",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "the-role-of-inspection-in-syntopical-reading",
+       "label": "The Role of Inspection in Syntopical Reading",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "the-five-steps-in-syntopical-reading",
+       "label": "The Five Steps in Syntopical Reading",
+       "items": 36,
+       "testable": true
+      },
+      {
+       "id": "the-need-for-objectivity",
+       "label": "The Need for Objectivity",
+       "items": 14,
+       "testable": true
+      },
+      {
+       "id": "an-example-of-an-exercise-in-syntopical-reading-the-idea-of-progress",
+       "label": "An Example of an Exercise in Syntopical Reading: The Idea of Progress",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "the-syntopicon-and-how-to-use-it",
+       "label": "The Syntopicon and How to Use It",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "on-the-principles-that-underlie-syntopical-reading",
+       "label": "On the Principles That Underlie Syntopical Reading",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "summary-of-syntopical-reading",
+       "label": "Summary of Syntopical Reading",
+       "items": 10,
+       "testable": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "general",
+   "label": "Habits and method",
+   "topics": [
+    {
+     "id": "preface",
+     "label": "Preface",
+     "chapter": 0,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "variable-speed-reading",
+       "label": "Variable-Speed Reading",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "beyond-the-elementary-level",
+       "label": "Beyond the Elementary Level",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "the-four-levels",
+       "label": "The Four Levels",
+       "items": 4,
+       "testable": false
+      }
+     ]
+    },
+    {
+     "id": "the-activity-and-art-of-reading",
+     "label": "The Activity and Art of Reading",
+     "chapter": 1,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "packaged-opinions",
+       "label": "Packaged Opinions",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "active-reading",
+       "label": "Active Reading",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "the-goals-of-reading-reading-for-information-and-reading-for-understanding",
+       "label": "The Goals of Reading: Reading for Information and Reading for Understanding",
+       "items": 11,
+       "testable": true
+      },
+      {
+       "id": "reading-as-learning-the-difference-between-learning-by-instruction-and-learning-by-discovery",
+       "label": "Reading as Learning: The Difference Between Learning by Instruction and Learning by Discovery",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "present-and-absent-teachers",
+       "label": "Present and Absent Teachers",
+       "items": 4,
+       "testable": false
+      }
+     ]
+    },
+    {
+     "id": "the-levels-of-reading",
+     "label": "The Levels of Reading",
+     "chapter": 2,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "goals-and-effort",
+       "label": "Goals and Effort",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "levels-not-kinds",
+       "label": "Levels, Not Kinds",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "elementary-reading",
+       "label": "Elementary Reading",
+       "items": 2,
+       "testable": false
+      },
+      {
+       "id": "inspectional-reading",
+       "label": "Inspectional Reading",
+       "items": 7,
+       "testable": true
+      },
+      {
+       "id": "analytical-reading",
+       "label": "Analytical Reading",
+       "items": 5,
+       "testable": true
+      },
+      {
+       "id": "syntopical-reading",
+       "label": "Syntopical Reading",
+       "items": 3,
+       "testable": false
+      }
+     ]
+    },
+    {
+     "id": "how-to-be-a-demanding-reader",
+     "label": "How to Be a Demanding Reader",
+     "chapter": 5,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "staying-awake-while-reading",
+       "label": "Staying Awake While Reading",
+       "items": 3,
+       "testable": false
+      },
+      {
+       "id": "the-essence-of-active-reading-the-four-basic-questions-a-reader-asks",
+       "label": "The Essence of Active Reading: The Four Basic Questions a Reader Asks",
+       "items": 18,
+       "testable": true
+      },
+      {
+       "id": "how-to-make-a-book-your-own",
+       "label": "How to Make a Book Your Own",
+       "items": 20,
+       "testable": true
+      },
+      {
+       "id": "the-three-kinds-of-note-making",
+       "label": "The Three Kinds of Note-making",
+       "items": 10,
+       "testable": true
+      },
+      {
+       "id": "forming-the-habit-of-reading",
+       "label": "Forming the Habit of Reading",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "from-many-rules-to-one-habit",
+       "label": "From Many Rules to One Habit",
+       "items": 9,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "aids-to-reading",
+     "label": "Aids to Reading",
+     "chapter": 12,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "intrinsic-and-extrinsic-reading",
+       "label": "Intrinsic and Extrinsic Reading",
+       "items": 6,
+       "testable": true
+      },
+      {
+       "id": "the-role-of-relevant-experience",
+       "label": "The Role of Relevant Experience",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "other-books-as-extrinsic-aids-to-reading",
+       "label": "Other Books as Extrinsic Aids to Reading",
+       "items": 8,
+       "testable": true
+      },
+      {
+       "id": "how-to-use-commentaries-and-abstracts",
+       "label": "How to Use Commentaries and Abstracts",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "how-to-use-reference-books",
+       "label": "How to Use Reference Books",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "how-to-use-a-dictionary",
+       "label": "How to Use a Dictionary",
+       "items": 15,
+       "testable": true
+      },
+      {
+       "id": "how-to-use-an-encyclopedia",
+       "label": "How to Use an Encyclopedia",
+       "items": 14,
+       "testable": true
+      }
+     ]
+    },
+    {
+     "id": "reading-and-the-growth-of-the-mind",
+     "label": "Reading and the Growth of the Mind",
+     "chapter": 21,
+     "stage": null,
+     "subtopics": [
+      {
+       "id": "the-reader-s-task-and-obligation",
+       "label": "The Reader's Task and Obligation",
+       "items": 4,
+       "testable": false
+      },
+      {
+       "id": "what-good-books-can-do-for-us",
+       "label": "What Good Books Can Do for Us",
+       "items": 12,
+       "testable": true
+      },
+      {
+       "id": "the-pyramid-of-books",
+       "label": "The Pyramid of Books",
+       "items": 9,
+       "testable": true
+      },
+      {
+       "id": "the-life-and-growth-of-the-mind",
+       "label": "The Life and Growth of the Mind",
+       "items": 6,
+       "testable": true
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220">
+  <g fill="rgba(255,255,255,.9)">
+    <circle cx="40" cy="50" r="22"/>
+    <circle cx="64" cy="44" r="28"/>
+    <circle cx="90" cy="54" r="20"/>
+    <circle cx="150" cy="170" r="20"/>
+    <circle cx="172" cy="164" r="26"/>
+    <circle cx="196" cy="174" r="18"/>
+  </g>
+  <path
+    d="M170 40l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"
+    fill="#f9a8d4"
+    fill-opacity=".7"/>
+  <path
+    d="M30 150l2.4 6 6 2.4-6 2.4-2.4 6-2.4-6-6-2.4 6-2.4z"
+    fill="#c4b5fd"
+    fill-opacity=".7"/>
+  <circle cx="110" cy="110" r="3" fill="#c4b5fd" fill-opacity=".6"/>
+</svg>

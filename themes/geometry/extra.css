@@ -1,0 +1,13 @@
+/* Extra touches for the Geometry theme. */
+[data-theme="geometry"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="geometry"] .unit-title,
+[data-theme="geometry"] .verdict,
+[data-theme="geometry"] .panel h2 {
+  font-family: var(--font-heading);
+}

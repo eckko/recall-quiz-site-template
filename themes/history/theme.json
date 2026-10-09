@@ -1,0 +1,69 @@
+{
+  "name": "Indian History",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",\"Georgia\",serif",
+    "headings": "\"Cormorant Garamond\",\"Georgia\",serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f7ecdc",
+      "card": "#fff9ee",
+      "text": "#2b2233",
+      "textMuted": "#6e5d6a",
+      "border": "#e2cdb0",
+      "accent": "#9a3412",
+      "accent2": "#1e3a8a",
+      "highlight": "#f0cf7a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#b45309",
+      "pop2": "#1e3a8a",
+      "pop3": "#0f766e",
+      "pop4": "#be123c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/96px 120px fixed",
+      "linear-gradient(160deg,#f9efdf,#f0dcc0) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#18141f",
+      "card": "#231d2c",
+      "text": "#f4e7d4",
+      "textMuted": "#bdb0b6",
+      "border": "#3a3045",
+      "accent": "#f08a4b",
+      "accent2": "#8fa6ff",
+      "highlight": "#e0b560",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f59e5c",
+      "pop2": "#8fa6ff",
+      "pop3": "#4fd1c5",
+      "pop4": "#ff7a96",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/96px 120px fixed",
+      "linear-gradient(160deg,#1b1622,#130f19) fixed"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g
+    stroke="#7e22ce"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+    stroke-linecap="round">
+    <ellipse
+      cx="18"
+      cy="48"
+      rx="9"
+      ry="7"
+      fill="#db2777"
+      transform="rotate(-20 18 48)"/>
+    <ellipse
+      cx="44"
+      cy="42"
+      rx="9"
+      ry="7"
+      fill="#7e22ce"
+      transform="rotate(-20 44 42)"/>
+    <path d="M25 46V14l26-6v32" fill="none"/>
+    <path d="M25 14l26-6v9l-26 6z" fill="#fbbf24"/>
+  </g>
+</svg>

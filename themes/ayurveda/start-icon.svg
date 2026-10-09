@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="currentColor" stroke="currentColor">
+    <path d="M4 20C4 9 12 3 21 3c0 11-6 18-17 17z"/>
+    <path
+      d="M4 20c4-6 8-9 13-12"
+      stroke="#000"
+      stroke-opacity=".25"
+      stroke-width="1.2"
+      fill="none"/>
+  </g>
+</svg>

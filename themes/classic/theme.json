@@ -1,0 +1,99 @@
+{
+  "name": "Classic",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Instrument Sans\",system-ui,sans-serif",
+    "headings": "\"Source Serif 4\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf8f1",
+      "card": "#fbfcfd",
+      "text": "#121826",
+      "textMuted": "#5b6578",
+      "border": "#d5dbe5",
+      "accent": "#2743d6",
+      "accent2": "#7c5cff",
+      "highlight": "#ffe14d",
+      "correct": "#1e8a63",
+      "wrong": "#d4452f",
+      "partly": "#b07a00",
+      "pop1": "#ff5d73",
+      "pop2": "#12b5a6",
+      "pop3": "#7c5cff",
+      "pop4": "#ff9f1c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      [
+        "radial-gradient(520px 380px at 0% 0%,#ffe0ea 0,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(560px 420px at 100% 12%,#d9f3ff 0,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(600px 460px at 85% 100%,#fff0c9 0,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(520px 420px at 0% 92%,#e6e0ff 0,",
+        "transparent 70%) fixed"
+      ],
+      "var(--color-page)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#10131c",
+      "card": "#181d2a",
+      "text": "#e9ecf4",
+      "textMuted": "#9aa4b8",
+      "border": "#2b3347",
+      "accent": "#8ea2ff",
+      "accent2": "#b79bff",
+      "highlight": "#f2d43d",
+      "correct": "#4fd1a0",
+      "wrong": "#ff8a77",
+      "partly": "#e8b84a",
+      "pop1": "#ff7b8d",
+      "pop2": "#35d0c1",
+      "pop3": "#a08cff",
+      "pop4": "#ffb347",
+      "onAccent": "#0e1320",
+      "onHero": "#0e1320"
+    },
+    "background": [
+      [
+        "radial-gradient(520px 380px at 0% 0%,rgba(255,93,115,.16) 0,",
+        "transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(560px 420px at 100% 12%,rgba(18,181,166,",
+        ".12) 0,transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(600px 460px at 85% 100%,rgba(255,159,28,",
+        ".09) 0,transparent 70%) fixed"
+      ],
+      [
+        "radial-gradient(520px 420px at 0% 92%,rgba(124,92,255,",
+        ".16) 0,transparent 70%) fixed"
+      ],
+      "var(--color-page)"
+    ]
+  }
+}

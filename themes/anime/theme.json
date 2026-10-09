@@ -1,0 +1,90 @@
+{
+  "name": "Anime",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"M PLUS Rounded 1c\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"M PLUS Rounded 1c\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "20px",
+    "smallRadius": "14px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff1f8",
+      "card": "#ffffff",
+      "text": "#3b2f55",
+      "textMuted": "#7a6a99",
+      "border": "#f0d4ea",
+      "accent": "#f2509c",
+      "accent2": "#8f7dff",
+      "highlight": "#ffe27a",
+      "correct": "#1f9f80",
+      "wrong": "#e03a5e",
+      "partly": "#a97c0a",
+      "pop1": "#ff6fae",
+      "pop2": "#2fbfb0",
+      "pop3": "#8f7dff",
+      "pop4": "#ffb347",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) center/cover no-repeat fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 5px 0 #b02a70",
+      "inset 0 2px 0 rgba(255,255,255,.55)"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #b02a70",
+      "inset 0 2px 0 rgba(255,255,255,.4)"
+    ],
+    "panelShadow": [
+      "0 12px 30px -16px rgba(242,80,156,.55)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1530",
+      "card": "#251e45",
+      "text": "#f4eeff",
+      "textMuted": "#b8aee0",
+      "border": "#3f3566",
+      "accent": "#ff7ab8",
+      "accent2": "#9d8cff",
+      "highlight": "#ffd966",
+      "correct": "#5fe0bf",
+      "wrong": "#ff7a93",
+      "partly": "#ffc34d",
+      "pop1": "#ff7ab8",
+      "pop2": "#5ee0d4",
+      "pop3": "#a79bff",
+      "pop4": "#ffbd66",
+      "onAccent": "#1a1530",
+      "onHero": "#1a1530"
+    },
+    "background": [
+      "url(background-dark.svg) center/cover no-repeat fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 5px 0 #a8438a",
+      "inset 0 2px 0 rgba(255,255,255,.35)"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #a8438a"
+    ],
+    "panelShadow": [
+      "0 12px 30px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

@@ -1,0 +1,1156 @@
+{
+  "id": "how-to-read-a-book-method",
+  "book": "How to Read a Book: the method",
+  "summary": "A short course in Adler and Van Doren's reading method: skim a book and read it through once, then classify it, state its unity, find its propositions, and understand before judging.",
+  "labels": {
+    "unit": "Part",
+    "units": "parts",
+    "topic": "Reading step",
+    "whole": "Whole book"
+  },
+  "unitSummaries": {
+    "Part A": "How to size up a book quickly: skim it in a set order, then read it straight through once without stopping at difficulties.",
+    "Part B": "How to grasp a book as a whole: know what kind of book it is, then state its unity in a few words.",
+    "Part C": "How to find what an author asserts: separate the propositions in key sentences and test them by restating and exemplifying.",
+    "Part D": "How to criticize fairly: understand the book before you agree, disagree or suspend judgment, then judge."
+  },
+  "concepts": [
+    {
+      "id": "skimming",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "title": "Skimming a book before you read it",
+      "requires": [],
+      "core": true,
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading",
+      "question": "What can a few minutes with a book's front matter, index and last pages tell you before you commit to reading it?",
+      "card": {
+        "paragraphs": [
+          "Inspectional reading is the first look at a book in limited time. Its first part is systematic skimming, or pre-reading. You skim when you do not yet know whether a book deserves an analytical reading (the slow, thorough reading taught later in this course) and your time is short. The main aim is to find out whether the book needs that careful reading.",
+          "Adler gives an order. One: read the title page and preface quickly, noting signs of the book's scope, aim or angle, and place it in a category. Two: study the table of contents, as you would a road map before taking a trip. Three: check the index for the range of topics, and look up passages for terms that seem crucial. Four: read the publisher's blurb.",
+          "After these four steps you may already know enough to decide. If not, look at the chapters that seem pivotal to the argument and read any summary statements at their opening or close. Then dip in here and there for a paragraph or two, and read the last two or three pages, where the author tends to sum up.",
+          "Skimming takes a few minutes, at most an hour, and it is active work: think of yourself as a detective looking for clues to the book's main idea. You should come away knowing at least the author's main contention and what kind of book it is."
+        ],
+        "example": "In a library you find a book on the history of money and have twenty minutes. The subtitle promises a story from barter to banking; the contents run in date order; the index lists credit with forty page references, so you read two of them; the last pages argue that money rests on trust. You now know the kind of book and its main contention, and can decide whether to read it carefully.",
+        "rule": "Skim in order (title and preface, contents, index, blurb, pivotal chapters, last pages) to learn a book's kind and main contention, then decide whether it deserves careful reading.",
+        "limits": "Skimming tells you whether a book deserves more time, what kind it is and roughly what it claims. It does not tell you whether the author is right, and it is no substitute for a careful reading of a book that deserves one."
+      }
+    },
+    {
+      "id": "superficial-reading",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "title": "Reading it through once without stopping",
+      "requires": [],
+      "core": false,
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading",
+      "question": "What should you do on a first reading when you reach a passage you cannot understand?",
+      "card": {
+        "paragraphs": [
+          "The second part of inspectional reading is superficial reading. Adler's rule: in tackling a difficult book for the first time, read it through without stopping to look up or ponder the things you do not understand right away.",
+          "Pay attention to what you can understand. Go on past the hard points and you will soon come to parts that make sense; concentrate on those. Do not let paragraphs, footnotes, comments and references that escape you halt you. If you stall on one stumbling block, sticking at it seldom solves it.",
+          "Do not expect too much from the first going-over. Understanding half of a really tough book is much better than understanding none of it. A second reading has a much better chance, but it requires that you have read the book through at least once."
+        ],
+        "example": "A student starts a hard book on economics. On page 12 a paragraph makes no sense to her, and a footnote cites three writers she does not know. Instead of stopping to research them, she reads on. By chapter 4 the idea comes back in plainer terms, and by the end she has the book's main lines, ready for a second, closer reading.",
+        "rule": "On a first reading of a difficult book, keep going past what you do not understand and attend to what you do.",
+        "limits": "The rule is for a first reading. Dictionaries, footnotes and commentaries are not banned: used too early they impede reading, and the second reading is the place to work through what you passed over."
+      }
+    },
+    {
+      "id": "pigeonholing",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "title": "Classifying a book",
+      "requires": [
+        "skimming"
+      ],
+      "core": false,
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books",
+      "question": "How can you tell what kind of book you are holding before you start reading it?",
+      "card": {
+        "paragraphs": [
+          "Analytical reading is the thorough reading of a single book, done in three stages. Its first rule opens stage one: you must know what kind of book you are reading, and know it as early as possible, preferably before you begin to read.",
+          "The first split is between fiction (novels, plays, epics, lyric poems), which tells a story, and expository books, which convey knowledge. For an expository book, go further and ask in what particular way it instructs: as history, as philosophy, as physics, as morals and so on.",
+          "You classify by inspection: read the title, subtitle and table of contents, glance at the preface and index, and read the publisher's blurb. These are, in Adler's phrase, the signal flags the author waves to let you know which way the wind is blowing."
+        ],
+        "example": "A book's title names the causes of a great war, its subtitle gives a span of years, and its contents run in date order. It conveys knowledge, so it is expository, and it instructs as history. You know which shelf in your mind it belongs on before you read chapter one.",
+        "rule": "Before reading, decide whether a book is fiction or expository and, if expository, in what particular way it instructs.",
+        "limits": "The line between fiction and exposition can blur: some novels carry much social science and some sociology much fiction. A book's readability or its best-seller list category is not a safe guide to its kind."
+      }
+    },
+    {
+      "id": "unity",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "title": "Stating the unity of a book",
+      "requires": [
+        "pigeonholing"
+      ],
+      "core": true,
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book",
+      "question": "Can you say what the whole book is about in one sentence or a short paragraph?",
+      "card": {
+        "paragraphs": [
+          "Adler's second rule of analytical reading: state the unity of the whole book in a single sentence, or at most a few sentences. The unity is the book's theme or main point. To find it, ask what the author is up to: what is he trying to do?",
+          "Saying what a book is about is not the same as saying what kind of book it is. A history of a war names a kind; how a small alliance outlasted a great empire states a theme.",
+          "Do not be satisfied with feeling the unity but being unable to say it. Keep it short: if it takes too many words, Adler says, you have not seen the unity but a multiplicity. The author often helps you through the title and the preface, which many readers ignore."
+        ],
+        "example": "Aristotle reduced the Odyssey to a few sentences: a man is away from home for many years, watched by Poseidon and left alone; at home, suitors waste his goods and plot against his son; storm-tossed, he returns, makes himself known, attacks the suitors, and is saved while they are destroyed. This, says Aristotle, is the essence of the plot; the rest is episode.",
+        "rule": "Say what the whole book is about, briefly, in your own sentence or short paragraph.",
+        "limits": "The author's stated plan is a guide, not a guarantee: plans go awry, so test it against the book itself. Finding the unity is finally your own job, and you can do it honestly only by reading the whole book."
+      }
+    },
+    {
+      "id": "propositions",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "title": "Finding the propositions",
+      "requires": [],
+      "core": true,
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions",
+      "question": "What exactly does this important sentence assert, and could you say it in completely different words?",
+      "card": {
+        "paragraphs": [
+          "A proposition is what a sentence means: the claim it makes. The sentence is the words; the proposition is the thought they carry. To find it, interpret the principal words, see how clauses and modifiers restrict or widen the meaning, and bring the surrounding sentences to bear, moving from what you understand to what you do not.",
+          "One complicated, important sentence can hold several related propositions. You have not finished interpreting it until you have separated them all.",
+          "Two tests show whether you have the proposition. First, say it in totally different words, not the author's words reshuffled; if you cannot get away from them, you know his words, not his mind. Second, give an example: an experience or a particular case the proposition describes."
+        ],
+        "example": "Sentence: Exercise that raises the heart rate strengthens the heart. Restated: activity that makes your pulse climb makes your heart muscle stronger. Example: someone who takes up brisk daily walks and, over months, finds that stairs leave them less out of breath. Both tests pass, so the reader has the proposition, not only the words.",
+        "rule": "Find what each key sentence asserts, then prove it by restating it in new words and giving an example.",
+        "limits": "The example test does not suit every proposition: Adler grants that some scientific propositions can only be exemplified with the special experience a laboratory affords. Where no actual example comes to mind, an imagined possible case often serves as well."
+      }
+    },
+    {
+      "id": "suspending-judgment",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "title": "Understanding before judging",
+      "requires": [
+        "unity",
+        "propositions"
+      ],
+      "core": false,
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment",
+      "question": "Can you honestly say that you understand this book before you agree or disagree with it?",
+      "card": {
+        "paragraphs": [
+          "The third stage of analytical reading is criticism: judging whether the book is true and what of it. Adler's rule 9: do not begin to talk back until you have listened carefully and are sure you understand. This stage comes after the first two in time, even though those two can be done together.",
+          "Three critical positions are open to you: agree, disagree, or suspend judgment. Each needs understanding first. In Adler's words, to agree without understanding is inane, and to disagree without understanding is impudent.",
+          "To test your understanding, restate the author's position in your own words. With a good book, hesitate before you say you understand; expect much work first."
+        ],
+        "example": "Halfway through a book arguing that city centres should ban cars, Sam writes Rubbish in the margin. He has not yet found out what the author means by a ban or what would replace the cars. By Adler's rule his verdict is premature: he must finish the book and be able to restate its case in his own words before he judges it.",
+        "rule": "Understand first; only then agree, disagree or suspend judgment.",
+        "limits": "This rule delays criticism; it does not excuse you from it. Once you are honestly satisfied that you understand, you have earned the right to criticize and also the duty to do so."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "skimming-p",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "You pick up an unfamiliar book and have about twenty minutes to decide whether it is worth reading. Which first move tells you the most?",
+      "options": [
+        "Read the first chapter slowly and carefully",
+        "Read the title page, preface and table of contents",
+        "Read a few pages from the middle, where the argument should be",
+        "Look up each unfamiliar word in the preface first"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "Careful reading feels thorough, but in twenty minutes you would finish one chapter and still not know what the whole book does.",
+        "Right: the title, preface and contents show the book's subject, aim and structure in a few minutes.",
+        "The middle may hold the argument, but without the contents you do not know which pages matter, so this is a blind guess.",
+        "Looking up words slows you down before you even know whether the book deserves your time."
+      ],
+      "explain": "With little time, the parts of a book that describe the whole (title, preface, contents) give the most information per minute. The next card sets out Adler's full order for skimming.",
+      "rule": "Start with the parts of a book that describe the whole.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "skimming-1",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "Adler's main aim in skimming is to discover whether the book requires a more ____ reading.",
+      "accept": [
+        "careful",
+        "analytical",
+        "thorough",
+        "careful analytical"
+      ],
+      "explain": "Skimming is a sorting step: it decides whether a book deserves a careful, analytical reading, or whether it can be dropped.",
+      "rule": "Skimming decides whether a book deserves careful reading.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "skimming-2",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "Ravi skims a book on garden design. After the title page, preface, contents, index and blurb, he can see it is about formal palace gardens, not the small back garden he is planning. What does Adler's method suggest he do now?",
+      "options": [
+        "Go on to the pivotal chapters and last pages, to finish the system",
+        "Give it an analytical reading anyway, to be fair to the author",
+        "Decide now: this book does not deserve more of his time",
+        "Read it chapter by chapter in case the later parts are relevant"
+      ],
+      "answer": 2,
+      "optionExplain": [
+        "The later steps are for when the first four leave you unsure. Ravi is not unsure, so finishing the routine adds nothing.",
+        "Analytical reading is for books that deserve it; skimming exists so you do not spend that effort on the wrong book.",
+        "Right: after the first four steps you may already have enough to decide, and here the answer is no.",
+        "This turns skimming back into a full reading, the very cost skimming is meant to save."
+      ],
+      "explain": "Adler places a decision point after the first four steps: read carefully, drop the book, or skim further. Ravi already knows the book does not fit his need, so he can drop it.",
+      "hint": "What do the first four steps let you decide?",
+      "rule": "After the first four steps, decide; do not run the rest by habit.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "skimming-3",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "extend",
+      "rung": 3,
+      "kind": "multi",
+      "q": "Which ways of using the index or blurb fit Adler's advice on skimming? Select all that apply.",
+      "options": [
+        "Treat a term with many page references as a sign it may be important",
+        "For a term that seems crucial, look up some of the passages cited",
+        "Take an empty, all-praise blurb as a hint that the book may say little",
+        "Dismiss every blurb as advertising and skip it",
+        "Choose the crucial index terms before reading the title and contents"
+      ],
+      "answers": [
+        0,
+        1,
+        2
+      ],
+      "optionExplain": [
+        "Right: Adler suggests the number of references under a term as one way to spot important terms.",
+        "Right: the cited passages may hold the point on which the book hinges.",
+        "Right: if the blurb says nothing, that may be because the book says nothing of importance.",
+        "Many blurbs are puff, which makes this tempting, but authors often help write them and summarise the main points accurately.",
+        "It seems neutral, but you can only judge which terms are crucial from the general sense you got from the title, preface and contents."
+      ],
+      "explain": "The index shows the range of topics, and reference counts and cited passages point to the crucial terms, judged against what steps one and two told you. The blurb often states the main points; when it states nothing, that is evidence too.",
+      "rule": "Read the index and blurb as evidence, including what they fail to say.",
+      "teaches": "An empty blurb is itself a clue: if the publisher's summary says nothing of substance, the book may not say anything of importance either.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "skimming-4",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "You skim a long council report on local transport. The main text ends on page 80; pages 81 to 140 are appendices of data tables. Which pages fit Adler's advice to read the last pages?",
+      "options": [
+        "Pages 138 to 140, the last pages printed",
+        "Pages 78 to 80, the end of the main text",
+        "Pages 1 to 3, since reports put conclusions first",
+        "None: last pages only matter in books, not reports"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "These are the last pages, but they are data tables, not the place where the author sums up.",
+        "Right: Adler says that if the end is an epilogue, read the last few pages of the main part instead; the same reasoning applies to appendices.",
+        "Opening pages are worth reading too, but this answer drops the step instead of applying it.",
+        "The step is about where an author sums up, which applies to any long expository work with a main part."
+      ],
+      "explain": "The point of reading the last pages is to catch the author summing up what is new and important. When the final pages are back matter, that summing-up sits at the end of the main part.",
+      "hint": "Why does Adler want you to read the last pages at all?",
+      "rule": "Read the last pages of the main part, where the author sums up.",
+      "teaches": "The last-pages step targets the end of the main argument: when a work ends with an epilogue, read the last few pages of the main part instead, where the author sums up.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "skimming-5",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Systematic skimming",
+      "concept": "skimming",
+      "role": "discriminate",
+      "rung": 5,
+      "kind": "sort",
+      "q": "Sort each item: can a good skim tell you this, or does it need a careful reading?",
+      "groups": [
+        "A good skim can tell you",
+        "Needs a careful reading"
+      ],
+      "items": [
+        {
+          "t": "What kind of book it is",
+          "g": 0
+        },
+        {
+          "t": "The author's main contention",
+          "g": 0
+        },
+        {
+          "t": "Whether the book deserves more of your time",
+          "g": 0
+        },
+        {
+          "t": "Whether the author's argument is sound",
+          "g": 1
+        },
+        {
+          "t": "What each key sentence of the argument asserts",
+          "g": 1
+        },
+        {
+          "t": "Whether you agree with the author",
+          "g": 1
+        }
+      ],
+      "explain": "Skimming yields the kind of book, its main contention and a decision about further reading. Judging the argument, and knowing exactly what it asserts, needs the careful reading skimming helps you choose.",
+      "rule": "Skimming sorts books; it does not judge them.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-i-systematic-skimming-or-pre-reading"
+    },
+    {
+      "id": "superficial-reading-p",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "tf",
+      "q": "On a first reading of a hard book, the best approach is to look up each unfamiliar word or name as you meet it.",
+      "answer": false,
+      "explain": "Stopping at every difficulty breaks the thread and often leaves you stuck in the opening pages. The next card gives Adler's rule for a first reading.",
+      "rule": "A first reading is for getting through the whole.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "superficial-reading-1",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "mcq",
+      "q": "On a first reading of a difficult book, what does Adler advise at a passage you cannot grasp right away?",
+      "options": [
+        "Stop and reread it until it is clear",
+        "Look it up in a reference book before going on",
+        "Take it as a sign the book is too hard for you",
+        "Read on and attend to what you do understand"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "Rereading feels diligent, but sticking at one stumbling block seldom solves it and can stall the whole reading.",
+        "Reference works help later; on a first reading, used prematurely, they impede it.",
+        "Adler warns against this: the mistake is expecting too much from the first going-over, not trying a hard book.",
+        "Right: go past the difficulty, and you will soon come to things you do understand."
+      ],
+      "explain": "Adler's rule for a first reading is to keep going and concentrate on what you understand. Difficulties are left for a second reading.",
+      "rule": "Keep going; attend to what you understand.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "superficial-reading-2",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "apply",
+      "rung": 2,
+      "kind": "multi",
+      "q": "Maria is on her first reading of a hard philosophy book. Which actions fit Adler's rule? Select all that apply.",
+      "options": [
+        "Skip a footnote she cannot follow and carry on",
+        "Read on past a baffling paragraph",
+        "Stop to read an encyclopedia entry on each name she does not know",
+        "Concentrate on the chapters she does follow",
+        "Stay on a hard page until it makes sense"
+      ],
+      "answers": [
+        0,
+        1,
+        3
+      ],
+      "optionExplain": [
+        "Right: footnotes and references that escape you should not halt a first reading.",
+        "Right: past the hard point, she will soon reach things she understands.",
+        "This looks responsible, but done prematurely it impedes the reading instead of helping it.",
+        "Right: pay attention to what you can understand.",
+        "Persistence seems a virtue, but stalling on one block seldom solves it and can stop the reading altogether."
+      ],
+      "explain": "Each right action keeps the reading moving and puts attention on what she understands. Encyclopedia lookups and stalls belong, if anywhere, to a later reading.",
+      "hint": "Which actions keep her moving towards the end of the book?",
+      "rule": "Do not let any one difficulty stop a first reading.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "superficial-reading-3",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "A reader insists on mastering every fine point on each page of a hard expository book before turning it. What does Adler warn this reader is likely to lose?",
+      "options": [
+        "Some speed, but nothing in understanding",
+        "The details in the footnotes",
+        "The book's big points",
+        "The right to criticize the book later"
+      ],
+      "answer": 2,
+      "optionExplain": [
+        "It seems the only cost is time, but Adler says the cost is understanding of a different kind.",
+        "This reader gives the footnotes more attention, not less.",
+        "Right: in the effort to master the fine points, you miss the big points, the forest for the trees.",
+        "Criticism does depend on understanding, but that is not the loss Adler names here."
+      ],
+      "explain": "Working page by page at the fine points keeps the reader from seeing how the whole fits together, so the main points slip by.",
+      "rule": "Do not trade the big points for the fine ones on a first reading.",
+      "teaches": "In expository works, insisting on understanding every page before moving on makes you miss the big points: you lose the forest for the trees.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "superficial-reading-4",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "A class studies a Shakespeare play one scene a week, closely, without anyone having read it through first. What problem does Adler's view of a first reading predict?",
+      "options": [
+        "By the end they forget the beginning and lose sight of the whole",
+        "They read too fast to notice the language",
+        "They will not learn the play's difficult words",
+        "None: close study is the best first approach to a play"
+      ],
+      "answer": 0,
+      "optionExplain": [
+        "Right: studying a play scene by scene before reading it through risks losing the whole, which a single first reading gives.",
+        "The class is reading slowly, not fast; the risk lies elsewhere.",
+        "Close study, if anything, helps with difficult words; the loss is of the whole.",
+        "Close study has its place, but for Adler it comes after a first reading of the whole."
+      ],
+      "explain": "The case for reading straight through is to see the whole first. A play read a scene a week is not seen whole, so students forget the opening by the end.",
+      "hint": "What does a quick first reading give that slow scene-by-scene study does not?",
+      "rule": "Read the whole work through before studying its parts.",
+      "teaches": "The same advice holds for a play: read it at one sitting and discuss what you got from that first reading before studying it scene by scene.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "superficial-reading-5",
+      "unit": "Part A",
+      "unitTitle": "Inspectional reading",
+      "section": "Superficial reading",
+      "concept": "superficial-reading",
+      "role": "discriminate",
+      "rung": 5,
+      "kind": "sort",
+      "q": "Sort each action: does it fit a first reading of a difficult book, or does it belong later, once you have read the book through?",
+      "groups": [
+        "Fits a first reading",
+        "Belongs later"
+      ],
+      "items": [
+        {
+          "t": "Reading on past a passage you cannot follow",
+          "g": 0
+        },
+        {
+          "t": "Skipping a footnote that escapes you",
+          "g": 0
+        },
+        {
+          "t": "Settling for understanding part of the book",
+          "g": 0
+        },
+        {
+          "t": "Looking up an unfamiliar word in a dictionary",
+          "g": 1
+        },
+        {
+          "t": "Working through a passage you passed over",
+          "g": 1
+        },
+        {
+          "t": "Studying the footnotes and references",
+          "g": 1
+        }
+      ],
+      "explain": "Adler does not forbid dictionaries or footnotes; he warns that used prematurely they impede reading. The first reading gets you through the whole; the second can resolve what you passed over.",
+      "rule": "Reference work comes after the first reading, not during it.",
+      "htrab": "inspectional/the-second-level-of-reading-inspectional-reading/inspectional-reading-ii-superficial-reading"
+    },
+    {
+      "id": "pigeonholing-p",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "When is the best time to work out what kind of book you are reading?",
+      "options": [
+        "After the first chapter, once you know its style",
+        "Once you have finished it",
+        "Before you begin to read, if you can",
+        "Only when a teacher asks you to classify it"
+      ],
+      "answer": 2,
+      "optionExplain": [
+        "Style shows up early, but by then you have read a chapter without knowing what to look for.",
+        "Knowing the kind at the end is too late to guide how you read.",
+        "Right: knowing the kind early tells you how to read the book from the first page.",
+        "Classifying is a tool for your own reading, not a school exercise."
+      ],
+      "explain": "The kind of book shapes how you should read it, so the earlier you know it, the better. The next card gives Adler's rule.",
+      "rule": "Know the kind of book early.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "pigeonholing-1",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "tf",
+      "q": "In Adler's first split, a book of lyric poems counts as fiction rather than as an expository book.",
+      "answer": true,
+      "explain": "Adler groups novels, plays, epics and lyric poems as fiction, and sets them against expository books, which mainly convey knowledge.",
+      "rule": "Fiction: novels, plays, epics, lyrics. Expository: books that convey knowledge.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "pigeonholing-2",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "apply",
+      "rung": 2,
+      "kind": "sort",
+      "q": "Sort each book into Adler's first split.",
+      "groups": [
+        "Fiction",
+        "Expository"
+      ],
+      "items": [
+        {
+          "t": "An epic poem about a long sea voyage home",
+          "g": 0
+        },
+        {
+          "t": "A novel about three generations of a family",
+          "g": 0
+        },
+        {
+          "t": "A play about a king's downfall",
+          "g": 0
+        },
+        {
+          "t": "A textbook of physics",
+          "g": 1
+        },
+        {
+          "t": "A history of the Roman Empire",
+          "g": 1
+        },
+        {
+          "t": "A book of moral philosophy on how to live",
+          "g": 1
+        }
+      ],
+      "explain": "Epics, novels and plays tell stories, so they are fiction. A physics textbook, a history and a work of moral philosophy each convey knowledge, so they are expository, each instructing in a different way.",
+      "hint": "Is the book mainly telling a story or mainly conveying knowledge?",
+      "rule": "Story: fiction. Knowledge: expository.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "pigeonholing-3",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "Two expository books share the subject of happiness: one is a history of ideas about it, the other a work of moral philosophy. Why does Adler want you to tell them apart before reading?",
+      "options": [
+        "Because they deal with different kinds of problems by different methods",
+        "So they can be shelved correctly in a library",
+        "Because one of them is in fact fiction",
+        "No reason: books on the same subject are read the same way"
+      ],
+      "answer": 0,
+      "optionExplain": [
+        "Right: knowing the particular way a book instructs tells you what problems it takes up and what methods to expect.",
+        "Shelving follows from classification, but Adler's reason concerns how you read, not where the book sits.",
+        "Both convey knowledge, so both are expository; the difference lies in how they instruct.",
+        "A shared subject is tempting to treat as a shared kind, but the card says to ask in what way each book instructs."
+      ],
+      "explain": "Classifying an expository book by its way of instructing tells you the kind of problems it deals with and the methods it will use, which shapes what you look for while reading.",
+      "rule": "Same subject does not mean same kind of book.",
+      "teaches": "Knowing the particular way an expository book instructs tells you what kind of problems it deals with and what methods it will use.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "pigeonholing-4",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "A cookbook explains, step by step and with reasons, how to bake bread. Where does it go in Adler's first split?",
+      "options": [
+        "Fiction, because it is not a scholarly work",
+        "Neither: the split covers only serious books",
+        "Fiction, because people read it for pleasure",
+        "Expository, because it mainly conveys knowledge"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "Being unscholarly does not make a book a story; fiction is defined by telling a story.",
+        "Adler's split covers books in general; it does not exclude practical ones.",
+        "Pleasure in reading is no test of kind; many expository books are a pleasure to read.",
+        "Right: Adler construes knowledge broadly, so a book that mainly conveys how to do something counts as expository."
+      ],
+      "explain": "The test is what the book mainly does. A cookbook tells no story and conveys knowledge of how to bake, so it is expository, with knowledge taken in a broad sense.",
+      "hint": "Does the cookbook tell a story?",
+      "rule": "Expository means conveying knowledge in a broad sense, not only academic knowledge.",
+      "teaches": "Adler construes knowledge broadly, so a book that mainly conveys knowledge of any sort, a cookbook included, is expository.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "pigeonholing-5",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Classifying a book",
+      "concept": "pigeonholing",
+      "role": "spot-error",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "Lee classifies a new book. Step 1: he sees it on the best-seller list for novels. Step 2: he concludes it must be fiction. Step 3: so he reads it as a story and ignores its claims about society. Which step is the weak link?",
+      "options": [
+        "Step 1: best-seller lists should not be looked at",
+        "Step 2: a list category alone is not a safe guide to a book's kind",
+        "Step 3: novels should be read for their claims, not their stories",
+        "No step: a novels list settles the question"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "Looking at the list does no harm; the trouble is what Lee infers from it.",
+        "Right: some novels carry much social science, and Adler warns against judging a book's kind from its list category alone.",
+        "Step 3 follows from Step 2; the error came earlier.",
+        "Tempting, but the fiction line can blur, so the category settles nothing without inspecting the book."
+      ],
+      "explain": "Lee lets a list category decide the kind. Adler warns that some novels carry much social science and some sociology much fiction, so Lee should inspect the book's own signals before deciding.",
+      "rule": "Classify from the book's own signals, not from its shelf or list.",
+      "htrab": "analytical/pigeonholing-a-book/the-importance-of-classifying-books"
+    },
+    {
+      "id": "unity-p",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "A friend asks what a novel you have read is about. Which answer tells them the most about the book as a whole?",
+      "options": [
+        "It is a long novel, about 400 pages",
+        "There are many characters, and a great storm in chapter nine",
+        "It is beautifully written, and I loved it",
+        "A young woman leaves home, loses everything in the city, and wins back her family's trust by her own work"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "This names the kind and the length, but says nothing about what happens or why it matters.",
+        "These are details, episodes of the book, not the line that holds it together.",
+        "This is a verdict on the book, not a statement of what it is about.",
+        "Right: in one sentence it gives the whole arc of the story, beginning to end."
+      ],
+      "explain": "A good answer compresses the whole book into its main thread. The next card calls this stating the unity.",
+      "rule": "Say what holds the whole book together.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "unity-1",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "tf",
+      "q": "Telling someone that a book is a history of a war states the book's unity.",
+      "answer": false,
+      "explain": "That sentence names the kind of book. The unity says what the book is about: its theme or main point, what the author is trying to do.",
+      "rule": "Kind is not unity.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "unity-2",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "A book on sleep has chapters on what sleep is, why the body needs it, what happens when people lose it, and how to sleep better. Which is the best statement of its unity?",
+      "options": [
+        "Sleep is a bodily need; losing it harms body and mind, and good habits can protect it",
+        "A science book about sleep",
+        "Chapter 1 defines sleep, chapter 2 explains its stages, chapter 3 covers dreams, chapter 4 covers sleep loss, and chapter 5 gives tips",
+        "A gripping read that will change your nights"
+      ],
+      "answer": 0,
+      "optionExplain": [
+        "Right: one sentence that says what the author is up to and covers every part of the book.",
+        "This names the kind and subject, not the theme or main point.",
+        "A chapter-by-chapter list takes too many words: it shows a multiplicity, not the unity.",
+        "This is publisher's praise; it says nothing about what the book argues."
+      ],
+      "explain": "The unity states the main point briefly and covers the whole. A kind label is too thin, a chapter list too long, and praise is not content.",
+      "hint": "Which answer says what the author is trying to do, in a few words?",
+      "rule": "Brief enough to be one point, full enough to cover the whole book.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "unity-3",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "Two careful readers state the unity of the same book in different words. Both are short and both fit the book. What follows on Adler's view?",
+      "options": [
+        "One must be wrong, since a book has only one correct statement",
+        "Both may be acceptable; one is better if it is more brief, accurate and comprehensive",
+        "Anything goes, since every reader sees a different book",
+        "Both should be replaced by the author's own words"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "It feels as if there must be one answer, but Adler says there is no single right wording.",
+        "Right: statements differ in wording, and are ranked by how brief, accurate and comprehensive they are.",
+        "Readers differ, but the book is the same for all of them, so there is an objective check on any statement.",
+        "The author's words help, but you may state the unity your own way, and the author's plan can go awry."
+      ],
+      "explain": "Adler allows many wordings of a unity, but not any wording at all: the same book is the test for every reader, and brevity, accuracy and comprehensiveness rank the statements.",
+      "rule": "Many wordings can fit; the book itself is the check.",
+      "teaches": "There is no single right wording of a book's unity: one statement is better than another as it is more brief, accurate and comprehensive, and the book stays the same for every reader, so not anything goes.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "unity-4",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "A novel often saves its outcome for the last chapter. Where would you first expect the author of a book on nutrition to state the plan of the whole?",
+      "options": [
+        "In the last chapter, as in a novel",
+        "Nowhere; expository authors leave the plan to the reader",
+        "In the index, where the main topics are listed",
+        "Early on, in the preface or even the first paragraph"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "A novelist may build suspense, but an expository author has no reason to.",
+        "Authors often help you find the unity; leaving it out would make their job harder too.",
+        "The index lists topics, not the plan that ties them together.",
+        "Right: like a newspaper article, an expository book may summarise itself in its first paragraph."
+      ],
+      "explain": "An author who wants to convey knowledge gains nothing by holding back the point, so expository books tend to state their plan early.",
+      "hint": "Does a book on nutrition need suspense?",
+      "rule": "In expository books, look for the plan at the start.",
+      "teaches": "An expository author has no reason for suspense, so, like a newspaper article, the book may summarise itself in its first paragraph.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "unity-5",
+      "unit": "Part B",
+      "unitTitle": "Stage 1: What is the book about?",
+      "section": "Stating the unity",
+      "concept": "unity",
+      "role": "spot-error",
+      "rung": 5,
+      "kind": "multi",
+      "q": "Ana states the unity of a long essay in four steps. In which lines does she go wrong by Adler's advice? Select all that apply.",
+      "options": [
+        "Line 1: she reads the preface, where the author sets out his plan",
+        "Line 2: she copies that plan as her statement without reading on",
+        "Line 3: her statement runs to three pages, listing every chapter",
+        "Line 4: she checks her statement against the essay itself"
+      ],
+      "answers": [
+        1,
+        2
+      ],
+      "optionExplain": [
+        "Fine: the author often helps, and reading the preface is good practice.",
+        "Wrong: accept the author's help, but do not rely on it completely; plans go awry, and the unity needs the whole work read.",
+        "Wrong: if it takes that many words, she has seen a multiplicity, not the unity.",
+        "Fine: the book is the objective check on any statement of unity."
+      ],
+      "explain": "Using the preface and checking against the text are both good moves. Copying the plan unread, and listing everything, are the two errors.",
+      "rule": "Use the author's plan as a guide, test it against the whole book, and keep it short.",
+      "htrab": "analytical/x-raying-a-book/of-plots-and-plans-stating-the-unity-of-a-book"
+    },
+    {
+      "id": "propositions-p",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "tf",
+      "q": "If you can repeat an author's sentence word for word, you have shown that you understand it.",
+      "answer": false,
+      "explain": "Memory of the words is not grasp of the thought; a parrot can repeat a sentence. The next card shows two tests that do show understanding.",
+      "rule": "Repeating words is not understanding them.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "propositions-1",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "fill",
+      "q": "The claim or thought that a sentence carries, as distinct from its words, is called its ____.",
+      "accept": [
+        "proposition",
+        "propositions"
+      ],
+      "explain": "The sentence is the words; the proposition is what they mean. One sentence may carry several propositions.",
+      "rule": "Sentence: the words. Proposition: the claim.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "propositions-2",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "The original sentence reads: habits formed in childhood are harder to change than those formed later. Which restatement best passes Adler's own-words test?",
+      "options": [
+        "Childhood-formed habits are harder to change than later-formed habits",
+        "Habits are hard to change",
+        "What we learn to do as small children resists alteration more than what we take up as adults",
+        "Childhood is when most habits form"
+      ],
+      "answer": 2,
+      "optionExplain": [
+        "This is the author's words reshuffled, the very thing Adler says does not count.",
+        "This is new wording, but it drops the comparison, which is the heart of the claim.",
+        "Right: entirely new words, and the same claim, comparison included.",
+        "This is a different claim, about when habits form, not how hard they are to change."
+      ],
+      "explain": "A good restatement keeps the whole claim, including the comparison between early and later habits, in words that are not the author's.",
+      "hint": "Which option keeps the comparison but changes the words?",
+      "rule": "New words, same claim, nothing lost.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "propositions-3",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "extend",
+      "rung": 3,
+      "kind": "mcq",
+      "q": "On page 10 an author writes that power tends to corrupt those who hold it; on page 90, that those who rule are gradually spoiled by ruling. A reader notes these as two separate claims. What has the reader missed?",
+      "options": [
+        "The second sentence contradicts the first",
+        "The two sentences state one proposition in different words",
+        "Page 90 makes a new, stronger claim",
+        "Nothing: different sentences make different claims"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "Both say that holding power harms the holder, so there is no contradiction.",
+        "Right: these are equivalent sentences, one proposition in two wordings.",
+        "Gradually spoiled is no stronger than tends to corrupt; the claim is the same.",
+        "This is the assumption Adler warns against: a sentence and a proposition do not match one to one."
+      ],
+      "explain": "A reader who sees only words treats each new wording as a new claim. Seeing through to the proposition shows that both sentences say the same thing.",
+      "rule": "Different words can carry one proposition.",
+      "teaches": "An author may state the same proposition in different words; a reader who sees only the words will count equivalent sentences as different claims.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "propositions-4",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "multi",
+      "q": "A tenancy agreement says: The tenant, who must give two months' written notice before leaving, may keep one small pet, provided it causes no damage. Which separate propositions does this sentence assert? Select all that apply.",
+      "options": [
+        "The tenant must give two months' notice before leaving",
+        "That notice must be in writing",
+        "The tenant may keep one small pet",
+        "Permission for the pet depends on its causing no damage",
+        "The tenant may keep any number of small pets",
+        "The landlord must give two months' notice"
+      ],
+      "answers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "optionExplain": [
+        "Right: one proposition, carried by the clause about leaving.",
+        "Right: written is a modifier, and it adds its own requirement.",
+        "Right: the main clause grants the permission.",
+        "Right: the provided clause restricts the permission; it is a further proposition.",
+        "The word one limits the number; reading past modifiers creates a claim the sentence does not make.",
+        "The notice duty falls on the tenant; this misreads who the clause is about."
+      ],
+      "explain": "Separating the propositions means reading each clause and modifier for what it adds or restricts. Numbering them in your own words makes the four claims, and how they relate, plain.",
+      "hint": "Look at each clause and each modifier, such as written, one and provided.",
+      "rule": "Separate every proposition in an important sentence, clause by clause.",
+      "teaches": "Adler's drill of stating each assertion in a complicated sentence in your own words, numbering them and relating them works on contracts and rules as well as on books.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "propositions-5",
+      "unit": "Part C",
+      "unitTitle": "Stage 2: What is being said?",
+      "section": "Finding the propositions",
+      "concept": "propositions",
+      "role": "discriminate",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "Reading a physics book, Mei can restate a proposition about the behaviour of tiny particles in her own words, but cannot think of any case from daily life that shows it. Which conclusion fits Adler's view?",
+      "options": [
+        "It may be one of the scientific propositions that need laboratory experience to exemplify",
+        "She has misunderstood it, since every proposition has an everyday example",
+        "Examples do not matter for science, only formulas do",
+        "She should skip the proposition and read on"
+      ],
+      "answer": 0,
+      "optionExplain": [
+        "Right: Adler accepts that some scientific propositions can only be exemplified with laboratory experience.",
+        "This treats the example test as universal, but Adler grants that some scientific propositions need special experience.",
+        "Adler's example test applies to science too; he only notes that some examples need special experience.",
+        "Skipping suits a first, superficial reading, but here she is testing whether she has a proposition."
+      ],
+      "explain": "The example test has a known limit in science. Mei passes the restating test, and her failure to find an everyday case may reflect missing laboratory experience rather than a misreading.",
+      "rule": "Some scientific propositions need special experience to exemplify.",
+      "htrab": "analytical/determining-an-authors-message/finding-the-propositions"
+    },
+    {
+      "id": "suspending-judgment-p",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "pretest",
+      "rung": 0,
+      "kind": "mcq",
+      "q": "You are reading a new book. At what point are you ready to disagree with it?",
+      "options": [
+        "As soon as a claim strikes you as wrong",
+        "Once you reach the last page",
+        "Once you have read what reviewers think",
+        "Once you can state its position accurately in your own words"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "First reactions feel honest, but you may be reacting to a claim you have misread.",
+        "Finishing is needed, but reaching the end does not prove you understood what you read.",
+        "Reviews give someone else's judgment, not your own understanding.",
+        "Right: if you can restate the position fairly, you know what you are disagreeing with."
+      ],
+      "explain": "Disagreement is only worth something once you know what the author holds. The next card gives Adler's rule.",
+      "rule": "Know the position before you reject it.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    },
+    {
+      "id": "suspending-judgment-1",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "warmup",
+      "rung": 1,
+      "kind": "multi",
+      "q": "Which critical positions does Adler list as open to a reader who understands a book? Select all that apply.",
+      "options": [
+        "Agree",
+        "Disagree",
+        "Suspend judgment",
+        "Decline to have any view at all",
+        "Praise the author's style instead"
+      ],
+      "answers": [
+        0,
+        1,
+        2
+      ],
+      "optionExplain": [
+        "Right: agreeing is one of the three positions.",
+        "Right: disagreeing is one of the three positions.",
+        "Right: suspending judgment is the third position.",
+        "This sounds like suspending judgment, but suspending is a position about the case; declining any view takes no position at all.",
+        "Comments on style may be fair, but they are not a judgment on whether the book is true."
+      ],
+      "explain": "Adler says agreeing, disagreeing and suspending judgment exhaust the critical positions you can take, and each requires understanding first.",
+      "rule": "Agree, disagree, or suspend judgment, after understanding.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    },
+    {
+      "id": "suspending-judgment-2",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "apply",
+      "rung": 2,
+      "kind": "mcq",
+      "q": "Priya has read a third of a book on education. She finds the author's opening claim weak and wants to post a rebuttal tonight. What does Adler's rule 9 advise?",
+      "options": [
+        "Post it now, since first impressions are the most honest",
+        "Finish the book and make sure she understands it before rebutting",
+        "Agree with the author for now, to be fair",
+        "Defer to the author, since he is the expert"
+      ],
+      "answer": 1,
+      "optionExplain": [
+        "Speed feels honest, but criticizing before you are sure you understand is the mistake Adler names.",
+        "Right: do not talk back until you have listened carefully and are sure you understand.",
+        "To agree without understanding is as empty as to disagree without it.",
+        "Rule 9 delays criticism; it does not hand the verdict to the author once she understands."
+      ],
+      "explain": "Priya has read part of the book and cannot yet be sure she understands its case. Adler's rule puts understanding first; after that, she may criticize.",
+      "hint": "Has Priya yet earned the right to talk back?",
+      "rule": "Talk back only after you are sure you understand.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    },
+    {
+      "id": "suspending-judgment-3",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "extend",
+      "rung": 3,
+      "kind": "tf",
+      "q": "A reader who agrees with every chapter of a book has made no critical judgment of it.",
+      "answer": false,
+      "explain": "Agreeing is one of the three critical positions. It is a judgment like disagreeing, and it can be equally wrong when made without understanding.",
+      "rule": "To criticize is not only to disagree.",
+      "teaches": "Agreeing is as much a critical judgment as disagreeing, and can be equally mistaken; criticism is not the same as disagreement.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    },
+    {
+      "id": "suspending-judgment-4",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "transfer",
+      "rung": 4,
+      "kind": "mcq",
+      "q": "In a team meeting, a colleague attacks your project proposal. By Adler's test, what is the best way to find out whether the criticism is relevant?",
+      "options": [
+        "Ask them to restate your proposal in their own words",
+        "Check whether they are senior to you",
+        "Count how many objections they raise",
+        "Ask whether they agree with any part of it"
+      ],
+      "answer": 0,
+      "optionExplain": [
+        "Right: if they cannot repeat what you said in their own words, they do not understand it, and their criticism misses.",
+        "Rank says nothing about whether they understood the proposal.",
+        "Many objections can all rest on a misreading.",
+        "Partial agreement is still a judgment, and judgment without understanding is as weak in agreement as in dissent."
+      ],
+      "explain": "The restating test works on others as well as on yourself. Criticism from someone who cannot state your position fairly is aimed at something you did not say.",
+      "rule": "A critic who cannot restate your view has not yet earned a hearing on it.",
+      "teaches": "The restating test works both ways: if critics cannot repeat what you have said in their own words, they do not understand, and their criticism is irrelevant.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    },
+    {
+      "id": "suspending-judgment-5",
+      "unit": "Part D",
+      "unitTitle": "Stage 3: Is it true? What of it?",
+      "section": "Suspending judgment",
+      "concept": "suspending-judgment",
+      "role": "discriminate",
+      "rung": 5,
+      "kind": "mcq",
+      "q": "Tom has read a hard book twice and can restate its argument in his own words. Asked whether it is right, he says he will suspend judgment for good so as to stay fair. Where does Adler part company with Tom?",
+      "options": [
+        "Nowhere: suspending judgment is the only fair stance",
+        "Tom must agree, since he now understands the book",
+        "Tom should reread it before taking any view",
+        "Having understood, he has a duty to criticize, and suspending must say what has not been shown"
+      ],
+      "answer": 3,
+      "optionExplain": [
+        "Suspending is one of three positions, not a safe default; Adler says understanding brings a duty to criticize.",
+        "Understanding opens all three positions; it does not force agreement.",
+        "Tom already meets the test of restating the argument; more delay turns caution into avoidance.",
+        "Right: once he understands, criticism is his duty, and suspending judgment is itself a position that something has not been shown."
+      ],
+      "explain": "Rule 9 delays criticism until understanding; it does not cancel it. Suspending judgment is a real critical position, so Tom must be able to say what the author has failed to show.",
+      "hint": "What does Adler say understanding gives you, besides a right?",
+      "rule": "Suspending judgment is a position, not a way out of judging.",
+      "htrab": "analytical/criticizing-a-book-fairly/the-importance-of-suspending-judgment"
+    }
+  ]
+}

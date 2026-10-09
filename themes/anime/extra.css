@@ -1,0 +1,39 @@
+/* Extra touches for the Anime theme. */
+[data-theme="anime"] h1 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+[data-theme="anime"] h1::after {
+  content: " \2726";
+  -webkit-text-fill-color: var(--color-pop-4);
+  color: var(--color-pop-4);
+}
+[data-theme="anime"] .button.primary,
+[data-theme="anime"] .start-button {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 255, 255, 0) 55%
+    ),
+    var(--accent-gradient);
+}
+[data-theme="anime"] .unit-chip {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    var(--accent-gradient);
+}
+[data-theme="anime"] .question-text {
+  font-weight: 500;
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Ayurveda",
+  "group": "Wellbeing & culture",
+  "fonts": {
+    "body": "\"Lora\",Georgia,serif",
+    "headings": "\"Lora\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f3f8ee",
+      "card": "#fcfef9",
+      "text": "#1f3324",
+      "textMuted": "#5b7060",
+      "border": "#d3e2c8",
+      "accent": "#2f7d4f",
+      "accent2": "#b8860b",
+      "highlight": "#f2e08a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#4f9d69",
+      "pop2": "#c9921a",
+      "pop3": "#8a6a3b",
+      "pop4": "#7aa84a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/130px 130px fixed",
+      "linear-gradient(160deg,#f4f9ee,#e5f1da) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#101a13",
+      "card": "#172419",
+      "text": "#e6f3df",
+      "textMuted": "#a3bba6",
+      "border": "#2c4332",
+      "accent": "#6fd098",
+      "accent2": "#e6c35a",
+      "highlight": "#d9c76a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#7fd6a0",
+      "pop2": "#e6b84a",
+      "pop3": "#c9a06a",
+      "pop4": "#a5d468",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/130px 130px fixed",
+      "linear-gradient(160deg,#121d15,#0d150f) fixed"
+    ]
+  }
+}

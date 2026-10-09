@@ -1,0 +1,85 @@
+{
+  "name": "Sky",
+  "group": "Simple & pastel",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1f8fd",
+      "card": "#ffffff",
+      "text": "#212f3b",
+      "textMuted": "#586774",
+      "border": "#d1e1f0",
+      "accent": "#a1c9ed",
+      "accent2": "#bec7f4",
+      "highlight": "#fde68a",
+      "correct": "#23805f",
+      "wrong": "#c43d5c",
+      "partly": "#8f6508",
+      "pop1": "#a8b4f0",
+      "pop2": "#df90a0",
+      "pop3": "#29547a",
+      "pop4": "#986416",
+      "onAccent": "#19242e",
+      "onHero": "#212f3b"
+    },
+    "background": [
+      "#f1f8fd"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #77a1c5"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #77a1c5"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px #315c81"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#161c22",
+      "card": "#222b32",
+      "text": "#e7eef3",
+      "textMuted": "#adb8c2",
+      "border": "#394651",
+      "accent": "#99c5eb",
+      "accent2": "#aab5ee",
+      "highlight": "#f3d673",
+      "correct": "#7fe0b8",
+      "wrong": "#ff8fa9",
+      "partly": "#f0c15a",
+      "pop1": "#a1aeec",
+      "pop2": "#dd8899",
+      "pop3": "#abceed",
+      "pop4": "#f0c36a",
+      "onAccent": "#171f26",
+      "onHero": "#171f26"
+    },
+    "background": [
+      "#161c22"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #3d698f"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #3d698f"
+    ],
+    "panelShadow": [
+      "0 8px 24px -16px rgba(0,0,0,.6)"
+    ]
+  }
+}

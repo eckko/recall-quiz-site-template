@@ -1,0 +1,87 @@
+{
+  "name": "Lego",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"Fredoka\",\"Trebuchet MS\",system-ui,sans-serif",
+    "headings": "\"Fredoka\",\"Trebuchet MS\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.6,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff3c4",
+      "card": "#ffffff",
+      "text": "#1b1b1b",
+      "textMuted": "#555555",
+      "border": "#3a3a3a",
+      "accent": "#d01012",
+      "accent2": "#d01012",
+      "highlight": "#ffd500",
+      "correct": "#00852b",
+      "wrong": "#d01012",
+      "partly": "#b87400",
+      "pop1": "#d01012",
+      "pop2": "#00852b",
+      "pop3": "#0055bf",
+      "pop4": "#f5cd2a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 80px fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 6px 0 #7d0a0b"
+    ],
+    "buttonShadowPressed": [
+      "0 2px 0 #7d0a0b"
+    ],
+    "panelShadow": [
+      "0 6px 0 rgba(0,0,0,.28)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#17181c",
+      "card": "#24262c",
+      "text": "#f2f2f2",
+      "textMuted": "#b0b0b8",
+      "border": "#5a5c64",
+      "accent": "#e3363a",
+      "accent2": "#e3363a",
+      "highlight": "#ffd500",
+      "correct": "#3ecf6e",
+      "wrong": "#ff6b6b",
+      "partly": "#ffb02e",
+      "pop1": "#ff5a5c",
+      "pop2": "#3ecf6e",
+      "pop3": "#4d94ff",
+      "pop4": "#ffd84a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 80px fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 6px 0 #7d1c1e"
+    ],
+    "buttonShadowPressed": [
+      "0 2px 0 #7d1c1e"
+    ],
+    "panelShadow": [
+      "0 6px 0 rgba(0,0,0,.5)"
+    ]
+  }
+}

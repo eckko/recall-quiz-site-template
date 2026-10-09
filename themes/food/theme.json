@@ -1,0 +1,69 @@
+{
+  "name": "Food",
+  "group": "Wellbeing & culture",
+  "fonts": {
+    "body": "\"Nunito\",\"Quicksand\",system-ui,sans-serif",
+    "headings": "\"Fredoka\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff4ee",
+      "card": "#fffdfb",
+      "text": "#3a1d1a",
+      "textMuted": "#7f5a54",
+      "border": "#f3d3c8",
+      "accent": "#dc2626",
+      "accent2": "#ea580c",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#dc2626",
+      "pop2": "#16a34a",
+      "pop3": "#ea580c",
+      "pop4": "#ca8a04",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/72px 72px fixed",
+      "linear-gradient(160deg,#fff7f2,#fff7f2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1d1311",
+      "card": "#2a1c19",
+      "text": "#fbece6",
+      "textMuted": "#cfb0a8",
+      "border": "#4a3029",
+      "accent": "#ff7a6b",
+      "accent2": "#ffb347",
+      "highlight": "#f2cf66",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff7a6b",
+      "pop2": "#5fd67f",
+      "pop3": "#ffa05c",
+      "pop4": "#f0c04a",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/72px 72px fixed",
+      "linear-gradient(160deg,#241713,#241713) fixed"
+    ]
+  }
+}

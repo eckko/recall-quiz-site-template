@@ -1,0 +1,37 @@
+# The order themes appear in the picker. One theme id per line.
+# Themes are shown in groups (the "group" in each theme.json); within a
+# group they follow this order. Themes not listed are added at the end.
+classic
+blush
+peach
+butter
+sage
+mint
+sky
+lavender
+mist
+professional
+whiteboard
+pastel
+lego
+clay
+comic
+anime
+watercolor
+university
+history
+universe
+maths
+vmaths
+geometry
+art
+music
+brain
+social
+vedic
+ayurveda
+sanskrit
+yoga
+meditation
+exercise
+food

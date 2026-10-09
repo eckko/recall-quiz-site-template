@@ -1,0 +1,22 @@
+/* Extra touches for the Professional theme. */
+[data-theme="professional"] h1 {
+  background: none;
+  color: var(--color-text);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+[data-theme="professional"] .question-text {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.55;
+}
+[data-theme="professional"] .option,
+[data-theme="professional"] .button,
+[data-theme="professional"] .match-item {
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+[data-theme="professional"] .button.primary,
+[data-theme="professional"] .start-button {
+  box-shadow: var(--button-shadow);
+}

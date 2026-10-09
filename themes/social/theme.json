@@ -1,0 +1,69 @@
+{
+  "name": "Talk to People",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Poppins\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Poppins\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "22px",
+    "smallRadius": "14px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff7e8",
+      "card": "#fffefa",
+      "text": "#2a2438",
+      "textMuted": "#6c6580",
+      "border": "#f2e1bf",
+      "accent": "#ea580c",
+      "accent2": "#7c3aed",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#ea580c",
+      "pop2": "#0891b2",
+      "pop3": "#7c3aed",
+      "pop4": "#16a34a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/150px 130px fixed",
+      "linear-gradient(160deg,#fff9ec,#fdeed2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#181522",
+      "card": "#231f31",
+      "text": "#f3effb",
+      "textMuted": "#b9b2cf",
+      "border": "#3b3550",
+      "accent": "#ff9a5c",
+      "accent2": "#b79cff",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff9a5c",
+      "pop2": "#4fc9e0",
+      "pop3": "#b79cff",
+      "pop4": "#5fd67f",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/150px 130px fixed",
+      "linear-gradient(160deg,#1a1724,#120f1b) fixed"
+    ]
+  }
+}

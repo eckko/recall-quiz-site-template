@@ -1,0 +1,69 @@
+{
+  "name": "Music",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"Playfair Display\",Georgia,serif",
+    "headings": "\"Playfair Display\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "10px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6f0ff",
+      "card": "#ffffff",
+      "text": "#1f1633",
+      "textMuted": "#655a80",
+      "border": "#ddd0f2",
+      "accent": "#7e22ce",
+      "accent2": "#db2777",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#db2777",
+      "pop2": "#0891b2",
+      "pop3": "#7e22ce",
+      "pop4": "#ea8a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/160px 120px fixed",
+      "linear-gradient(160deg,#f8f3ff,#ece2fb) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#120c1d",
+      "card": "#1c1430",
+      "text": "#f1eafc",
+      "textMuted": "#b6aad2",
+      "border": "#34274f",
+      "accent": "#c084fc",
+      "accent2": "#ff7ab8",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff7ab8",
+      "pop2": "#4fc9e0",
+      "pop3": "#c084fc",
+      "pop4": "#ffb84d",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/160px 120px fixed",
+      "linear-gradient(160deg,#150e22,#0e0917) fixed"
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+/*
+ * results.css
+ * The results screen at the end of a session.
+ */
+
+.result {
+  padding: 6px 0 4px;
+  text-align: center;
+}
+
+/* The big coloured card with the percentage */
+.result-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 14px 0 6px;
+  padding: 26px 16px 22px;
+  color: var(--color-on-hero);
+  border-radius: var(--radius);
+}
+
+/* Two soft circles for decoration */
+.result-hero::before,
+.result-hero::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+}
+
+.result-hero::before {
+  top: -90px;
+  right: -70px;
+  width: 220px;
+  height: 220px;
+}
+
+.result-hero::after {
+  bottom: -70px;
+  left: -50px;
+  width: 160px;
+  height: 160px;
+}
+
+.result-excellent .result-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-pop-4),
+    var(--color-pop-1) 60%,
+    var(--color-pop-3)
+  );
+}
+
+.result-pass .result-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-pop-2),
+    var(--color-accent)
+  );
+}
+
+.result-fail .result-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-pop-1),
+    var(--color-pop-4)
+  );
+}
+
+/* "Excellent", "Pass" or "Fail" */
+.result-badge {
+  position: relative;
+  display: inline-block;
+  padding: 4px 16px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+.result-score {
+  position: relative;
+  margin: 14px 0 2px;
+  font: 600 5rem/1 var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.result-score small {
+  font-size: 2.2rem;
+}
+
+.result-marks {
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* "10 questions answered in a 15 minute session" */
+.result-detail {
+  position: relative;
+  margin-top: 2px;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.result-message {
+  position: relative;
+  max-width: 34ch;
+  margin: 14px auto 0;
+  font: 400 1.1rem/1.5 var(--font-heading);
+}
+
+/* How Excellent, Pass and Fail are decided */
+.result-rules {
+  margin: 10px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+/* Got it / Partly / Missed counts */
+.score-tally {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.score-tally div {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.score-tally b {
+  display: block;
+  font: 600 1.6rem var(--font-heading);
+}
+
+.score-tally .score-got {
+  background: var(--color-pop-2-soft);
+}
+
+.score-tally .score-part {
+  background: var(--color-pop-4-soft);
+}
+
+.score-tally .score-miss {
+  background: var(--color-pop-1-soft);
+}
+
+/* Questions to reread before next time */
+.revisit-heading,
+.revisit-list {
+  text-align: left;
+}
+
+.revisit-list {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.revisit-list li {
+  padding: 8px 0;
+  font-size: 0.94rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.revisit-list li span {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}

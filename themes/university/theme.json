@@ -1,0 +1,105 @@
+{
+  "name": "University",
+  "group": "Subjects",
+  "fonts": {
+    "body": "\"EB Garamond\",Georgia,serif",
+    "headings": "\"EB Garamond\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 2.6,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f5efe0",
+      "card": "#fffdf6",
+      "text": "#1f2a44",
+      "textMuted": "#5f6882",
+      "border": "#d8cfb8",
+      "accent": "#7a1f2b",
+      "accent2": "#9b2c3a",
+      "highlight": "#f1d27a",
+      "correct": "#2f6f4e",
+      "wrong": "#a3262f",
+      "partly": "#8f6212",
+      "pop1": "#a3262f",
+      "pop2": "#2f6f4e",
+      "pop3": "#1f3a7a",
+      "pop4": "#b8860b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      [
+        "linear-gradient(90deg,transparent 0 52px,rgba(163,38,47,",
+        ".28) 52px 54px,transparent 54px) fixed"
+      ],
+      [
+        "repeating-linear-gradient(transparent 0 31px,rgba(60,80,140,",
+        ".13) 31px 32px) fixed"
+      ],
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 3px 0 #4a0f18"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #4a0f18"
+    ],
+    "panelShadow": [
+      "0 2px 0 #d8cfb8",
+      "0 14px 28px -16px rgba(31,42,68,.45)"
+    ],
+    "pressDepth": "2px"
+  },
+  "dark": {
+    "colors": {
+      "page": "#141a2b",
+      "card": "#1c2438",
+      "text": "#efe8d4",
+      "textMuted": "#aeb3c6",
+      "border": "#34405e",
+      "accent": "#d4a74a",
+      "accent2": "#e6c26e",
+      "highlight": "#d9b350",
+      "correct": "#6fc59a",
+      "wrong": "#e57b82",
+      "partly": "#e0b050",
+      "pop1": "#e57b82",
+      "pop2": "#6fc59a",
+      "pop3": "#8fa8e8",
+      "pop4": "#e0b050",
+      "onAccent": "#141a2b",
+      "onHero": "#141a2b"
+    },
+    "background": [
+      [
+        "linear-gradient(90deg,transparent 0 52px,rgba(229,123,130,",
+        ".28) 52px 54px,transparent 54px) fixed"
+      ],
+      [
+        "repeating-linear-gradient(transparent 0 31px,rgba(143,168,",
+        "232,.10) 31px 32px) fixed"
+      ],
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "0 3px 0 #8a6a1d"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #8a6a1d"
+    ],
+    "panelShadow": [
+      "0 2px 0 #34405e",
+      "0 14px 28px -16px rgba(0,0,0,.6)"
+    ],
+    "pressDepth": "2px"
+  }
+}

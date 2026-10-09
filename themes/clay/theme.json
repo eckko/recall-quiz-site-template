@@ -1,0 +1,96 @@
+{
+  "name": "Clay",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"Fredoka\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Fredoka\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "30px",
+    "smallRadius": "22px",
+    "borderWidth": "0px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 4.6,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6e9df",
+      "card": "#fff6ee",
+      "text": "#3b2f2f",
+      "textMuted": "#7d6b66",
+      "border": "#ecd9cc",
+      "accent": "#ff8a65",
+      "accent2": "#ffb199",
+      "highlight": "#ffd88a",
+      "correct": "#3f9f72",
+      "wrong": "#d9564b",
+      "partly": "#b57a14",
+      "pop1": "#f58fa5",
+      "pop2": "#6cc5b8",
+      "pop3": "#9b8cf0",
+      "pop4": "#ffb067",
+      "onAccent": "#3b1d12",
+      "onHero": "#3b2f2f"
+    },
+    "background": [
+      "url(background-light.svg) center/cover no-repeat fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "inset -4px -6px 10px rgba(150,70,40,.28)",
+      "inset 5px 5px 10px rgba(255,255,255,.55)",
+      "0 12px 18px -8px rgba(200,100,70,.6)"
+    ],
+    "buttonShadowPressed": [
+      "inset 4px 5px 10px rgba(150,70,40,.3)",
+      "inset -3px -3px 8px rgba(255,255,255,.3)",
+      "0 3px 6px -2px rgba(200,100,70,.4)"
+    ],
+    "panelShadow": [
+      "12px 14px 26px rgba(170,115,85,.28)",
+      "-9px -9px 22px rgba(255,255,255,.9)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#2a2220",
+      "card": "#362c29",
+      "text": "#f6e7de",
+      "textMuted": "#c3aca2",
+      "border": "#4a3b36",
+      "accent": "#ff9a7a",
+      "accent2": "#ffb89e",
+      "highlight": "#e8b95e",
+      "correct": "#7dd3a5",
+      "wrong": "#ff8a7d",
+      "partly": "#f0b04a",
+      "pop1": "#ff9db4",
+      "pop2": "#7fd8cb",
+      "pop3": "#b3a6ff",
+      "pop4": "#ffc085",
+      "onAccent": "#2a1410",
+      "onHero": "#2a1410"
+    },
+    "background": [
+      "url(background-dark.svg) center/cover no-repeat fixed",
+      "var(--color-page)"
+    ],
+    "buttonShadow": [
+      "inset -4px -6px 10px rgba(0,0,0,.28)",
+      "inset 5px 5px 10px rgba(255,255,255,.22)",
+      "0 12px 18px -8px rgba(0,0,0,.6)"
+    ],
+    "buttonShadowPressed": [
+      "inset 4px 5px 10px rgba(0,0,0,.35)",
+      "0 3px 6px -2px rgba(0,0,0,.4)"
+    ],
+    "panelShadow": [
+      "10px 12px 26px rgba(0,0,0,.45)",
+      "-8px -8px 20px rgba(255,255,255,.04)"
+    ]
+  }
+}

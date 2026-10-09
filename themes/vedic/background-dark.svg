@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110">
+  <g fill="#ffb84d" fill-opacity="0.1">
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(0 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(45 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(90 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(135 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(180 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(225 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(270 55 55)"/>
+    <ellipse
+      cx="55"
+      cy="40"
+      rx="5"
+      ry="13"
+      fill="#ffb84d"
+      fill-opacity="0.12"
+      transform="rotate(315 55 55)"/>
+  </g>
+  <circle cx="55" cy="55" r="4" fill="#ffd27a" fill-opacity=".35"/>
+  <g fill="#ffd27a" fill-opacity=".30">
+    <circle cx="5" cy="5" r="2.2"/>
+    <circle cx="105" cy="5" r="2.2"/>
+    <circle cx="5" cy="105" r="2.2"/>
+    <circle cx="105" cy="105" r="2.2"/>
+    <path d="M55 2l4 5-4 5-4-5z"/>
+    <path d="M55 98l4 5-4 5-4-5z"/>
+  </g>
+</svg>

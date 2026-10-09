@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <filter id="b">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <g filter="url(#b)">
+    <circle cx="24" cy="32" r="17" fill="#7f9de0" fill-opacity=".75"/>
+    <circle cx="40" cy="38" r="14" fill="#e58a9b" fill-opacity=".7"/>
+    <circle cx="30" cy="48" r="12" fill="#6bb7a4" fill-opacity=".7"/>
+  </g>
+  <g transform="rotate(40 46 18)">
+    <rect x="43" y="2" width="5" height="26" rx="2" fill="#8a6a3a"/>
+    <path d="M43 28h5l-1 8h-3z" fill="#3f7fb0"/>
+  </g>
+</svg>

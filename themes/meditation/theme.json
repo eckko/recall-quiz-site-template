@@ -1,0 +1,69 @@
+{
+  "name": "Meditation",
+  "group": "Wellbeing & culture",
+  "fonts": {
+    "body": "\"Quicksand\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Quicksand\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "28px",
+    "smallRadius": "18px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef6f6",
+      "card": "#fbfeff",
+      "text": "#17323a",
+      "textMuted": "#547078",
+      "border": "#cfe3e6",
+      "accent": "#0e7490",
+      "accent2": "#6d5fc4",
+      "highlight": "#f0e1a0",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#5b9fb0",
+      "pop2": "#7aa89a",
+      "pop3": "#8a7fd0",
+      "pop4": "#c9a45a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/180px 180px fixed",
+      "linear-gradient(160deg,#f1f8f8,#e3eef6) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0b1618",
+      "card": "#12242a",
+      "text": "#e3f2f4",
+      "textMuted": "#9bb8bd",
+      "border": "#223c43",
+      "accent": "#5cc8e0",
+      "accent2": "#a89cf0",
+      "highlight": "#e6d490",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#7cc4d6",
+      "pop2": "#8cd0bc",
+      "pop3": "#a89cf0",
+      "pop4": "#dcb86a",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/180px 180px fixed",
+      "linear-gradient(160deg,#0d1a1d,#0a1215) fixed"
+    ]
+  }
+}

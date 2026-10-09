@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect
+    x="6"
+    y="6"
+    width="52"
+    height="52"
+    rx="5"
+    fill="#fffdf7"
+    stroke="#0f766e"
+    stroke-width="3"/>
+  <path
+    d="M32 6v52M6 32h52M6 58L58 6M6 32L32 6M32 58L58 32"
+    stroke="#0f766e"
+    stroke-width="1.8"
+    fill="none"/>
+  <g
+    font-family="Arial,sans-serif"
+    font-weight="800"
+    font-size="13"
+    fill="#c2410c">
+    <text x="12" y="24">9</text>
+    <text x="38" y="24">7</text>
+    <text x="12" y="50">6</text>
+    <text x="38" y="50">4</text>
+  </g>
+</svg>

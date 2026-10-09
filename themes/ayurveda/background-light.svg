@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="130">
+  <g fill="#2f7d4f" fill-opacity="0.18">
+    <path d="M20 40c18-4 30 6 34 24-18 4-32-6-34-24z"/>
+    <path d="M85 100c-14-6-18-22-8-34 12 6 16 22 8 34z"/>
+  </g>
+  <path
+    d="M20 40q16 10 34 24M85 100q-6-16-8-34"
+    stroke="#2f7d4f"
+    stroke-opacity=".3"
+    stroke-width="1.5"
+    fill="none"/>
+  <circle cx="100" cy="30" r="4" fill="#c9921a" fill-opacity=".35"/>
+  <circle cx="36" cy="108" r="3" fill="#c9921a" fill-opacity=".35"/>
+</svg>

@@ -1,0 +1,27 @@
+/* Extra touches for the Lego theme. */
+[data-theme="lego"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 2px 2px 0 var(--color-highlight);
+}
+[data-theme="lego"] .panel {
+  background-image: radial-gradient(
+    circle at 50% -2px,
+    rgba(0, 0, 0, 0.1) 7px,
+    transparent 8px
+  );
+  background-size: 34px 14px;
+  background-repeat: repeat-x;
+}
+[data-theme="lego"] .option,
+[data-theme="lego"] .button,
+[data-theme="lego"] .match-item,
+[data-theme="lego"] .order-item,
+[data-theme="lego"] .sort-chip {
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18);
+}
+[data-theme="lego"] .button.primary,
+[data-theme="lego"] .start-button {
+  border: 2px solid rgba(0, 0, 0, 0.35);
+}

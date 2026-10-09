@@ -1,0 +1,327 @@
+/*
+ * question-types.css
+ * Styles for each kind of question beyond plain multiple choice.
+ * Each section matches one file in js/question-types/.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Select all that apply                                               */
+/* ------------------------------------------------------------------ */
+
+.option.is-picked {
+  background: var(--color-pop-3-soft);
+  border-color: var(--color-pop-3);
+}
+
+.option.is-picked .key-number {
+  color: #fff;
+  background: var(--color-pop-3);
+  border-color: var(--color-pop-3);
+}
+
+/* A right answer the reader did not tick */
+.option.is-unticked {
+  border-style: dashed;
+}
+
+/* Small note under an option after checking, e.g. "Not one of them" */
+.option-note {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-style: normal;
+}
+
+/* ------------------------------------------------------------------ */
+/* Fill in the blank                                                   */
+/* ------------------------------------------------------------------ */
+
+.fill-input {
+  width: 100%;
+  padding: 12px 14px;
+  font: 500 1.1rem var(--font-body);
+  color: var(--color-text);
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.fill-input:focus {
+  outline: none;
+  border-color: var(--color-pop-3);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.16);
+}
+
+.fill-input.is-correct {
+  background: var(--color-pop-2-soft);
+  border-color: var(--color-correct);
+}
+
+.fill-input.is-incorrect {
+  background: var(--color-pop-1-soft);
+  border-color: var(--color-pop-1);
+}
+
+/* "Accepted answer: ..." */
+.accepted-answer {
+  margin: 12px 0 0;
+  font: 400 1.05rem var(--font-heading);
+}
+
+/* ------------------------------------------------------------------ */
+/* Put in order                                                        */
+/* ------------------------------------------------------------------ */
+
+.order-answer,
+.order-pool {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+/* The dashed box the reader's chosen order builds up in */
+.order-answer {
+  min-height: 56px;
+  padding: 10px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+/* Grey hint text inside an empty box */
+.placeholder-hint {
+  padding: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.order-item:hover {
+  border-color: var(--color-pop-3);
+  animation: wiggle 0.45s ease-in-out;
+}
+
+.order-item.is-placed {
+  background: var(--color-pop-3-soft);
+  border-color: var(--color-pop-3);
+}
+
+.order-item.is-right {
+  background: var(--color-correct-soft);
+  border-color: var(--color-correct);
+}
+
+.order-item.is-wrong {
+  background: var(--color-wrong-soft);
+  border-color: var(--color-wrong);
+}
+
+/* Position numbers in the order answer and the match results */
+.order-item .key-number,
+.match-results .key-number {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-pop-3);
+  border-radius: 7px;
+}
+
+/* The correct answer, shown after a wrong or partly right attempt */
+.correction {
+  margin: 12px 0 0;
+}
+
+.correction-line {
+  margin: 4px 0;
+  font: 400 1rem var(--font-heading);
+}
+
+/* ------------------------------------------------------------------ */
+/* Match the pairs                                                     */
+/* ------------------------------------------------------------------ */
+
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.match-column {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+/* Linked pairs get a shared colour, set inline by the script */
+.match-item {
+  padding: 10px 12px;
+  text-align: left;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.match-item:hover {
+  border-color: var(--color-pop-3);
+}
+
+.match-item.is-selected {
+  border-color: var(--color-pop-3);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.2);
+}
+
+.match-results {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.match-result-row {
+  padding: 10px 12px;
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.match-result-row b {
+  display: block;
+}
+
+.match-result-row span {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.match-result-row.is-right {
+  background: var(--color-correct-soft);
+  border-color: var(--color-correct);
+}
+
+.match-result-row.is-wrong {
+  background: var(--color-wrong-soft);
+  border-color: var(--color-wrong);
+}
+
+/* ------------------------------------------------------------------ */
+/* Sort into groups                                                    */
+/* ------------------------------------------------------------------ */
+
+/* Items not yet placed in a group */
+.sort-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 48px;
+  margin: 8px 0;
+  padding: 10px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.sort-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sort-group {
+  overflow: hidden;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.sort-group:nth-child(1) {
+  border-color: var(--color-pop-2);
+}
+
+.sort-group:nth-child(2) {
+  border-color: var(--color-pop-3);
+}
+
+/* The group name; tapping it drops the selected item into the group */
+.sort-group-head {
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  background: var(--color-pop-2-soft);
+  border: 0;
+  border-radius: 0;
+}
+
+.sort-group-head:hover {
+  background: var(--color-accent-soft);
+}
+
+.sort-group:nth-child(2) .sort-group-head {
+  background: var(--color-pop-3-soft);
+}
+
+.sort-group-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 52px;
+  padding: 10px;
+}
+
+.sort-chip {
+  padding: 8px 12px;
+  font-size: 0.94rem;
+  text-align: left;
+  background: var(--color-card);
+  border: var(--border-width-strong) solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.sort-chip:hover {
+  border-color: var(--color-pop-3);
+}
+
+.sort-chip.is-selected {
+  background: var(--color-pop-3-soft);
+  border-color: var(--color-pop-3);
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.2);
+}
+
+.sort-chip.is-right {
+  background: var(--color-correct-soft);
+  border-color: var(--color-correct);
+}
+
+.sort-chip.is-wrong {
+  background: var(--color-wrong-soft);
+  border-color: var(--color-wrong);
+}
+
+/* ------------------------------------------------------------------ */
+/* Recall from memory                                                  */
+/* ------------------------------------------------------------------ */
+
+/* "Say or think your answer first..." */
+.recall-cue {
+  margin: 0 0 12px;
+  padding: 14px;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-small);
+}
