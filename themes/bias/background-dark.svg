@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <g stroke="#94a3b8" stroke-opacity=".26" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M14 30L50 22M32 26V60M20 60H44"/>
+    <path d="M14 30l-6 14h12ZM50 22l-6 14h12Z"/>
+    <circle cx="86" cy="80" r="12"/><path d="M95 89l12 12"/>
+    <ellipse cx="86" cy="26" rx="9" ry="14"/><path d="M86 40v14"/>
+  </g>
+</svg>

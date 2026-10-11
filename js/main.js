@@ -1,7 +1,7 @@
 /*
  * main.js
  * Starts the quiz: reads questions.json, opens the reader's saved
- * progress for that book, and shows the home screen.
+ * progress and settings for that book, and shows the home screen.
  *
  * Browsers will not read questions.json when the page is opened straight
  * from a folder (file://). In that case a panel asks the reader to pick
@@ -21,6 +21,10 @@
     quiz.math.enableIfNeeded(bookData);
     quiz.book.setBookData(bookData);
     quiz.progress.openForBook(quiz.book.bookId());
+    quiz.bookSettings.openForBook(quiz.book.bookId());
+    if (window.RecallQuizTheme) {
+      window.RecallQuizTheme.useBook(quiz.book.bookId());
+    }
     quiz.homeScreen.showBookDetails();
     findElement("load-error").classList.add("hidden");
     findElement("home-screen").classList.remove("hidden");

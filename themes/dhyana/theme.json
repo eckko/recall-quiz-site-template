@@ -1,0 +1,69 @@
+{
+  "name": "Dhyana",
+  "group": "Yoga & mindfulness",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",\"Lora\",Georgia,serif",
+    "headings": "\"Cormorant Garamond\",\"Lora\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "20px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 2.8,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#efe8f7",
+      "card": "#faf6ff",
+      "text": "#2a1745",
+      "textMuted": "#5e4a7e",
+      "border": "#d4c6ea",
+      "accent": "#5b2a96",
+      "accent2": "#8a5a00",
+      "highlight": "#f2d27a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#7a45b8",
+      "pop2": "#c99a1e",
+      "pop3": "#3d1d6b",
+      "pop4": "#d9731f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/150px auto fixed",
+      "linear-gradient(180deg,#ece3f8,#dccdef) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#150c26",
+      "card": "#1f1438",
+      "text": "#efe6fb",
+      "textMuted": "#bba9d9",
+      "border": "#3b2866",
+      "accent": "#c9a6ff",
+      "accent2": "#f0cf72",
+      "highlight": "#cfa23a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#d2b3ff",
+      "pop2": "#f5d98a",
+      "pop3": "#a98ad9",
+      "pop4": "#ffae66",
+      "onAccent": "#150c26",
+      "onHero": "#150c26"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/150px auto fixed",
+      "linear-gradient(180deg,#1a0f30,#0e0719) fixed"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Statistics",
+  "group": "Math",
+  "fonts": {
+    "body": "\"Instrument Sans\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Instrument Sans\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef4fb",
+      "card": "#ffffff",
+      "text": "#14243b",
+      "textMuted": "#4f6280",
+      "border": "#c9d8ec",
+      "accent": "#1f5fbf",
+      "accent2": "#c2570a",
+      "highlight": "#fde2b5",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#1f5fbf",
+      "pop2": "#e8710a",
+      "pop3": "#0f8a8a",
+      "pop4": "#7a4fc4",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f3f7fd,#e3edf9) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f1a2b",
+      "card": "#172740",
+      "text": "#e8f0fb",
+      "textMuted": "#a3b6d1",
+      "border": "#2a4163",
+      "accent": "#6ea8ff",
+      "accent2": "#ffa24d",
+      "highlight": "#e9b565",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#6ea8ff",
+      "pop2": "#ffa24d",
+      "pop3": "#4fd1c5",
+      "pop4": "#b79cff",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#101d31,#0a1424) fixed"
+    ]
+  }
+}

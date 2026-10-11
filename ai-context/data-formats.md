@@ -190,14 +190,28 @@ progress is still unchanged (format v2): a pretest only adds `pretested` and
 
 ## Settings (home layout and practice defaults)
 
-`localStorage` key `recall-quiz-home-layout` holds `{progress, recent, setup,
-stand, chapters, inner, timer, confidence, htrab, units, at}`:
-panels `progress`/`recent`/`setup`/`stand` are "open" | "closed"; `chapters`
-is "next" | "open" | "closed"; `inner` is "closed" | "open"; `timer` is
-0/15/30/60; `confidence` and `htrab` are booleans; `units` maps book id to the
-chapter picked; `at` is the time of the last change. In the account, the
-`_settings` document holds `layout: {p, r, s, w, c, i, t, f, h, u, a}` next to
-`theme`; the newest `a` wins. Code: `js/home-layout.js` (Settings screen,
+Everything the reader sets is kept **per book**, in `localStorage` key
+`recall-quiz-book:<bookId>` (`js/book-settings.js`):
+`{version: 1, layout, flags}`. `layout` is owned by `js/home-layout.js`:
+folding keys (`progress`, `recent`, `setup`, `stand` = "open"|"closed";
+`chapters` "next"|"open"|"closed"; `inner`), practice defaults (`timer`
+0/15/30/60, `confidence`, `htrab`, `count` (0 = all), `minutes`, `scope`
+`{unit, section?, concept?}`, `filter` all|due|gaps|important, `lengthMode`),
+`customStart` (auto|open|closed), `show` (`setup`, `timer`, `confidence`,
+`htrab`, `quick`, `custom`, `filter`, `length`, `flagBar`; hidden controls
+still apply their defaults) and `at` (last change). Theme is per book too:
+`recall-quiz:theme:<bookId>` = `{v: 1, t, m, a}`; the global
+`recall-quiz:theme` is only the last theme shown, to avoid a flash.
+Flags: `flags: {questionId: {f: ["bad"|"revisit"|"useless"|"important"],
+a: time}}`. Bad and Useless hide the question (`quiz.book.setHiddenIds`).
+Versioning: bump `CURRENT_VERSION` and add a step to `MIGRATIONS[N]` (N to
+N+1); newer-version data is read-only and never overwritten. The tab's
+practice overrides (`sessionStorage`
+`recall-quiz-practice-override:<bookId>`, `{v: 1, ...}`) are versioned the
+same way. Account: one document per book, `_settings:<bookId>`:
+`{v, layout, flags, theme: {t, m, a}}` (newest `at` wins for layout and
+theme; flags merge per question by time). Sign-in is global.
+Code: `js/home-layout.js` (Settings screen,
 folding, Expand all), `js/session-settings.js` (`readChoices`/`useChoices`),
 `htrab/htrab.js` (`quiz.htrab.isOn`/`useRemote`). The HTRAB On/Off switch is
 shown on the Settings screen; its level/stage picker stays on the home screen.

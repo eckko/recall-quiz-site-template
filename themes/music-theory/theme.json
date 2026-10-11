@@ -1,0 +1,69 @@
+{
+  "name": "Music Theory",
+  "group": "Art & music",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",\"Playfair Display\",Georgia,serif",
+    "headings": "\"Playfair Display\",\"Cormorant Garamond\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf3e2",
+      "card": "#fffaf0",
+      "text": "#3a1520",
+      "textMuted": "#6e4b52",
+      "border": "#e6d3b0",
+      "accent": "#7a1f35",
+      "accent2": "#8a6410",
+      "highlight": "#f3dc9b",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#7a1f35",
+      "pop2": "#8a6410",
+      "pop3": "#2f6f6a",
+      "pop4": "#a0522d",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fdf6e8,#f3e5c8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#25100f",
+      "card": "#341a19",
+      "text": "#fbeed6",
+      "textMuted": "#d2b9a4",
+      "border": "#573330",
+      "accent": "#e58fa3",
+      "accent2": "#e5b94e",
+      "highlight": "#d9b04a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#e58fa3",
+      "pop2": "#e5b94e",
+      "pop3": "#7fcfc4",
+      "pop4": "#e39a6e",
+      "onAccent": "#1c0c0b",
+      "onHero": "#1c0c0b"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#2a1312,#1a0a09) fixed"
+    ]
+  }
+}

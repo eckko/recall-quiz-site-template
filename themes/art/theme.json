@@ -1,6 +1,6 @@
 {
   "name": "Art",
-  "group": "Subjects",
+  "group": "Art & music",
   "fonts": {
     "body": "\"Nunito\",system-ui,sans-serif",
     "headings": "\"Permanent Marker\",\"Caveat\",cursive"

@@ -1,0 +1,69 @@
+{
+  "name": "Cognitive",
+  "group": "Psychology & brain",
+  "fonts": {
+    "body": "\"Exo 2\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Exo 2\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eaf5ff",
+      "card": "#fbfdff",
+      "text": "#17214d",
+      "textMuted": "#54608a",
+      "border": "#c7dcf5",
+      "accent": "#5b3fd6",
+      "accent2": "#0284c7",
+      "highlight": "#d9ccff",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#7c3aed",
+      "pop2": "#0ea5e9",
+      "pop3": "#db2777",
+      "pop4": "#c2410c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f2f9ff,#dfeeff) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0d1530",
+      "card": "#151f44",
+      "text": "#e8efff",
+      "textMuted": "#a5b4e0",
+      "border": "#2b3a72",
+      "accent": "#a99bff",
+      "accent2": "#4cc3ff",
+      "highlight": "#5b4bb0",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#b79cff",
+      "pop2": "#4cc3ff",
+      "pop3": "#ff8fc0",
+      "pop4": "#ffb066",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0f1836,#0a1128) fixed"
+    ]
+  }
+}

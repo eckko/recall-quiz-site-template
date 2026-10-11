@@ -2,9 +2,11 @@
  * theme-picker.js
  * Light, dark or system mode, and the theme picker.
  *
- * This file is loaded in <head>, so the saved theme is applied before
+ * This file is loaded in <head>, so the last theme shown is applied before
  * the page is drawn (no flash of the wrong colours). The tiles are built
- * once the page has loaded.
+ * once the page has loaded. Once a book is open (useBook) the theme is the
+ * one saved for THAT book, so every book can look different; a book with
+ * nothing saved starts from the default theme.
  *
  * How themes are switched: the <html> element gets three attributes,
  *   data-theme="lego"      which theme
@@ -18,8 +20,13 @@
 (function setUpThemePicker() {
   "use strict";
 
-  /** One saved choice for every book on this site */
+  /** The theme shown last, used to paint the page before a book is open */
   const STORAGE_KEY = "recall-quiz:theme";
+  /** One saved choice per book: this prefix plus the book id */
+  const BOOK_KEY_PREFIX = "recall-quiz:theme:";
+  /** Version of the saved choice {v, t, m, a}; bump it with a step in
+      readStoredChoice when the format changes */
+  const STORED_VERSION = 1;
   const DEFAULT_THEME = "classic";
   const DEFAULT_MODE = "system";
 
@@ -31,27 +38,55 @@
 
   const MODES = ["light", "dark", "system"];
 
+  /** The open book's id ("" before a book is open) */
+  let bookId = "";
+  /** True when this book's saved choice comes from a newer version of
+      this code; it is then never overwritten */
+  let isSavedChoiceNewer = false;
+
   /** The reader's choice: theme id and light / dark / system, and when
       they last picked it (0 if never; cloud sync keeps the newest) */
-  const choice = readSavedChoice();
-
-  /** @returns {{themeId: string, mode: string, at: number}} */
-  function readSavedChoice() {
+  const choice = readSavedChoice(STORAGE_KEY);
+  /**
+   * Read a saved choice, or the defaults.
+   * @param {string} key  the localStorage key
+   * @returns {{themeId: string, mode: string, at: number}}
+   */
+  function readSavedChoice(key) {
     const saved = { themeId: DEFAULT_THEME, mode: DEFAULT_MODE, at: 0 };
-    try {
-      // Stored as {t: themeId, m: mode, a: picked-at}; old saves have
-      // no "a".
-      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const stored = readStoredChoice(key);
+    if (stored) {
       saved.themeId = stored.t || saved.themeId;
-      saved.mode = stored.m || saved.mode;
+      saved.mode = MODES.includes(stored.m) ? stored.m : saved.mode;
       saved.at = Number(stored.a) || 0;
-    } catch (storageError) {
-      // Storage blocked: use the defaults.
     }
     if (!themes.some(isTheme(saved.themeId))) {
       saved.themeId = DEFAULT_THEME;
     }
     return saved;
+  }
+
+  /**
+   * The parsed saved choice {v, t, m, a}, upgraded to this version
+   * (version 1 is the format without a "v"). Nothing yet needs
+   * converting; add a step here when the format changes.
+   * @param {string} key
+   * @returns {object|null} null when nothing readable is saved
+   */
+  function readStoredChoice(key) {
+    try {
+      const stored = JSON.parse(localStorage.getItem(key));
+      if (!stored || typeof stored !== "object") {
+        return null;
+      }
+      if (Number(stored.v) > STORED_VERSION) {
+        isSavedChoiceNewer = true;
+        return null;
+      }
+      return stored;
+    } catch (storageError) {
+      return null;       // Storage blocked or damaged: use the defaults.
+    }
   }
 
   /** @param {string} themeId  @returns {function(Array): boolean} */
@@ -61,14 +96,33 @@
     };
   }
 
-  /** Remember the choice in this browser (for every book on the site). */
+  /** Remember the choice in this browser: for the open book, and as the
+      theme to paint first next time. */
   function saveChoice() {
+    const text = JSON.stringify({ v: STORED_VERSION, t: choice.themeId,
+      m: choice.mode, a: choice.at });
     try {
-      const stored = { t: choice.themeId, m: choice.mode, a: choice.at };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+      localStorage.setItem(STORAGE_KEY, text);
+      if (bookId && !isSavedChoiceNewer) {
+        localStorage.setItem(BOOK_KEY_PREFIX + bookId, text);
+      }
     } catch (storageError) {
       // Storage blocked: the choice lasts until the tab is closed.
     }
+  }
+
+  /**
+   * A book was opened: use the theme saved for it, or the defaults.
+   * @param {string} newBookId
+   */
+  function useBook(newBookId) {
+    bookId = newBookId;
+    isSavedChoiceNewer = false;
+    const saved = readSavedChoice(BOOK_KEY_PREFIX + bookId);
+    choice.themeId = saved.themeId;
+    choice.mode = saved.mode;
+    choice.at = saved.at;
+    applyChoice();
   }
 
   /** @returns {boolean} true if the page should be dark right now */
@@ -114,7 +168,6 @@
     choice.mode = remote.mode;
     choice.at = remote.at;
     applyChoice();
-    showGroup(groupOf(choice.themeId));
     return true;
   }
 
@@ -135,6 +188,11 @@
       function markTile(tile) {
         const themeId = tile.getAttribute("data-theme-id");
         tile.setAttribute("aria-pressed", String(themeId === choice.themeId));
+      });
+    document.querySelectorAll("#theme-tiles .theme-group").forEach(
+      function markGroup(group) {
+        group.classList.toggle("has-current", Boolean(group.querySelector(
+          '.theme-tile[aria-pressed="true"]')));
       });
   }
 
@@ -161,24 +219,25 @@
     return names;
   }
 
-  /** @returns {string} the group a theme is in */
-  function groupOf(themeId) {
-    const theme = themes.find(isTheme(themeId));
-    return (theme && theme[2]) || "Themes";
-  }
-
-  /** Show only the tiles of one group, and mark its chip. */
-  function showGroup(name) {
-    document.querySelectorAll("#theme-tiles .theme-tile").forEach(
-      function show(tile) {
-        tile.classList.toggle("hidden",
-          tile.getAttribute("data-group") !== name);
-      });
-    document.querySelectorAll("#theme-groups button").forEach(
-      function mark(chip) {
-        chip.setAttribute("aria-pressed",
-          String(chip.getAttribute("data-group") === name));
-      });
+  /**
+   * One folded group of tiles: a heading with the group's name and how
+   * many themes it holds, and the tiles inside.
+   * @param {string} name  the group
+   * @returns {{group: HTMLElement, tiles: HTMLElement}}
+   */
+  function createThemeGroup(name) {
+    const group = createPart("details", "theme-group");
+    group.setAttribute("data-group", name);
+    const heading = createPart("summary", "theme-group-name");
+    heading.appendChild(createPart("span", null, name));
+    const count = themes.filter(function inGroup(theme) {
+      return (theme[2] || "Themes") === name;
+    }).length;
+    heading.appendChild(createPart("small", null, String(count)));
+    group.appendChild(heading);
+    const tiles = createPart("div", "theme-group-tiles");
+    group.appendChild(tiles);
+    return { group, tiles };
   }
 
   /**
@@ -247,22 +306,16 @@
     if (!tileArea) {
       return;
     }
-    themes.forEach(function addTile(theme) {
-      tileArea.appendChild(
-        createThemeTile(theme[0], theme[1], theme[2] || "Themes"));
-    });
-    const groupArea = document.getElementById("theme-groups");
-    groupNames().forEach(function addChip(name) {
-      const chip = document.createElement("button");
-      chip.type = "button";
-      chip.textContent = name;
-      chip.setAttribute("data-group", name);
-      chip.addEventListener("click", function chooseGroup() {
-        showGroup(name);
+    groupNames().forEach(function addGroup(name) {
+      const parts = createThemeGroup(name);
+      themes.forEach(function addTile(theme) {
+        if ((theme[2] || "Themes") === name) {
+          parts.tiles.appendChild(
+            createThemeTile(theme[0], theme[1], name));
+        }
       });
-      groupArea.appendChild(chip);
+      tileArea.appendChild(parts.group);
     });
-    showGroup(groupOf(choice.themeId));
     document.querySelectorAll("#theme-mode-choice button").forEach(
       function connectModeButton(button) {
         button.addEventListener("click", function chooseMode() {
@@ -286,6 +339,7 @@
       return { themeId: choice.themeId, mode: choice.mode, at: choice.at };
     },
     useRemote: useRemoteChoice,
+    useBook,
   };
 
   applyChoice();          // before the page is drawn

@@ -1,0 +1,69 @@
+{
+  "name": "Pranayam",
+  "group": "Yoga & mindfulness",
+  "fonts": {
+    "body": "\"Quicksand\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Quicksand\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "26px",
+    "smallRadius": "16px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e6f4fb",
+      "card": "#f4fcfa",
+      "text": "#12333f",
+      "textMuted": "#416673",
+      "border": "#bfe0e8",
+      "accent": "#1f6f8b",
+      "accent2": "#1b7f6b",
+      "highlight": "#bfeedd",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#2f87a8",
+      "pop2": "#3aa78d",
+      "pop3": "#195f78",
+      "pop4": "#e0894a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/160px auto fixed",
+      "linear-gradient(180deg,#e0f2fb,#d6f5ea) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0c1f28",
+      "card": "#132c37",
+      "text": "#e4f6fb",
+      "textMuted": "#a3cbd6",
+      "border": "#24505e",
+      "accent": "#6fcbe6",
+      "accent2": "#7be3c4",
+      "highlight": "#3a9c8a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#83d5ee",
+      "pop2": "#8cebd0",
+      "pop3": "#7fb9cc",
+      "pop4": "#ffa86a",
+      "onAccent": "#0c1f28",
+      "onHero": "#0c1f28"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/160px auto fixed",
+      "linear-gradient(180deg,#0e2430,#0a1a22) fixed"
+    ]
+  }
+}

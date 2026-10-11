@@ -1,0 +1,19 @@
+/* Extra touches for the Gallery theme. */
+[data-theme="gallery"] h1 {
+  background: none;
+  color: var(--color-text);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+[data-theme="gallery"] .unit-title,
+[data-theme="gallery"] .verdict,
+[data-theme="gallery"] .panel h2 {
+  font-family: var(--font-heading);
+}
+/* Cards hang like framed pictures with a mat inside. */
+[data-theme="gallery"] .panel {
+  box-shadow: inset 0 0 0 5px var(--color-card),
+    inset 0 0 0 6px var(--color-border);
+}

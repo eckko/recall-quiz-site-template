@@ -169,6 +169,10 @@
     if (ideaRow) {
       cardElement.appendChild(ideaRow);
     }
+    const flagBar = isCard ? null : quiz.flags.createFlagBar(question);
+    if (flagBar) {
+      cardElement.appendChild(flagBar);
+    }
     if (!state.isTimed) {
       quiz.timers.showQuestionsLeft(
         countQuestionsFrom(state.currentIndex), countQuestionsFrom(0));
@@ -228,20 +232,37 @@
   }
 
   /**
-   * A "Read the idea" panel that opens the concept card above the
-   * question, so the reader can read first, answer later. Not offered
-   * on a warm-up guess, which is meant to come before the card.
+   * A closed "Read the idea" panel that opens the concept card above the
+   * question, so the reader can read first, answer later. Offered on
+   * every question that belongs to an idea, warm-up guesses included.
    * @param {object} question
    * @returns {HTMLElement|null}
    */
   function createShowIdeaRow(question) {
     const concept = quiz.learning.conceptById(question.concept);
-    if (!concept || question.isPretestRun) {
+    if (!concept) {
       return null;
     }
     const row = createElement("div", "hint-row");
-    row.appendChild(quiz.learning.createIdeaAgainPanel(concept, false, true));
+    row.appendChild(quiz.learning.createIdeaPanel(concept));
     return row;
+  }
+
+  /**
+   * A question was flagged Bad or Useless: drop it from the steps still
+   * to come in this session. The one on screen stays until the reader
+   * moves on.
+   * @param {CustomEvent} event  detail.questionId
+   */
+  function dropFlaggedQuestionFromSession(event) {
+    const questionId = event.detail.questionId;
+    if (!quiz.book.hiddenIds.has(questionId)) {
+      return;
+    }
+    state.questions = state.questions.filter(
+      function isKept(step, index) {
+        return index <= state.currentIndex || step.id !== questionId;
+      });
   }
 
   /** Move on: the next question, or the results if time ran out. */
@@ -450,6 +471,8 @@
       startSession(quiz.settings.chooseQuickSession());
     });
   document.addEventListener("keydown", handleKeyPress);
+  document.addEventListener("recallquiz:flags-changed",
+    dropFlaggedQuestionFromSession);
 
   quiz.session = {
     state,

@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/results.css">
   <link rel="stylesheet" href="css/learning.css">
   <link rel="stylesheet" href="css/cloud-sync.css">
+  <link rel="stylesheet" href="css/flags.css">
   <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/phone.css">
   <!-- HTRAB (optional overlay): delete this line, the two scripts below
@@ -88,16 +89,99 @@
       </div>
       <div class="setting-row">
         <div class="setting-label"><b>Theme</b></div>
-        <div class="theme-groups" id="theme-groups"></div>
         <div class="theme-tiles" id="theme-tiles"></div>
       </div>
     </details>
 
+    <div class="panel settings-section" id="visibility-section">
+      <h2>What the home screen shows</h2>
+      <p class="note settings-note">
+        Choose what appears for this book. A hidden control keeps its
+        default value and is still used; it is just out of sight.
+      </p>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>What do you want to do?</b>
+          <small>The whole panel, with everything in it.</small>
+        </div>
+        <div class="choice-group" data-layout="show.setup">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Timer per question</b>
+        </div>
+        <div class="choice-group" data-layout="show.timer">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Confidence check</b>
+        </div>
+        <div class="choice-group" data-layout="show.confidence">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>HTRAB method</b>
+        </div>
+        <div class="choice-group" data-layout="show.htrab">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>5-minute session button</b>
+        </div>
+        <div class="choice-group" data-layout="show.quick">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Custom practice</b>
+          <small>The whole section.</small>
+        </div>
+        <div class="choice-group" data-layout="show.custom">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Which questions</b>
+          <small>Inside Custom practice.</small>
+        </div>
+        <div class="choice-group" data-layout="show.filter">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Session length</b>
+          <small>Inside Custom practice.</small>
+        </div>
+        <div class="choice-group" data-layout="show.length">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+    </div>
+
     <div class="panel settings-section" id="practice-section">
       <h2>Practice defaults</h2>
       <p class="note settings-note">
-        What the home screen starts with, on every device. You can still
-        change them on the home screen for one visit.
+        What the home screen starts with for this book, on every device.
+        You can still change them on the home screen for one visit.
       </p>
       <label class="setting-row">
         <div class="setting-label">
@@ -105,6 +189,14 @@
           <small>Where "Keep me going" and the 5-minute session look.</small>
         </div>
         <select id="default-unit"></select>
+      </label>
+      <label class="setting-row hidden" id="default-topic-field">
+        <div class="setting-label"><b id="default-topic-label">Topic</b></div>
+        <select id="default-topic"></select>
+      </label>
+      <label class="setting-row hidden" id="default-idea-field">
+        <div class="setting-label"><b id="default-idea-label">Idea</b></div>
+        <select id="default-idea"></select>
       </label>
       <div class="setting-row">
         <div class="setting-label">
@@ -133,8 +225,106 @@
       <div id="htrab-setting"></div>
     </div>
 
+    <div class="panel settings-section" id="custom-practice-section">
+      <h2>Custom practice defaults</h2>
+      <div class="setting-row">
+        <div class="setting-label"><b>Section starts</b>
+          <small>Auto opens it only for books without ideas.</small></div>
+        <div class="choice-group" data-layout="customStart">
+          <button type="button" data-value="auto">Auto</button>
+          <button type="button" data-value="open">Open</button>
+          <button type="button" data-value="closed">Folded</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Which questions</b></div>
+        <div class="choice-group" data-layout="filter">
+          <button type="button" data-value="all">Everything</button>
+          <button type="button" data-value="due">Due and new</button>
+          <button type="button" data-value="gaps">My gaps</button>
+          <button type="button" data-value="important">Important</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Session length</b></div>
+        <div class="choice-group" data-layout="lengthMode">
+          <button type="button" data-value="questions">By questions</button>
+          <button type="button" data-value="time">By time</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Number of questions</b>
+          <small>Leave empty for all.</small>
+        </div>
+        <div class="length-row">
+          <input type="number" id="default-count-input" min="1" max="999"
+                 inputmode="numeric" aria-label="Default number of questions"
+                 placeholder="All">
+          <button type="button" class="pill-button"
+                  data-default-fills="default-count-input"
+                  data-fill-value="5">5</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-count-input"
+                  data-fill-value="10">10</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-count-input"
+                  data-fill-value="25">25</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-count-input"
+                  data-fill-value="50">50</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-count-input"
+                  data-fill-value="">All</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><b>Minutes</b>
+          <small>For a session by time.</small></div>
+        <div class="length-row">
+          <input type="number" id="default-minutes-input" min="1" max="240"
+                 inputmode="numeric" aria-label="Default minutes">
+          <button type="button" class="pill-button"
+                  data-default-fills="default-minutes-input"
+                  data-fill-value="5">5</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-minutes-input"
+                  data-fill-value="10">10</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-minutes-input"
+                  data-fill-value="15">15</button>
+          <button type="button" class="pill-button"
+                  data-default-fills="default-minutes-input"
+                  data-fill-value="30">30</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel settings-section" id="flags-section">
+      <h2>Flagged questions</h2>
+      <p class="note settings-note">
+        While you practise, a collapsed bar lets you flag a question as
+        Bad, Revisit, Useless or Important. Bad and Useless questions are
+        left out at once; Important ones come back again and again.
+      </p>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Flag bar on questions</b>
+        </div>
+        <div class="choice-group" data-layout="show.flagBar">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div id="flag-review-list" class="flag-review-list"></div>
+      <div class="button-row">
+        <button class="button" id="flag-export-button"
+                type="button">Export flagged (JSON)</button>
+      </div>
+    </div>
+
     <div class="panel settings-section" id="home-section">
-      <h2>Home screen</h2>
+      <h2>Home screen layout</h2>
       <p class="note settings-note">
         How each part looks when the home screen opens. Folding things by
         hand never changes these.
@@ -205,8 +395,8 @@
   </div>
 
     <p class="note settings-footer">
-      Saved at once. When you are signed in, every device you use gets the
-      same settings.
+      Saved at once, for this book only. When you are signed in, every
+      device you use gets the same settings for this book.
     </p>
   </section>
 
@@ -254,8 +444,16 @@
           <span id="unit-picker-label">Chapter</span>
           <select id="unit-picker"></select>
         </label>
+        <label class="field hidden" id="topic-field">
+          <span id="topic-picker-label">Topic</span>
+          <select id="topic-picker"></select>
+        </label>
+        <label class="field hidden" id="idea-field">
+          <span id="idea-picker-label">Idea</span>
+          <select id="idea-picker"></select>
+        </label>
 
-        <div class="field">
+        <div class="field" id="timer-field">
           <span>Timer per question (optional)</span>
           <div class="choice-group" id="question-timer-choice">
             <button type="button" data-value="0"
@@ -269,7 +467,7 @@
           </div>
         </div>
 
-        <div class="field">
+        <div class="field" id="confidence-field">
           <span>Confidence check</span>
           <div class="choice-group" id="confidence-choice">
             <button type="button" data-value="off"
@@ -304,19 +502,21 @@
         <summary>Custom practice</summary>
         <div class="fields">
 
-          <div class="field">
+          <div class="field" id="filter-field">
             <span>Which questions</span>
             <div class="choice-group" id="question-filter-choice">
               <button type="button" data-value="due"
-                      aria-pressed="true">Due and new</button>
+                      aria-pressed="false">Due and new</button>
               <button type="button" data-value="gaps"
                       aria-pressed="false">My gaps</button>
+              <button type="button" data-value="important"
+                      aria-pressed="false">Important only</button>
               <button type="button" data-value="all"
-                      aria-pressed="false">Everything</button>
+                      aria-pressed="true">Everything</button>
             </div>
           </div>
 
-          <div class="field">
+          <div class="field" id="length-field">
             <span>Session length</span>
             <div class="choice-group" id="session-length-choice">
               <button type="button" data-value="questions"
@@ -371,8 +571,8 @@
                 type="button">Start practice</button>
         <p class="ready-summary" id="ready-summary"></p>
       </details>
-      <p class="storage-warning" id="storage-warning"></p>
     </div>
+    <p class="storage-warning" id="storage-warning"></p>
   </section>
 
   <!-- Shown when questions.json cannot be read -->
@@ -416,8 +616,10 @@
 <script src="js/math-display.js"></script>
 <script src="js/book.js"></script>
 <script src="js/progress-storage.js"></script>
+<script src="js/book-settings.js"></script>
 <script src="js/spaced-repetition.js"></script>
 <script src="js/learning.js"></script>
+<script src="js/scope-picker.js"></script>
 <script src="js/celebration.js"></script>
 <script src="js/timers.js"></script>
 <script src="js/answer-feedback.js"></script>
@@ -430,6 +632,7 @@
 <script src="js/question-types/sort-into-groups.js"></script>
 <script src="js/question-types/recall.js"></script>
 <script src="js/question-types/lesson.js"></script>
+<script src="js/flags.js"></script>
 <script src="js/session.js"></script>
 <script src="js/results-screen.js"></script>
 <script src="js/home-layout.js"></script>
@@ -447,7 +650,8 @@
    upload), say so on the page instead of leaving it blank. */
 (function reportMissingScripts() {
   var quiz = window.RecallQuiz || {};
-  var expected = ["helpers", "book", "progress", "memory", "learning", "timers",
+  var expected = ["helpers", "book", "progress", "bookSettings", "memory",
+    "learning", "scopePicker", "flags", "layout", "timers",
     "answerFeedback", "questionTypes", "session", "resultsScreen",
     "homeScreen", "settings"];
   var missing = expected.filter(function (name) { return !quiz[name]; });

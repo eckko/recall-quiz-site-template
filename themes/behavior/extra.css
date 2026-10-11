@@ -1,0 +1,11 @@
+/* Extra touches for the Behavior theme: sunny and teal, round shapes. */
+[data-theme="behavior"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="behavior"] .panel {
+  border-left: 6px solid var(--color-accent-2);
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <path d="M30 40C22 14 4 26 12 44S28 52 30 40C32 26 50 18 56 34S40 62 30 40" fill="none" stroke="#b78cff" stroke-opacity="0.16" stroke-width="2.5" stroke-linecap="round"/>
+  <g fill="#b78cff" fill-opacity="0.16"><circle cx="70" cy="100" r="1.8"/><circle cx="80" cy="96" r="1.8"/><circle cx="88" cy="90" r="1.8"/><circle cx="88" cy="106" r="1.8"/><circle cx="96" cy="84" r="1.8"/><circle cx="96" cy="94" r="1.8"/><circle cx="96" cy="102" r="1.8"/><circle cx="96" cy="112" r="1.8"/><circle cx="104" cy="80" r="1.8"/><circle cx="104" cy="88" r="1.8"/><circle cx="104" cy="94" r="1.8"/><circle cx="104" cy="100" r="1.8"/><circle cx="104" cy="108" r="1.8"/><circle cx="104" cy="114" r="1.8"/></g>
+  <path d="M70 100H62M62 100L68 94M62 100L68 106" fill="none" stroke="#b78cff" stroke-opacity="0.11199999999999999" stroke-width="1.6" stroke-linecap="round" opacity="0"/>
+  <circle cx="90" cy="30" r="2" fill="#b78cff" fill-opacity="0.16"/>
+  <circle cx="102" cy="42" r="1.4" fill="#b78cff" fill-opacity="0.16"/>
+  <circle cx="14" cy="96" r="1.4" fill="#b78cff" fill-opacity="0.16"/>
+</svg>

@@ -122,7 +122,7 @@
         "You were certain, so this is a confident miss. " +
         "It is worth rereading."));
     }
-    appendWhereToGoDeeper(feedback, question, result);
+    appendWhereToGoDeeper(feedback, question);
     const nextButton = createNextButton();
     const actions = createElement("div", "actions");
     actions.appendChild(nextButton);
@@ -265,20 +265,16 @@
   }
 
   /**
-   * The concept card again (open after a miss) for a question that
-   * belongs to a concept, or the old "reread" line for plain books.
+   * The old "reread" line for plain books. A question that belongs to an
+   * idea has no second panel here: its "Read the idea" panel stays above
+   * the question.
    * @param {HTMLElement} feedback
    * @param {object} question
-   * @param {"got"|"part"|"miss"} result
    */
-  function appendWhereToGoDeeper(feedback, question, result) {
-    const concept = quiz.learning.conceptById(question.concept);
-    if (concept) {
-      feedback.appendChild(quiz.learning.createIdeaAgainPanel(concept,
-        result === "miss" && !question.isPretestRun));
-      return;
+  function appendWhereToGoDeeper(feedback, question) {
+    if (!quiz.learning.conceptById(question.concept)) {
+      feedback.appendChild(createRereadHint(question));
     }
-    feedback.appendChild(createRereadHint(question));
   }
 
   /**

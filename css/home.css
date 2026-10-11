@@ -57,10 +57,44 @@
   display: none;
 }
 
+/* The theme picker: folded groups, each holding a grid of tiles */
 .theme-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.theme-group {
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.theme-group-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.theme-group-name small {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.theme-group.has-current .theme-group-name span::after {
+  content: " \25CF";
+  color: var(--color-accent);
+}
+
+.theme-group-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 10px;
+  padding: 4px 10px 12px;
 }
 
 /* Each tile previews its theme using its own --tile-* colours, which
@@ -813,28 +847,17 @@ details.settings-section[open] > summary {
   margin-bottom: 4px;
 }
 
-/* Theme groups: one row of chips, one group of tiles at a time */
-.theme-groups {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.theme-groups button {
-  padding: 7px 14px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  background: var(--color-page);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-}
-
-.theme-groups button[aria-pressed="true"] {
-  color: var(--color-on-accent);
-  background: var(--accent-gradient);
-  border-color: transparent;
-}
-
-.theme-tiles {
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+/* Parts of the home screen the reader hid in Settings. js/home-layout.js
+   puts the names on <body data-hide="...">. A hidden control keeps its
+   default value; it is only out of sight. */
+[data-hide~="setup"] #session-setup,
+[data-hide~="timer"] #timer-field,
+[data-hide~="confidence"] #confidence-field,
+[data-hide~="htrab"] #htrab-home-switch,
+[data-hide~="htrab"] #htrab-body,
+[data-hide~="quick"] #quick-session-button,
+[data-hide~="custom"] #custom-practice,
+[data-hide~="filter"] #filter-field,
+[data-hide~="length"] #length-field {
+  display: none;
 }

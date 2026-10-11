@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <g stroke="#1d4ed8" stroke-width="1" stroke-linecap="round" stroke-opacity="0.098" transform="translate(10 10)"><path d="M10 20L40 10"/><path d="M10 20L40 32"/><path d="M10 20L40 54"/><path d="M10 44L40 10"/><path d="M10 44L40 32"/><path d="M10 44L40 54"/><path d="M40 10L70 24"/><path d="M40 10L70 46"/><path d="M40 32L70 24"/><path d="M40 32L70 46"/><path d="M40 54L70 24"/><path d="M40 54L70 46"/></g>
+  <g fill="#1d4ed8" fill-opacity="0.14" transform="translate(10 10)"><circle cx="10" cy="20" r="3.5"/><circle cx="10" cy="44" r="3.5"/><circle cx="40" cy="10" r="3.5"/><circle cx="40" cy="32" r="3.5"/><circle cx="40" cy="54" r="3.5"/><circle cx="70" cy="24" r="3.5"/><circle cx="70" cy="46" r="3.5"/></g>
+  <g fill="#1d4ed8" fill-opacity="0.14"><circle cx="100" cy="30" r="2.5"/><circle cx="100" cy="100" r="2.5"/><circle cx="20" cy="104" r="2.5"/></g>
+  <path d="M100 30L100 100M100 100L20 104" stroke="#1d4ed8" stroke-opacity="0.07" stroke-width="1"/>
+</svg>

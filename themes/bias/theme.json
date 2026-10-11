@@ -1,0 +1,69 @@
+{
+  "name": "Bias",
+  "group": "Psychology & brain",
+  "fonts": {
+    "body": "\"Barlow\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Barlow\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "3px",
+    "smallRadius": "2px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "4px"
+  },
+  "iconStroke": {
+    "width": 3.4,
+    "cap": "square",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#edf0f3",
+      "card": "#fbfcfd",
+      "text": "#1d2935",
+      "textMuted": "#526170",
+      "border": "#c3ccd6",
+      "accent": "#c2410c",
+      "accent2": "#475569",
+      "highlight": "#fed7aa",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#ea580c",
+      "pop2": "#0e7490",
+      "pop3": "#6d28d9",
+      "pop4": "#b45309",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f3f5f8,#e1e6ec) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#11171d",
+      "card": "#1a222b",
+      "text": "#eaeff4",
+      "textMuted": "#a9b6c4",
+      "border": "#34414f",
+      "accent": "#fb923c",
+      "accent2": "#94a3b8",
+      "highlight": "#7c4a1d",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#fb923c",
+      "pop2": "#5fc4dc",
+      "pop3": "#b79cff",
+      "pop4": "#f2c14e",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#141b22,#0d1318) fixed"
+    ]
+  }
+}

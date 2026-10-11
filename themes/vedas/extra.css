@@ -1,0 +1,12 @@
+/* Vedas: palm-leaf parchment, maroon ink, almost square corners. */
+[data-theme="vedas"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-bottom: 3px double var(--color-pop-2);
+}
+[data-theme="vedas"] .panel {
+  border-top: 4px solid var(--color-accent);
+}

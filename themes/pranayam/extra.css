@@ -1,0 +1,11 @@
+/* Pranayam: airy sky and mint, very round and light. */
+[data-theme="pranayam"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="pranayam"] .panel {
+  border-radius: 28px;
+}

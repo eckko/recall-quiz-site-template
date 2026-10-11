@@ -1,0 +1,69 @@
+{
+  "name": "Algorithms",
+  "group": "Software",
+  "fonts": {
+    "body": "\"Barlow\",\"Instrument Sans\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Barlow\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.4,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f2f5fa",
+      "card": "#ffffff",
+      "text": "#10213f",
+      "textMuted": "#4a5a76",
+      "border": "#c5d0e3",
+      "accent": "#1b3a78",
+      "accent2": "#c8402f",
+      "highlight": "#ffd9d2",
+      "correct": "#16784a",
+      "wrong": "#b3261e",
+      "partly": "#935800",
+      "pop1": "#1b3a78",
+      "pop2": "#c8402f",
+      "pop3": "#2a7f9e",
+      "pop4": "#7a5a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f2f5fa,#e4ebf6) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0a1428",
+      "card": "#122140",
+      "text": "#e8eefb",
+      "textMuted": "#a4b4d2",
+      "border": "#27406b",
+      "accent": "#7fa6ff",
+      "accent2": "#ff8a78",
+      "highlight": "#4a2a2a",
+      "correct": "#5fd69a",
+      "wrong": "#ff9088",
+      "partly": "#f2c14e",
+      "pop1": "#7fa6ff",
+      "pop2": "#ff8a78",
+      "pop3": "#5ecfdc",
+      "pop4": "#f2c14e",
+      "onAccent": "#08142a",
+      "onHero": "#08142a"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0a1428,#0d1d3a) fixed"
+    ]
+  }
+}

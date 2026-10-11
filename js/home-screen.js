@@ -24,8 +24,6 @@
       book.labels.unit.toLowerCase(), book.labels.units);
     findElement("book-title").textContent = book.data.book;
     document.title = book.data.book;
-    findElement("unit-picker-label").textContent = book.labels.unit;
-    findElement("default-unit-label").textContent = book.labels.unit;
     findElement("book-summary").textContent = quiz.learning.hasConcepts()
       ? countWithWord(quiz.learning.concepts().length, "idea") + ", " +
         countWithWord(questionCount, "question") + ", " + unitsText +
@@ -33,7 +31,7 @@
       : countWithWord(questionCount, "question") + " across " + unitsText +
         ". Recall first, then check.";
     showBookBlurb();
-    fillUnitPicker();
+    quiz.scopePicker.fill();
     showKeepGoingFor(quiz.learning.hasConcepts());
   }
 
@@ -47,28 +45,14 @@
 
   /**
    * Show "Keep me going" for a book with ideas. A book without ideas
-   * only has the custom practice, which then starts open.
+   * only has the custom practice (js/home-layout.js opens it, unless the
+   * reader chose otherwise).
    * @param {boolean} hasConcepts
    */
   function showKeepGoingFor(hasConcepts) {
     findElement("keep-going-block").classList.toggle("hidden", !hasConcepts);
     findElement("quick-session-button")
       .classList.toggle("hidden", !hasConcepts);
-    findElement("custom-practice").open = !hasConcepts;
-  }
-
-  /** The chapter drop-down: "Whole book" and then every chapter. */
-  function fillUnitPicker() {
-    ["unit-picker", "default-unit"].forEach(function fill(id) {
-      const picker = findElement(id);
-      picker.textContent = "";
-      picker.appendChild(new Option(quiz.book.labels.whole, "all"));
-      quiz.book.unitIds.forEach(function addUnit(unitId) {
-        const title = quiz.book.unitTitles[unitId];
-        const text = unitId + (title ? ": " + title : "");
-        picker.appendChild(new Option(text, unitId));
-      });
-    });
   }
 
   /** Redraw everything that depends on the reader's progress. */

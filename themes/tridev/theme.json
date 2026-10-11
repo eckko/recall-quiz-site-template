@@ -1,0 +1,69 @@
+{
+  "name": "Tridev",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Josefin Sans\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Josefin Sans\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e6e8f6",
+      "card": "#f8f9ff",
+      "text": "#15184a",
+      "textMuted": "#4a4e86",
+      "border": "#bcc1e6",
+      "accent": "#2b2f8f",
+      "accent2": "#0f766e",
+      "highlight": "#ffc766",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#3f44b8",
+      "pop2": "#e8870f",
+      "pop3": "#0d6b63",
+      "pop4": "#d9631a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px auto fixed",
+      "linear-gradient(160deg,#e1e4f7,#cfd4f0) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0c0e2b",
+      "card": "#151a42",
+      "text": "#e8eaff",
+      "textMuted": "#aeb3e6",
+      "border": "#2c3270",
+      "accent": "#9aa2ff",
+      "accent2": "#5fe0d0",
+      "highlight": "#e8a83a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#a9b0ff",
+      "pop2": "#ffbf59",
+      "pop3": "#5fd1c4",
+      "pop4": "#ff9a5c",
+      "onAccent": "#0c0e2b",
+      "onHero": "#0c0e2b"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px auto fixed",
+      "linear-gradient(160deg,#101540,#080a22) fixed"
+    ]
+  }
+}

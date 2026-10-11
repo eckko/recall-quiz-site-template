@@ -1,0 +1,15 @@
+/* Extra touches for the AI theme. */
+[data-theme="ai"] h1 {
+  background: linear-gradient(90deg, var(--color-accent),
+    var(--color-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+/* A soft violet glow around panels. */
+[data-theme="ai"] .panel {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-accent) 18%,
+    transparent);
+}

@@ -1,0 +1,12 @@
+/* Extra touches for the Bias theme: slate with orange, square edges. */
+[data-theme="bias"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="bias"] .panel {
+  border-left: 6px solid var(--color-accent);
+}

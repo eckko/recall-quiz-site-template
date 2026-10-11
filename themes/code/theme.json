@@ -1,0 +1,69 @@
+{
+  "name": "Code",
+  "group": "Software",
+  "fonts": {
+    "body": "\"Exo 2\",ui-monospace,Menlo,Consolas,monospace",
+    "headings": "\"Exo 2\",ui-monospace,Menlo,Consolas,monospace"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "square",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f5f6f2",
+      "card": "#ffffff",
+      "text": "#12231e",
+      "textMuted": "#4a5f59",
+      "border": "#cbd8d2",
+      "accent": "#0f766e",
+      "accent2": "#15803d",
+      "highlight": "#c9f1e1",
+      "correct": "#15803d",
+      "wrong": "#b91c1c",
+      "partly": "#8a5a00",
+      "pop1": "#0f766e",
+      "pop2": "#0e7490",
+      "pop3": "#4d7c0f",
+      "pop4": "#0d9488",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f5f6f2,#ebefe9) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#080d0c",
+      "card": "#111917",
+      "text": "#d6f5e8",
+      "textMuted": "#93b3a8",
+      "border": "#223a34",
+      "accent": "#2dd4a8",
+      "accent2": "#5eead4",
+      "highlight": "#1b4a3f",
+      "correct": "#4ade80",
+      "wrong": "#ff8f85",
+      "partly": "#facc15",
+      "pop1": "#2dd4a8",
+      "pop2": "#22d3ee",
+      "pop3": "#a3e635",
+      "pop4": "#5eead4",
+      "onAccent": "#04130f",
+      "onHero": "#04130f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#080d0c,#0d1513) fixed"
+    ]
+  }
+}

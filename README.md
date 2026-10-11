@@ -322,7 +322,10 @@ js/
   session.js               runs a session: one question after another
   results-screen.js        the end of a session
   home-screen.js           progress ring, recent results, where you stand
-  home-layout.js           Settings screen, folding panels, Expand all, saved choices
+  book-settings.js         per-book saved settings and flags (versioned)
+  scope-picker.js          cascading lesson picker (chapter, topic, idea)
+  flags.js                 Bad / Revisit / Useless / Important flag bar
+  home-layout.js           Settings screen, show/hide, defaults, folding panels
   session-settings.js      the "What do you want to practise?" panel
   progress-file.js         download, load and reset progress
   main.js                  starts everything (loaded last)

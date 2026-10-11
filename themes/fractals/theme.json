@@ -1,0 +1,69 @@
+{
+  "name": "Fractals",
+  "group": "Math",
+  "fonts": {
+    "body": "\"Josefin Sans\",\"Quicksand\",system-ui,sans-serif",
+    "headings": "\"Josefin Sans\",\"Quicksand\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#ecf8f3",
+      "card": "#ffffff",
+      "text": "#0d3b30",
+      "textMuted": "#3f6b5f",
+      "border": "#bfe4d6",
+      "accent": "#0a7a58",
+      "accent2": "#0b7f8a",
+      "highlight": "#c8f2de",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#0a7a58",
+      "pop2": "#0b8f9c",
+      "pop3": "#7a9a0a",
+      "pop4": "#c2410c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f1fbf7,#dff3ea) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#08241d",
+      "card": "#0f3329",
+      "text": "#dcfbef",
+      "textMuted": "#9cc9ba",
+      "border": "#1d5444",
+      "accent": "#3ee0a6",
+      "accent2": "#3fd8e0",
+      "highlight": "#7fe3b8",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#3ee0a6",
+      "pop2": "#3fd8e0",
+      "pop3": "#c3e86a",
+      "pop4": "#ffb15c",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0a2a21,#061a15) fixed"
+    ]
+  }
+}

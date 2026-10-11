@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="currentColor">
+    <rect x="3" y="14" width="4" height="7"/>
+    <rect x="8" y="8" width="4" height="13"/>
+    <rect x="13" y="11" width="4" height="10"/>
+    <rect x="18" y="16" width="3" height="5"/>
+  </g>
+  <path d="M2 18C6 18 7 4 12 4S18 18 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>

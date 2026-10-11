@@ -1,0 +1,14 @@
+/* Extra touches for the Code theme. */
+[data-theme="code"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+/* A terminal prompt before panel headings. */
+[data-theme="code"] .panel h2::before {
+  content: "> ";
+  color: var(--color-accent-2);
+}

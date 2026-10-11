@@ -1,0 +1,13 @@
+/* Extra touches for the Machine Learning theme. */
+[data-theme="machine-learning"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="machine-learning"] .unit-title,
+[data-theme="machine-learning"] .verdict,
+[data-theme="machine-learning"] .panel h2 {
+  font-family: var(--font-heading);
+}

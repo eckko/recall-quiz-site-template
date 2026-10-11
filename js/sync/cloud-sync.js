@@ -9,7 +9,9 @@
  * (start, signIn, signOut, readProgress, writeProgress).
  *
  * The rest of the quiz does not know this file exists. It listens to
- * three events the quiz sends on the document:
+ * these events the quiz sends on the document (settings and flag changes
+ * also arrive as recallquiz:layout-changed, recallquiz:theme-changed and
+ * recallquiz:flags-changed):
  *   recallquiz:book-opened       a book's questions are ready
  *   recallquiz:progress-saved    progress changed in this browser
  *   recallquiz:session-finished  the results screen was shown
@@ -25,9 +27,11 @@
   const PROVIDER_FOLDER = "js/sync/providers/";
   const OWNER_KEY_PREFIX = "recall-quiz-sync-owner:";
   const DEFAULT_SAVE_DELAY_SECONDS = 20;
-  /** The account document that holds settings shared by every book
-      (stored like a book called "_settings", so the rules need no change) */
-  const SETTINGS_DOCUMENT_ID = "_settings";
+  /** The account document that holds one book's settings (theme, layout,
+      practice defaults, flags): this prefix plus the book id. It is
+      stored like a book of its own, so the rules need no change. Sign-in
+      is the only thing shared by every book. */
+  const SETTINGS_DOCUMENT_PREFIX = "_settings:";
   const THEME_SAVE_DELAY_SECONDS = 2;
   const MS_PER_SECOND = 1000;
   /** Give up waiting for the database after this long. A database that
@@ -147,6 +151,8 @@
       handleThemeChanged);
     document.addEventListener("recallquiz:layout-changed",
       handleThemeChanged);
+    document.addEventListener("recallquiz:flags-changed",
+      handleThemeChanged);
     document.addEventListener("visibilitychange",
       function saveWhenHidden() {
         if (document.visibilityState === "hidden") {
@@ -188,7 +194,8 @@
     }
   }
 
-  /** The reader picked a theme: save it to the account soon. */
+  /** The reader changed a setting, theme or flag: save it to the account
+      soon. */
   function handleThemeChanged() {
     clearTimeout(sync.themeTimer);
     if (!sync.user) {
@@ -201,62 +208,71 @@
   }
 
   /**
-   * Keep the theme the same on every device: the newest choice, in this
-   * browser or in the account, wins. A newer account choice is applied
-   * here; a newer browser choice is written to the account. Failures
-   * are logged and ignored (the theme is not worth an error message).
+   * Keep this book's settings the same on every device: the theme and
+   * layout that changed last win, and each question keeps its newest
+   * flags. A newer account copy is applied here; anything newer in this
+   * browser is written to the account. Data saved by a newer version of
+   * the quiz is left alone. Failures are logged and ignored (settings are
+   * not worth an error message).
    * @param {{id: string}} user
    * @returns {Promise}
    */
   function syncSettings(user) {
     const theme = window.RecallQuizTheme;
-    const layout = quiz.layout;
-    if (!theme || !sync.provider) {
+    const settings = quiz.bookSettings;
+    const bookId = sync.bookId;
+    if (!theme || !settings || !sync.provider || !bookId) {
       return Promise.resolve();
     }
-    return withTimeout(
-      sync.provider.readProgress(user.id, SETTINGS_DOCUMENT_ID))
+    const documentId = SETTINGS_DOCUMENT_PREFIX + bookId;
+    return withTimeout(sync.provider.readProgress(user.id, documentId))
       .then(function chooseNewest(account) {
-        if (sync.user !== user) {
+        if (sync.user !== user || sync.bookId !== bookId) {
           return undefined;
         }
-        const next = {};
-        let mustWrite = false;
-        const savedTheme = account && account.theme;
-        const savedLayout = account && account.layout;
-        if (savedTheme) {
-          next.theme = savedTheme;
+        if (account && Number(account.v) > settings.CURRENT_VERSION) {
+          return undefined;
         }
-        if (savedLayout) {
-          next.layout = savedLayout;
-        }
-        const localTheme = theme.read();
-        const themeUsed = savedTheme && theme.useRemote(
-          { themeId: savedTheme.t, mode: savedTheme.m, at: savedTheme.a });
-        if (!themeUsed && localTheme.at > 0 &&
-            (!savedTheme || localTheme.at > savedTheme.a)) {
-          next.theme = { t: localTheme.themeId, m: localTheme.mode,
-            a: localTheme.at };
-          mustWrite = true;
-        }
-        if (layout) {
-          const localLayout = layout.readForAccount();
-          const layoutUsed = savedLayout && layout.useRemote(savedLayout);
-          if (!layoutUsed && localLayout.a > 0 &&
-              (!savedLayout || localLayout.a > savedLayout.a)) {
-            next.layout = localLayout;
-            mustWrite = true;
-          }
-        }
-        if (!mustWrite) {
+        if (!mergeSettings(account, theme, settings)) {
           return undefined;
         }
         return withTimeout(sync.provider.writeProgress(
-          user.id, SETTINGS_DOCUMENT_ID, next));
+          user.id, documentId, settingsForAccount(theme, settings)));
       })
       .catch(function ignoreSettingsProblem(problem) {
         console.error("Settings sync failed:", problem);
       });
+  }
+
+  /**
+   * Use what is newer in the account copy here.
+   * @param {object|null} account  the account copy of this book's settings
+   * @param {object} theme  window.RecallQuizTheme
+   * @param {object} settings  quiz.bookSettings
+   * @returns {boolean} true if this browser has something newer, so the
+   *   account copy should be written
+   */
+  function mergeSettings(account, theme, settings) {
+    const savedTheme = account && account.theme;
+    const localTheme = theme.read();
+    const themeUsed = Boolean(savedTheme) && theme.useRemote(
+      { themeId: savedTheme.t, mode: savedTheme.m, at: savedTheme.a });
+    const isThemeNewer = !themeUsed && localTheme.at > 0 &&
+      (!savedTheme || localTheme.at > savedTheme.a);
+    settings.useRemote(account);
+    return isThemeNewer || settings.hasNewerThan(account);
+  }
+
+  /**
+   * @param {object} theme  window.RecallQuizTheme
+   * @param {object} settings  quiz.bookSettings
+   * @returns {object} this book's settings in their account shape
+   */
+  function settingsForAccount(theme, settings) {
+    const current = theme.read();
+    return Object.assign({}, settings.readForAccount(), {
+      theme: { t: current.themeId, m: current.mode, a: current.at },
+    });
   }
 
   /** Progress changed in the browser: save to the account soon. */

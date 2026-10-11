@@ -1,0 +1,69 @@
+{
+  "name": "Mahabharat",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",\"EB Garamond\",Georgia,serif",
+    "headings": "\"EB Garamond\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "2px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "butt",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f8e8de",
+      "card": "#fff6f0",
+      "text": "#3b0d12",
+      "textMuted": "#7a4646",
+      "border": "#e2bfae",
+      "accent": "#9b1c2e",
+      "accent2": "#8a5a00",
+      "highlight": "#f2c660",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#b3263a",
+      "pop2": "#c9961a",
+      "pop3": "#6b1220",
+      "pop4": "#e0703a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px auto fixed",
+      "linear-gradient(160deg,#fbe3d4,#f3d3bf) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c0a0e",
+      "card": "#2a1217",
+      "text": "#f8e6d8",
+      "textMuted": "#cfa99a",
+      "border": "#51262c",
+      "accent": "#ff7a86",
+      "accent2": "#f0bd4a",
+      "highlight": "#c99a2e",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff8a92",
+      "pop2": "#f0c05a",
+      "pop3": "#d98a8a",
+      "pop4": "#ffa066",
+      "onAccent": "#1c0a0e",
+      "onHero": "#1c0a0e"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px auto fixed",
+      "linear-gradient(160deg,#2a0f14,#160709) fixed"
+    ]
+  }
+}

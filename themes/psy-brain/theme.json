@@ -1,0 +1,69 @@
+{
+  "name": "Brain",
+  "group": "Psychology & brain",
+  "fonts": {
+    "body": "\"Poppins\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Poppins\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "10px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbeef6",
+      "card": "#fffafd",
+      "text": "#3b1233",
+      "textMuted": "#7a4a6c",
+      "border": "#ecc4de",
+      "accent": "#9d2a74",
+      "accent2": "#e0457b",
+      "highlight": "#ffd9a8",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#d6336c",
+      "pop2": "#7b3fa0",
+      "pop3": "#e8590c",
+      "pop4": "#b8860b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fff0f8,#f7dcee) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1d0f1c",
+      "card": "#2a1727",
+      "text": "#fbe6f3",
+      "textMuted": "#cfa3c3",
+      "border": "#4d2a47",
+      "accent": "#f08cc4",
+      "accent2": "#ff7aa5",
+      "highlight": "#f2c38a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff8fb3",
+      "pop2": "#c79bff",
+      "pop3": "#ffa36b",
+      "pop4": "#f2d46a",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1f1020,#150a15) fixed"
+    ]
+  }
+}
