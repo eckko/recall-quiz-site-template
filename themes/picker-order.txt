@@ -63,3 +63,10 @@ guitar
 music-theory
 university
 universe
+stock-market
+debt
+equity
+gold
+silver
+millionaire
+billionaire

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <g stroke="#13805a" stroke-opacity=".30" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64"/>
+    <rect x="8" y="70" width="8" height="26"/>
+    <rect x="26" y="60" width="8" height="26"/>
+    <rect x="44" y="84" width="8" height="16"/>
+    <path d="M70 40L84 28L96 36L112 16M104 16H112V24"/>
+  </g>
+</svg>

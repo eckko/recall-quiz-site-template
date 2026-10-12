@@ -6830,3 +6830,730 @@
   font-family: var(--font-heading);
 }
 
+/* ---------- Stock market ---------- */
+:root[data-theme='stock-market'][data-scheme='light'] {
+  --color-page: #eef7f2;
+  --color-card: #fbfffc;
+  --color-text: #0f2a20;
+  --color-text-muted: #4a6b5c;
+  --color-border: #bfdccd;
+  --color-accent: #13805a;
+  --color-accent-2: #1a9e6e;
+  --color-highlight: #ffe58a;
+  --color-correct: #13805a;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #13805a;
+  --color-pop-2: #c8402f;
+  --color-pop-3: #2563a8;
+  --color-pop-4: #b8860b;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Barlow","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Barlow Condensed","Barlow",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 10px;
+  --radius-small: 6px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%2313805a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64%22/%3E%3Crect x=%228%22 y=%2270%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2226%22 y=%2260%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2244%22 y=%2284%22 width=%228%22 height=%2216%22/%3E%3Cpath d=%22M70 40L84 28L96 36L112 16M104 16H112V24%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f2fbf6,#dff1e8) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M14 8V54%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%228%22 y=%2220%22 width=%2212%22 height=%2224%22 rx=%222%22 fill=%22%2313805a%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 14V58%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2226%22 y=%2226%22 width=%2212%22 height=%2220%22 rx=%222%22 fill=%22%23c8402f%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M50 6V50%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2244%22 y=%2212%22 width=%2212%22 height=%2226%22 rx=%222%22 fill=%22%231a9e6e%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M6 58L24 48L36 54L58 30%22 fill=%22none%22 stroke=%22%23ffb703%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Crect x=%223%22 y=%2210%22 width=%224%22 height=%228%22 rx=%221%22/%3E%3Crect x=%2210%22 y=%225%22 width=%224%22 height=%2210%22 rx=%221%22/%3E%3Crect x=%2217%22 y=%228%22 width=%224%22 height=%2212%22 rx=%221%22/%3E%3Cpath d=%22M5 5v5M12 2v3M19 4v4%22 stroke=%22%23ffffff%22 stroke-width=%221.6%22 stroke-linecap=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='stock-market'][data-scheme='dark'] {
+  --color-page: #0b1a14;
+  --color-card: #12271e;
+  --color-text: #e3f5ec;
+  --color-text-muted: #9cc4b2;
+  --color-border: #234536;
+  --color-accent: #4fd9a0;
+  --color-accent-2: #38c48a;
+  --color-highlight: #f2d46a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #4fd9a0;
+  --color-pop-2: #ff8a7a;
+  --color-pop-3: #7ab4ff;
+  --color-pop-4: #f2d46a;
+  --color-on-accent: #06140d;
+  --color-on-hero: #06140d;
+  --font-body: "Barlow","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Barlow Condensed","Barlow",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 10px;
+  --radius-small: 6px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%234fd9a0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64%22/%3E%3Crect x=%228%22 y=%2270%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2226%22 y=%2260%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2244%22 y=%2284%22 width=%228%22 height=%2216%22/%3E%3Cpath d=%22M70 40L84 28L96 36L112 16M104 16H112V24%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0d1d16,#08130e) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M14 8V54%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%228%22 y=%2220%22 width=%2212%22 height=%2224%22 rx=%222%22 fill=%22%2313805a%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 14V58%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2226%22 y=%2226%22 width=%2212%22 height=%2220%22 rx=%222%22 fill=%22%23c8402f%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M50 6V50%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2244%22 y=%2212%22 width=%2212%22 height=%2226%22 rx=%222%22 fill=%22%231a9e6e%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M6 58L24 48L36 54L58 30%22 fill=%22none%22 stroke=%22%23ffb703%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%2306140d%22%3E%3Crect x=%223%22 y=%2210%22 width=%224%22 height=%228%22 rx=%221%22/%3E%3Crect x=%2210%22 y=%225%22 width=%224%22 height=%2210%22 rx=%221%22/%3E%3Crect x=%2217%22 y=%228%22 width=%224%22 height=%2212%22 rx=%221%22/%3E%3Cpath d=%22M5 5v5M12 2v3M19 4v4%22 stroke=%22%2306140d%22 stroke-width=%221.6%22 stroke-linecap=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%2306140d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%2306140d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='stock-market'] {
+  --tile-page: #eef7f2;
+  --tile-card: #fbfffc;
+  --tile-text: #0f2a20;
+  --tile-border: #bfdccd;
+  --tile-accent: #13805a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #13805a;
+  --tile-pop-2: #c8402f;
+  --tile-pop-3: #2563a8;
+  --tile-radius: 6px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%2313805a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64%22/%3E%3Crect x=%228%22 y=%2270%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2226%22 y=%2260%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2244%22 y=%2284%22 width=%228%22 height=%2216%22/%3E%3Cpath d=%22M70 40L84 28L96 36L112 16M104 16H112V24%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f2fbf6,#dff1e8) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='stock-market'] {
+  --tile-page: #0b1a14;
+  --tile-card: #12271e;
+  --tile-text: #e3f5ec;
+  --tile-border: #234536;
+  --tile-accent: #4fd9a0;
+  --tile-on-accent: #06140d;
+  --tile-pop-1: #4fd9a0;
+  --tile-pop-2: #ff8a7a;
+  --tile-pop-3: #7ab4ff;
+  --tile-radius: 6px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%234fd9a0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64%22/%3E%3Crect x=%228%22 y=%2270%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2226%22 y=%2260%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2244%22 y=%2284%22 width=%228%22 height=%2216%22/%3E%3Cpath d=%22M70 40L84 28L96 36L112 16M104 16H112V24%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0d1d16,#08130e) fixed;
+}
+.theme-tile[data-theme-id='stock-market'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M14 8V54%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%228%22 y=%2220%22 width=%2212%22 height=%2224%22 rx=%222%22 fill=%22%2313805a%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 14V58%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2226%22 y=%2226%22 width=%2212%22 height=%2220%22 rx=%222%22 fill=%22%23c8402f%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M50 6V50%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2244%22 y=%2212%22 width=%2212%22 height=%2226%22 rx=%222%22 fill=%22%231a9e6e%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M6 58L24 48L36 54L58 30%22 fill=%22none%22 stroke=%22%23ffb703%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Stock market: ticker green, condensed capitals. */
+[data-theme="stock-market"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="stock-market"] .panel {
+  border-top: 3px solid var(--color-accent-2);
+}
+
+/* ---------- Debt ---------- */
+:root[data-theme='debt'][data-scheme='light'] {
+  --color-page: #f7ede9;
+  --color-card: #fffaf8;
+  --color-text: #2b1511;
+  --color-text-muted: #6e4a42;
+  --color-border: #e3c5bc;
+  --color-accent: #a3342a;
+  --color-accent-2: #c4513f;
+  --color-highlight: #ffd9a0;
+  --color-correct: #1e7f5c;
+  --color-wrong: #b3261e;
+  --color-partly: #a15f00;
+  --color-pop-1: #a3342a;
+  --color-pop-2: #4a4f5c;
+  --color-pop-3: #c46a14;
+  --color-pop-4: #7a5a1a;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Barlow Condensed","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 6px;
+  --radius-small: 4px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23a3342a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2226%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M26 72V58%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2212%22 height=%2218%22 rx=%226%22/%3E%3Cpath d=%22M80 20V50M70 40l10 12 10-12%22/%3E%3Cpath d=%22M92 90a8 8 0 1 1 16 0a8 8 0 1 1 -16 0M100 82V74%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fbf1ed,#f1ddd6) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2238%22 cy=%2240%22 r=%2219%22 fill=%22%234a4f5c%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M28 33A13 13 0 0 1 38 28%22 fill=%22none%22 stroke=%22%239aa0b0%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Crect x=%2231%22 y=%2210%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223%22 transform=%22rotate(-35 21 18)%22/%3E%3Cpath d=%22M38 19V22%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 38V56M3 49l6 8 6-8%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Ccircle cx=%2212%22 cy=%2215.5%22 r=%226%22/%3E%3Cpath d=%22M12 3.5v5.5M8.5 6.5L12 10l3.5-3.5%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='debt'][data-scheme='dark'] {
+  --color-page: #1c0f0d;
+  --color-card: #2a1815;
+  --color-text: #fbe6e1;
+  --color-text-muted: #d0a69d;
+  --color-border: #4d2a25;
+  --color-accent: #f08a7a;
+  --color-accent-2: #ff9d8a;
+  --color-highlight: #f2c38a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #f08a7a;
+  --color-pop-2: #aab0c0;
+  --color-pop-3: #ffa36b;
+  --color-pop-4: #f2d46a;
+  --color-on-accent: #1a0a08;
+  --color-on-hero: #1a0a08;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Barlow Condensed","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 6px;
+  --radius-small: 4px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08a7a%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2226%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M26 72V58%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2212%22 height=%2218%22 rx=%226%22/%3E%3Cpath d=%22M80 20V50M70 40l10 12 10-12%22/%3E%3Cpath d=%22M92 90a8 8 0 1 1 16 0a8 8 0 1 1 -16 0M100 82V74%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#1f100d,#150a08) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2238%22 cy=%2240%22 r=%2219%22 fill=%22%234a4f5c%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M28 33A13 13 0 0 1 38 28%22 fill=%22none%22 stroke=%22%239aa0b0%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Crect x=%2231%22 y=%2210%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223%22 transform=%22rotate(-35 21 18)%22/%3E%3Cpath d=%22M38 19V22%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 38V56M3 49l6 8 6-8%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%231a0a08%22%3E%3Ccircle cx=%2212%22 cy=%2215.5%22 r=%226%22/%3E%3Cpath d=%22M12 3.5v5.5M8.5 6.5L12 10l3.5-3.5%22 fill=%22none%22 stroke=%22%231a0a08%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%231a0a08' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%231a0a08' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='debt'] {
+  --tile-page: #f7ede9;
+  --tile-card: #fffaf8;
+  --tile-text: #2b1511;
+  --tile-border: #e3c5bc;
+  --tile-accent: #a3342a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #a3342a;
+  --tile-pop-2: #4a4f5c;
+  --tile-pop-3: #c46a14;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23a3342a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2226%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M26 72V58%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2212%22 height=%2218%22 rx=%226%22/%3E%3Cpath d=%22M80 20V50M70 40l10 12 10-12%22/%3E%3Cpath d=%22M92 90a8 8 0 1 1 16 0a8 8 0 1 1 -16 0M100 82V74%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fbf1ed,#f1ddd6) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='debt'] {
+  --tile-page: #1c0f0d;
+  --tile-card: #2a1815;
+  --tile-text: #fbe6e1;
+  --tile-border: #4d2a25;
+  --tile-accent: #f08a7a;
+  --tile-on-accent: #1a0a08;
+  --tile-pop-1: #f08a7a;
+  --tile-pop-2: #aab0c0;
+  --tile-pop-3: #ffa36b;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08a7a%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2226%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M26 72V58%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2212%22 height=%2218%22 rx=%226%22/%3E%3Cpath d=%22M80 20V50M70 40l10 12 10-12%22/%3E%3Cpath d=%22M92 90a8 8 0 1 1 16 0a8 8 0 1 1 -16 0M100 82V74%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#1f100d,#150a08) fixed;
+}
+.theme-tile[data-theme-id='debt'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2238%22 cy=%2240%22 r=%2219%22 fill=%22%234a4f5c%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M28 33A13 13 0 0 1 38 28%22 fill=%22none%22 stroke=%22%239aa0b0%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Crect x=%2231%22 y=%2210%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223%22 transform=%22rotate(-35 21 18)%22/%3E%3Cpath d=%22M38 19V22%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 38V56M3 49l6 8 6-8%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Debt: a heavy brick-red rule, plain and sober. */
+[data-theme="debt"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+[data-theme="debt"] .panel {
+  border-left: 6px solid var(--color-accent);
+}
+
+/* ---------- Equity ---------- */
+:root[data-theme='equity'][data-scheme='light'] {
+  --color-page: #eef0fb;
+  --color-card: #fbfbff;
+  --color-text: #181a3b;
+  --color-text-muted: #53578a;
+  --color-border: #cdd1f0;
+  --color-accent: #4a4fd6;
+  --color-accent-2: #7a52e0;
+  --color-highlight: #ffe08a;
+  --color-correct: #1e7f5c;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #4a4fd6;
+  --color-pop-2: #e0457b;
+  --color-pop-3: #1e8fa8;
+  --color-pop-4: #b8860b;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Lexend","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Lexend","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 14px;
+  --radius-small: 8px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%234a4fd6%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M30 30L30 8A22 22 0 0 1 52 30Z%22/%3E%3Cpath d=%22M26 34A22 22 0 1 0 48 56L26 34Z%22/%3E%3Cpath d=%22M84 96V76M96 96V62M108 96V84M80 100H112%22/%3E%3Cpath d=%22M84 24l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f3f4fe,#e0e3f8) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M30 38L30 14A24 24 0 1 0 54 38Z%22 fill=%22%234a4fd6%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M35 33L35 9A24 24 0 0 1 59 33Z%22 fill=%22%23e0457b%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 40C16 33 20 28 25 26%22 fill=%22none%22 stroke=%22%23c9ccff%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23ffd27a%22 stroke=%22%23181a3b%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Cpath d=%22M13 2.5A8.5 8.5 0 0 1 21.5 11H13Z%22/%3E%3Cpath d=%22M11 5A8 8 0 1 0 19 13H11Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='equity'][data-scheme='dark'] {
+  --color-page: #12132b;
+  --color-card: #1b1d3d;
+  --color-text: #e6e8ff;
+  --color-text-muted: #a9aee0;
+  --color-border: #32356b;
+  --color-accent: #9aa0ff;
+  --color-accent-2: #b79bff;
+  --color-highlight: #f2d46a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #9aa0ff;
+  --color-pop-2: #ff8fb3;
+  --color-pop-3: #6fd3e6;
+  --color-pop-4: #f2d46a;
+  --color-on-accent: #0e0f24;
+  --color-on-hero: #0e0f24;
+  --font-body: "Lexend","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Lexend","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 14px;
+  --radius-small: 8px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%239aa0ff%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M30 30L30 8A22 22 0 0 1 52 30Z%22/%3E%3Cpath d=%22M26 34A22 22 0 1 0 48 56L26 34Z%22/%3E%3Cpath d=%22M84 96V76M96 96V62M108 96V84M80 100H112%22/%3E%3Cpath d=%22M84 24l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#15163a,#0d0e24) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M30 38L30 14A24 24 0 1 0 54 38Z%22 fill=%22%234a4fd6%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M35 33L35 9A24 24 0 0 1 59 33Z%22 fill=%22%23e0457b%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 40C16 33 20 28 25 26%22 fill=%22none%22 stroke=%22%23c9ccff%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23ffd27a%22 stroke=%22%23181a3b%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%230e0f24%22%3E%3Cpath d=%22M13 2.5A8.5 8.5 0 0 1 21.5 11H13Z%22/%3E%3Cpath d=%22M11 5A8 8 0 1 0 19 13H11Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%230e0f24' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%230e0f24' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='equity'] {
+  --tile-page: #eef0fb;
+  --tile-card: #fbfbff;
+  --tile-text: #181a3b;
+  --tile-border: #cdd1f0;
+  --tile-accent: #4a4fd6;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #4a4fd6;
+  --tile-pop-2: #e0457b;
+  --tile-pop-3: #1e8fa8;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%234a4fd6%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M30 30L30 8A22 22 0 0 1 52 30Z%22/%3E%3Cpath d=%22M26 34A22 22 0 1 0 48 56L26 34Z%22/%3E%3Cpath d=%22M84 96V76M96 96V62M108 96V84M80 100H112%22/%3E%3Cpath d=%22M84 24l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f3f4fe,#e0e3f8) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='equity'] {
+  --tile-page: #12132b;
+  --tile-card: #1b1d3d;
+  --tile-text: #e6e8ff;
+  --tile-border: #32356b;
+  --tile-accent: #9aa0ff;
+  --tile-on-accent: #0e0f24;
+  --tile-pop-1: #9aa0ff;
+  --tile-pop-2: #ff8fb3;
+  --tile-pop-3: #6fd3e6;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%239aa0ff%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M30 30L30 8A22 22 0 0 1 52 30Z%22/%3E%3Cpath d=%22M26 34A22 22 0 1 0 48 56L26 34Z%22/%3E%3Cpath d=%22M84 96V76M96 96V62M108 96V84M80 100H112%22/%3E%3Cpath d=%22M84 24l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#15163a,#0d0e24) fixed;
+}
+.theme-tile[data-theme-id='equity'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M30 38L30 14A24 24 0 1 0 54 38Z%22 fill=%22%234a4fd6%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M35 33L35 9A24 24 0 0 1 59 33Z%22 fill=%22%23e0457b%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 40C16 33 20 28 25 26%22 fill=%22none%22 stroke=%22%23c9ccff%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23ffd27a%22 stroke=%22%23181a3b%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Equity: indigo, soft round shapes. */
+[data-theme="equity"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
+[data-theme="equity"] .panel {
+  border-bottom: 4px solid var(--color-accent-2);
+}
+
+/* ---------- Gold ---------- */
+:root[data-theme='gold'][data-scheme='light'] {
+  --color-page: #fbf4dc;
+  --color-card: #fffdf3;
+  --color-text: #3a2a05;
+  --color-text-muted: #7a6430;
+  --color-border: #ead9a0;
+  --color-accent: #9a6a05;
+  --color-accent-2: #c48a0a;
+  --color-highlight: #fff0a8;
+  --color-correct: #1e7f5c;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #9a6a05;
+  --color-pop-2: #8a4b12;
+  --color-pop-3: #2f6f73;
+  --color-pop-4: #d4a017;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Lora","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Playfair Display","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 8px;
+  --radius-small: 5px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%239a6a05%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M10 40L18 28H44L52 40Z%22/%3E%3Cpath d=%22M14 40V50H48V40%22/%3E%3Cpath d=%22M66 100L74 88H100L108 100Z%22/%3E%3Cpath d=%22M88 30l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3Cpath d=%22M20 90l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fff8e2,#f6e8b4) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M8 56L14 42H50L56 56Z%22 fill=%22%23d4a017%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 42L21 30H43L48 42Z%22 fill=%22%23e8b92a%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M24 30L28 19H36L40 30Z%22 fill=%22%23f6d55c%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M14 51H28M20 37H30M28 25H32%22 fill=%22none%22 stroke=%22%23fff4b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M52 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a2a05%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Cpath d=%22M3 20l2-5h14l2 5Z%22/%3E%3Cpath d=%22M6 14l2-5h8l2 5Z%22/%3E%3Cpath d=%22M9 8l1-4h4l1 4Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='gold'][data-scheme='dark'] {
+  --color-page: #1c1604;
+  --color-card: #2a2108;
+  --color-text: #fbf0c8;
+  --color-text-muted: #d6c27a;
+  --color-border: #4d3f12;
+  --color-accent: #f2c84b;
+  --color-accent-2: #ffd86b;
+  --color-highlight: #fff0a8;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #f2c84b;
+  --color-pop-2: #e0a060;
+  --color-pop-3: #6fd3d6;
+  --color-pop-4: #ffd86b;
+  --color-on-accent: #1a1300;
+  --color-on-hero: #1a1300;
+  --font-body: "Lora","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Playfair Display","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 8px;
+  --radius-small: 5px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f2c84b%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M10 40L18 28H44L52 40Z%22/%3E%3Cpath d=%22M14 40V50H48V40%22/%3E%3Cpath d=%22M66 100L74 88H100L108 100Z%22/%3E%3Cpath d=%22M88 30l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3Cpath d=%22M20 90l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#211a05,#150f02) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M8 56L14 42H50L56 56Z%22 fill=%22%23d4a017%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 42L21 30H43L48 42Z%22 fill=%22%23e8b92a%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M24 30L28 19H36L40 30Z%22 fill=%22%23f6d55c%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M14 51H28M20 37H30M28 25H32%22 fill=%22none%22 stroke=%22%23fff4b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M52 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a2a05%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%231a1300%22%3E%3Cpath d=%22M3 20l2-5h14l2 5Z%22/%3E%3Cpath d=%22M6 14l2-5h8l2 5Z%22/%3E%3Cpath d=%22M9 8l1-4h4l1 4Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%231a1300' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%231a1300' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='gold'] {
+  --tile-page: #fbf4dc;
+  --tile-card: #fffdf3;
+  --tile-text: #3a2a05;
+  --tile-border: #ead9a0;
+  --tile-accent: #9a6a05;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #9a6a05;
+  --tile-pop-2: #8a4b12;
+  --tile-pop-3: #2f6f73;
+  --tile-radius: 5px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%239a6a05%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M10 40L18 28H44L52 40Z%22/%3E%3Cpath d=%22M14 40V50H48V40%22/%3E%3Cpath d=%22M66 100L74 88H100L108 100Z%22/%3E%3Cpath d=%22M88 30l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3Cpath d=%22M20 90l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fff8e2,#f6e8b4) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='gold'] {
+  --tile-page: #1c1604;
+  --tile-card: #2a2108;
+  --tile-text: #fbf0c8;
+  --tile-border: #4d3f12;
+  --tile-accent: #f2c84b;
+  --tile-on-accent: #1a1300;
+  --tile-pop-1: #f2c84b;
+  --tile-pop-2: #e0a060;
+  --tile-pop-3: #6fd3d6;
+  --tile-radius: 5px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f2c84b%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M10 40L18 28H44L52 40Z%22/%3E%3Cpath d=%22M14 40V50H48V40%22/%3E%3Cpath d=%22M66 100L74 88H100L108 100Z%22/%3E%3Cpath d=%22M88 30l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3Cpath d=%22M20 90l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#211a05,#150f02) fixed;
+}
+.theme-tile[data-theme-id='gold'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M8 56L14 42H50L56 56Z%22 fill=%22%23d4a017%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 42L21 30H43L48 42Z%22 fill=%22%23e8b92a%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M24 30L28 19H36L40 30Z%22 fill=%22%23f6d55c%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M14 51H28M20 37H30M28 25H32%22 fill=%22none%22 stroke=%22%23fff4b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M52 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a2a05%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Gold: warm serif headings with a gold rule. */
+[data-theme="gold"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="gold"] .panel {
+  border-top: 4px solid var(--color-pop-4);
+}
+
+/* ---------- Silver ---------- */
+:root[data-theme='silver'][data-scheme='light'] {
+  --color-page: #eef1f5;
+  --color-card: #fbfcfe;
+  --color-text: #1b2430;
+  --color-text-muted: #55657a;
+  --color-border: #cbd3de;
+  --color-accent: #52688a;
+  --color-accent-2: #7a8fb0;
+  --color-highlight: #ffe9a8;
+  --color-correct: #1e7f5c;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #52688a;
+  --color-pop-2: #8a5aa8;
+  --color-pop-3: #2f8f9d;
+  --color-pop-4: #9a7b2a;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Josefin Sans","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 12px;
+  --radius-small: 7px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%2352688a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2228%22 cy=%2232%22 r=%2216%22/%3E%3Cpath d=%22M28 22V42M18 32H38%22/%3E%3Cpath d=%22M70 98H110M72 90H108M74 82H106%22/%3E%3Cpath d=%22M92 24A12 12 0 1 0 104 40A9 9 0 0 1 92 24Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f5f7fa,#e2e7ee) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2222%22 ry=%227%22 fill=%22%239aa8bd%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M10 50V44A22 7 0 0 0 54 44V50%22 fill=%22%23b8c4d6%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2219%22 fill=%22%23d5dde9%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2213%22 fill=%22none%22 stroke=%22%237a8fb0%22 stroke-width=%222%22/%3E%3Cpath d=%22M30 17l3 7l7 2l-7 3l-3 7l-3-7l-7-3l7-2Z%22 fill=%22%2352688a%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M52 8A8 8 0 1 0 58 20A6 6 0 0 1 52 8Z%22 fill=%22%23e8edf5%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Cpath d=%22M12 3l2.4 5.3l5.6.9l-4 4l1 5.8l-5-2.8l-5 2.8l1-5.8l-4-4l5.6-.9Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='silver'][data-scheme='dark'] {
+  --color-page: #12161d;
+  --color-card: #1b212b;
+  --color-text: #e8edf4;
+  --color-text-muted: #a9b6c8;
+  --color-border: #323d4d;
+  --color-accent: #a9bddf;
+  --color-accent-2: #c7d3ea;
+  --color-highlight: #f2d46a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #a9bddf;
+  --color-pop-2: #c9a0e6;
+  --color-pop-3: #6fd3d6;
+  --color-pop-4: #e0c98a;
+  --color-on-accent: #0f141b;
+  --color-on-hero: #0f141b;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Josefin Sans","Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 12px;
+  --radius-small: 7px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23a9bddf%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2228%22 cy=%2232%22 r=%2216%22/%3E%3Cpath d=%22M28 22V42M18 32H38%22/%3E%3Cpath d=%22M70 98H110M72 90H108M74 82H106%22/%3E%3Cpath d=%22M92 24A12 12 0 1 0 104 40A9 9 0 0 1 92 24Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#161b23,#0d1117) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2222%22 ry=%227%22 fill=%22%239aa8bd%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M10 50V44A22 7 0 0 0 54 44V50%22 fill=%22%23b8c4d6%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2219%22 fill=%22%23d5dde9%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2213%22 fill=%22none%22 stroke=%22%237a8fb0%22 stroke-width=%222%22/%3E%3Cpath d=%22M30 17l3 7l7 2l-7 3l-3 7l-3-7l-7-3l7-2Z%22 fill=%22%2352688a%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M52 8A8 8 0 1 0 58 20A6 6 0 0 1 52 8Z%22 fill=%22%23e8edf5%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%230f141b%22%3E%3Cpath d=%22M12 3l2.4 5.3l5.6.9l-4 4l1 5.8l-5-2.8l-5 2.8l1-5.8l-4-4l5.6-.9Z%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%230f141b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%230f141b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='silver'] {
+  --tile-page: #eef1f5;
+  --tile-card: #fbfcfe;
+  --tile-text: #1b2430;
+  --tile-border: #cbd3de;
+  --tile-accent: #52688a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #52688a;
+  --tile-pop-2: #8a5aa8;
+  --tile-pop-3: #2f8f9d;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%2352688a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2228%22 cy=%2232%22 r=%2216%22/%3E%3Cpath d=%22M28 22V42M18 32H38%22/%3E%3Cpath d=%22M70 98H110M72 90H108M74 82H106%22/%3E%3Cpath d=%22M92 24A12 12 0 1 0 104 40A9 9 0 0 1 92 24Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f5f7fa,#e2e7ee) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='silver'] {
+  --tile-page: #12161d;
+  --tile-card: #1b212b;
+  --tile-text: #e8edf4;
+  --tile-border: #323d4d;
+  --tile-accent: #a9bddf;
+  --tile-on-accent: #0f141b;
+  --tile-pop-1: #a9bddf;
+  --tile-pop-2: #c9a0e6;
+  --tile-pop-3: #6fd3d6;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23a9bddf%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2228%22 cy=%2232%22 r=%2216%22/%3E%3Cpath d=%22M28 22V42M18 32H38%22/%3E%3Cpath d=%22M70 98H110M72 90H108M74 82H106%22/%3E%3Cpath d=%22M92 24A12 12 0 1 0 104 40A9 9 0 0 1 92 24Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#161b23,#0d1117) fixed;
+}
+.theme-tile[data-theme-id='silver'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2222%22 ry=%227%22 fill=%22%239aa8bd%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M10 50V44A22 7 0 0 0 54 44V50%22 fill=%22%23b8c4d6%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2219%22 fill=%22%23d5dde9%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2213%22 fill=%22none%22 stroke=%22%237a8fb0%22 stroke-width=%222%22/%3E%3Cpath d=%22M30 17l3 7l7 2l-7 3l-3 7l-3-7l-7-3l7-2Z%22 fill=%22%2352688a%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M52 8A8 8 0 1 0 58 20A6 6 0 0 1 52 8Z%22 fill=%22%23e8edf5%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Silver: cool steel, light geometric headings. */
+[data-theme="silver"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+[data-theme="silver"] .panel {
+  border-bottom: 3px solid var(--color-accent-2);
+}
+
+/* ---------- Millionaire ---------- */
+:root[data-theme='millionaire'][data-scheme='light'] {
+  --color-page: #f8eef0;
+  --color-card: #fffafa;
+  --color-text: #3a0f1a;
+  --color-text-muted: #7a4a55;
+  --color-border: #e6c5cc;
+  --color-accent: #8a1c3a;
+  --color-accent-2: #b0304f;
+  --color-highlight: #f6dfa0;
+  --color-correct: #1e7f5c;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #8a1c3a;
+  --color-pop-2: #b8860b;
+  --color-pop-3: #2f6f73;
+  --color-pop-4: #5a3a7a;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Cormorant Garamond","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Playfair Display","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 6px;
+  --radius-small: 4px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%238a1c3a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M16 54H44M20 54V30H40V54%22/%3E%3Cpath d=%22M20 44H40%22/%3E%3Ccircle cx=%2286%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M86 78V94M80 82H92%22/%3E%3Cpath d=%22M92 20l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fcf2f4,#f1dade) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2248%22 rx=%2226%22 ry=%227%22 fill=%22%233a0f1a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 46V16Q16 10 22 10H42Q48 10 48 16V46Z%22 fill=%22%235a1a2a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 38H48V45H16Z%22 fill=%22%23d4a017%22 stroke=%22%233a0f1a%22 stroke-width=%222%22/%3E%3Cpath d=%22M22 18V30%22 stroke=%22%23b0304f%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2252%22 r=%229%22 fill=%22%23f6d55c%22 stroke=%22%233a0f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M50 47V57M46 50H54%22 stroke=%22%238a1c3a%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 8l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a0f1a%22 stroke-width=%221.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Crect x=%227%22 y=%224%22 width=%2210%22 height=%2211%22 rx=%222%22/%3E%3Crect x=%223%22 y=%2215%22 width=%2218%22 height=%223%22 rx=%221.5%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='millionaire'][data-scheme='dark'] {
+  --color-page: #1f0c12;
+  --color-card: #2d1219;
+  --color-text: #fbe6ea;
+  --color-text-muted: #d3a3ad;
+  --color-border: #522330;
+  --color-accent: #f08aa5;
+  --color-accent-2: #ff9db6;
+  --color-highlight: #f2d08a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #f08aa5;
+  --color-pop-2: #f2d46a;
+  --color-pop-3: #6fd3d6;
+  --color-pop-4: #c9a0e6;
+  --color-on-accent: #1a070c;
+  --color-on-hero: #1a070c;
+  --font-body: "Cormorant Garamond","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Playfair Display","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 6px;
+  --radius-small: 4px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08aa5%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M16 54H44M20 54V30H40V54%22/%3E%3Cpath d=%22M20 44H40%22/%3E%3Ccircle cx=%2286%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M86 78V94M80 82H92%22/%3E%3Cpath d=%22M92 20l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#240d14,#16070b) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2248%22 rx=%2226%22 ry=%227%22 fill=%22%233a0f1a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 46V16Q16 10 22 10H42Q48 10 48 16V46Z%22 fill=%22%235a1a2a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 38H48V45H16Z%22 fill=%22%23d4a017%22 stroke=%22%233a0f1a%22 stroke-width=%222%22/%3E%3Cpath d=%22M22 18V30%22 stroke=%22%23b0304f%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2252%22 r=%229%22 fill=%22%23f6d55c%22 stroke=%22%233a0f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M50 47V57M46 50H54%22 stroke=%22%238a1c3a%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 8l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a0f1a%22 stroke-width=%221.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%231a070c%22%3E%3Crect x=%227%22 y=%224%22 width=%2210%22 height=%2211%22 rx=%222%22/%3E%3Crect x=%223%22 y=%2215%22 width=%2218%22 height=%223%22 rx=%221.5%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%231a070c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%231a070c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='millionaire'] {
+  --tile-page: #f8eef0;
+  --tile-card: #fffafa;
+  --tile-text: #3a0f1a;
+  --tile-border: #e6c5cc;
+  --tile-accent: #8a1c3a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #8a1c3a;
+  --tile-pop-2: #b8860b;
+  --tile-pop-3: #2f6f73;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%238a1c3a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M16 54H44M20 54V30H40V54%22/%3E%3Cpath d=%22M20 44H40%22/%3E%3Ccircle cx=%2286%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M86 78V94M80 82H92%22/%3E%3Cpath d=%22M92 20l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#fcf2f4,#f1dade) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='millionaire'] {
+  --tile-page: #1f0c12;
+  --tile-card: #2d1219;
+  --tile-text: #fbe6ea;
+  --tile-border: #522330;
+  --tile-accent: #f08aa5;
+  --tile-on-accent: #1a070c;
+  --tile-pop-1: #f08aa5;
+  --tile-pop-2: #f2d46a;
+  --tile-pop-3: #6fd3d6;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08aa5%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M16 54H44M20 54V30H40V54%22/%3E%3Cpath d=%22M20 44H40%22/%3E%3Ccircle cx=%2286%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M86 78V94M80 82H92%22/%3E%3Cpath d=%22M92 20l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#240d14,#16070b) fixed;
+}
+.theme-tile[data-theme-id='millionaire'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2248%22 rx=%2226%22 ry=%227%22 fill=%22%233a0f1a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 46V16Q16 10 22 10H42Q48 10 48 16V46Z%22 fill=%22%235a1a2a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 38H48V45H16Z%22 fill=%22%23d4a017%22 stroke=%22%233a0f1a%22 stroke-width=%222%22/%3E%3Cpath d=%22M22 18V30%22 stroke=%22%23b0304f%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2252%22 r=%229%22 fill=%22%23f6d55c%22 stroke=%22%233a0f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M50 47V57M46 50H54%22 stroke=%22%238a1c3a%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 8l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a0f1a%22 stroke-width=%221.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+/* Millionaire: burgundy with a champagne rule. */
+[data-theme="millionaire"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="millionaire"] .panel {
+  border-left: 5px solid var(--color-pop-2);
+}
+
+/* ---------- Billionaire ---------- */
+:root[data-theme='billionaire'][data-scheme='light'] {
+  --color-page: #eaf1f7;
+  --color-card: #fafdff;
+  --color-text: #0c1b2b;
+  --color-text-muted: #476079;
+  --color-border: #c2d3e3;
+  --color-accent: #0e5a8a;
+  --color-accent-2: #1692b8;
+  --color-highlight: #ffe38a;
+  --color-correct: #0e8a74;
+  --color-wrong: #c8402f;
+  --color-partly: #a15f00;
+  --color-pop-1: #0e5a8a;
+  --color-pop-2: #7a4fb0;
+  --color-pop-3: #0e8a74;
+  --color-pop-4: #b8860b;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Marcellus","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 4px;
+  --radius-small: 3px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%230e5a8a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M18 100V52H34V100M26 52V38%22/%3E%3Cpath d=%22M44 100V24H62V100M53 24V10%22/%3E%3Cpath d=%22M74 100V64H90V100%22/%3E%3Cpath d=%22M100 22A14 14 0 1 0 112 44A11 11 0 0 1 100 22Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f0f6fb,#d8e6f2) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2248%22 cy=%2216%22 r=%229%22 fill=%22%23e4f0fb%22 stroke=%22%230c1b2b%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2252%22 cy=%2213%22 r=%228%22 fill=%22%239ed8f0%22 stroke=%22none%22/%3E%3Cpath d=%22M10 58V30H24V58M28 58V12H44V58M48 58V36H58V58%22 fill=%22%230e5a8a%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M36 12V4%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M36 1l1.5 3l3.5 1l-3.5 1l-1.5 3l-1.5-3l-3.5-1l3.5-1Z%22 fill=%22%23ffd27a%22 stroke=%22%230c1b2b%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M32 22H40M32 30H40M32 38H40M32 46H40M14 38H20M14 46H20M52 44H54%22 stroke=%22%239ed8f0%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%23ffffff%22%3E%3Crect x=%223%22 y=%2211%22 width=%225%22 height=%229%22 rx=%221%22/%3E%3Crect x=%229.5%22 y=%224%22 width=%225%22 height=%2216%22 rx=%221%22/%3E%3Crect x=%2216%22 y=%228%22 width=%225%22 height=%2212%22 rx=%221%22/%3E%3Cpath d=%22M12 1v3%22 stroke=%22%23ffffff%22 stroke-width=%221.6%22 stroke-linecap=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+:root[data-theme='billionaire'][data-scheme='dark'] {
+  --color-page: #08121d;
+  --color-card: #0f1d2d;
+  --color-text: #e4f0fb;
+  --color-text-muted: #9db8d1;
+  --color-border: #213a54;
+  --color-accent: #5cc8f0;
+  --color-accent-2: #3ab0e0;
+  --color-highlight: #f2d46a;
+  --color-correct: #5fd6a4;
+  --color-wrong: #ff8a7a;
+  --color-partly: #eab64a;
+  --color-pop-1: #5cc8f0;
+  --color-pop-2: #c9a0ff;
+  --color-pop-3: #5fd6a4;
+  --color-pop-4: #f2d46a;
+  --color-on-accent: #04101a;
+  --color-on-hero: #04101a;
+  --font-body: "Inter",system-ui,sans-serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --font-heading: "Marcellus","Georgia",serif, "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN", Mangal;
+  --radius: 4px;
+  --radius-small: 3px;
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --page-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%235cc8f0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M18 100V52H34V100M26 52V38%22/%3E%3Cpath d=%22M44 100V24H62V100M53 24V10%22/%3E%3Cpath d=%22M74 100V64H90V100%22/%3E%3Cpath d=%22M100 22A14 14 0 1 0 112 44A11 11 0 0 1 100 22Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0a1624,#050c15) fixed;
+  --mascot-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2248%22 cy=%2216%22 r=%229%22 fill=%22%23e4f0fb%22 stroke=%22%230c1b2b%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2252%22 cy=%2213%22 r=%228%22 fill=%22%239ed8f0%22 stroke=%22none%22/%3E%3Cpath d=%22M10 58V30H24V58M28 58V12H44V58M48 58V36H58V58%22 fill=%22%230e5a8a%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M36 12V4%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M36 1l1.5 3l3.5 1l-3.5 1l-1.5 3l-1.5-3l-3.5-1l3.5-1Z%22 fill=%22%23ffd27a%22 stroke=%22%230c1b2b%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M32 22H40M32 30H40M32 38H40M32 46H40M14 38H20M14 46H20M52 44H54%22 stroke=%22%239ed8f0%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+  --icon-start: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 24 24%22%3E%3Cg fill=%22%2304101a%22%3E%3Crect x=%223%22 y=%2211%22 width=%225%22 height=%229%22 rx=%221%22/%3E%3Crect x=%229.5%22 y=%224%22 width=%225%22 height=%2216%22 rx=%221%22/%3E%3Crect x=%2216%22 y=%228%22 width=%225%22 height=%2212%22 rx=%221%22/%3E%3Cpath d=%22M12 1v3%22 stroke=%22%2304101a%22 stroke-width=%221.6%22 stroke-linecap=%22round%22/%3E%3C/g%3E%3C/svg%3E");
+  --icon-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h14M12 5l7 7-7 7' fill='none' stroke='%2304101a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%2304101a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --accent-gradient: linear-gradient(90deg,var(--color-accent),var(--color-accent-2));
+}
+.theme-tile[data-theme-id='billionaire'] {
+  --tile-page: #eaf1f7;
+  --tile-card: #fafdff;
+  --tile-text: #0c1b2b;
+  --tile-border: #c2d3e3;
+  --tile-accent: #0e5a8a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0e5a8a;
+  --tile-pop-2: #7a4fb0;
+  --tile-pop-3: #0e8a74;
+  --tile-radius: 3px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%230e5a8a%22 stroke-opacity=%22.30%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M18 100V52H34V100M26 52V38%22/%3E%3Cpath d=%22M44 100V24H62V100M53 24V10%22/%3E%3Cpath d=%22M74 100V64H90V100%22/%3E%3Cpath d=%22M100 22A14 14 0 1 0 112 44A11 11 0 0 1 100 22Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#f0f6fb,#d8e6f2) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='billionaire'] {
+  --tile-page: #08121d;
+  --tile-card: #0f1d2d;
+  --tile-text: #e4f0fb;
+  --tile-border: #213a54;
+  --tile-accent: #5cc8f0;
+  --tile-on-accent: #04101a;
+  --tile-pop-1: #5cc8f0;
+  --tile-pop-2: #c9a0ff;
+  --tile-pop-3: #5fd6a4;
+  --tile-radius: 3px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%235cc8f0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M18 100V52H34V100M26 52V38%22/%3E%3Cpath d=%22M44 100V24H62V100M53 24V10%22/%3E%3Cpath d=%22M74 100V64H90V100%22/%3E%3Cpath d=%22M100 22A14 14 0 1 0 112 44A11 11 0 0 1 100 22Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0a1624,#050c15) fixed;
+}
+.theme-tile[data-theme-id='billionaire'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2248%22 cy=%2216%22 r=%229%22 fill=%22%23e4f0fb%22 stroke=%22%230c1b2b%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2252%22 cy=%2213%22 r=%228%22 fill=%22%239ed8f0%22 stroke=%22none%22/%3E%3Cpath d=%22M10 58V30H24V58M28 58V12H44V58M48 58V36H58V58%22 fill=%22%230e5a8a%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M36 12V4%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M36 1l1.5 3l3.5 1l-3.5 1l-1.5 3l-1.5-3l-3.5-1l3.5-1Z%22 fill=%22%23ffd27a%22 stroke=%22%230c1b2b%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M32 22H40M32 30H40M32 38H40M32 46H40M14 38H20M14 46H20M52 44H54%22 stroke=%22%239ed8f0%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+/* Billionaire: midnight blue, spare and square. */
+[data-theme="billionaire"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+}
+[data-theme="billionaire"] .panel {
+  border-top: 2px solid var(--color-accent-2);
+  border-bottom: 2px solid var(--color-accent-2);
+}
+

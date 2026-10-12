@@ -490,6 +490,10 @@
         ". You can still start here."));
     }
     appendWeakPart(body, concept);
+    const flagBar = quiz.flags.createIdeaFlagBar(concept);
+    if (flagBar) {
+      body.appendChild(flagBar);
+    }
     body.appendChild(createConceptActions(concept, status));
     row.appendChild(body);
     return row;
@@ -626,6 +630,51 @@
     if (quiz.book.data) {
       }
   });
+
+  /** The ideas that were hidden the last time the home screen was drawn */
+  let hiddenIdeaKey = "";
+
+  /** @returns {string} the ids of the hidden ideas, as one text */
+  function readHiddenIdeaKey() {
+    return quiz.bookSettings.listFlaggedIdeas()
+      .filter(function isHidden(entry) {
+        return quiz.bookSettings.isIdeaHidden(entry.id);
+      })
+      .map(function idOf(entry) {
+        return entry.id;
+      }).sort().join("|");
+  }
+
+  /**
+   * An idea was flagged. Only an idea that appears or disappears needs a
+   * redraw (so an open idea does not fold shut while it is flagged
+   * Revisit or Important).
+   */
+  function ideaFlagsChanged() {
+    const key = readHiddenIdeaKey();
+    if (!quiz.book.data || key === hiddenIdeaKey) {
+      return;
+    }
+    hiddenIdeaKey = key;
+    showBookDetails();
+    refresh();
+  }
+
+  /** The book was opened or settings arrived: draw the ideas again. */
+  function ideasMayHaveChanged() {
+    hiddenIdeaKey = readHiddenIdeaKey();
+    if (quiz.book.data) {
+      showBookDetails();
+      refresh();
+    }
+  }
+  document.addEventListener("recallquiz:book-opened", function noteHidden() {
+    hiddenIdeaKey = readHiddenIdeaKey();
+  });
+  document.addEventListener("recallquiz:idea-flags-changed",
+    ideaFlagsChanged);
+  document.addEventListener("recallquiz:book-settings-applied",
+    ideasMayHaveChanged);
 
   quiz.homeScreen = { showBookDetails, refresh };
 })((window.RecallQuiz = window.RecallQuiz || {}));

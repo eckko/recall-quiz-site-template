@@ -169,7 +169,8 @@
     if (ideaRow) {
       cardElement.appendChild(ideaRow);
     }
-    const flagBar = isCard ? null : quiz.flags.createFlagBar(question);
+    const flagBar = isCard ? createCardFlagBar(question) :
+      quiz.flags.createFlagBar(question);
     if (flagBar) {
       cardElement.appendChild(flagBar);
     }
@@ -201,6 +202,16 @@
     // Optional add-ons (such as the HTRAB overlay) decorate the question.
     document.dispatchEvent(new CustomEvent("recallquiz:question-shown",
       { detail: { question, cardElement } }));
+  }
+
+  /**
+   * The idea flag bar under a teaching card.
+   * @param {object} step  a "lesson" step
+   * @returns {HTMLElement|null}
+   */
+  function createCardFlagBar(step) {
+    const concept = quiz.learning.conceptById(step.concept);
+    return concept ? quiz.flags.createIdeaFlagBar(concept) : null;
   }
 
   /**

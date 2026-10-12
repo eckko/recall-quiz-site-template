@@ -1,0 +1,69 @@
+{
+  "name": "Gold",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Lora\",\"Georgia\",serif",
+    "headings": "\"Playfair Display\",\"Georgia\",serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf4dc",
+      "card": "#fffdf3",
+      "text": "#3a2a05",
+      "textMuted": "#7a6430",
+      "border": "#ead9a0",
+      "accent": "#9a6a05",
+      "accent2": "#c48a0a",
+      "highlight": "#fff0a8",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#9a6a05",
+      "pop2": "#8a4b12",
+      "pop3": "#2f6f73",
+      "pop4": "#d4a017",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fff8e2,#f6e8b4) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c1604",
+      "card": "#2a2108",
+      "text": "#fbf0c8",
+      "textMuted": "#d6c27a",
+      "border": "#4d3f12",
+      "accent": "#f2c84b",
+      "accent2": "#ffd86b",
+      "highlight": "#fff0a8",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f2c84b",
+      "pop2": "#e0a060",
+      "pop3": "#6fd3d6",
+      "pop4": "#ffd86b",
+      "onAccent": "#1a1300",
+      "onHero": "#1a1300"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#211a05,#150f02) fixed"
+    ]
+  }
+}

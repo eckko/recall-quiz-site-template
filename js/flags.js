@@ -10,9 +10,16 @@
  *   Important  worth revising again and again: comes back in Keep me
  *              going and has its own "Important only" practice choice.
  *
- * This file draws the collapsed flag bar on a question and, on the
- * Settings screen, the list of flagged questions with an export. The
+ * This file draws the collapsed flag bar on a question (or an idea) and,
+ * on the Settings screen, the lists of flagged questions and ideas with
+ * an export for each. The
  * flags themselves are kept per book by js/book-settings.js.
+ *
+ * Ideas can be flagged the same way, with the same four flags. Idea flags
+ * and question flags are kept apart and never affect each other: a Bad or
+ * Useless idea disappears from the idea lists (undo in Settings) but its
+ * questions stay, and an Important idea is offered earlier in Keep me
+ * going, while "Important only" practice looks at question flags only.
  */
 (function setUpFlags(quiz) {
   "use strict";
@@ -26,12 +33,52 @@
     useless: { label: "Useless", meaning: "Hide this question" },
     important: { label: "Important", meaning: "Show it again and again" },
   };
-  const HIDDEN_NOTE = "This question is left out from now on. You can " +
-    "undo it in Settings.";
+  /** What differs between flagging a question and flagging an idea */
+  const KINDS = {
+    question: {
+      word: "question",
+      barId: "flagBar",
+      hiddenNote: "This question is left out from now on. You can " +
+        "undo it in Settings.",
+      listId: "flag-review-list",
+      exportId: "flag-export-button",
+      emptyNote: "Nothing is flagged in this book yet.",
+      fileStart: "flagged-questions-",
+      changed: "recallquiz:flags-changed",
+    },
+    idea: {
+      word: "idea",
+      barId: "ideaFlagBar",
+      hiddenNote: "This idea is left out of the lists from now on. Its " +
+        "questions stay. You can undo it in Settings.",
+      listId: "idea-flag-review-list",
+      exportId: "idea-flag-export-button",
+      emptyNote: "No idea is flagged in this book yet.",
+      fileStart: "flagged-ideas-",
+      changed: "recallquiz:idea-flags-changed",
+    },
+  };
   const REVIEW_TEXT_LENGTH = 110;
   const EXPORT_FILE_VERSION = 1;
 
   // ------------------------------------------------------------- flag bar
+
+  /**
+   * The settings calls for one kind of thing.
+   * @param {"question"|"idea"} kind
+   * @returns {{flagsOf: Function, has: Function, toggle: Function,
+   *   clear: Function, list: Function}}
+   */
+  function storeFor(kind) {
+    const settings = quiz.bookSettings;
+    return kind === "question" ? {
+      has: settings.hasFlag, toggle: settings.toggleFlag,
+      clear: settings.clearFlags, list: settings.listFlagged,
+    } : {
+      has: settings.hasIdeaFlag, toggle: settings.toggleIdeaFlag,
+      clear: settings.clearIdeaFlags, list: settings.listFlaggedIdeas,
+    };
+  }
 
   /**
    * The collapsed "Flag this question" bar for a question, or null when
@@ -40,71 +87,104 @@
    * @returns {HTMLElement|null}
    */
   function createFlagBar(question) {
-    if (!quiz.layout.isShown("flagBar") || !question.id) {
+    return createBar("question", question.id);
+  }
+
+  /**
+   * The collapsed "Flag this idea" bar for an idea, or null when the
+   * reader hid the bar in Settings.
+   * @param {object} concept
+   * @returns {HTMLElement|null}
+   */
+  function createIdeaFlagBar(concept) {
+    return createBar("idea", concept.id);
+  }
+
+  /**
+   * @param {"question"|"idea"} kind
+   * @param {string} id
+   * @returns {HTMLElement|null}
+   */
+  function createBar(kind, id) {
+    const details = KINDS[kind];
+    if (!quiz.layout.isShown(details.barId) || !id) {
       return null;
     }
     const bar = createElement("details", "flag-bar");
-    bar.appendChild(createElement("summary", null, "Flag this question"));
+    bar.dataset.flagKind = kind;
+    bar.appendChild(createElement("summary", null,
+      "Flag this " + details.word));
     const buttons = createElement("div", "flag-buttons");
     const note = createElement("p", "flag-note");
     quiz.bookSettings.FLAG_NAMES.forEach(function addButton(flagName) {
       buttons.appendChild(
-        createFlagButton(question, flagName, note, buttons));
+        createFlagButton(kind, id, flagName, note, buttons));
     });
     bar.appendChild(buttons);
     bar.appendChild(note);
-    showNote(note, question.id);
+    showNote(kind, note, id);
     return bar;
   }
 
   /**
    * One toggle button in the bar.
-   * @param {object} question
+   * @param {"question"|"idea"} kind
+   * @param {string} id
    * @param {string} flagName
    * @param {HTMLElement} note  the line under the buttons
    * @param {HTMLElement} buttons  the row, to refresh all buttons
    * @returns {HTMLButtonElement}
    */
-  function createFlagButton(question, flagName, note, buttons) {
+  function createFlagButton(kind, id, flagName, note, buttons) {
     const details = FLAG_DETAILS[flagName];
+    const calls = storeFor(kind);
     const button = createButton(details.label, "pill-button flag-button",
       function toggle() {
-        quiz.bookSettings.toggleFlag(question.id, flagName);
-        markButtons(buttons, question.id);
-        showNote(note, question.id);
+        calls.toggle(id, flagName);
+        markButtons(kind, buttons, id);
+        showNote(kind, note, id);
       });
     button.dataset.flag = flagName;
-    button.title = details.meaning;
-    button.setAttribute("aria-pressed",
-      String(quiz.bookSettings.hasFlag(question.id, flagName)));
+    button.title = details.meaning.replace("this question",
+      "this " + KINDS[kind].word);
+    button.setAttribute("aria-pressed", String(calls.has(id, flagName)));
     return button;
   }
 
-  /** Press the buttons of the flags a question has. */
-  function markButtons(buttons, questionId) {
+  /** Press the buttons of the flags a question or idea has. */
+  function markButtons(kind, buttons, id) {
+    const calls = storeFor(kind);
     buttons.querySelectorAll(".flag-button").forEach(
       function mark(button) {
-        button.setAttribute("aria-pressed", String(
-          quiz.bookSettings.hasFlag(questionId, button.dataset.flag)));
+        button.setAttribute("aria-pressed",
+          String(calls.has(id, button.dataset.flag)));
       });
   }
 
-  /** Tell the reader when a flag removes the question. */
-  function showNote(note, questionId) {
+  /** Tell the reader when a flag removes the question or idea. */
+  function showNote(kind, note, id) {
+    const calls = storeFor(kind);
     const isHidden = quiz.bookSettings.HIDING_FLAGS.some(
       function has(flagName) {
-        return quiz.bookSettings.hasFlag(questionId, flagName);
+        return calls.has(id, flagName);
       });
-    note.textContent = isHidden ? HIDDEN_NOTE : "";
+    note.textContent = isHidden ? KINDS[kind].hiddenNote : "";
   }
 
   // ---------------------------------------------------------- review list
 
-  /** @returns {Object<string, object>} every question of the book by id */
-  function questionsById() {
+  /**
+   * @param {"question"|"idea"} kind
+   * @returns {Object<string, object>} everything of that kind in the
+   *   book, by id (ideas the reader hid are included, so they can be
+   *   listed and undone)
+   */
+  function itemsById(kind) {
+    const items = kind === "question" ? quiz.book.data.questions :
+      (quiz.book.data.concepts || []);
     const byId = {};
-    quiz.book.data.questions.forEach(function add(question) {
-      byId[question.id] = question;
+    items.forEach(function add(item) {
+      byId[item.id] = item;
     });
     return byId;
   }
@@ -119,34 +199,54 @@
       plain.slice(0, REVIEW_TEXT_LENGTH).trim() + "…" : plain;
   }
 
-  /** Draw the flagged questions on the Settings screen. */
-  function showReviewList() {
-    const list = findElement("flag-review-list");
+  /**
+   * Draw the flagged questions or ideas on the Settings screen.
+   * @param {"question"|"idea"} kind
+   */
+  function showReviewList(kind) {
+    const details = KINDS[kind];
+    const list = findElement(details.listId);
     if (!list || !quiz.book.data) {
       return;
     }
-    const flagged = quiz.bookSettings.listFlagged();
-    const byId = questionsById();
+    const flagged = storeFor(kind).list();
+    const byId = itemsById(kind);
     list.textContent = "";
-    findElement("flag-export-button").disabled = flagged.length === 0;
+    findElement(details.exportId).disabled = flagged.length === 0;
     if (flagged.length === 0) {
-      list.appendChild(createElement("p", "note",
-        "Nothing is flagged in this book yet."));
+      list.appendChild(createElement("p", "note", details.emptyNote));
+      showCount(kind, 0);
       return;
     }
+    showCount(kind, flagged.length);
     flagged.forEach(function addRow(entry) {
-      list.appendChild(createReviewRow(entry, byId[entry.id]));
+      list.appendChild(createReviewRow(kind, entry, byId[entry.id]));
     });
   }
 
   /**
-   * One flagged question in the list.
+   * Show how many are flagged on the folded Settings section.
+   * @param {"question"|"idea"} kind
+   * @param {number} count
+   */
+  function showCount(kind, count) {
+    const current = findElement(
+      kind === "question" ? "flags-section-current" :
+        "idea-flags-section-current");
+    if (current) {
+      current.textContent = count ? count + " flagged" : "None flagged";
+    }
+  }
+
+  /**
+   * One flagged question or idea in the list.
+   * @param {"question"|"idea"} kind
    * @param {{id: string, flags: string[]}} entry
-   * @param {object|undefined} question  from the bank (missing if the
-   *   bank no longer has it)
+   * @param {object|undefined} item  from the book (missing if the book
+   *   no longer has it)
    * @returns {HTMLElement}
    */
-  function createReviewRow(entry, question) {
+  function createReviewRow(kind, entry, item) {
     const row = createElement("div", "flag-review-row");
     const chips = createElement("div", "flag-chips");
     entry.flags.forEach(function addChip(flagName) {
@@ -154,47 +254,53 @@
         FLAG_DETAILS[flagName].label));
     });
     row.appendChild(chips);
-    row.appendChild(createElement("p", "flag-review-text", question ?
-      shorten(question.q || question.title || entry.id) :
+    row.appendChild(createElement("p", "flag-review-text", item ?
+      shorten(item.q || item.title || entry.id) :
       entry.id + " (no longer in the book)"));
-    if (question) {
+    if (item) {
       row.appendChild(createElement("p", "note",
-        quiz.book.unitShortName(question) +
-        (question.section ? " · " + question.section : "")));
+        quiz.book.unitShortName(item) +
+        (item.section ? " · " + item.section : "")));
     }
     row.appendChild(createButton("Clear flags", "link-button",
       function clear() {
-        quiz.bookSettings.clearFlags(entry.id);
+        storeFor(kind).clear(entry.id);
       }));
     return row;
   }
 
   /**
-   * @returns {object} the flagged questions as a file for fixing the
-   *   bank: ids, flags, and enough of each question to find it
+   * @param {"question"|"idea"} kind
+   * @returns {object} the flagged questions (or ideas) as a file for
+   *   fixing the book: ids, flags, and enough of each to find it
    */
-  function createExport() {
-    const byId = questionsById();
-    const flagged = quiz.bookSettings.listFlagged();
+  function createExportFor(kind) {
+    const byId = itemsById(kind);
+    const flagged = storeFor(kind).list();
     const counts = {};
     quiz.bookSettings.FLAG_NAMES.forEach(function start(flagName) {
       counts[flagName] = 0;
     });
-    const questions = flagged.map(function describe(entry) {
+    const items = flagged.map(function describe(entry) {
       entry.flags.forEach(function count(flagName) {
         counts[flagName] += 1;
       });
-      const question = byId[entry.id] || {};
-      return {
+      const item = byId[entry.id] || {};
+      const base = {
         id: entry.id,
         flags: entry.flags,
         flaggedAt: new Date(entry.at).toISOString(),
-        unit: question.unit || "",
-        section: question.section || "",
-        concept: question.concept || "",
-        kind: question.kind || "",
-        q: question.q || "",
+        unit: item.unit || "",
+        section: item.section || "",
       };
+      return kind === "question" ? Object.assign(base, {
+        concept: item.concept || "",
+        kind: item.kind || "",
+        q: item.q || "",
+      }) : Object.assign(base, {
+        title: item.title || "",
+        question: item.question || "",
+      });
     });
     return {
       version: EXPORT_FILE_VERSION,
@@ -202,17 +308,30 @@
       book: quiz.book.data.book,
       exportedAt: new Date().toISOString(),
       counts,
-      questions,
+      [kind === "question" ? "questions" : "ideas"]: items,
     };
   }
 
-  /** Download the flagged questions as a JSON file. */
-  function downloadExport() {
-    const text = JSON.stringify(createExport(), null, 2);
+  /** @returns {object} the flagged questions as a file */
+  function createExport() {
+    return createExportFor("question");
+  }
+
+  /** @returns {object} the flagged ideas as a file */
+  function createIdeaExport() {
+    return createExportFor("idea");
+  }
+
+  /**
+   * Download the flagged questions or ideas as a JSON file.
+   * @param {"question"|"idea"} kind
+   */
+  function downloadExport(kind) {
+    const text = JSON.stringify(createExportFor(kind), null, 2);
     const link = document.createElement("a");
     link.href = URL.createObjectURL(
       new Blob([text], { type: "application/json" }));
-    link.download = "flagged-questions-" + quiz.book.bookId() + ".json";
+    link.download = KINDS[kind].fileStart + quiz.book.bookId() + ".json";
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -221,18 +340,26 @@
     }, 0);
   }
 
-  /** Connect the Settings screen's list and export button. */
+  /** Connect the Settings screen's lists and export buttons. */
   function setUpReviewList() {
-    const exportButton = findElement("flag-export-button");
-    if (exportButton) {
-      exportButton.addEventListener("click", downloadExport);
-    }
-    ["recallquiz:flags-changed", "recallquiz:book-opened",
-      "recallquiz:book-settings-applied"].forEach(function listen(name) {
-      document.addEventListener(name, showReviewList);
+    Object.keys(KINDS).forEach(function connect(kind) {
+      const exportButton = findElement(KINDS[kind].exportId);
+      if (exportButton) {
+        exportButton.addEventListener("click", function download() {
+          downloadExport(kind);
+        });
+      }
+      [KINDS[kind].changed, "recallquiz:book-opened",
+        "recallquiz:book-settings-applied"].forEach(function listen(name) {
+        document.addEventListener(name, function redraw() {
+          showReviewList(kind);
+        });
+      });
     });
   }
 
-  quiz.flags = { createFlagBar, createExport };
+  quiz.flags = {
+    createFlagBar, createIdeaFlagBar, createExport, createIdeaExport,
+  };
   setUpReviewList();
 })((window.RecallQuiz = window.RecallQuiz || {}));

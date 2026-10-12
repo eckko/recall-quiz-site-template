@@ -65,15 +65,27 @@
 
   // ---------------------------------------------------------- concepts
 
-  /** @returns {object[]} the concepts of the loaded book, in order */
-  function concepts() {
+  /** @returns {object[]} every concept of the loaded book, in order,
+      including ideas the reader hid */
+  function allConcepts() {
     const list = quiz.book.data && quiz.book.data.concepts;
     return Array.isArray(list) ? list : [];
   }
 
+  /**
+   * @returns {object[]} the concepts of the loaded book, in order, except
+   *   the ideas the reader flagged Bad or Useless (they disappear from
+   *   the lists; their questions stay)
+   */
+  function concepts() {
+    return allConcepts().filter(function isVisible(concept) {
+      return !quiz.bookSettings.isIdeaHidden(concept.id);
+    });
+  }
+
   /** @returns {boolean} true if the loaded book teaches with concepts */
   function hasConcepts() {
-    return concepts().length > 0;
+    return allConcepts().length > 0;
   }
 
   /** @returns {boolean} true if the book marks any idea as core */
@@ -98,7 +110,7 @@
    * @returns {object|undefined}
    */
   function conceptById(conceptId) {
-    return concepts().find(function matches(concept) {
+    return allConcepts().find(function matches(concept) {
       return concept.id === conceptId;
     });
   }
@@ -318,18 +330,36 @@
 
   /**
    * The ideas in the order they are offered: book order, except that
-   * core ideas come first when nobody asked for particular ideas.
+   * core ideas come first when nobody asked for particular ideas, and
+   * ideas flagged Important come ahead of the others in their group.
    * @param {boolean} isAskedFor  the reader chose the ideas
    * @returns {object[]}
    */
   function inTeachingOrder(isAskedFor) {
     const list = concepts().slice();
-    if (isAskedFor || !hasCoreIdeas()) {
+    if (isAskedFor) {
       return list;
     }
-    return list.filter(isCore).concat(list.filter(function notCore(concept) {
-      return !isCore(concept);
-    }));
+    const groups = hasCoreIdeas() ?
+      [list.filter(isCore), list.filter(function notCore(concept) {
+        return !isCore(concept);
+      })] : [list];
+    return [].concat.apply([], groups.map(importantFirst));
+  }
+
+  /**
+   * @param {object[]} ideas
+   * @returns {object[]} the ideas flagged Important first, each part in
+   *   its old order
+   */
+  function importantFirst(ideas) {
+    function isImportant(concept) {
+      return quiz.bookSettings.hasIdeaFlag(concept.id, "important");
+    }
+    return ideas.filter(isImportant).concat(
+      ideas.filter(function isOther(concept) {
+        return !isImportant(concept);
+      }));
   }
 
   /** @returns {boolean} true if a ladder question was never answered */

@@ -86,3 +86,10 @@ bank from `banks/`; `block="**/htrab/**"` blocks files.
 
 Tests also cover show/hide and defaults, per-book isolation, the cascading
 lesson picker, flags, saved-settings versions and the folded theme groups.
+Further tests cover the Keep me going switch (hidden by default), the
+per-option "Which questions" switches, idea flags (hiding, export, upgrade
+from a version 1 record, account sync, Important first), the folded
+Settings sections and the Finance theme group. `open_page` seeds a saved
+record that shows Keep me going (`keep_going=False` gives the fresh
+defaults) and opens every Settings section as the screen opens
+(`open_sections=False` keeps them folded).

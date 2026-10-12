@@ -7,8 +7,11 @@
  *     "What do you want to do?", "Where you stand"), and how the chapter
  *     list starts;
  *   - which controls the home screen shows at all (the whole "What do you
- *     want to do?" panel, the timer, confidence check, HTRAB method, the
- *     5-minute button, Custom practice and its parts, the flag bar);
+ *     want to do?" panel, the Keep me going block, the timer, confidence
+ *     check, HTRAB method, the 5-minute button, Custom practice and its
+ *     parts including each "Which questions" option, the question flag
+ *     bar and the idea flag bar). Keep me going and the "Due and new" and
+ *     "My gaps" options are hidden until the reader shows them;
  *   - the practice defaults: lesson (chapter, topic, idea), timer per
  *     question, confidence check, HTRAB method, and for Custom practice:
  *     which questions, session length, number of questions, minutes, and
@@ -46,9 +49,15 @@
     filter: ["all", "due", "gaps", "important"],
     lengthMode: ["questions", "time"],
   };
-  /** Things the home screen can hide; all are shown by default */
-  const SHOW_KEYS = ["setup", "timer", "confidence", "htrab", "quick",
-    "custom", "filter", "length", "flagBar"];
+  /** Things the home screen can hide */
+  const SHOW_KEYS = ["setup", "keepGoing", "timer", "confidence", "htrab",
+    "quick", "custom", "filter", "filterDue", "filterGaps",
+    "filterImportant", "filterAll", "length", "flagBar", "ideaFlagBar"];
+  /** Things that are hidden until the reader shows them */
+  const HIDDEN_BY_DEFAULT = ["keepGoing", "filterDue", "filterGaps"];
+  /** The "Which questions" options, with the filter value each stands for */
+  const FILTER_SHOW_KEYS = ["filterDue", "filterGaps", "filterImportant",
+    "filterAll"];
   const TIMERS = [0, 15, 30, 60];
   const DEFAULT_COUNT = 10;
   const DEFAULT_MINUTES = 15;
@@ -91,7 +100,8 @@
     const savedShow = raw.show && typeof raw.show === "object" ?
       raw.show : {};
     SHOW_KEYS.forEach(function keep(key) {
-      clean.show[key] = savedShow[key] !== false;
+      clean.show[key] = typeof savedShow[key] === "boolean" ?
+        savedShow[key] : !HIDDEN_BY_DEFAULT.includes(key);
     });
     return clean;
   }
@@ -167,6 +177,16 @@
     return choice.show[key] !== false;
   }
 
+  /**
+   * @returns {boolean} true when every "Which questions" option is hidden
+   *   (then the whole row is out of sight and the default filter is used)
+   */
+  function areAllFilterOptionsHidden() {
+    return FILTER_SHOW_KEYS.every(function isOff(key) {
+      return !isShown(key);
+    });
+  }
+
   // ------------------------------------------------------------ folding
 
   /**
@@ -203,9 +223,10 @@
 
   /** Open or close every chapter, topic and idea inside a panel. */
   function setAllOpen(panel, open) {
-    panel.querySelectorAll("details").forEach(function set(details) {
-      details.open = open;
-    });
+    panel.querySelectorAll("details:not(.flag-bar)").forEach(
+      function set(details) {
+        details.open = open;
+      });
   }
 
   /**
@@ -233,6 +254,9 @@
     const hidden = SHOW_KEYS.filter(function isOff(key) {
       return !isShown(key);
     });
+    if (areAllFilterOptionsHidden() && !hidden.includes("filter")) {
+      hidden.push("filter");
+    }
     document.body.setAttribute("data-hide", hidden.join(" "));
   }
 
@@ -250,12 +274,23 @@
 
   /** Open or close the Settings screen. */
   function showSettings(isOpen) {
+    if (isOpen) {
+      foldSettingsSections();
+    }
     document.body.classList.toggle("in-settings", isOpen);
     findElement("settings-screen").classList.toggle("hidden", !isOpen);
     const button = findElement("settings-button");
     button.setAttribute("aria-expanded", String(isOpen));
     button.querySelector("span").textContent = isOpen ? "Done" : "Settings";
     window.scrollTo(0, 0);
+  }
+
+  /** Fold every section of the Settings screen (each visit starts so). */
+  function foldSettingsSections() {
+    document.querySelectorAll("#settings-screen details.settings-section")
+      .forEach(function fold(section) {
+        section.open = false;
+      });
   }
 
   /**
@@ -377,6 +412,38 @@
       choice.count ? String(choice.count) : "";
     findElement("default-minutes-input").value = String(choice.minutes);
     quiz.scopePicker.showDefaultScope(choice.scope);
+    showSectionSummaries();
+  }
+
+  /** @param {string} id  a settings section's summary element
+   *  @param {string} text */
+  function setSummary(id, text) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = text;
+    }
+  }
+
+  /** Words for each choice, shown on the folded Settings sections. */
+  const FILTER_WORDS = { all: "Everything", due: "Due and new",
+    gaps: "My gaps", important: "Important only" };
+  const CHAPTER_WORDS = { next: "Next one open", open: "All open",
+    closed: "All closed" };
+
+  /** Show a short summary of each section on its folded title. */
+  function showSectionSummaries() {
+    const hiddenCount = SHOW_KEYS.filter(function isOff(key) {
+      return !isShown(key);
+    }).length;
+    setSummary("visibility-section-current", hiddenCount ?
+      hiddenCount + " hidden" : "All shown");
+    setSummary("practice-section-current",
+      "Timer " + (choice.timer ? choice.timer + "s" : "off") +
+      " · Confidence " + (choice.confidence ? "on" : "off"));
+    setSummary("custom-practice-section-current",
+      FILTER_WORDS[choice.filter] + " · " + (choice.lengthMode === "time" ?
+        choice.minutes + " min" : String(choice.count || "All")));
+    setSummary("home-section-current", CHAPTER_WORDS[choice.chapters]);
   }
 
   // ----------------------------------------------------- practice choices

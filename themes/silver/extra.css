@@ -1,0 +1,11 @@
+/* Silver: cool steel, light geometric headings. */
+[data-theme="silver"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+[data-theme="silver"] .panel {
+  border-bottom: 3px solid var(--color-accent-2);
+}

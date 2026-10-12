@@ -25,7 +25,7 @@ follows them across devices. Off by default.
   adapter and set `provider` to its name.
 
 - The theme choice follows the reader too: cloud-sync.js listens to
-  `recallquiz:theme-changed` and keeps the newest choice, layout and flags in a
+  `recallquiz:theme-changed` and keeps the newest choice, layout, question flags and idea flags in a
   per-book `_settings:<bookId>` document of the account (see `ai-context/data-formats.md`).
 
 Sync never changes how the quiz works when it is off or the reader is

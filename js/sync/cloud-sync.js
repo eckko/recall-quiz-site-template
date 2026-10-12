@@ -153,6 +153,8 @@
       handleThemeChanged);
     document.addEventListener("recallquiz:flags-changed",
       handleThemeChanged);
+    document.addEventListener("recallquiz:idea-flags-changed",
+      handleThemeChanged);
     document.addEventListener("visibilitychange",
       function saveWhenHidden() {
         if (document.visibilityState === "hidden") {
@@ -499,6 +501,19 @@
     if (section) {
       section.classList.remove("hidden");
       fillAccount(helpers.findElement("account-body"), status, true);
+      showAccountSummary();
+    }
+  }
+
+  /**
+   * The folded Account title on the Settings screen: the signed-in name
+   * (cut short if it is long), or "Not signed in".
+   */
+  function showAccountSummary() {
+    const summary = document.getElementById("account-current");
+    if (summary) {
+      summary.textContent = sync.user ?
+        (sync.user.name || sync.user.email || "Signed in") : "Not signed in";
     }
   }
 

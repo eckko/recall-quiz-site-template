@@ -324,7 +324,7 @@ js/
   home-screen.js           progress ring, recent results, where you stand
   book-settings.js         per-book saved settings and flags (versioned)
   scope-picker.js          cascading lesson picker (chapter, topic, idea)
-  flags.js                 Bad / Revisit / Useless / Important flag bar
+  flags.js                 Bad / Revisit / Useless / Important flag bars
   home-layout.js           Settings screen, show/hide, defaults, folding panels
   session-settings.js      the "What do you want to practise?" panel
   progress-file.js         download, load and reset progress

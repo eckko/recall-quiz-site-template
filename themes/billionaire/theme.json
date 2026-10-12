@@ -1,0 +1,69 @@
+{
+  "name": "Billionaire",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Inter\",system-ui,sans-serif",
+    "headings": "\"Marcellus\",\"Georgia\",serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eaf1f7",
+      "card": "#fafdff",
+      "text": "#0c1b2b",
+      "textMuted": "#476079",
+      "border": "#c2d3e3",
+      "accent": "#0e5a8a",
+      "accent2": "#1692b8",
+      "highlight": "#ffe38a",
+      "correct": "#0e8a74",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#0e5a8a",
+      "pop2": "#7a4fb0",
+      "pop3": "#0e8a74",
+      "pop4": "#b8860b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f0f6fb,#d8e6f2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#08121d",
+      "card": "#0f1d2d",
+      "text": "#e4f0fb",
+      "textMuted": "#9db8d1",
+      "border": "#213a54",
+      "accent": "#5cc8f0",
+      "accent2": "#3ab0e0",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#5cc8f0",
+      "pop2": "#c9a0ff",
+      "pop3": "#5fd6a4",
+      "pop4": "#f2d46a",
+      "onAccent": "#04101a",
+      "onHero": "#04101a"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0a1624,#050c15) fixed"
+    ]
+  }
+}

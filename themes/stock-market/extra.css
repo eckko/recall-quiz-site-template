@@ -1,0 +1,12 @@
+/* Stock market: ticker green, condensed capitals. */
+[data-theme="stock-market"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="stock-market"] .panel {
+  border-top: 3px solid var(--color-accent-2);
+}

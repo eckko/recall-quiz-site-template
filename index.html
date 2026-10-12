@@ -68,16 +68,19 @@
   <section class="settings-screen hidden" id="settings-screen">
 
     <!-- Filled by js/sync/cloud-sync.js; stays hidden without sync. -->
-    <div class="panel settings-section hidden" id="account-section"
-         aria-live="polite">
-      <h2>Account</h2>
+    <details class="panel settings-section hidden" id="account-section"
+             aria-live="polite">
+      <summary>
+        <h2>Account</h2>
+        <span class="section-current" id="account-current"></span>
+      </summary>
       <div id="account-body"></div>
-    </div>
+    </details>
 
     <details class="panel settings-section" id="appearance-section">
       <summary>
         <h2>Appearance</h2>
-        <span class="appearance-current" id="appearance-current"></span>
+        <span class="section-current" id="appearance-current"></span>
       </summary>
       <div class="setting-row">
         <div class="setting-label"><b>Mode</b></div>
@@ -93,8 +96,11 @@
       </div>
     </details>
 
-    <div class="panel settings-section" id="visibility-section">
-      <h2>What the home screen shows</h2>
+    <details class="panel settings-section" id="visibility-section">
+      <summary>
+        <h2>What the home screen shows</h2>
+        <span class="section-current" id="visibility-section-current"></span>
+      </summary>
       <p class="note settings-note">
         Choose what appears for this book. A hidden control keeps its
         default value and is still used; it is just out of sight.
@@ -105,6 +111,16 @@
           <small>The whole panel, with everything in it.</small>
         </div>
         <div class="choice-group" data-layout="show.setup">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Keep me going</b>
+          <small>The button, the "Up next" line and the "Or open any idea" hint. Hidden by default.</small>
+        </div>
+        <div class="choice-group" data-layout="show.keepGoing">
           <button type="button" data-value="show">Show</button>
           <button type="button" data-value="hide">Hide</button>
         </div>
@@ -158,9 +174,49 @@
       <div class="setting-row">
         <div class="setting-label">
           <b>Which questions</b>
-          <small>Inside Custom practice.</small>
+          <small>The whole row, inside Custom practice.</small>
         </div>
         <div class="choice-group" data-layout="show.filter">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Due and new</b>
+          <small>An option in Which questions. Hidden by default.</small>
+        </div>
+        <div class="choice-group" data-layout="show.filterDue">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>My gaps</b>
+          <small>An option in Which questions. Hidden by default.</small>
+        </div>
+        <div class="choice-group" data-layout="show.filterGaps">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Important only</b>
+          <small>An option in Which questions.</small>
+        </div>
+        <div class="choice-group" data-layout="show.filterImportant">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Everything</b>
+          <small>An option in Which questions.</small>
+        </div>
+        <div class="choice-group" data-layout="show.filterAll">
           <button type="button" data-value="show">Show</button>
           <button type="button" data-value="hide">Hide</button>
         </div>
@@ -175,10 +231,13 @@
           <button type="button" data-value="hide">Hide</button>
         </div>
       </div>
-    </div>
+    </details>
 
-    <div class="panel settings-section" id="practice-section">
-      <h2>Practice defaults</h2>
+    <details class="panel settings-section" id="practice-section">
+      <summary>
+        <h2>Practice defaults</h2>
+        <span class="section-current" id="practice-section-current"></span>
+      </summary>
       <p class="note settings-note">
         What the home screen starts with for this book, on every device.
         You can still change them on the home screen for one visit.
@@ -223,10 +282,13 @@
       <!-- HTRAB default switch: added by htrab/htrab.js when the book
            has tags -->
       <div id="htrab-setting"></div>
-    </div>
+    </details>
 
-    <div class="panel settings-section" id="custom-practice-section">
-      <h2>Custom practice defaults</h2>
+    <details class="panel settings-section" id="custom-practice-section">
+      <summary>
+        <h2>Custom practice defaults</h2>
+        <span class="section-current" id="custom-practice-section-current"></span>
+      </summary>
       <div class="setting-row">
         <div class="setting-label"><b>Section starts</b>
           <small>Auto opens it only for books without ideas.</small></div>
@@ -298,10 +360,13 @@
                   data-fill-value="30">30</button>
         </div>
       </div>
-    </div>
+    </details>
 
-    <div class="panel settings-section" id="flags-section">
-      <h2>Flagged questions</h2>
+    <details class="panel settings-section" id="flags-section">
+      <summary>
+        <h2>Flagged questions</h2>
+        <span class="section-current" id="flags-section-current"></span>
+      </summary>
       <p class="note settings-note">
         While you practise, a collapsed bar lets you flag a question as
         Bad, Revisit, Useless or Important. Bad and Useless questions are
@@ -321,10 +386,40 @@
         <button class="button" id="flag-export-button"
                 type="button">Export flagged (JSON)</button>
       </div>
-    </div>
+    </details>
 
-    <div class="panel settings-section" id="home-section">
-      <h2>Home screen layout</h2>
+    <details class="panel settings-section" id="idea-flags-section">
+      <summary>
+        <h2>Flagged ideas</h2>
+        <span class="section-current" id="idea-flags-section-current"></span>
+      </summary>
+      <p class="note settings-note">
+        On an idea you can open a collapsed bar and flag it as Bad, Revisit,
+        Useless or Important. Bad and Useless ideas disappear from the idea
+        lists at once (their questions stay). Important ideas are offered
+        first in Keep me going. Idea flags are separate from question flags.
+      </p>
+      <div class="setting-row">
+        <div class="setting-label">
+          <b>Flag bar on ideas</b>
+        </div>
+        <div class="choice-group" data-layout="show.ideaFlagBar">
+          <button type="button" data-value="show">Show</button>
+          <button type="button" data-value="hide">Hide</button>
+        </div>
+      </div>
+      <div id="idea-flag-review-list" class="flag-review-list"></div>
+      <div class="button-row">
+        <button class="button" id="idea-flag-export-button"
+                type="button">Export flagged ideas (JSON)</button>
+      </div>
+    </details>
+
+    <details class="panel settings-section" id="home-section">
+      <summary>
+        <h2>Home screen layout</h2>
+        <span class="section-current" id="home-section-current"></span>
+      </summary>
       <p class="note settings-note">
         How each part looks when the home screen opens. Folding things by
         hand never changes these.
@@ -374,10 +469,13 @@
           <button type="button" data-value="open">Open</button>
         </div>
       </div>
-    </div>
+    </details>
 
-  <div class="panel settings-section" id="progress-file-panel">
-    <h2>Your progress file</h2>
+  <details class="panel settings-section" id="progress-file-panel">
+      <summary>
+        <h2>Your progress file</h2>
+        <span class="section-current" id="progress-file-panel-current">Download, load, reset</span>
+      </summary>
     <div class="button-row">
       <button class="button" id="download-progress-button"
               type="button">Download</button>
@@ -392,7 +490,7 @@
       Progress is saved in this browser on this device. Download a copy to
       move it to another device or keep a backup.
     </p>
-  </div>
+  </details>
 
     <p class="note settings-footer">
       Saved at once, for this book only. When you are signed in, every
@@ -494,8 +592,8 @@
         <p class="ready-summary" id="keep-going-summary"></p>
         <button class="button" id="quick-session-button"
                 type="button">5-minute session: core ideas only</button>
-        <p class="note">Or open any idea below and choose Teach me or
-          Test me. Study in any order you like.</p>
+        <p class="note" id="study-hint">Or open any idea below and choose
+          Teach me or Test me. Study in any order you like.</p>
       </div>
 
       <details class="custom-practice" id="custom-practice">

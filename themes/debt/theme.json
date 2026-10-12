@@ -1,0 +1,69 @@
+{
+  "name": "Debt",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Inter\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f7ede9",
+      "card": "#fffaf8",
+      "text": "#2b1511",
+      "textMuted": "#6e4a42",
+      "border": "#e3c5bc",
+      "accent": "#a3342a",
+      "accent2": "#c4513f",
+      "highlight": "#ffd9a0",
+      "correct": "#1e7f5c",
+      "wrong": "#b3261e",
+      "partly": "#a15f00",
+      "pop1": "#a3342a",
+      "pop2": "#4a4f5c",
+      "pop3": "#c46a14",
+      "pop4": "#7a5a1a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fbf1ed,#f1ddd6) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c0f0d",
+      "card": "#2a1815",
+      "text": "#fbe6e1",
+      "textMuted": "#d0a69d",
+      "border": "#4d2a25",
+      "accent": "#f08a7a",
+      "accent2": "#ff9d8a",
+      "highlight": "#f2c38a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f08a7a",
+      "pop2": "#aab0c0",
+      "pop3": "#ffa36b",
+      "pop4": "#f2d46a",
+      "onAccent": "#1a0a08",
+      "onHero": "#1a0a08"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1f100d,#150a08) fixed"
+    ]
+  }
+}

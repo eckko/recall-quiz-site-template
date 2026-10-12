@@ -1,0 +1,10 @@
+/* Gold: warm serif headings with a gold rule. */
+[data-theme="gold"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="gold"] .panel {
+  border-top: 4px solid var(--color-pop-4);
+}

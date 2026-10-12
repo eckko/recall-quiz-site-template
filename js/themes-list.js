@@ -67,7 +67,14 @@ window.QUIZ_THEMES = [
   ["guitar", "Guitar", "Art & music"],
   ["music-theory", "Music Theory", "Art & music"],
   ["university", "University", "Other subjects"],
-  ["universe", "Universe", "Other subjects"]
+  ["universe", "Universe", "Other subjects"],
+  ["stock-market", "Stock market", "Finance"],
+  ["debt", "Debt", "Finance"],
+  ["equity", "Equity", "Finance"],
+  ["gold", "Gold", "Finance"],
+  ["silver", "Silver", "Finance"],
+  ["millionaire", "Millionaire", "Finance"],
+  ["billionaire", "Billionaire", "Finance"]
 ];
 
 /** The Google Fonts every theme needs, in one request. */

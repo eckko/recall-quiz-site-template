@@ -800,7 +800,8 @@ select {
   }
 }
 
-/* Appearance: folded by default, shows the current theme */
+/* Settings sections: every one folds, and its folded title shows a short
+   summary (the current theme, how many things are hidden, ...) */
 details.settings-section > summary {
   display: flex;
   align-items: center;
@@ -818,14 +819,20 @@ details.settings-section > summary h2 {
   margin: 0;
 }
 
-.appearance-current {
+.section-current {
   position: relative;
+  min-width: 0;
+  max-width: 62%;
   padding-right: 20px;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--color-text-muted);
   font-size: 0.88rem;
 }
 
-.appearance-current::after {
+.section-current::after {
   position: absolute;
   top: 3px;
   right: 2px;
@@ -838,7 +845,7 @@ details.settings-section > summary h2 {
   transition: transform 0.15s;
 }
 
-details.settings-section[open] .appearance-current::after {
+details.settings-section[open] .section-current::after {
   top: 6px;
   transform: rotate(-135deg);
 }
@@ -855,9 +862,17 @@ details.settings-section[open] > summary {
 [data-hide~="confidence"] #confidence-field,
 [data-hide~="htrab"] #htrab-home-switch,
 [data-hide~="htrab"] #htrab-body,
+[data-hide~="keepGoing"] #keep-going-button,
+[data-hide~="keepGoing"] #keep-going-summary,
+[data-hide~="keepGoing"] #study-hint,
 [data-hide~="quick"] #quick-session-button,
 [data-hide~="custom"] #custom-practice,
 [data-hide~="filter"] #filter-field,
+[data-hide~="filterDue"] #question-filter-choice [data-value="due"],
+[data-hide~="filterGaps"] #question-filter-choice [data-value="gaps"],
+[data-hide~="filterImportant"]
+  #question-filter-choice [data-value="important"],
+[data-hide~="filterAll"] #question-filter-choice [data-value="all"],
 [data-hide~="length"] #length-field {
   display: none;
 }

@@ -192,31 +192,44 @@ progress is still unchanged (format v2): a pretest only adds `pretested` and
 
 Everything the reader sets is kept **per book**, in `localStorage` key
 `recall-quiz-book:<bookId>` (`js/book-settings.js`):
-`{version: 1, layout, flags}`. `layout` is owned by `js/home-layout.js`:
+`{version: 2, layout, flags, ideaFlags}`. `layout` is owned by `js/home-layout.js`:
 folding keys (`progress`, `recent`, `setup`, `stand` = "open"|"closed";
 `chapters` "next"|"open"|"closed"; `inner`), practice defaults (`timer`
 0/15/30/60, `confidence`, `htrab`, `count` (0 = all), `minutes`, `scope`
 `{unit, section?, concept?}`, `filter` all|due|gaps|important, `lengthMode`),
-`customStart` (auto|open|closed), `show` (`setup`, `timer`, `confidence`,
-`htrab`, `quick`, `custom`, `filter`, `length`, `flagBar`; hidden controls
-still apply their defaults) and `at` (last change). Theme is per book too:
+`customStart` (auto|open|closed), `show` (`setup`, `keepGoing`, `timer`,
+`confidence`, `htrab`, `quick`, `custom`, `filter`, `filterDue`,
+`filterGaps`, `filterImportant`, `filterAll`, `length`, `flagBar`,
+`ideaFlagBar`; hidden controls still apply their defaults. `keepGoing`
+(the button, its "Up next" line and the hint), `filterDue` and `filterGaps`
+are hidden until shown; a key that is missing takes that default. When all
+four `filter*` options are hidden the whole row is hidden and the default
+`filter` is used) and `at` (last change). Theme is per book too:
 `recall-quiz:theme:<bookId>` = `{v: 1, t, m, a}`; the global
 `recall-quiz:theme` is only the last theme shown, to avoid a flash.
 Flags: `flags: {questionId: {f: ["bad"|"revisit"|"useless"|"important"],
 a: time}}`. Bad and Useless hide the question (`quiz.book.setHiddenIds`).
+`ideaFlags` has the same shape, keyed by idea (concept) id, and is kept
+apart from question flags: Bad and Useless hide only the idea from the idea
+lists (`quiz.learning.concepts()`), never its questions; Important ideas
+are offered first in Keep me going. Version 1 records had no `ideaFlags`;
+`MIGRATIONS[1]` adds it.
 Versioning: bump `CURRENT_VERSION` and add a step to `MIGRATIONS[N]` (N to
 N+1); newer-version data is read-only and never overwritten. The tab's
 practice overrides (`sessionStorage`
 `recall-quiz-practice-override:<bookId>`, `{v: 1, ...}`) are versioned the
 same way. Account: one document per book, `_settings:<bookId>`:
-`{v, layout, flags, theme: {t, m, a}}` (newest `at` wins for layout and
-theme; flags merge per question by time). Sign-in is global.
+`{v: 2, layout, flags, ideaFlags, theme: {t, m, a}}` (newest `at` wins for
+layout and theme; flags and idea flags merge per item by time). Sign-in is global.
 Code: `js/home-layout.js` (Settings screen,
 folding, Expand all), `js/session-settings.js` (`readChoices`/`useChoices`),
 `htrab/htrab.js` (`quiz.htrab.isOn`/`useRemote`). The HTRAB On/Off switch is
 shown on the Settings screen; its level/stage picker stays on the home screen.
 The sign-in bar shows on the home screen only when the reader must act
-(signed out, error); the Account section of Settings always shows.
+(signed out, error); the Account section of Settings always shows. Every
+Settings section is a folded `<details>` that starts closed on each visit
+(nothing is remembered); its title carries a short summary (`<id>-current`),
+and Account's is the signed-in name.
 
 Practice values in this record are *defaults*. A change made on the home
 screen is an override kept in `sessionStorage` key
