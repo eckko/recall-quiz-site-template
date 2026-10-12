@@ -5,7 +5,8 @@
 ```
 index.html  (all screens live here; JS shows and hides them)
 │
-├─ <head>  css/*.css, js/themes-list.js, js/theme-picker.js
+├─ <head>  css/*.css, js/default-settings.js, js/themes-list.js,
+│           js/theme-picker.js
 │           theme-picker applies the saved theme before first paint
 │
 └─ end of <body>: the app scripts, in this order
@@ -141,6 +142,9 @@ css/themes.css     :root[data-theme='<id>'][data-scheme='light|dark']
                      --mascot-image, --icon-*, --accent-gradient, ... }
                    + .theme-tile[data-theme-id='<id>'] { --tile-* }
                    + the theme's extra.css
+js/default-settings.js  window.RecallQuizDefaults: every first-time
+                    default (theme, shown controls, practice, home
+                    layout, Settings sections); loaded first
 js/themes-list.js  window.QUIZ_THEMES, window.QUIZ_THEME_FONTS_URL
 ```
 

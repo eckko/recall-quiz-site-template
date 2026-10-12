@@ -15,7 +15,8 @@
  * and css/themes.css has a block of colours for each theme and scheme.
  *
  * The list of themes comes from js/themes-list.js, which
- * tools/build_themes.py generates.
+ * tools/build_themes.py generates. The first-time theme and mode come from
+ * js/default-settings.js, which must be loaded first.
  */
 (function setUpThemePicker() {
   "use strict";
@@ -27,11 +28,13 @@
   /** Version of the saved choice {v, t, m, a}; bump it with a step in
       readStoredChoice when the format changes */
   const STORED_VERSION = 1;
-  const DEFAULT_THEME = "classic";
-  const DEFAULT_MODE = "system";
+  /** The first-time look comes from js/default-settings.js */
+  const DEFAULTS = window.RecallQuizDefaults;
+  const DEFAULT_THEME = DEFAULTS.theme.id;
+  const DEFAULT_MODE = DEFAULTS.theme.mode;
 
   const pageRoot = document.documentElement;
-  const themes = window.QUIZ_THEMES || [[DEFAULT_THEME, "Classic"]];
+  const themes = window.QUIZ_THEMES || [[DEFAULT_THEME, DEFAULT_THEME]];
   const darkModeQuery = window.matchMedia
     ? window.matchMedia("(prefers-color-scheme: dark)")
     : null;

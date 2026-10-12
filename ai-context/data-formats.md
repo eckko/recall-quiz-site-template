@@ -192,7 +192,9 @@ progress is still unchanged (format v2): a pretest only adds `pretested` and
 
 Everything the reader sets is kept **per book**, in `localStorage` key
 `recall-quiz-book:<bookId>` (`js/book-settings.js`):
-`{version: 2, layout, flags, ideaFlags}`. `layout` is owned by `js/home-layout.js`:
+`{version: 2, layout, flags, ideaFlags}`. `layout` is owned by `js/home-layout.js`
+(a value the reader never saved comes from `js/default-settings.js`, so
+change a first-time default there, not in the code):
 folding keys (`progress`, `recent`, `setup`, `stand` = "open"|"closed";
 `chapters` "next"|"open"|"closed"; `inner`), practice defaults (`timer`
 0/15/30/60, `confidence`, `htrab`, `count` (0 = all), `minutes`, `scope`

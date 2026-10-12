@@ -10,15 +10,16 @@
  *     want to do?" panel, the Keep me going block, the timer, confidence
  *     check, HTRAB method, the 5-minute button, Custom practice and its
  *     parts including each "Which questions" option, the question flag
- *     bar and the idea flag bar). Keep me going and the "Due and new" and
- *     "My gaps" options are hidden until the reader shows them;
+ *     bar and the idea flag bar). Which ones start hidden is decided by
+ *     js/default-settings.js;
  *   - the practice defaults: lesson (chapter, topic, idea), timer per
  *     question, confidence check, HTRAB method, and for Custom practice:
  *     which questions, session length, number of questions, minutes, and
  *     whether the section starts open.
  *
- * The home screen starts from the defaults. Changing the lesson, timer,
- * confidence check or HTRAB on the home screen is an override that lasts
+ * The home screen starts from the defaults in js/default-settings.js.
+ * Changing the lesson, timer, confidence check or HTRAB on the home
+ * screen is an override that lasts
  * until the tab closes (sessionStorage, versioned) and never changes the
  * defaults; only the Settings screen does. Hiding a control never changes
  * its default: a hidden control still applies its default value. Folding a
@@ -37,7 +38,10 @@
   /** Version N to N + 1 steps for the saved overrides */
   const OVERRIDE_MIGRATIONS = {};
 
-  /** Allowed values for the layout choices; the first is the default. */
+  /** Where every first-time default lives (js/default-settings.js) */
+  const DEFAULTS = window.RecallQuizDefaults;
+  /** Allowed values for the layout choices. The defaults are not here: they
+      come from DEFAULTS. */
   const OPTIONS = {
     progress: ["open", "closed"],
     recent: ["open", "closed"],
@@ -53,14 +57,12 @@
   const SHOW_KEYS = ["setup", "keepGoing", "timer", "confidence", "htrab",
     "quick", "custom", "filter", "filterDue", "filterGaps",
     "filterImportant", "filterAll", "length", "flagBar", "ideaFlagBar"];
-  /** Things that are hidden until the reader shows them */
-  const HIDDEN_BY_DEFAULT = ["keepGoing", "filterDue", "filterGaps"];
   /** The "Which questions" options, with the filter value each stands for */
   const FILTER_SHOW_KEYS = ["filterDue", "filterGaps", "filterImportant",
     "filterAll"];
   const TIMERS = [0, 15, 30, 60];
-  const DEFAULT_COUNT = 10;
-  const DEFAULT_MINUTES = 15;
+  const DEFAULT_COUNT = DEFAULTS.practice.count;
+  const DEFAULT_MINUTES = DEFAULTS.practice.minutes;
   const MAX_COUNT = 999;
   const MAX_MINUTES = 240;
   /** Choices that are practice defaults (set on the Settings screen) */
@@ -84,9 +86,12 @@
   function sanitize(raw) {
     const clean = {
       at: Number.isFinite(raw.at) && raw.at > 0 ? raw.at : 0,
-      timer: TIMERS.indexOf(raw.timer) >= 0 ? raw.timer : 0,
-      confidence: raw.confidence !== false,
-      htrab: raw.htrab === true,
+      timer: TIMERS.indexOf(raw.timer) >= 0 ?
+        raw.timer : DEFAULTS.practice.timer,
+      confidence: typeof raw.confidence === "boolean" ?
+        raw.confidence : DEFAULTS.practice.confidence,
+      htrab: typeof raw.htrab === "boolean" ?
+        raw.htrab : DEFAULTS.practice.htrab,
       count: cleanWholeNumber(raw.count, DEFAULT_COUNT, MAX_COUNT, true),
       minutes: cleanWholeNumber(raw.minutes, DEFAULT_MINUTES,
         MAX_MINUTES, false),
@@ -95,15 +100,24 @@
     };
     Object.keys(OPTIONS).forEach(function pick(name) {
       clean[name] = OPTIONS[name].indexOf(raw[name]) >= 0 ?
-        raw[name] : OPTIONS[name][0];
+        raw[name] : defaultChoice(name);
     });
     const savedShow = raw.show && typeof raw.show === "object" ?
       raw.show : {};
     SHOW_KEYS.forEach(function keep(key) {
       clean.show[key] = typeof savedShow[key] === "boolean" ?
-        savedShow[key] : !HIDDEN_BY_DEFAULT.includes(key);
+        savedShow[key] : DEFAULTS.show[key];
     });
     return clean;
+  }
+
+  /**
+   * @param {string} name  a layout or practice choice (a key of OPTIONS)
+   * @returns {string} its first-time default
+   */
+  function defaultChoice(name) {
+    return name in DEFAULTS.homeLayout ?
+      DEFAULTS.homeLayout[name] : DEFAULTS.practice[name];
   }
 
   /**
@@ -124,7 +138,10 @@
    * @returns {{unit: string, section?: string, concept?: string}}
    */
   function cleanScope(raw) {
-    if (!raw || typeof raw.unit !== "string" || raw.unit === "all") {
+    if (!raw || typeof raw.unit !== "string") {
+      return Object.assign({}, DEFAULTS.practice.scope);
+    }
+    if (raw.unit === "all") {
       return Object.assign({}, WHOLE_BOOK);
     }
     const scope = { unit: raw.unit };
@@ -285,11 +302,13 @@
     window.scrollTo(0, 0);
   }
 
-  /** Fold every section of the Settings screen (each visit starts so). */
+  /** Put every section of the Settings screen back to its default (each
+      visit starts so; all are folded unless default-settings.js says
+      otherwise). */
   function foldSettingsSections() {
     document.querySelectorAll("#settings-screen details.settings-section")
       .forEach(function fold(section) {
-        section.open = false;
+        section.open = DEFAULTS.settingsSectionsOpen[section.id] === true;
       });
   }
 
