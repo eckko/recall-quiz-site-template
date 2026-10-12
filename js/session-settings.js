@@ -124,6 +124,17 @@
   /** The lines under the two start buttons. */
   function updateReadySummary() {
     findElement("ready-summary").textContent = readySummaryText();
+    if (quiz.layout.isShown("keepGoing")) {
+      updateKeepGoingSummary();
+    }
+  }
+
+  /**
+   * Write the "Up next" line. Working it out plans a whole session, which
+   * takes a moment in a big book, so it is skipped while Keep me going is
+   * hidden and done when the reader shows it (js/home-layout.js).
+   */
+  function updateKeepGoingSummary() {
     findElement("keep-going-summary").textContent = keepGoingSummaryText();
   }
 
@@ -348,6 +359,7 @@
     chooseKeepGoing,
     chooseQuickSession,
     updateReadySummary,
+    updateKeepGoingSummary,
     readChoices,
     useChoices,
   };

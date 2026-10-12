@@ -76,3 +76,13 @@ Next, so they can finish reading. If no answer was given yet, results
 show at once. With zero answers, nothing is recorded. `timeRanOut` is
 reset at the start of every session (an older version leaked it into the
 next session, ending it after one question).
+
+## Big books: keep start-up and Settings clicks cheap
+
+A book can hold several thousand questions (3 to 7 MB). On a phone the
+code runs several times slower than on a computer, so work that loops over
+every question adds up. Do not plan a whole session (`createKeepGoingPlan`)
+unless its result is on screen: the "Up next" line is only worked out while
+Keep me going is shown. Download `questions.json` early
+(`js/early-questions.js`), and load only the theme and fonts in use
+(`js/theme-picker.js`).

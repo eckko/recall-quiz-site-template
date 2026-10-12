@@ -1024,6 +1024,8 @@ def test_keep_going_and_filter_switches(browser):
           not page.is_visible("#keep-going-button")
           and not page.is_visible("#keep-going-summary")
           and not page.is_visible("#study-hint"))
+    check("a hidden Keep me going line is not worked out",
+          page.inner_text("#keep-going-summary").strip() == "")
     check("the 5-minute button has its own switch and starts hidden",
           not page.is_visible("#quick-session-button"))
     check("Custom practice starts open",
@@ -1041,6 +1043,8 @@ def test_keep_going_and_filter_switches(browser):
           page.is_visible("#keep-going-button")
           and page.is_visible("#keep-going-summary")
           and page.is_visible("#study-hint"))
+    check("showing Keep me going works out its Up next line",
+          page.inner_text("#keep-going-summary").strip() != "")
     check("showing an option brings it back",
           page.is_visible("#question-filter-choice [data-value='due']"))
     page.click("#settings-button")
@@ -1197,6 +1201,57 @@ def test_theme_loading(browser):
           len(theme_files) == 2 and theme_files[1].endswith("/lego.css"),
           str(theme_files))
     check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_early_download(browser):
+    """The question bank is requested before the app scripts run, and a
+    loading note shows until it arrives."""
+    print("Early download")
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.errors = []
+    page.on("pageerror", lambda error: page.errors.append(str(error)))
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
+        content_type="application/javascript",
+        body='window.RecallQuizSyncConfig = {provider: "none"};'))
+
+    def slow_questions(route):
+        page.wait_for_timeout(700)
+        route.fulfill(json=BOOK)
+
+    page.route("**/questions.json", slow_questions)
+    page.goto(PAGE_URL, wait_until="commit")
+    page.wait_for_selector("#loading-note", state="attached")
+    check("a loading note shows while the book downloads",
+          page.is_visible("#loading-note")
+          and "Loading" in page.inner_text("#loading-note"))
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    check("the loading note goes away once the book is open",
+          not page.is_visible("#loading-note"))
+    order = page.evaluate(
+        "() => { const t = n => (performance.getEntriesByType('resource')"
+        ".find(e => e.name.includes(n)) || {}).startTime;"
+        " return [t('questions.json'), (performance.getEntriesByType("
+        "'resource').find(e => e.name.includes('js/main.js')) || {})"
+        ".responseEnd]; }")
+    check("the download starts before the app scripts have all arrived",
+          order[0] is not None and order[1] is not None
+          and order[0] < order[1], str(order))
+    check("the book was requested once", page.evaluate(
+        "() => performance.getEntriesByType('resource')"
+        ".filter(e => e.name.includes('questions.json')).length") == 1)
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/questions.json", lambda route: route.abort())
+    page.goto(PAGE_URL)
+    page.wait_for_selector("#load-error", state="visible")
+    check("a failed download hides the loading note and offers the picker",
+          not page.is_visible("#loading-note")
+          and page.is_visible("#load-error"))
     page.close()
 
 
@@ -1958,6 +2013,7 @@ def main():
             test_show_hide_and_defaults(browser)
             test_first_time_defaults(browser)
             test_theme_loading(browser)
+            test_early_download(browser)
             test_lesson_picker_cascade(browser)
             test_flags(browser)
             test_saved_settings_upgrade(browser)

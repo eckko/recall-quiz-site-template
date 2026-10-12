@@ -26,9 +26,9 @@
    * @returns {boolean} true if any question text holds a formula
    */
   function bookHasFormulas(bookData) {
-    return JSON.stringify(bookData.questions || []).includes("\\\\(") ||
-      JSON.stringify(bookData.questions || []).includes("\\\\[") ||
-      JSON.stringify(bookData.questions || []).includes("$$");
+    const text = JSON.stringify(bookData.questions || []);
+    return text.includes("\\\\(") || text.includes("\\\\[") ||
+      text.includes("$$");
   }
 
   /**

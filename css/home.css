@@ -507,6 +507,39 @@ select {
   color: var(--color-wrong);
 }
 
+/* "Loading your book..." under the header, until the questions arrive */
+.loading-note {
+  margin: 12px 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.loading-bar {
+  display: block;
+  position: relative;
+  height: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+
+.loading-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 35%;
+  border-radius: 2px;
+  background: var(--color-accent);
+  animation: loading-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes loading-slide {
+  from { left: -35%; }
+  to { left: 100%; }
+}
+
 /* The "Choose questions.json" button on the load-error panel */
 .file-picker-button {
   cursor: pointer;

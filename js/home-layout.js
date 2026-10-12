@@ -266,6 +266,10 @@
 
   // -------------------------------------------------- hiding controls
 
+  /** Whether Keep me going was shown the last time visibility was applied
+      (its "Up next" line is only worked out while it is shown) */
+  let wasKeepGoingShown = false;
+
   /** Hide the home-screen parts the reader switched off (see home.css). */
   function applyVisibility() {
     const hidden = SHOW_KEYS.filter(function isOff(key) {
@@ -275,6 +279,11 @@
       hidden.push("filter");
     }
     document.body.setAttribute("data-hide", hidden.join(" "));
+    const isKeepGoingShown = isShown("keepGoing");
+    if (isKeepGoingShown && !wasKeepGoingShown && quiz.settings) {
+      quiz.settings.updateKeepGoingSummary();
+    }
+    wasKeepGoingShown = isKeepGoingShown;
   }
 
   /** Open or fold Custom practice as the reader chose. */
