@@ -1,0 +1,76 @@
+{
+  "name": "Children's book",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Quicksand\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Fredoka\",\"Quicksand\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "24px",
+    "smallRadius": "16px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eaf6ff",
+      "card": "#ffffff",
+      "text": "#1f2f4d",
+      "textMuted": "#506385",
+      "border": "#bfdcf2",
+      "accent": "#cf3a29",
+      "accent2": "#0f7f9b",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#cf3a29",
+      "pop2": "#0f7f9b",
+      "pop3": "#c78d00",
+      "pop4": "#7a4cc2",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(rgba(255,210,77,.35) 5px,transparent 6px) 0 0/90px 90px fixed",
+      "radial-gradient(rgba(15,127,155,.14) 4px,transparent 5px) 45px 45px/90px 90px fixed",
+      "linear-gradient(#eaf6ff,#eaf6ff) fixed"
+    ],
+    "buttonShadow": [
+      "0 5px 0 #9c2b1e"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #9c2b1e"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#101a30",
+      "card": "#182441",
+      "text": "#f2f6ff",
+      "textMuted": "#b3c1de",
+      "border": "#2f4066",
+      "accent": "#ff8070",
+      "accent2": "#58c8e0",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#ff8070",
+      "pop2": "#58c8e0",
+      "pop3": "#ffd24d",
+      "pop4": "#b9a0f5",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(rgba(255,210,77,.12) 5px,transparent 6px) 0 0/90px 90px fixed",
+      "linear-gradient(#101a30,#101a30) fixed"
+    ]
+  }
+}

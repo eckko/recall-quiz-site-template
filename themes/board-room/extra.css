@@ -1,0 +1,16 @@
+/* Board room: deep green leather, walnut and brass on ivory. */
+[data-theme="board-room"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="board-room"] .unit-title,
+[data-theme="board-room"] .verdict,
+[data-theme="board-room"] .panel h2 {
+  font-family: "Playfair Display",Georgia,serif;
+  font-weight: 700;
+}
+[data-theme="board-room"] .panel {
+  border-top: 3px solid var(--color-pop-2);
+}

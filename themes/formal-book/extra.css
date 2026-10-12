@@ -1,0 +1,17 @@
+/* Formal: ivory paper, navy ink and a burgundy rule, like a printed legal or classic volume. */
+[data-theme="formal-book"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+[data-theme="formal-book"] .unit-title,
+[data-theme="formal-book"] .verdict,
+[data-theme="formal-book"] .panel h2 {
+  font-family: "Libre Baskerville",Baskerville,Georgia,serif;
+  font-weight: 700;
+}
+[data-theme="formal-book"] .panel {
+  border-top: 3px double var(--color-pop-2);
+}

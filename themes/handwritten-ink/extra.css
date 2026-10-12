@@ -1,0 +1,19 @@
+/* Handwritten: Ink: blue ballpoint ink on squared paper. */
+[data-theme="handwritten-ink"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.3rem;
+}
+[data-theme="handwritten-ink"] .unit-title,
+[data-theme="handwritten-ink"] .verdict,
+[data-theme="handwritten-ink"] .panel h2 {
+  font-family: "Indie Flower","Segoe Print","Bradley Hand",cursive;
+  font-weight: 400;
+}
+[data-theme="handwritten-ink"] .question-text {
+  font-family: "Indie Flower","Segoe Print",cursive;
+  font-size: 1.5rem;
+  line-height: 1.55;
+}

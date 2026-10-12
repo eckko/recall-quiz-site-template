@@ -1,0 +1,26 @@
+/* Visual board: a classroom pinboard: cork, pinned cards and marker headings. */
+[data-theme="visual-board"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: #fffdf2;
+  text-shadow: 2px 2px 0 rgba(42,33,24,.6);
+}
+[data-theme="visual-board"] .unit-title,
+[data-theme="visual-board"] .verdict,
+[data-theme="visual-board"] .panel h2 {
+  font-family: "Permanent Marker","Patrick Hand",cursive;
+  font-weight: 400;
+  font-size: 1.25em;
+}
+[data-theme="visual-board"] .question-text {
+  font-family: "Patrick Hand",system-ui,sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.45;
+}
+[data-theme="visual-board"] .panel {
+  transform: none;
+  border-top: 10px solid var(--color-accent);
+}

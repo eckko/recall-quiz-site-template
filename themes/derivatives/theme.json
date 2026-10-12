@@ -1,0 +1,71 @@
+{
+  "name": "Derivatives",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"IBM Plex Sans\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"IBM Plex Mono\",\"SFMono-Regular\",Consolas,monospace"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eceef8",
+      "card": "#ffffff",
+      "text": "#171c3a",
+      "textMuted": "#535a80",
+      "border": "#ccd1ea",
+      "accent": "#3446c4",
+      "accent2": "#0d7f7a",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#3446c4",
+      "pop2": "#0d7f7a",
+      "pop3": "#b3402a",
+      "pop4": "#8a6a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(52,70,196,.06) 1px,transparent 1px) 0 0/36px 36px fixed",
+      "linear-gradient(90deg,rgba(52,70,196,.06) 1px,transparent 1px) 0 0/36px 36px fixed",
+      "linear-gradient(#eceef8,#eceef8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0c1020",
+      "card": "#141a30",
+      "text": "#e6e9fb",
+      "textMuted": "#a6add2",
+      "border": "#283152",
+      "accent": "#93a4ff",
+      "accent2": "#52d6cf",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#93a4ff",
+      "pop2": "#52d6cf",
+      "pop3": "#ff9a80",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(147,164,255,.06) 1px,transparent 1px) 0 0/36px 36px fixed",
+      "linear-gradient(90deg,rgba(147,164,255,.06) 1px,transparent 1px) 0 0/36px 36px fixed",
+      "linear-gradient(#0c1020,#0c1020) fixed"
+    ]
+  }
+}

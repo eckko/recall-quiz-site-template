@@ -1,0 +1,13 @@
+/* Options: payoff curves: violet and mint on a clean chart grid. */
+[data-theme="options"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="options"] .unit-title,
+[data-theme="options"] .verdict,
+[data-theme="options"] .panel h2 {
+  font-family: "Space Grotesk","Inter",system-ui,sans-serif;
+  font-weight: 700;
+}

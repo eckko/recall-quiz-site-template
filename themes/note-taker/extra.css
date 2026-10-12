@@ -1,0 +1,13 @@
+/* Note taker: a yellow legal pad with a double red margin. */
+[data-theme="note-taker"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="note-taker"] .unit-title,
+[data-theme="note-taker"] .verdict,
+[data-theme="note-taker"] .panel h2 {
+  font-family: "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  font-weight: 700;
+}

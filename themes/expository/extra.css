@@ -1,0 +1,16 @@
+/* Expository: textbook clarity: strong headings, a blue rule and roomy body text. */
+[data-theme="expository"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="expository"] .unit-title,
+[data-theme="expository"] .verdict,
+[data-theme="expository"] .panel h2 {
+  font-family: "Merriweather",Georgia,serif;
+  font-weight: 700;
+}
+[data-theme="expository"] .panel {
+  border-left: 5px solid var(--color-accent);
+}

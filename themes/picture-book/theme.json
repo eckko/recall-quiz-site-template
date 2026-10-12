@@ -1,0 +1,77 @@
+{
+  "name": "Picture book",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Sniglet\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "28px",
+    "smallRadius": "18px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fdf1de",
+      "card": "#fffaf0",
+      "text": "#3b2f2a",
+      "textMuted": "#76665c",
+      "border": "#f0d6ae",
+      "accent": "#c8601a",
+      "accent2": "#3f8f72",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#c8601a",
+      "pop2": "#3f8f72",
+      "pop3": "#b5448c",
+      "pop4": "#2f7cb0",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(circle at 12% 18%,rgba(255,196,120,.38) 0,transparent 38%) fixed",
+      "radial-gradient(circle at 88% 82%,rgba(120,200,170,.30) 0,transparent 40%) fixed",
+      "linear-gradient(#fdf1de,#fdf1de) fixed"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #9a4410"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #9a4410"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#231b2b",
+      "card": "#2c2336",
+      "text": "#f7e9d7",
+      "textMuted": "#c5b3a3",
+      "border": "#4a3b57",
+      "accent": "#ffab6e",
+      "accent2": "#7dd1b0",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#ffab6e",
+      "pop2": "#7dd1b0",
+      "pop3": "#f08cc6",
+      "pop4": "#7cc0f0",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(circle at 12% 18%,rgba(255,171,110,.14) 0,transparent 38%) fixed",
+      "radial-gradient(circle at 88% 82%,rgba(125,209,176,.12) 0,transparent 40%) fixed",
+      "linear-gradient(#231b2b,#231b2b) fixed"
+    ]
+  }
+}

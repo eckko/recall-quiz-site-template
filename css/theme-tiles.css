@@ -527,6 +527,874 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cdefs%3E%3Cfilter id=%22b%22%3E%3CfeGaussianBlur stdDeviation=%222%22/%3E%3C/filter%3E%3C/defs%3E%3Cg filter=%22url(%23b)%22%3E%3Ccircle cx=%2224%22 cy=%2232%22 r=%2217%22 fill=%22%237f9de0%22 fill-opacity=%22.75%22/%3E%3Ccircle cx=%2240%22 cy=%2238%22 r=%2214%22 fill=%22%23e58a9b%22 fill-opacity=%22.7%22/%3E%3Ccircle cx=%2230%22 cy=%2248%22 r=%2212%22 fill=%22%236bb7a4%22 fill-opacity=%22.7%22/%3E%3C/g%3E%3Cg transform=%22rotate(40 46 18)%22%3E%3Crect x=%2243%22 y=%222%22 width=%225%22 height=%2226%22 rx=%222%22 fill=%22%238a6a3a%22/%3E%3Cpath d=%22M43 28h5l-1 8h-3z%22 fill=%22%233f7fb0%22/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* ---------- E-reader ---------- */
+.theme-tile[data-theme-id='ereader'] {
+  --tile-page: #f6f1e6;
+  --tile-card: #fffdf8;
+  --tile-text: #2b2620;
+  --tile-border: #ddd3c1;
+  --tile-accent: #4f6a8c;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #4f6a8c;
+  --tile-pop-2: #a8523f;
+  --tile-pop-3: #3f7a62;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#f6f1e6,#f6f1e6) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='ereader'] {
+  --tile-page: #15161a;
+  --tile-card: #1e2025;
+  --tile-text: #e4dfd3;
+  --tile-border: #383a41;
+  --tile-accent: #9db3d0;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #9db3d0;
+  --tile-pop-2: #e08c78;
+  --tile-pop-3: #7fcba7;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#15161a,#15161a) fixed;
+}
+.theme-tile[data-theme-id='ereader'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2214%22 y=%226%22 width=%2236%22 height=%2252%22 rx=%225%22 fill=%22%23fffdf8%22 stroke=%22%232b2620%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M21 18H43%22 fill=%22none%22 stroke=%22%239a8f7e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 26H43%22 fill=%22none%22 stroke=%22%239a8f7e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 34H43%22 fill=%22none%22 stroke=%22%239a8f7e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 42H43%22 fill=%22none%22 stroke=%22%239a8f7e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 50H33%22 fill=%22none%22 stroke=%22%239a8f7e%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2232%22 cy=%2254%22 r=%221.5%22 fill=%22%234f6a8c%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Formal ---------- */
+.theme-tile[data-theme-id='formal-book'] {
+  --tile-page: #f4f1ea;
+  --tile-card: #fffefb;
+  --tile-text: #1c2433;
+  --tile-border: #cdc6b5;
+  --tile-accent: #1f3a5f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1f3a5f;
+  --tile-pop-2: #7a1f2b;
+  --tile-pop-3: #3d6b4f;
+  --tile-radius: 2px;
+  --tile-background: linear-gradient(#f4f1ea,#f4f1ea) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='formal-book'] {
+  --tile-page: #10141b;
+  --tile-card: #181e28;
+  --tile-text: #e8e4da;
+  --tile-border: #333c4a;
+  --tile-accent: #9db7d9;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #9db7d9;
+  --tile-pop-2: #d98a96;
+  --tile-pop-3: #86c9a0;
+  --tile-radius: 2px;
+  --tile-background: linear-gradient(#10141b,#10141b) fixed;
+}
+.theme-tile[data-theme-id='formal-book'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2212%22 y=%228%22 width=%2238%22 height=%2250%22 rx=%223%22 fill=%22%231f3a5f%22 stroke=%22%2310141b%22 stroke-width=%222.5%22 /%3E%3Crect x=%2216%22 y=%2212%22 width=%2230%22 height=%2242%22 rx=%221%22 fill=%22none%22 stroke=%22%23d6b36a%22 stroke-width=%221.6%22 /%3E%3Cpath d=%22M23 26H39M23 32H39%22 fill=%22none%22 stroke=%22%23d6b36a%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M44 44v16l4-4 4 4V44%22 fill=%22%237a1f2b%22 stroke=%22%2310141b%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Novel ---------- */
+.theme-tile[data-theme-id='novel'] {
+  --tile-page: #f7f0e1;
+  --tile-card: #fffaf0;
+  --tile-text: #2e2418;
+  --tile-border: #dccdb0;
+  --tile-accent: #7a4b2a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #7a4b2a;
+  --tile-pop-2: #8a3b3b;
+  --tile-pop-3: #4d6b47;
+  --tile-radius: 7px;
+  --tile-background: linear-gradient(#f7f0e1,#f7f0e1) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='novel'] {
+  --tile-page: #1a1510;
+  --tile-card: #231c15;
+  --tile-text: #eadcc4;
+  --tile-border: #43372a;
+  --tile-accent: #dba46b;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #dba46b;
+  --tile-pop-2: #e29a8f;
+  --tile-pop-3: #9cc795;
+  --tile-radius: 7px;
+  --tile-background: linear-gradient(#1a1510,#1a1510) fixed;
+}
+.theme-tile[data-theme-id='novel'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 14c8-4 16-3 24 3 8-6 16-7 24-3v38c-8-4-16-3-24 3-8-6-16-7-24-3z%22 fill=%22%23fffaf0%22 stroke=%22%232e2418%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M32 17v38%22 fill=%22none%22 stroke=%22%232e2418%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M14 24c5-1 9 0 13 2M14 32c5-1 9 0 13 2M37 26c4-2 8-3 13-2M37 34c4-2 8-3 13-2%22 fill=%22none%22 stroke=%22%23a99677%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M44 8v14l3-3 3 3V8%22 fill=%22%23a56b3d%22 stroke=%22%232e2418%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Comic panels ---------- */
+.theme-tile[data-theme-id='comic-panels'] {
+  --tile-page: #f1ede0;
+  --tile-card: #ffffff;
+  --tile-text: #141414;
+  --tile-border: #141414;
+  --tile-accent: #1d5fb4;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1d5fb4;
+  --tile-pop-2: #c2185b;
+  --tile-pop-3: #e6b800;
+  --tile-radius: 2px;
+  --tile-background: radial-gradient(rgba(194,24,91,.16) 1.6px,transparent 1.8px) 0 0/14px 14px fixed, linear-gradient(#f1ede0,#f1ede0) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='comic-panels'] {
+  --tile-page: #15151b;
+  --tile-card: #1f1f27;
+  --tile-text: #f5f2e8;
+  --tile-border: #f5f2e8;
+  --tile-accent: #6fa8ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #6fa8ff;
+  --tile-pop-2: #ff7aa8;
+  --tile-pop-3: #ffd84d;
+  --tile-radius: 2px;
+  --tile-background: radial-gradient(rgba(255,122,168,.12) 1.6px,transparent 1.8px) 0 0/14px 14px fixed, linear-gradient(#15151b,#15151b) fixed;
+}
+.theme-tile[data-theme-id='comic-panels'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%226%22 width=%2228%22 height=%2224%22 rx=%221%22 fill=%22%23ffd84d%22 stroke=%22%23141414%22 stroke-width=%223%22 /%3E%3Crect x=%2238%22 y=%226%22 width=%2220%22 height=%2224%22 rx=%221%22 fill=%22%23ffffff%22 stroke=%22%23141414%22 stroke-width=%223%22 /%3E%3Crect x=%226%22 y=%2234%22 width=%2220%22 height=%2224%22 rx=%221%22 fill=%22%23ffffff%22 stroke=%22%23141414%22 stroke-width=%223%22 /%3E%3Crect x=%2230%22 y=%2234%22 width=%2228%22 height=%2224%22 rx=%221%22 fill=%22%239ec5ff%22 stroke=%22%23141414%22 stroke-width=%223%22 /%3E%3Cpath d=%22M12 14h16M12 21h10%22 fill=%22none%22 stroke=%22%23141414%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M40 40h14l-3 5 3 5H40z%22 fill=%22%23ffffff%22 stroke=%22%23141414%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Expository ---------- */
+.theme-tile[data-theme-id='expository'] {
+  --tile-page: #f4f7fa;
+  --tile-card: #ffffff;
+  --tile-text: #1d2733;
+  --tile-border: #d3dce6;
+  --tile-accent: #1c64b0;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1c64b0;
+  --tile-pop-2: #0f7f82;
+  --tile-pop-3: #b4561f;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(#f4f7fa,#f4f7fa) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='expository'] {
+  --tile-page: #10161d;
+  --tile-card: #18202a;
+  --tile-text: #e6edf4;
+  --tile-border: #303c4a;
+  --tile-accent: #7db4ee;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #7db4ee;
+  --tile-pop-2: #5cc9cc;
+  --tile-pop-3: #f0a06a;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(#10161d,#10161d) fixed;
+}
+.theme-tile[data-theme-id='expository'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%228%22 width=%2248%22 height=%2248%22 rx=%224%22 fill=%22%23ffffff%22 stroke=%22%231d2733%22 stroke-width=%222.5%22 /%3E%3Crect x=%228%22 y=%228%22 width=%2212%22 height=%2248%22 rx=%224%22 fill=%22%231c64b0%22 stroke=%22%231d2733%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M26 18H50%22 fill=%22none%22 stroke=%22%237b8794%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M26 26H50%22 fill=%22none%22 stroke=%22%237b8794%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2226%22 y=%2234%22 width=%226%22 height=%2214%22 rx=%221%22 fill=%22%230f7f82%22 stroke=%22%231d2733%22 stroke-width=%221.8%22 /%3E%3Crect x=%2235%22 y=%2228%22 width=%226%22 height=%2220%22 rx=%221%22 fill=%22%231c64b0%22 stroke=%22%231d2733%22 stroke-width=%221.8%22 /%3E%3Crect x=%2244%22 y=%2238%22 width=%226%22 height=%2210%22 rx=%221%22 fill=%22%23b4561f%22 stroke=%22%231d2733%22 stroke-width=%221.8%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Picture book ---------- */
+.theme-tile[data-theme-id='picture-book'] {
+  --tile-page: #fdf1de;
+  --tile-card: #fffaf0;
+  --tile-text: #3b2f2a;
+  --tile-border: #f0d6ae;
+  --tile-accent: #c8601a;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #c8601a;
+  --tile-pop-2: #3f8f72;
+  --tile-pop-3: #b5448c;
+  --tile-radius: 18px;
+  --tile-background: radial-gradient(circle at 12% 18%,rgba(255,196,120,.38) 0,transparent 38%) fixed, radial-gradient(circle at 88% 82%,rgba(120,200,170,.30) 0,transparent 40%) fixed, linear-gradient(#fdf1de,#fdf1de) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='picture-book'] {
+  --tile-page: #231b2b;
+  --tile-card: #2c2336;
+  --tile-text: #f7e9d7;
+  --tile-border: #4a3b57;
+  --tile-accent: #ffab6e;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #ffab6e;
+  --tile-pop-2: #7dd1b0;
+  --tile-pop-3: #f08cc6;
+  --tile-radius: 18px;
+  --tile-background: radial-gradient(circle at 12% 18%,rgba(255,171,110,.14) 0,transparent 38%) fixed, radial-gradient(circle at 88% 82%,rgba(125,209,176,.12) 0,transparent 40%) fixed, linear-gradient(#231b2b,#231b2b) fixed;
+}
+.theme-tile[data-theme-id='picture-book'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M6 16c8-3 16-2 26 4 10-6 18-7 26-4v38c-8-3-16-2-26 4-10-6-18-7-26-4z%22 fill=%22%23fffaf0%22 stroke=%22%233b2f2a%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M32 20v38%22 fill=%22none%22 stroke=%22%233b2f2a%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2221%22 cy=%2230%22 r=%225%22 fill=%22%23ffb84d%22 stroke=%22%233b2f2a%22 stroke-width=%221.8%22/%3E%3Cpath d=%22M9 50c6-8 14-8 19-3v6H9z%22 fill=%22%237dd1b0%22 stroke=%22%233b2f2a%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M38 46c5-6 10-6 15-2%22 fill=%22none%22 stroke=%22%23b5448c%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Children's book ---------- */
+.theme-tile[data-theme-id='childrens-book'] {
+  --tile-page: #eaf6ff;
+  --tile-card: #ffffff;
+  --tile-text: #1f2f4d;
+  --tile-border: #bfdcf2;
+  --tile-accent: #cf3a29;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #cf3a29;
+  --tile-pop-2: #0f7f9b;
+  --tile-pop-3: #c78d00;
+  --tile-radius: 16px;
+  --tile-background: radial-gradient(rgba(255,210,77,.35) 5px,transparent 6px) 0 0/90px 90px fixed, radial-gradient(rgba(15,127,155,.14) 4px,transparent 5px) 45px 45px/90px 90px fixed, linear-gradient(#eaf6ff,#eaf6ff) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='childrens-book'] {
+  --tile-page: #101a30;
+  --tile-card: #182441;
+  --tile-text: #f2f6ff;
+  --tile-border: #2f4066;
+  --tile-accent: #ff8070;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #ff8070;
+  --tile-pop-2: #58c8e0;
+  --tile-pop-3: #ffd24d;
+  --tile-radius: 16px;
+  --tile-background: radial-gradient(rgba(255,210,77,.12) 5px,transparent 6px) 0 0/90px 90px fixed, linear-gradient(#101a30,#101a30) fixed;
+}
+.theme-tile[data-theme-id='childrens-book'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%2234%22 width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23ff6f61%22 stroke=%22%231f2f4d%22 stroke-width=%222.5%22 /%3E%3Crect x=%2234%22 y=%2234%22 width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23ffd24d%22 stroke=%22%231f2f4d%22 stroke-width=%222.5%22 /%3E%3Crect x=%2220%22 y=%228%22 width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%2358c8e0%22 stroke=%22%231f2f4d%22 stroke-width=%222.5%22 /%3E%3Ccircle cx=%2232%22 cy=%2220%22 r=%225%22 fill=%22%23ffffff%22 stroke=%22%231f2f4d%22 stroke-width=%222%22/%3E%3Ccircle cx=%2218%22 cy=%2246%22 r=%223%22 fill=%22%23ffffff%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2246%22 cy=%2246%22 r=%223%22 fill=%22%231f2f4d%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Academic paper ---------- */
+.theme-tile[data-theme-id='academic-paper'] {
+  --tile-page: #efefed;
+  --tile-card: #ffffff;
+  --tile-text: #111111;
+  --tile-border: #cfcfcc;
+  --tile-accent: #27508f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #27508f;
+  --tile-pop-2: #6b2a2a;
+  --tile-pop-3: #3d6b4f;
+  --tile-radius: 2px;
+  --tile-background: linear-gradient(#efefed,#efefed) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='academic-paper'] {
+  --tile-page: #121212;
+  --tile-card: #1b1b1b;
+  --tile-text: #ececec;
+  --tile-border: #383838;
+  --tile-accent: #8db1ea;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8db1ea;
+  --tile-pop-2: #e09a9a;
+  --tile-pop-3: #86c9a0;
+  --tile-radius: 2px;
+  --tile-background: linear-gradient(#121212,#121212) fixed;
+}
+.theme-tile[data-theme-id='academic-paper'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2212%22 y=%226%22 width=%2240%22 height=%2252%22 rx=%221%22 fill=%22%23ffffff%22 stroke=%22%23111111%22 stroke-width=%222.2%22 /%3E%3Cpath d=%22M20 14H44%22 fill=%22none%22 stroke=%22%23111111%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 22H44%22 fill=%22none%22 stroke=%22%23555555%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 28H44%22 fill=%22none%22 stroke=%22%23555555%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2220%22 y=%2232%22 width=%2211%22 height=%229%22 rx=%220%22 fill=%22%23dfe6f2%22 stroke=%22%2327508f%22 stroke-width=%221.5%22 /%3E%3Crect x=%2233%22 y=%2232%22 width=%2211%22 height=%229%22 rx=%220%22 fill=%22%23f2e0e0%22 stroke=%22%236b2a2a%22 stroke-width=%221.5%22 /%3E%3Cpath d=%22M20 46H44%22 fill=%22none%22 stroke=%22%23777777%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 50H44%22 fill=%22none%22 stroke=%22%23777777%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 54H30%22 fill=%22none%22 stroke=%22%23111111%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Cursive: Copperplate ---------- */
+.theme-tile[data-theme-id='cursive-copperplate'] {
+  --tile-page: #faf6ea;
+  --tile-card: #fffdf6;
+  --tile-text: #1b2a4a;
+  --tile-border: #ddd3bb;
+  --tile-accent: #2b3f7a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #2b3f7a;
+  --tile-pop-2: #6a2f5c;
+  --tile-pop-3: #2f6b57;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#faf6ea,#faf6ea) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='cursive-copperplate'] {
+  --tile-page: #12151f;
+  --tile-card: #1a1f2d;
+  --tile-text: #ebe6d6;
+  --tile-border: #363e55;
+  --tile-accent: #a9baf0;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #a9baf0;
+  --tile-pop-2: #e0a0d2;
+  --tile-pop-3: #86c9b0;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#12151f,#12151f) fixed;
+}
+.theme-tile[data-theme-id='cursive-copperplate'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M12 52c8-2 6-16 14-18s4 12 12 8 6-18 14-22%22 fill=%22none%22 stroke=%22%232b3f7a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M44 8l10 10-18 24-10-10z%22 fill=%22%23fffdf6%22 stroke=%22%231b2a4a%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M26 32l-6 14 14-6%22 fill=%22%231b2a4a%22 stroke=%22%231b2a4a%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M10 58H54%22 fill=%22none%22 stroke=%22%23c9bd9d%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Cursive: Flowing ---------- */
+.theme-tile[data-theme-id='cursive-flowing'] {
+  --tile-page: #f5f0fb;
+  --tile-card: #fffdff;
+  --tile-text: #2e1f45;
+  --tile-border: #dccff0;
+  --tile-accent: #6a3fb0;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #6a3fb0;
+  --tile-pop-2: #b0407f;
+  --tile-pop-3: #2f7a8a;
+  --tile-radius: 10px;
+  --tile-background: linear-gradient(#f5f0fb,#f5f0fb) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='cursive-flowing'] {
+  --tile-page: #171120;
+  --tile-card: #211830;
+  --tile-text: #f0e8fb;
+  --tile-border: #3d2e56;
+  --tile-accent: #c3a3f5;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #c3a3f5;
+  --tile-pop-2: #f09ac6;
+  --tile-pop-3: #7cd0de;
+  --tile-radius: 10px;
+  --tile-background: linear-gradient(#171120,#171120) fixed;
+}
+.theme-tile[data-theme-id='cursive-flowing'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 44c6-18 10-26 14-26s2 18 8 18 6-14 12-14 4 10 12 10%22 fill=%22none%22 stroke=%22%236a3fb0%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M10 52c14 4 28 4 44-2%22 fill=%22none%22 stroke=%22%23b0407f%22 stroke-width=%222.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2252%22 cy=%2214%22 r=%224%22 fill=%22%23f0b97a%22 stroke=%22%232e1f45%22 stroke-width=%221.8%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Cursive: Brush ---------- */
+.theme-tile[data-theme-id='cursive-brush'] {
+  --tile-page: #eef4ee;
+  --tile-card: #fcfffc;
+  --tile-text: #103a3a;
+  --tile-border: #cfe0d2;
+  --tile-accent: #0e6b68;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0e6b68;
+  --tile-pop-2: #9a4a1f;
+  --tile-pop-3: #6a3fb0;
+  --tile-radius: 8px;
+  --tile-background: linear-gradient(#eef4ee,#eef4ee) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='cursive-brush'] {
+  --tile-page: #0f1a19;
+  --tile-card: #162423;
+  --tile-text: #e3f2ee;
+  --tile-border: #2a4442;
+  --tile-accent: #58d0c8;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #58d0c8;
+  --tile-pop-2: #f0a070;
+  --tile-pop-3: #c3a3f5;
+  --tile-radius: 8px;
+  --tile-background: linear-gradient(#0f1a19,#0f1a19) fixed;
+}
+.theme-tile[data-theme-id='cursive-brush'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M10 50c4-14 8-30 14-34 4-3 4 8 2 16s4 12 10 4 6-16 12-14-2 18 8 14%22 fill=%22none%22 stroke=%22%230e6b68%22 stroke-width=%224.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M8 56c16 3 32 3 48-1%22 fill=%22none%22 stroke=%22%239a4a1f%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M44 8c4 0 8 4 6 10l-8-2z%22 fill=%22%230e6b68%22 stroke=%22%23103a3a%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Visual board ---------- */
+.theme-tile[data-theme-id='visual-board'] {
+  --tile-page: #c9a574;
+  --tile-card: #fffdf2;
+  --tile-text: #2a2118;
+  --tile-border: #7a5a34;
+  --tile-accent: #b3261e;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #b3261e;
+  --tile-pop-2: #1a5fb4;
+  --tile-pop-3: #1a7a4a;
+  --tile-radius: 4px;
+  --tile-background: radial-gradient(rgba(90,60,30,.22) 1.4px,transparent 1.6px) 0 0/9px 9px fixed, radial-gradient(rgba(255,235,190,.35) 1.2px,transparent 1.4px) 4px 4px/11px 11px fixed, linear-gradient(#c9a574,#c9a574) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='visual-board'] {
+  --tile-page: #2a2118;
+  --tile-card: #3a2e22;
+  --tile-text: #f6ead6;
+  --tile-border: #6a5238;
+  --tile-accent: #ff8a7f;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #ff8a7f;
+  --tile-pop-2: #7fb4f5;
+  --tile-pop-3: #7fdca8;
+  --tile-radius: 4px;
+  --tile-background: radial-gradient(rgba(0,0,0,.28) 1.4px,transparent 1.6px) 0 0/9px 9px fixed, linear-gradient(#2a2118,#2a2118) fixed;
+}
+.theme-tile[data-theme-id='visual-board'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%228%22 width=%2252%22 height=%2248%22 rx=%223%22 fill=%22%23c9a574%22 stroke=%22%237a5a34%22 stroke-width=%223%22 /%3E%3Crect x=%2212%22 y=%2214%22 width=%2220%22 height=%2216%22 rx=%221%22 fill=%22%23fff3a8%22 stroke=%22%232a2118%22 stroke-width=%221.8%22 /%3E%3Crect x=%2236%22 y=%2220%22 width=%2216%22 height=%2220%22 rx=%221%22 fill=%22%23ffd2d2%22 stroke=%22%232a2118%22 stroke-width=%221.8%22 /%3E%3Crect x=%2214%22 y=%2236%22 width=%2220%22 height=%2214%22 rx=%221%22 fill=%22%23cfe6ff%22 stroke=%22%232a2118%22 stroke-width=%221.8%22 /%3E%3Ccircle cx=%2222%22 cy=%2214%22 r=%222.6%22 fill=%22%23b3261e%22 stroke=%22%232a2118%22 stroke-width=%221%22/%3E%3Ccircle cx=%2244%22 cy=%2220%22 r=%222.6%22 fill=%22%231a5fb4%22 stroke=%22%232a2118%22 stroke-width=%221%22/%3E%3Ccircle cx=%2224%22 cy=%2236%22 r=%222.6%22 fill=%22%231a7a4a%22 stroke=%22%232a2118%22 stroke-width=%221%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Notebook: Ruled ---------- */
+.theme-tile[data-theme-id='notebook-ruled'] {
+  --tile-page: #fffdf4;
+  --tile-card: #ffffff;
+  --tile-text: #1f2a3a;
+  --tile-border: #bcd0ea;
+  --tile-accent: #1f5fbf;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1f5fbf;
+  --tile-pop-2: #c0392b;
+  --tile-pop-3: #1f7a4a;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(90deg,transparent 56px,rgba(220,60,60,.4) 56px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 31px,rgba(70,120,200,.28) 31px 32px) 0 0/100% 100% fixed, linear-gradient(#fffdf4,#fffdf4) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='notebook-ruled'] {
+  --tile-page: #1b2230;
+  --tile-card: #232c3d;
+  --tile-text: #e9eef7;
+  --tile-border: #3a475d;
+  --tile-accent: #8ab6ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8ab6ff;
+  --tile-pop-2: #ff8f84;
+  --tile-pop-3: #7fdca8;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(90deg,transparent 56px,rgba(255,143,132,.3) 56px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 31px,rgba(138,182,255,.14) 31px 32px) 0 0/100% 100% fixed, linear-gradient(#1b2230,#1b2230) fixed;
+}
+.theme-tile[data-theme-id='notebook-ruled'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%226%22 width=%2244%22 height=%2252%22 rx=%223%22 fill=%22%23ffffff%22 stroke=%22%231f2a3a%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M20 6V58%22 fill=%22none%22 stroke=%22%23c0392b%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M24 18H48%22 fill=%22none%22 stroke=%22%239bb8e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M24 26H48%22 fill=%22none%22 stroke=%22%239bb8e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M24 34H48%22 fill=%22none%22 stroke=%22%239bb8e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M24 42H48%22 fill=%22none%22 stroke=%22%239bb8e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M24 50H48%22 fill=%22none%22 stroke=%22%239bb8e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2210%22 cy=%2216%22 r=%222.4%22 fill=%22%231f2a3a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2210%22 cy=%2232%22 r=%222.4%22 fill=%22%231f2a3a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2210%22 cy=%2248%22 r=%222.4%22 fill=%22%231f2a3a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Notebook: Graph ---------- */
+.theme-tile[data-theme-id='notebook-graph'] {
+  --tile-page: #f7fbff;
+  --tile-card: #ffffff;
+  --tile-text: #17283d;
+  --tile-border: #b9d6ee;
+  --tile-accent: #0f6fb5;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0f6fb5;
+  --tile-pop-2: #c2410c;
+  --tile-pop-3: #0f7f5c;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(rgba(90,160,215,.25) 1px,transparent 1px) 0 0/28px 28px fixed, linear-gradient(90deg,rgba(90,160,215,.25) 1px,transparent 1px) 0 0/28px 28px fixed, linear-gradient(#f7fbff,#f7fbff) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='notebook-graph'] {
+  --tile-page: #101c2a;
+  --tile-card: #172636;
+  --tile-text: #e4f0fb;
+  --tile-border: #2c4560;
+  --tile-accent: #6dc0ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #6dc0ff;
+  --tile-pop-2: #ff9a63;
+  --tile-pop-3: #6fdcb0;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(rgba(109,192,255,.12) 1px,transparent 1px) 0 0/28px 28px fixed, linear-gradient(90deg,rgba(109,192,255,.12) 1px,transparent 1px) 0 0/28px 28px fixed, linear-gradient(#101c2a,#101c2a) fixed;
+}
+.theme-tile[data-theme-id='notebook-graph'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%228%22 width=%2248%22 height=%2248%22 rx=%222%22 fill=%22%23ffffff%22 stroke=%22%2317283d%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M8 24H56M8 40H56M24 8V56M40 8V56%22 fill=%22none%22 stroke=%22%23b9d6ee%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M12 50L26 34 36 40 52 14%22 fill=%22none%22 stroke=%22%23c2410c%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2226%22 cy=%2234%22 r=%222.4%22 fill=%22%230f6fb5%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2252%22 cy=%2214%22 r=%222.4%22 fill=%22%230f6fb5%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Notebook: Dotted ---------- */
+.theme-tile[data-theme-id='notebook-dotted'] {
+  --tile-page: #faf7f1;
+  --tile-card: #ffffff;
+  --tile-text: #2b2a28;
+  --tile-border: #d9d3c7;
+  --tile-accent: #2f6f68;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #2f6f68;
+  --tile-pop-2: #b4532a;
+  --tile-pop-3: #6a4aa8;
+  --tile-radius: 6px;
+  --tile-background: radial-gradient(rgba(90,84,70,.38) 1.4px,transparent 1.6px) 0 0/26px 26px fixed, linear-gradient(#faf7f1,#faf7f1) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='notebook-dotted'] {
+  --tile-page: #191a1a;
+  --tile-card: #222323;
+  --tile-text: #ebe8e1;
+  --tile-border: #3b3d3c;
+  --tile-accent: #6fcfc4;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #6fcfc4;
+  --tile-pop-2: #f09a70;
+  --tile-pop-3: #b9a2f0;
+  --tile-radius: 6px;
+  --tile-background: radial-gradient(rgba(235,232,225,.22) 1.4px,transparent 1.6px) 0 0/26px 26px fixed, linear-gradient(#191a1a,#191a1a) fixed;
+}
+.theme-tile[data-theme-id='notebook-dotted'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%226%22 width=%2244%22 height=%2252%22 rx=%224%22 fill=%22%23ffffff%22 stroke=%22%232b2a28%22 stroke-width=%222.5%22 /%3E%3Ccircle cx=%2220%22 cy=%2216%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2220%22 cy=%2226%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2220%22 cy=%2236%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2220%22 cy=%2246%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2232%22 cy=%2216%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2232%22 cy=%2226%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2232%22 cy=%2236%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2232%22 cy=%2246%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2244%22 cy=%2216%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2244%22 cy=%2226%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2244%22 cy=%2236%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2244%22 cy=%2246%22 r=%221.6%22 fill=%22%239a958a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Cpath d=%22M17 52c6-6 10 2 16-2s8-4 14-2%22 fill=%22none%22 stroke=%22%23b4532a%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Notebook: Composition ---------- */
+.theme-tile[data-theme-id='notebook-composition'] {
+  --tile-page: #d9d9d6;
+  --tile-card: #ffffff;
+  --tile-text: #171717;
+  --tile-border: #2b2b2b;
+  --tile-accent: #2a2a2a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #2a2a2a;
+  --tile-pop-2: #b3261e;
+  --tile-pop-3: #1a5fb4;
+  --tile-radius: 3px;
+  --tile-background: radial-gradient(ellipse at 20% 30%,rgba(0,0,0,.20) 0,transparent 22%) 0 0/160px 120px fixed, radial-gradient(ellipse at 70% 60%,rgba(0,0,0,.16) 0,transparent 20%) 40px 30px/180px 140px fixed, linear-gradient(#d9d9d6,#d9d9d6) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='notebook-composition'] {
+  --tile-page: #141414;
+  --tile-card: #1f1f1f;
+  --tile-text: #f0f0ee;
+  --tile-border: #e6e6e2;
+  --tile-accent: #e8e8e4;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #e8e8e4;
+  --tile-pop-2: #ff8a7f;
+  --tile-pop-3: #7fb4f5;
+  --tile-radius: 3px;
+  --tile-background: radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.10) 0,transparent 22%) 0 0/160px 120px fixed, radial-gradient(ellipse at 70% 60%,rgba(255,255,255,.08) 0,transparent 20%) 40px 30px/180px 140px fixed, linear-gradient(#141414,#141414) fixed;
+}
+.theme-tile[data-theme-id='notebook-composition'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%226%22 width=%2248%22 height=%2252%22 rx=%223%22 fill=%22%232a2a2a%22 stroke=%22%23171717%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M14 18c8-6 14 4 22-2s12 6 16 0M14 46c8-6 14 4 22-2%22 fill=%22none%22 stroke=%22%23e6e6e2%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 opacity=%22.7%22/%3E%3Crect x=%2216%22 y=%2222%22 width=%2232%22 height=%2220%22 rx=%221%22 fill=%22%23ffffff%22 stroke=%22%23171717%22 stroke-width=%222%22 /%3E%3Cpath d=%22M21 29H43%22 fill=%22none%22 stroke=%22%238a8a8a%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 35H43%22 fill=%22none%22 stroke=%22%238a8a8a%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Class book ---------- */
+.theme-tile[data-theme-id='class-book'] {
+  --tile-page: #e8eef9;
+  --tile-card: #ffffff;
+  --tile-text: #17274d;
+  --tile-border: #b7c6e6;
+  --tile-accent: #2149a8;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #2149a8;
+  --tile-pop-2: #c62828;
+  --tile-pop-3: #1b7a48;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(#e8eef9,#e8eef9) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='class-book'] {
+  --tile-page: #111a30;
+  --tile-card: #1a2442;
+  --tile-text: #e8eefc;
+  --tile-border: #2e3d66;
+  --tile-accent: #8caaf5;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8caaf5;
+  --tile-pop-2: #ff8a8a;
+  --tile-pop-3: #7fdca8;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(#111a30,#111a30) fixed;
+}
+.theme-tile[data-theme-id='class-book'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%226%22 width=%2244%22 height=%2252%22 rx=%224%22 fill=%22%232149a8%22 stroke=%22%2317274d%22 stroke-width=%222.5%22 /%3E%3Crect x=%2216%22 y=%2214%22 width=%2232%22 height=%2218%22 rx=%222%22 fill=%22%23ffffff%22 stroke=%22%2317274d%22 stroke-width=%222%22 /%3E%3Cpath d=%22M21 20H43%22 fill=%22none%22 stroke=%22%237b8bb0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M21 26H43%22 fill=%22none%22 stroke=%22%237b8bb0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 44l5 5 10-12%22 fill=%22none%22 stroke=%22%23ffb4b4%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Rough book ---------- */
+.theme-tile[data-theme-id='rough-book'] {
+  --tile-page: #e6e4dc;
+  --tile-card: #f7f6f0;
+  --tile-text: #262626;
+  --tile-border: #8a877a;
+  --tile-accent: #3b4a6b;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #3b4a6b;
+  --tile-pop-2: #a33a2a;
+  --tile-pop-3: #3d6b47;
+  --tile-radius: 3px 8px 3px 8px / 8px 3px 8px 3px;
+  --tile-background: repeating-linear-gradient(180deg,transparent 0 35px,rgba(80,80,70,.12) 35px 36px) 0 0/100% 100% fixed, radial-gradient(rgba(70,60,40,.10) 1px,transparent 1.2px) 0 0/6px 6px fixed, linear-gradient(#e6e4dc,#e6e4dc) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='rough-book'] {
+  --tile-page: #1c1c1a;
+  --tile-card: #262623;
+  --tile-text: #ecebe4;
+  --tile-border: #5b594f;
+  --tile-accent: #a9bbe0;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #a9bbe0;
+  --tile-pop-2: #f09a8a;
+  --tile-pop-3: #86c99a;
+  --tile-radius: 3px 8px 3px 8px / 8px 3px 8px 3px;
+  --tile-background: repeating-linear-gradient(180deg,transparent 0 35px,rgba(255,255,255,.07) 35px 36px) 0 0/100% 100% fixed, linear-gradient(#1c1c1a,#1c1c1a) fixed;
+}
+.theme-tile[data-theme-id='rough-book'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%228%22 width=%2244%22 height=%2248%22 rx=%223%22 fill=%22%23f7f6f0%22 stroke=%22%23262626%22 stroke-width=%222.2%22 /%3E%3Cpath d=%22M16 20c6-6 8 6 14 0s8-4 14 0%22 fill=%22none%22 stroke=%22%23555349%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M16 30l30-4M16 36l24-3%22 fill=%22none%22 stroke=%22%23a33a2a%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M18 46c4-8 8 4 12-2%22 fill=%22none%22 stroke=%22%233b4a6b%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2244%22 cy=%2244%22 r=%225%22 fill=%22none%22 stroke=%22%233b4a6b%22 stroke-width=%221.8%22/%3E%3Cpath d=%22M41 44h6M44 41v6%22 fill=%22none%22 stroke=%22%233b4a6b%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- English writing ---------- */
+.theme-tile[data-theme-id='english-writing'] {
+  --tile-page: #fffef7;
+  --tile-card: #ffffff;
+  --tile-text: #1c2a44;
+  --tile-border: #bcd0ec;
+  --tile-accent: #2563c4;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #2563c4;
+  --tile-pop-2: #c53030;
+  --tile-pop-3: #1b7a48;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(transparent 0 15px,rgba(37,99,196,.32) 15px 16px,transparent 16px 31px,rgba(197,48,48,.28) 31px 32px,transparent 32px 47px,rgba(37,99,196,.32) 47px 48px,transparent 48px 64px) 0 0/100% 64px fixed, linear-gradient(#fffef7,#fffef7) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='english-writing'] {
+  --tile-page: #171f2e;
+  --tile-card: #1f2a3d;
+  --tile-text: #e8eef9;
+  --tile-border: #3a4a66;
+  --tile-accent: #8db4f5;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8db4f5;
+  --tile-pop-2: #ff9090;
+  --tile-pop-3: #7fdca8;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(transparent 0 15px,rgba(141,180,245,.2) 15px 16px,transparent 16px 31px,rgba(255,144,144,.2) 31px 32px,transparent 32px 47px,rgba(141,180,245,.2) 47px 48px,transparent 48px 64px) 0 0/100% 64px fixed, linear-gradient(#171f2e,#171f2e) fixed;
+}
+.theme-tile[data-theme-id='english-writing'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%2212%22 width=%2252%22 height=%2240%22 rx=%223%22 fill=%22%23ffffff%22 stroke=%22%231c2a44%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M10 22H54M10 42H54%22 fill=%22none%22 stroke=%22%232563c4%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M10 32H54%22 fill=%22none%22 stroke=%22%23c53030%22 stroke-width=%221.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-dasharray=%224 3%22/%3E%3Cpath d=%22M14 42c0-8 5-10 9-8 3 2 1 8-3 8-3 0-4-4 1-5 4 1 5 3 5 5%22 fill=%22none%22 stroke=%22%231c2a44%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M38 42V22c4 0 6 2 6 5s-3 5-6 5%22 fill=%22none%22 stroke=%22%231c2a44%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Handwritten: Pencil ---------- */
+.theme-tile[data-theme-id='handwritten-pencil'] {
+  --tile-page: #fbf8ef;
+  --tile-card: #fffefa;
+  --tile-text: #2d2d33;
+  --tile-border: #c9d3e0;
+  --tile-accent: #4a5568;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #4a5568;
+  --tile-pop-2: #a8452f;
+  --tile-pop-3: #3f7a62;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(90deg,transparent 56px,rgba(200,80,70,.32) 56px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 33px,rgba(110,140,180,.30) 33px 34px) 0 0/100% 100% fixed, linear-gradient(#fbf8ef,#fbf8ef) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='handwritten-pencil'] {
+  --tile-page: #1a1b1f;
+  --tile-card: #23242a;
+  --tile-text: #e6e6ea;
+  --tile-border: #3d3f4a;
+  --tile-accent: #b8c2d6;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #b8c2d6;
+  --tile-pop-2: #f09a84;
+  --tile-pop-3: #86cfae;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(90deg,transparent 56px,rgba(240,154,132,.26) 56px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 33px,rgba(184,194,214,.13) 33px 34px) 0 0/100% 100% fixed, linear-gradient(#1a1b1f,#1a1b1f) fixed;
+}
+.theme-tile[data-theme-id='handwritten-pencil'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2246%22 rx=%223%22 fill=%22%23fffefa%22 stroke=%22%232d2d33%22 stroke-width=%222.4%22 /%3E%3Cpath d=%22M14 24H50%22 fill=%22none%22 stroke=%22%23c9d3e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M14 34H50%22 fill=%22none%22 stroke=%22%23c9d3e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M14 44H50%22 fill=%22none%22 stroke=%22%23c9d3e0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M16 22c4-6 6 4 10-2s6 2 10-2%22 fill=%22none%22 stroke=%22%234a5568%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M44 8l8 8-18 22-8-8z%22 fill=%22%23f3c24a%22 stroke=%22%232d2d33%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M26 30l-3 10 10-3z%22 fill=%22%23e8c9a0%22 stroke=%22%232d2d33%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Handwritten: Ink ---------- */
+.theme-tile[data-theme-id='handwritten-ink'] {
+  --tile-page: #f8fbff;
+  --tile-card: #ffffff;
+  --tile-text: #14306b;
+  --tile-border: #bfd5ef;
+  --tile-accent: #1d4ed8;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1d4ed8;
+  --tile-pop-2: #be123c;
+  --tile-pop-3: #0f766e;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(rgba(120,160,215,.25) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(90deg,rgba(120,160,215,.25) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(#f8fbff,#f8fbff) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='handwritten-ink'] {
+  --tile-page: #0f1a33;
+  --tile-card: #16244a;
+  --tile-text: #e2ebff;
+  --tile-border: #2d4274;
+  --tile-accent: #8fb0ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8fb0ff;
+  --tile-pop-2: #ff8fa8;
+  --tile-pop-3: #6fdcd0;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(rgba(143,176,255,.11) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(90deg,rgba(143,176,255,.11) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(#0f1a33,#0f1a33) fixed;
+}
+.theme-tile[data-theme-id='handwritten-ink'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2246%22 rx=%223%22 fill=%22%23ffffff%22 stroke=%22%2314306b%22 stroke-width=%222.4%22 /%3E%3Cpath d=%22M8 26H56M8 40H56M24 10V56M40 10V56%22 fill=%22none%22 stroke=%22%23c6d8ef%22 stroke-width=%221.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M14 22c4-8 6 6 10-2s6 4 10-2s6 2 10-2%22 fill=%22none%22 stroke=%22%231d4ed8%22 stroke-width=%222.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M14 38c6-6 8 4 14-2s8-2 12 0%22 fill=%22none%22 stroke=%22%231d4ed8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M42 6l10 4-6 20-8-6z%22 fill=%22%231d4ed8%22 stroke=%22%2314306b%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Handwritten: Marker ---------- */
+.theme-tile[data-theme-id='handwritten-marker'] {
+  --tile-page: #fffaf2;
+  --tile-card: #ffffff;
+  --tile-text: #232323;
+  --tile-border: #e3d3bd;
+  --tile-accent: #0f766e;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0f766e;
+  --tile-pop-2: #c2410c;
+  --tile-pop-3: #6d28d9;
+  --tile-radius: 8px;
+  --tile-background: radial-gradient(rgba(194,65,12,.30) 1.4px,transparent 1.6px) 0 0/28px 28px fixed, linear-gradient(#fffaf2,#fffaf2) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='handwritten-marker'] {
+  --tile-page: #1b1a18;
+  --tile-card: #252320;
+  --tile-text: #f2efe8;
+  --tile-border: #463f35;
+  --tile-accent: #5eead4;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #5eead4;
+  --tile-pop-2: #fb923c;
+  --tile-pop-3: #c4b5fd;
+  --tile-radius: 8px;
+  --tile-background: radial-gradient(rgba(251,146,60,.20) 1.4px,transparent 1.6px) 0 0/28px 28px fixed, linear-gradient(#1b1a18,#1b1a18) fixed;
+}
+.theme-tile[data-theme-id='handwritten-marker'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%2214%22 width=%2240%22 height=%2240%22 rx=%223%22 fill=%22%23ffffff%22 stroke=%22%23232323%22 stroke-width=%222.4%22 /%3E%3Ccircle cx=%2214%22 cy=%2224%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2214%22 cy=%2234%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2214%22 cy=%2244%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2224%22 cy=%2224%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2224%22 cy=%2234%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2224%22 cy=%2244%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2234%22 cy=%2224%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2234%22 cy=%2234%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2234%22 cy=%2244%22 r=%221.4%22 fill=%22%23e0b99a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Cpath d=%22M12 26c4-6 6 4 10-2s6 2 12 0%22 fill=%22none%22 stroke=%22%230f766e%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M12 40c5-4 8 4 14 0%22 fill=%22none%22 stroke=%22%23c2410c%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2242%22 y=%226%22 width=%2212%22 height=%2240%22 rx=%223%22 fill=%22%230f766e%22 stroke=%22%23232323%22 stroke-width=%222.2%22 transform=%22rotate(25 48 26)%22/%3E%3Crect x=%2244%22 y=%2236%22 width=%228%22 height=%2210%22 rx=%221%22 fill=%22%23232323%22 stroke=%22%23232323%22 stroke-width=%221%22 transform=%22rotate(25 48 41)%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Planner ---------- */
+.theme-tile[data-theme-id='planner'] {
+  --tile-page: #f8f3e8;
+  --tile-card: #fffdf7;
+  --tile-text: #23302f;
+  --tile-border: #d9d1bd;
+  --tile-accent: #0f6b6b;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0f6b6b;
+  --tile-pop-2: #c4543a;
+  --tile-pop-3: #b07a12;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(rgba(120,110,80,.13) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(90deg,rgba(120,110,80,.13) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(#f8f3e8,#f8f3e8) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='planner'] {
+  --tile-page: #171c1b;
+  --tile-card: #212827;
+  --tile-text: #e8efe9;
+  --tile-border: #38433f;
+  --tile-accent: #5fd0c8;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #5fd0c8;
+  --tile-pop-2: #f2937c;
+  --tile-pop-3: #e5c06a;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(rgba(232,239,233,.07) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(90deg,rgba(232,239,233,.07) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(#171c1b,#171c1b) fixed;
+}
+.theme-tile[data-theme-id='planner'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2246%22 rx=%224%22 fill=%22%23fffdf7%22 stroke=%22%2323302f%22 stroke-width=%222.5%22 /%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2212%22 rx=%224%22 fill=%22%230f6b6b%22 stroke=%22%2323302f%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M20 6v8M44 6v8%22 fill=%22none%22 stroke=%22%2323302f%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2215%22 y=%2229%22 width=%228%22 height=%228%22 rx=%221%22 fill=%22none%22 stroke=%22%2323302f%22 stroke-width=%221.8%22 /%3E%3Cpath d=%22M16.500 33l2 2 3.500-4%22 fill=%22none%22 stroke=%22%23c4543a%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M28 33H50%22 fill=%22none%22 stroke=%22%239aa79f%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2215%22 y=%2242%22 width=%228%22 height=%228%22 rx=%221%22 fill=%22none%22 stroke=%22%2323302f%22 stroke-width=%221.8%22 /%3E%3Cpath d=%22M28 46H46%22 fill=%22none%22 stroke=%22%239aa79f%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Note taker ---------- */
+.theme-tile[data-theme-id='note-taker'] {
+  --tile-page: #fbf0a8;
+  --tile-card: #fffbe0;
+  --tile-text: #262418;
+  --tile-border: #b9b36e;
+  --tile-accent: #1d4f91;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1d4f91;
+  --tile-pop-2: #b3261e;
+  --tile-pop-3: #2f6b47;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(90deg,transparent 52px,rgba(200,50,50,.5) 52px 53px,transparent 53px 57px,rgba(200,50,50,.5) 57px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 29px,rgba(60,110,170,.35) 29px 30px) 0 0/100% 100% fixed, linear-gradient(#fbf0a8,#fbf0a8) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='note-taker'] {
+  --tile-page: #1f1d12;
+  --tile-card: #2a281a;
+  --tile-text: #f3efd2;
+  --tile-border: #4d492b;
+  --tile-accent: #8fb8ee;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #8fb8ee;
+  --tile-pop-2: #ff8f84;
+  --tile-pop-3: #86c99a;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(90deg,transparent 52px,rgba(255,143,132,.35) 52px 53px,transparent 53px 57px,rgba(255,143,132,.35) 57px 58px,transparent 58px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 29px,rgba(143,184,238,.14) 29px 30px) 0 0/100% 100% fixed, linear-gradient(#1f1d12,#1f1d12) fixed;
+}
+.theme-tile[data-theme-id='note-taker'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%2214%22 width=%2244%22 height=%2244%22 rx=%222%22 fill=%22%23fff3a0%22 stroke=%22%23262418%22 stroke-width=%222.4%22 /%3E%3Crect x=%2210%22 y=%226%22 width=%2244%22 height=%2210%22 rx=%222%22 fill=%22%233a3a3a%22 stroke=%22%23262418%22 stroke-width=%222.4%22 /%3E%3Cpath d=%22M20 14V58M23 14V58%22 fill=%22none%22 stroke=%22%23c83232%22 stroke-width=%221.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M28 26H48%22 fill=%22none%22 stroke=%22%237aa0cc%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M28 34H48%22 fill=%22none%22 stroke=%22%237aa0cc%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M28 42H48%22 fill=%22none%22 stroke=%22%237aa0cc%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M28 50H48%22 fill=%22none%22 stroke=%22%237aa0cc%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M30 30c3-4 5 3 8-1%22 fill=%22none%22 stroke=%22%231d4f91%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Office ---------- */
+.theme-tile[data-theme-id='office'] {
+  --tile-page: #eef1f5;
+  --tile-card: #ffffff;
+  --tile-text: #1a2230;
+  --tile-border: #d3d9e2;
+  --tile-accent: #1f5fd6;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1f5fd6;
+  --tile-pop-2: #0b7a75;
+  --tile-pop-3: #b45309;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#eef1f5,#eef1f5) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='office'] {
+  --tile-page: #12161c;
+  --tile-card: #1a2029;
+  --tile-text: #e8ecf2;
+  --tile-border: #313a47;
+  --tile-accent: #7fadff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #7fadff;
+  --tile-pop-2: #58cdc6;
+  --tile-pop-3: #f5a35c;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(#12161c,#12161c) fixed;
+}
+.theme-tile[data-theme-id='office'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2232%22 rx=%223%22 fill=%22%23ffffff%22 stroke=%22%231a2230%22 stroke-width=%222.5%22 /%3E%3Crect x=%2213%22 y=%2215%22 width=%2238%22 height=%2222%22 rx=%221%22 fill=%22%23e3ecfb%22 stroke=%22%231f5fd6%22 stroke-width=%221.6%22 /%3E%3Cpath d=%22M16 32l8-8 6 5 10-10 6 6%22 fill=%22none%22 stroke=%22%231f5fd6%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M26 42v8M38 42v8M20 52H44%22 fill=%22none%22 stroke=%22%231a2230%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Lab ---------- */
+.theme-tile[data-theme-id='lab'] {
+  --tile-page: #eaf4f4;
+  --tile-card: #ffffff;
+  --tile-text: #10292b;
+  --tile-border: #c3dcdc;
+  --tile-accent: #0b7a7a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0b7a7a;
+  --tile-pop-2: #b3402a;
+  --tile-pop-3: #5b4bc4;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(rgba(11,122,122,.08) 1px,transparent 1px) 0 0/32px 32px fixed, linear-gradient(90deg,rgba(11,122,122,.08) 1px,transparent 1px) 0 0/32px 32px fixed, linear-gradient(#eaf4f4,#eaf4f4) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='lab'] {
+  --tile-page: #0b1819;
+  --tile-card: #122426;
+  --tile-text: #def2f2;
+  --tile-border: #25474a;
+  --tile-accent: #4fd6d6;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #4fd6d6;
+  --tile-pop-2: #ff9a80;
+  --tile-pop-3: #b0a6f5;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(rgba(79,214,214,.06) 1px,transparent 1px) 0 0/32px 32px fixed, linear-gradient(90deg,rgba(79,214,214,.06) 1px,transparent 1px) 0 0/32px 32px fixed, linear-gradient(#0b1819,#0b1819) fixed;
+}
+.theme-tile[data-theme-id='lab'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M26 6h12M28 6v16L14 50a4 4 0 003.500 6h29a4 4 0 003.500-6L36 22V6%22 fill=%22%23ffffff%22 stroke=%22%2310292b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 42h24l5 9a4 4 0 01-3.500 5h-27A4 4 0 0115 51z%22 fill=%22%234fd6d6%22 stroke=%22%2310292b%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2230%22 cy=%2236%22 r=%222.4%22 fill=%22%230b7a7a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2237%22 cy=%2230%22 r=%221.8%22 fill=%22%230b7a7a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3Ccircle cx=%2233%22 cy=%2247%22 r=%222%22 fill=%22%23ffffff%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Meeting room ---------- */
+.theme-tile[data-theme-id='meeting-room'] {
+  --tile-page: #ebe7e1;
+  --tile-card: #ffffff;
+  --tile-text: #232a31;
+  --tile-border: #d3ccc1;
+  --tile-accent: #b3441a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #b3441a;
+  --tile-pop-2: #2c5d7c;
+  --tile-pop-3: #4d6b47;
+  --tile-radius: 9px;
+  --tile-background: linear-gradient(135deg,rgba(255,255,255,.55) 0,transparent 45%) fixed, linear-gradient(#ebe7e1,#ebe7e1) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='meeting-room'] {
+  --tile-page: #171a1d;
+  --tile-card: #20252a;
+  --tile-text: #ece8e1;
+  --tile-border: #394048;
+  --tile-accent: #ff9a6b;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #ff9a6b;
+  --tile-pop-2: #7cc0e8;
+  --tile-pop-3: #9cc795;
+  --tile-radius: 9px;
+  --tile-background: linear-gradient(135deg,rgba(255,255,255,.05) 0,transparent 45%) fixed, linear-gradient(#171a1d,#171a1d) fixed;
+}
+.theme-tile[data-theme-id='meeting-room'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%2222%22 width=%2244%22 height=%2220%22 rx=%228%22 fill=%22%23c79a62%22 stroke=%22%23232a31%22 stroke-width=%222.5%22 /%3E%3Crect x=%2212%22 y=%228%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2226%22 y=%228%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2240%22 y=%228%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2212%22 y=%2247%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2226%22 y=%2247%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2240%22 y=%2247%22 width=%2212%22 height=%229%22 rx=%223%22 fill=%22%232c5d7c%22 stroke=%22%23232a31%22 stroke-width=%222%22 /%3E%3Crect x=%2228%22 y=%2228%22 width=%228%22 height=%228%22 rx=%221%22 fill=%22%23ffffff%22 stroke=%22%23232a31%22 stroke-width=%221.6%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Board room ---------- */
+.theme-tile[data-theme-id='board-room'] {
+  --tile-page: #f1ece0;
+  --tile-card: #fffdf7;
+  --tile-text: #1d2a24;
+  --tile-border: #cfc4a8;
+  --tile-accent: #1d5a43;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1d5a43;
+  --tile-pop-2: #8a6414;
+  --tile-pop-3: #7a2e2e;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(#f1ece0,#f1ece0) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='board-room'] {
+  --tile-page: #0e1512;
+  --tile-card: #151f1b;
+  --tile-text: #ece6d6;
+  --tile-border: #2e3d36;
+  --tile-accent: #6fd0a4;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #6fd0a4;
+  --tile-pop-2: #e0b85c;
+  --tile-pop-3: #e49a9a;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(#0e1512,#0e1512) fixed;
+}
+.theme-tile[data-theme-id='board-room'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%2236%22 width=%2252%22 height=%2212%22 rx=%224%22 fill=%22%236b4426%22 stroke=%22%231d2a24%22 stroke-width=%222.5%22 /%3E%3Cpath d=%22M10 48v8M54 48v8%22 fill=%22none%22 stroke=%22%231d2a24%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2214%22 y=%2222%22 width=%2212%22 height=%2212%22 rx=%224%22 fill=%22%231d5a43%22 stroke=%22%231d2a24%22 stroke-width=%222.2%22 /%3E%3Crect x=%2238%22 y=%2222%22 width=%2212%22 height=%2212%22 rx=%224%22 fill=%22%231d5a43%22 stroke=%22%231d2a24%22 stroke-width=%222.2%22 /%3E%3Crect x=%2226%22 y=%2210%22 width=%2212%22 height=%2212%22 rx=%224%22 fill=%22%231d5a43%22 stroke=%22%231d2a24%22 stroke-width=%222.2%22 /%3E%3Cpath d=%22M28 40h8%22 fill=%22none%22 stroke=%22%23e0b85c%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
 /* ---------- Code ---------- */
 .theme-tile[data-theme-id='code'] {
   --tile-page: #f5f6f2;
@@ -1922,6 +2790,68 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2230%22 cy=%2234%22 r=%2217%22 fill=%22%238b5cf6%22 stroke=%22%232e1065%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 28c8 2 20 0 28-4M14 38c10 3 22 0 31-4%22 stroke=%22%23c4b5fd%22 stroke-width=%223%22 fill=%22none%22 stroke-linecap=%22round%22 opacity=%22.7%22/%3E%3Cellipse cx=%2230%22 cy=%2236%22 rx=%2229%22 ry=%228%22 fill=%22none%22 stroke=%22%23fbbf24%22 stroke-width=%224%22 transform=%22rotate(-18 30 36)%22/%3E%3Cpath d=%22M13 40a17 17 0 0 0 34 -2%22 fill=%22none%22 stroke=%22%238b5cf6%22 stroke-width=%220%22/%3E%3Ccircle cx=%2254%22 cy=%2212%22 r=%223%22 fill=%22%23ffe27a%22/%3E%3Ccircle cx=%228%22 cy=%2210%22 r=%222%22 fill=%22%23ffe27a%22/%3E%3Ccircle cx=%2252%22 cy=%2256%22 r=%222%22 fill=%22%237dd3fc%22/%3E%3C/svg%3E");
 }
 
+/* ---------- Blackletter ---------- */
+.theme-tile[data-theme-id='blackletter'] {
+  --tile-page: #eadfc6;
+  --tile-card: #f6eed8;
+  --tile-text: #1a1410;
+  --tile-border: #8a7656;
+  --tile-accent: #8c1c13;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #8c1c13;
+  --tile-pop-2: #1f3a5f;
+  --tile-pop-3: #3d5a2f;
+  --tile-radius: 2px;
+  --tile-background: radial-gradient(ellipse at 50% 0,rgba(255,250,230,.55) 0,transparent 70%) fixed, linear-gradient(#eadfc6,#eadfc6) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='blackletter'] {
+  --tile-page: #110e0b;
+  --tile-card: #1b1612;
+  --tile-text: #eadfc6;
+  --tile-border: #4a3f2e;
+  --tile-accent: #e8736a;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #e8736a;
+  --tile-pop-2: #8db1ea;
+  --tile-pop-3: #9cc88a;
+  --tile-radius: 2px;
+  --tile-background: radial-gradient(ellipse at 50% 0,rgba(232,115,106,.08) 0,transparent 70%) fixed, linear-gradient(#110e0b,#110e0b) fixed;
+}
+.theme-tile[data-theme-id='blackletter'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%228%22 width=%2248%22 height=%2248%22 rx=%221%22 fill=%22%23f6eed8%22 stroke=%22%231a1410%22 stroke-width=%222.8%22 /%3E%3Crect x=%2213%22 y=%2213%22 width=%2238%22 height=%2238%22 rx=%220%22 fill=%22none%22 stroke=%22%238c1c13%22 stroke-width=%221.8%22 /%3E%3Cpath d=%22M24 20c-2 8-2 16 2 24 3 2 5 1 6-2M26 22c6-2 12 0 14 6-3 4-8 6-14 6%22 fill=%22none%22 stroke=%22%231a1410%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 48c4 2 8 2 12 0M36 48c3 1 6 1 8 0%22 fill=%22none%22 stroke=%22%238c1c13%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2244%22 cy=%2218%22 r=%222.2%22 fill=%22%238c1c13%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Early Roman ---------- */
+.theme-tile[data-theme-id='early-roman'] {
+  --tile-page: #e9e2d3;
+  --tile-card: #f8f4ea;
+  --tile-text: #2a241b;
+  --tile-border: #c7bba2;
+  --tile-accent: #9a3b1f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #9a3b1f;
+  --tile-pop-2: #3d5a6b;
+  --tile-pop-3: #5a6b3d;
+  --tile-radius: 2px;
+  --tile-background: repeating-linear-gradient(90deg,rgba(90,70,40,.04) 0 3px,transparent 3px 7px) fixed, linear-gradient(#e9e2d3,#e9e2d3) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='early-roman'] {
+  --tile-page: #15120e;
+  --tile-card: #1f1b15;
+  --tile-text: #ece5d4;
+  --tile-border: #413a2c;
+  --tile-accent: #e88a68;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #e88a68;
+  --tile-pop-2: #8db8d0;
+  --tile-pop-3: #aac88a;
+  --tile-radius: 2px;
+  --tile-background: repeating-linear-gradient(90deg,rgba(255,240,210,.025) 0 3px,transparent 3px 7px) fixed, linear-gradient(#15120e,#15120e) fixed;
+}
+.theme-tile[data-theme-id='early-roman'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%2210%22 y=%226%22 width=%2244%22 height=%228%22 rx=%221%22 fill=%22%23e9e2d3%22 stroke=%22%232a241b%22 stroke-width=%222.4%22 /%3E%3Crect x=%2214%22 y=%2214%22 width=%2236%22 height=%226%22 rx=%221%22 fill=%22%23d8cfba%22 stroke=%22%232a241b%22 stroke-width=%222.4%22 /%3E%3Crect x=%2218%22 y=%2220%22 width=%2228%22 height=%2230%22 rx=%221%22 fill=%22%23f1ead9%22 stroke=%22%232a241b%22 stroke-width=%222.4%22 /%3E%3Cpath d=%22M26 20V50M32 20V50M38 20V50%22 fill=%22none%22 stroke=%22%23b7ab90%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2212%22 y=%2250%22 width=%2240%22 height=%228%22 rx=%221%22 fill=%22%23e9e2d3%22 stroke=%22%232a241b%22 stroke-width=%222.4%22 /%3E%3Cpath d=%22M22 10h20%22 fill=%22none%22 stroke=%22%239a3b1f%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
 /* ---------- Stock market ---------- */
 .theme-tile[data-theme-id='stock-market'] {
   --tile-page: #eef7f2;
@@ -1950,7 +2880,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%234fd9a0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M12 96V70M12 62V50M30 86V60M30 52V40M48 100V84M48 76V64%22/%3E%3Crect x=%228%22 y=%2270%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2226%22 y=%2260%22 width=%228%22 height=%2226%22/%3E%3Crect x=%2244%22 y=%2284%22 width=%228%22 height=%2216%22/%3E%3Cpath d=%22M70 40L84 28L96 36L112 16M104 16H112V24%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0d1d16,#08130e) fixed;
 }
 .theme-tile[data-theme-id='stock-market'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M14 8V54%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%228%22 y=%2220%22 width=%2212%22 height=%2224%22 rx=%222%22 fill=%22%2313805a%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 14V58%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2226%22 y=%2226%22 width=%2212%22 height=%2220%22 rx=%222%22 fill=%22%23c8402f%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M50 6V50%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2244%22 y=%2212%22 width=%2212%22 height=%2226%22 rx=%222%22 fill=%22%231a9e6e%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M6 58L24 48L36 54L58 30%22 fill=%22none%22 stroke=%22%23ffb703%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M14 8V54%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%228%22 y=%2220%22 width=%2212%22 height=%2224%22 rx=%222%22 fill=%22%2313805a%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 14V58%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2226%22 y=%2226%22 width=%2212%22 height=%2220%22 rx=%222%22 fill=%22%23c8402f%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M50 6V50%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Crect x=%2244%22 y=%2212%22 width=%2212%22 height=%2226%22 rx=%222%22 fill=%22%231a9e6e%22 stroke=%22%230f2a20%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M6 58L24 48L36 54L58 30%22 fill=%22none%22 stroke=%22%23ffb703%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Debt ---------- */
@@ -1981,7 +2911,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08a7a%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2226%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M26 72V58%22/%3E%3Crect x=%2220%22 y=%2240%22 width=%2212%22 height=%2218%22 rx=%226%22/%3E%3Cpath d=%22M80 20V50M70 40l10 12 10-12%22/%3E%3Cpath d=%22M92 90a8 8 0 1 1 16 0a8 8 0 1 1 -16 0M100 82V74%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#1f100d,#150a08) fixed;
 }
 .theme-tile[data-theme-id='debt'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2238%22 cy=%2240%22 r=%2219%22 fill=%22%234a4f5c%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M28 33A13 13 0 0 1 38 28%22 fill=%22none%22 stroke=%22%239aa0b0%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Crect x=%2231%22 y=%2210%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223%22 transform=%22rotate(-35 21 18)%22/%3E%3Cpath d=%22M38 19V22%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 38V56M3 49l6 8 6-8%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2238%22 cy=%2240%22 r=%2219%22 fill=%22%234a4f5c%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M28 33A13 13 0 0 1 38 28%22 fill=%22none%22 stroke=%22%239aa0b0%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Crect x=%2231%22 y=%2210%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2214%22 height=%229%22 rx=%224.5%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223%22 transform=%22rotate(-35 21 18)%22/%3E%3Cpath d=%22M38 19V22%22 stroke=%22%232b1511%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 38V56M3 49l6 8 6-8%22 fill=%22none%22 stroke=%22%23a3342a%22 stroke-width=%223.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Equity ---------- */
@@ -2012,7 +2942,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%239aa0ff%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M30 30L30 8A22 22 0 0 1 52 30Z%22/%3E%3Cpath d=%22M26 34A22 22 0 1 0 48 56L26 34Z%22/%3E%3Cpath d=%22M84 96V76M96 96V62M108 96V84M80 100H112%22/%3E%3Cpath d=%22M84 24l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#15163a,#0d0e24) fixed;
 }
 .theme-tile[data-theme-id='equity'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M30 38L30 14A24 24 0 1 0 54 38Z%22 fill=%22%234a4fd6%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M35 33L35 9A24 24 0 0 1 59 33Z%22 fill=%22%23e0457b%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 40C16 33 20 28 25 26%22 fill=%22none%22 stroke=%22%23c9ccff%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23ffd27a%22 stroke=%22%23181a3b%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M30 38L30 14A24 24 0 1 0 54 38Z%22 fill=%22%234a4fd6%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M35 33L35 9A24 24 0 0 1 59 33Z%22 fill=%22%23e0457b%22 stroke=%22%23181a3b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 40C16 33 20 28 25 26%22 fill=%22none%22 stroke=%22%23c9ccff%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23ffd27a%22 stroke=%22%23181a3b%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Gold ---------- */
@@ -2043,7 +2973,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f2c84b%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M10 40L18 28H44L52 40Z%22/%3E%3Cpath d=%22M14 40V50H48V40%22/%3E%3Cpath d=%22M66 100L74 88H100L108 100Z%22/%3E%3Cpath d=%22M88 30l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3Cpath d=%22M20 90l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#211a05,#150f02) fixed;
 }
 .theme-tile[data-theme-id='gold'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cpath d=%22M8 56L14 42H50L56 56Z%22 fill=%22%23d4a017%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 42L21 30H43L48 42Z%22 fill=%22%23e8b92a%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M24 30L28 19H36L40 30Z%22 fill=%22%23f6d55c%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M14 51H28M20 37H30M28 25H32%22 fill=%22none%22 stroke=%22%23fff4b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M52 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a2a05%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 56L14 42H50L56 56Z%22 fill=%22%23d4a017%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 42L21 30H43L48 42Z%22 fill=%22%23e8b92a%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M24 30L28 19H36L40 30Z%22 fill=%22%23f6d55c%22 stroke=%22%233a2a05%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M14 51H28M20 37H30M28 25H32%22 fill=%22none%22 stroke=%22%23fff4b8%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M52 6l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a2a05%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Silver ---------- */
@@ -2074,7 +3004,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23a9bddf%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Ccircle cx=%2228%22 cy=%2232%22 r=%2216%22/%3E%3Cpath d=%22M28 22V42M18 32H38%22/%3E%3Cpath d=%22M70 98H110M72 90H108M74 82H106%22/%3E%3Cpath d=%22M92 24A12 12 0 1 0 104 40A9 9 0 0 1 92 24Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#161b23,#0d1117) fixed;
 }
 .theme-tile[data-theme-id='silver'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2222%22 ry=%227%22 fill=%22%239aa8bd%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M10 50V44A22 7 0 0 0 54 44V50%22 fill=%22%23b8c4d6%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2219%22 fill=%22%23d5dde9%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2213%22 fill=%22none%22 stroke=%22%237a8fb0%22 stroke-width=%222%22/%3E%3Cpath d=%22M30 17l3 7l7 2l-7 3l-3 7l-3-7l-7-3l7-2Z%22 fill=%22%2352688a%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M52 8A8 8 0 1 0 58 20A6 6 0 0 1 52 8Z%22 fill=%22%23e8edf5%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2222%22 ry=%227%22 fill=%22%239aa8bd%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M10 50V44A22 7 0 0 0 54 44V50%22 fill=%22%23b8c4d6%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2219%22 fill=%22%23d5dde9%22 stroke=%22%231b2430%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2230%22 cy=%2226%22 r=%2213%22 fill=%22none%22 stroke=%22%237a8fb0%22 stroke-width=%222%22/%3E%3Cpath d=%22M30 17l3 7l7 2l-7 3l-3 7l-3-7l-7-3l7-2Z%22 fill=%22%2352688a%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M52 8A8 8 0 1 0 58 20A6 6 0 0 1 52 8Z%22 fill=%22%23e8edf5%22 stroke=%22%231b2430%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Millionaire ---------- */
@@ -2105,7 +3035,7 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%23f08aa5%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M16 54H44M20 54V30H40V54%22/%3E%3Cpath d=%22M20 44H40%22/%3E%3Ccircle cx=%2286%22 cy=%2286%22 r=%2214%22/%3E%3Cpath d=%22M86 78V94M80 82H92%22/%3E%3Cpath d=%22M92 20l3 7l7 3l-7 3l-3 7l-3-7l-7-3l7-3Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#240d14,#16070b) fixed;
 }
 .theme-tile[data-theme-id='millionaire'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2248%22 rx=%2226%22 ry=%227%22 fill=%22%233a0f1a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 46V16Q16 10 22 10H42Q48 10 48 16V46Z%22 fill=%22%235a1a2a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 38H48V45H16Z%22 fill=%22%23d4a017%22 stroke=%22%233a0f1a%22 stroke-width=%222%22/%3E%3Cpath d=%22M22 18V30%22 stroke=%22%23b0304f%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2252%22 r=%229%22 fill=%22%23f6d55c%22 stroke=%22%233a0f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M50 47V57M46 50H54%22 stroke=%22%238a1c3a%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 8l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a0f1a%22 stroke-width=%221.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2248%22 rx=%2226%22 ry=%227%22 fill=%22%233a0f1a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M16 46V16Q16 10 22 10H42Q48 10 48 16V46Z%22 fill=%22%235a1a2a%22 stroke=%22%233a0f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 38H48V45H16Z%22 fill=%22%23d4a017%22 stroke=%22%233a0f1a%22 stroke-width=%222%22/%3E%3Cpath d=%22M22 18V30%22 stroke=%22%23b0304f%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2252%22 r=%229%22 fill=%22%23f6d55c%22 stroke=%22%233a0f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M50 47V57M46 50H54%22 stroke=%22%238a1c3a%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M8 8l2 5l5 2l-5 2l-2 5l-2-5l-5-2l5-2Z%22 fill=%22%23fff0a8%22 stroke=%22%233a0f1a%22 stroke-width=%221.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
 }
 
 /* ---------- Billionaire ---------- */
@@ -2136,6 +3066,223 @@
   --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Cg stroke=%22%235cc8f0%22 stroke-opacity=%22.28%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22%3E%3Cpath d=%22M18 100V52H34V100M26 52V38%22/%3E%3Cpath d=%22M44 100V24H62V100M53 24V10%22/%3E%3Cpath d=%22M74 100V64H90V100%22/%3E%3Cpath d=%22M100 22A14 14 0 1 0 112 44A11 11 0 0 1 100 22Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, linear-gradient(160deg,#0a1624,#050c15) fixed;
 }
 .theme-tile[data-theme-id='billionaire'] .tile-mascot {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 0 0 64 64%22%3E%3Ccircle cx=%2248%22 cy=%2216%22 r=%229%22 fill=%22%23e4f0fb%22 stroke=%22%230c1b2b%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2252%22 cy=%2213%22 r=%228%22 fill=%22%239ed8f0%22 stroke=%22none%22/%3E%3Cpath d=%22M10 58V30H24V58M28 58V12H44V58M48 58V36H58V58%22 fill=%22%230e5a8a%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M36 12V4%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M36 1l1.5 3l3.5 1l-3.5 1l-1.5 3l-1.5-3l-3.5-1l3.5-1Z%22 fill=%22%23ffd27a%22 stroke=%22%230c1b2b%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M32 22H40M32 30H40M32 38H40M32 46H40M14 38H20M14 46H20M52 44H54%22 stroke=%22%239ed8f0%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2248%22 cy=%2216%22 r=%229%22 fill=%22%23e4f0fb%22 stroke=%22%230c1b2b%22 stroke-width=%222.2%22/%3E%3Ccircle cx=%2252%22 cy=%2213%22 r=%228%22 fill=%22%239ed8f0%22 stroke=%22none%22/%3E%3Cpath d=%22M10 58V30H24V58M28 58V12H44V58M48 58V36H58V58%22 fill=%22%230e5a8a%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M36 12V4%22 stroke=%22%230c1b2b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M36 1l1.5 3l3.5 1l-3.5 1l-1.5 3l-1.5-3l-3.5-1l3.5-1Z%22 fill=%22%23ffd27a%22 stroke=%22%230c1b2b%22 stroke-width=%221.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M32 22H40M32 30H40M32 38H40M32 46H40M14 38H20M14 46H20M52 44H54%22 stroke=%22%239ed8f0%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Land ---------- */
+.theme-tile[data-theme-id='land'] {
+  --tile-page: #eef0e0;
+  --tile-card: #fcfdf4;
+  --tile-text: #27311d;
+  --tile-border: #cbd1b0;
+  --tile-accent: #3f6b1f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #3f6b1f;
+  --tile-pop-2: #8a5a1f;
+  --tile-pop-3: #2c5d7c;
+  --tile-radius: 5px;
+  --tile-background: repeating-linear-gradient(115deg,rgba(63,107,31,.07) 0 22px,transparent 22px 44px) fixed, linear-gradient(#eef0e0,#eef0e0) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='land'] {
+  --tile-page: #12170d;
+  --tile-card: #1b2214;
+  --tile-text: #e9eed8;
+  --tile-border: #374229;
+  --tile-accent: #98d36b;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #98d36b;
+  --tile-pop-2: #e0a45c;
+  --tile-pop-3: #7cc0e8;
+  --tile-radius: 5px;
+  --tile-background: repeating-linear-gradient(115deg,rgba(152,211,107,.05) 0 22px,transparent 22px 44px) fixed, linear-gradient(#12170d,#12170d) fixed;
+}
+.theme-tile[data-theme-id='land'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M6 22L32 8l26 14v34H6z%22 fill=%22%23c9d68f%22 stroke=%22%2327311d%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M6 36L58 30M22 15v41M44 18v38%22 fill=%22none%22 stroke=%22%233f6b1f%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%228%22 y=%2238%22 width=%2212%22 height=%2216%22 rx=%221%22 fill=%22%239ec05a%22 stroke=%22%2327311d%22 stroke-width=%221.6%22 /%3E%3Crect x=%2224%22 y=%2236%22 width=%2218%22 height=%2218%22 rx=%221%22 fill=%22%23e0b45c%22 stroke=%22%2327311d%22 stroke-width=%221.6%22 /%3E%3Cpath d=%22M50 38v14M47 40h6%22 fill=%22none%22 stroke=%22%23a8392e%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Property ---------- */
+.theme-tile[data-theme-id='property'] {
+  --tile-page: #f1ebe3;
+  --tile-card: #fffdf9;
+  --tile-text: #2a2220;
+  --tile-border: #d9cdbf;
+  --tile-accent: #a8412b;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #a8412b;
+  --tile-pop-2: #37556b;
+  --tile-pop-3: #6b5a1f;
+  --tile-radius: 4px;
+  --tile-background: repeating-linear-gradient(0deg,transparent 0 17px,rgba(168,65,43,.10) 17px 18px) fixed, repeating-linear-gradient(90deg,transparent 0 35px,rgba(168,65,43,.07) 35px 36px) fixed, linear-gradient(#f1ebe3,#f1ebe3) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='property'] {
+  --tile-page: #171312;
+  --tile-card: #211b1a;
+  --tile-text: #efe7de;
+  --tile-border: #3d3431;
+  --tile-accent: #f09478;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #f09478;
+  --tile-pop-2: #86b4d2;
+  --tile-pop-3: #e0c070;
+  --tile-radius: 4px;
+  --tile-background: repeating-linear-gradient(0deg,transparent 0 17px,rgba(240,148,120,.07) 17px 18px) fixed, linear-gradient(#171312,#171312) fixed;
+}
+.theme-tile[data-theme-id='property'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 30L32 8l24 22%22 fill=%22%23a8412b%22 stroke=%22%232a2220%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2214%22 y=%2230%22 width=%2236%22 height=%2226%22 rx=%221%22 fill=%22%23f1ebe3%22 stroke=%22%232a2220%22 stroke-width=%222.5%22 /%3E%3Crect x=%2226%22 y=%2240%22 width=%2212%22 height=%2216%22 rx=%221%22 fill=%22%2337556b%22 stroke=%22%232a2220%22 stroke-width=%222%22 /%3E%3Crect x=%2218%22 y=%2234%22 width=%227%22 height=%227%22 rx=%220%22 fill=%22%239cc0d8%22 stroke=%22%232a2220%22 stroke-width=%221.6%22 /%3E%3Crect x=%2239%22 y=%2234%22 width=%227%22 height=%227%22 rx=%220%22 fill=%22%239cc0d8%22 stroke=%22%232a2220%22 stroke-width=%221.6%22 /%3E%3Ccircle cx=%2234%22 cy=%2249%22 r=%221.2%22 fill=%22%23f3c24a%22 stroke=%22none%22 stroke-width=%220%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Options ---------- */
+.theme-tile[data-theme-id='options'] {
+  --tile-page: #f1f0fb;
+  --tile-card: #ffffff;
+  --tile-text: #1e1b3a;
+  --tile-border: #d4d1ee;
+  --tile-accent: #5b3fd6;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #5b3fd6;
+  --tile-pop-2: #0b8a6a;
+  --tile-pop-3: #c2410c;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(rgba(91,63,214,.07) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(90deg,rgba(91,63,214,.07) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(#f1f0fb,#f1f0fb) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='options'] {
+  --tile-page: #0f0e1e;
+  --tile-card: #17162b;
+  --tile-text: #ebeafb;
+  --tile-border: #2e2c52;
+  --tile-accent: #b3a2ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #b3a2ff;
+  --tile-pop-2: #5fe0b8;
+  --tile-pop-3: #ff9a63;
+  --tile-radius: 6px;
+  --tile-background: linear-gradient(rgba(179,162,255,.06) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(90deg,rgba(179,162,255,.06) 1px,transparent 1px) 0 0/30px 30px fixed, linear-gradient(#0f0e1e,#0f0e1e) fixed;
+}
+.theme-tile[data-theme-id='options'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 8V56H58%22 fill=%22none%22 stroke=%22%231e1b3a%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M8 44H30L56 14%22 fill=%22none%22 stroke=%22%235b3fd6%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M30 44V50%22 fill=%22none%22 stroke=%22%230b8a6a%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2230%22 cy=%2244%22 r=%223.2%22 fill=%22%23ffffff%22 stroke=%22%231e1b3a%22 stroke-width=%222%22/%3E%3Cpath d=%22M12 52H28%22 fill=%22none%22 stroke=%22%230b8a6a%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Derivatives ---------- */
+.theme-tile[data-theme-id='derivatives'] {
+  --tile-page: #eceef8;
+  --tile-card: #ffffff;
+  --tile-text: #171c3a;
+  --tile-border: #ccd1ea;
+  --tile-accent: #3446c4;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #3446c4;
+  --tile-pop-2: #0d7f7a;
+  --tile-pop-3: #b3402a;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(rgba(52,70,196,.06) 1px,transparent 1px) 0 0/36px 36px fixed, linear-gradient(90deg,rgba(52,70,196,.06) 1px,transparent 1px) 0 0/36px 36px fixed, linear-gradient(#eceef8,#eceef8) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='derivatives'] {
+  --tile-page: #0c1020;
+  --tile-card: #141a30;
+  --tile-text: #e6e9fb;
+  --tile-border: #283152;
+  --tile-accent: #93a4ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #93a4ff;
+  --tile-pop-2: #52d6cf;
+  --tile-pop-3: #ff9a80;
+  --tile-radius: 4px;
+  --tile-background: linear-gradient(rgba(147,164,255,.06) 1px,transparent 1px) 0 0/36px 36px fixed, linear-gradient(90deg,rgba(147,164,255,.06) 1px,transparent 1px) 0 0/36px 36px fixed, linear-gradient(#0c1020,#0c1020) fixed;
+}
+.theme-tile[data-theme-id='derivatives'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M32 14V28M32 28L16 42M32 28L48 42%22 fill=%22none%22 stroke=%22%23171c3a%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2232%22 cy=%2212%22 r=%227%22 fill=%22%233446c4%22 stroke=%22%23171c3a%22 stroke-width=%222.4%22/%3E%3Ccircle cx=%2216%22 cy=%2246%22 r=%227%22 fill=%22%230d7f7a%22 stroke=%22%23171c3a%22 stroke-width=%222.4%22/%3E%3Ccircle cx=%2248%22 cy=%2246%22 r=%227%22 fill=%22%230d7f7a%22 stroke=%22%23171c3a%22 stroke-width=%222.4%22/%3E%3Cpath d=%22M8 58C20 50 28 58 36 54s14-4 22-10%22 fill=%22none%22 stroke=%22%23b3402a%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-dasharray=%223 3%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Charts ---------- */
+.theme-tile[data-theme-id='charts'] {
+  --tile-page: #f3f6f4;
+  --tile-card: #ffffff;
+  --tile-text: #14231c;
+  --tile-border: #d0dcd5;
+  --tile-accent: #0f7a4e;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #0f7a4e;
+  --tile-pop-2: #b3322a;
+  --tile-pop-3: #1f5fd6;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(rgba(20,35,28,.06) 1px,transparent 1px) 0 0/40px 40px fixed, linear-gradient(90deg,rgba(20,35,28,.06) 1px,transparent 1px) 0 0/40px 40px fixed, linear-gradient(#f3f6f4,#f3f6f4) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='charts'] {
+  --tile-page: #0d1311;
+  --tile-card: #151d1a;
+  --tile-text: #e4efe9;
+  --tile-border: #28352f;
+  --tile-accent: #56d9a0;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #56d9a0;
+  --tile-pop-2: #ff8a80;
+  --tile-pop-3: #7fadff;
+  --tile-radius: 5px;
+  --tile-background: linear-gradient(rgba(228,239,233,.05) 1px,transparent 1px) 0 0/40px 40px fixed, linear-gradient(90deg,rgba(228,239,233,.05) 1px,transparent 1px) 0 0/40px 40px fixed, linear-gradient(#0d1311,#0d1311) fixed;
+}
+.theme-tile[data-theme-id='charts'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M14 8V56%22 fill=%22none%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%229%22 y=%2222%22 width=%2210%22 height=%2222%22 rx=%221%22 fill=%22%230f7a4e%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 /%3E%3Cpath d=%22M32 14V56%22 fill=%22none%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2227%22 y=%2220%22 width=%2210%22 height=%2218%22 rx=%221%22 fill=%22%23b3322a%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 /%3E%3Cpath d=%22M50 6V50%22 fill=%22none%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Crect x=%2245%22 y=%2212%22 width=%2210%22 height=%2224%22 rx=%221%22 fill=%22%230f7a4e%22 stroke=%22%2314231c%22 stroke-width=%222.2%22 /%3E%3C/svg%3E");
+}
+
+/* ---------- Technical analysis ---------- */
+.theme-tile[data-theme-id='technical-analysis'] {
+  --tile-page: #e8ecf1;
+  --tile-card: #ffffff;
+  --tile-text: #151b24;
+  --tile-border: #c6cdd8;
+  --tile-accent: #1d4ed8;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1d4ed8;
+  --tile-pop-2: #b45309;
+  --tile-pop-3: #0f7a4e;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(rgba(21,27,36,.06) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(90deg,rgba(21,27,36,.06) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(#e8ecf1,#e8ecf1) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='technical-analysis'] {
+  --tile-page: #0c0f14;
+  --tile-card: #131820;
+  --tile-text: #e5e9f0;
+  --tile-border: #272f3b;
+  --tile-accent: #7fa6ff;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #7fa6ff;
+  --tile-pop-2: #f5a742;
+  --tile-pop-3: #56d9a0;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(rgba(229,233,240,.05) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(90deg,rgba(229,233,240,.05) 1px,transparent 1px) 0 0/24px 24px fixed, linear-gradient(#0c0f14,#0c0f14) fixed;
+}
+.theme-tile[data-theme-id='technical-analysis'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M6 50L16 36 24 42 34 24 42 30 58 10%22 fill=%22none%22 stroke=%22%231d4ed8%22 stroke-width=%222.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M6 20H58%22 fill=%22none%22 stroke=%22%23b3322a%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-dasharray=%224 3%22/%3E%3Cpath d=%22M6 54H58%22 fill=%22none%22 stroke=%22%230f7a4e%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-dasharray=%224 3%22/%3E%3Cpath d=%22M6 44C20 40 34 32 58 22%22 fill=%22none%22 stroke=%22%23b45309%22 stroke-width=%222.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2234%22 cy=%2224%22 r=%222.6%22 fill=%22%23ffffff%22 stroke=%22%23151b24%22 stroke-width=%221.8%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Value investing ---------- */
+.theme-tile[data-theme-id='value-investing'] {
+  --tile-page: #e9f1e2;
+  --tile-card: #fbfdf6;
+  --tile-text: #1b2b1d;
+  --tile-border: #bdd0b3;
+  --tile-accent: #1f5d2e;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1f5d2e;
+  --tile-pop-2: #8a5a14;
+  --tile-pop-3: #2c5d7c;
+  --tile-radius: 3px;
+  --tile-background: linear-gradient(90deg,transparent 60px,rgba(180,60,60,.30) 60px 61px,transparent 61px) 0 0/100% 100% fixed, repeating-linear-gradient(180deg,transparent 0 27px,rgba(31,93,46,.20) 27px 28px) 0 0/100% 100% fixed, linear-gradient(#e9f1e2,#e9f1e2) fixed;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='value-investing'] {
+  --tile-page: #0e150f;
+  --tile-card: #162018;
+  --tile-text: #e3eedc;
+  --tile-border: #2b3f2e;
+  --tile-accent: #7bd48c;
+  --tile-on-accent: #10141a;
+  --tile-pop-1: #7bd48c;
+  --tile-pop-2: #e3b05c;
+  --tile-pop-3: #7cc0e8;
+  --tile-radius: 3px;
+  --tile-background: repeating-linear-gradient(180deg,transparent 0 27px,rgba(123,212,140,.10) 27px 28px) 0 0/100% 100% fixed, linear-gradient(#0e150f,#0e150f) fixed;
+}
+.theme-tile[data-theme-id='value-investing'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M32 8V50M18 14H46%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M18 14L10 32H26zM46 14L38 32H54z%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M8 32H28M36 32H56%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 52H44%22 fill=%22none%22 stroke=%22%231b2b1d%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2218%22 cy=%2228%22 r=%225%22 fill=%22%23e3b05c%22 stroke=%22%231b2b1d%22 stroke-width=%221.8%22/%3E%3Ccircle cx=%2246%22 cy=%2228%22 r=%223.2%22 fill=%22%237bd48c%22 stroke=%22%231b2b1d%22 stroke-width=%221.8%22/%3E%3C/svg%3E");
 }
 

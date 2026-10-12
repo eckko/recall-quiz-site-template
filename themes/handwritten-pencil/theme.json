@@ -1,0 +1,71 @@
+{
+  "name": "Handwritten: Pencil",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Kalam\",\"Segoe Print\",\"Bradley Hand\",cursive",
+    "headings": "\"Kalam\",\"Segoe Print\",\"Bradley Hand\",cursive"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf8ef",
+      "card": "#fffefa",
+      "text": "#2d2d33",
+      "textMuted": "#5c5c66",
+      "border": "#c9d3e0",
+      "accent": "#4a5568",
+      "accent2": "#5a6578",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#4a5568",
+      "pop2": "#a8452f",
+      "pop3": "#3f7a62",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 56px,rgba(200,80,70,.32) 56px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 33px,rgba(110,140,180,.30) 33px 34px) 0 0/100% 100% fixed",
+      "linear-gradient(#fbf8ef,#fbf8ef) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1b1f",
+      "card": "#23242a",
+      "text": "#e6e6ea",
+      "textMuted": "#aeaeb8",
+      "border": "#3d3f4a",
+      "accent": "#b8c2d6",
+      "accent2": "#cdd6e8",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#b8c2d6",
+      "pop2": "#f09a84",
+      "pop3": "#86cfae",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 56px,rgba(240,154,132,.26) 56px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 33px,rgba(184,194,214,.13) 33px 34px) 0 0/100% 100% fixed",
+      "linear-gradient(#1a1b1f,#1a1b1f) fixed"
+    ]
+  }
+}

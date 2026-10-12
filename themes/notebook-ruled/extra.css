@@ -1,0 +1,18 @@
+/* Notebook: Ruled: college-ruled paper with a red margin. */
+[data-theme="notebook-ruled"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+[data-theme="notebook-ruled"] .unit-title,
+[data-theme="notebook-ruled"] .verdict,
+[data-theme="notebook-ruled"] .panel h2 {
+  font-family: "Patrick Hand","Lexend",system-ui,sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+}
+[data-theme="notebook-ruled"] .panel {
+  background-image: repeating-linear-gradient(180deg,transparent 0 27px,color-mix(in srgb,var(--color-accent) 16%,transparent) 27px 28px);
+}

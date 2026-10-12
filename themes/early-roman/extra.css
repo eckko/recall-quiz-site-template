@@ -1,0 +1,26 @@
+/* Early Roman: carved Roman capitals on travertine, with terracotta accents. */
+[data-theme="early-roman"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.9rem;
+}
+[data-theme="early-roman"] .unit-title,
+[data-theme="early-roman"] .verdict,
+[data-theme="early-roman"] .panel h2 {
+  font-family: "Cinzel","Trajan Pro",Georgia,serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+[data-theme="early-roman"] .question-text {
+  font-family: "Cormorant Garamond",Garamond,Georgia,serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+[data-theme="early-roman"] .panel {
+  border-top: 3px solid var(--color-accent);
+}

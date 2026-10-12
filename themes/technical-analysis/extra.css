@@ -1,0 +1,17 @@
+/* Technical analysis: trend lines, support and resistance: slate with amber and blue lines. */
+[data-theme="technical-analysis"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+[data-theme="technical-analysis"] .unit-title,
+[data-theme="technical-analysis"] .verdict,
+[data-theme="technical-analysis"] .panel h2 {
+  font-family: "JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  font-weight: 600;
+}
+[data-theme="technical-analysis"] .panel {
+  border-top: 2px solid var(--color-pop-2);
+}

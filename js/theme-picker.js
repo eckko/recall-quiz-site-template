@@ -44,6 +44,8 @@
   const TILES_CSS_FILE = "css/theme-tiles.css";
   /** Stylesheets go before this one, as the old single file did */
   const PHONE_CSS_SELECTOR = 'link[href$="css/phone.css"]';
+  /** Font families asked for in one Google Fonts request. */
+  const FONTS_PER_REQUEST = 6;
   const FONTS_URL_START = "https://fonts.googleapis.com/css2?";
   /** Show the page anyway if a theme's CSS has not arrived by now */
   const THEME_WAIT_LIMIT_MS = 3000;
@@ -302,12 +304,15 @@
     wanted.forEach(function remember(name) {
       requestedFonts[name] = true;
     });
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = FONTS_URL_START + wanted.map(function toPart(name) {
-      return "family=" + specs[name];
-    }).concat("display=swap").join("&");
-    document.head.appendChild(link);
+    for (let start = 0; start < wanted.length; start += FONTS_PER_REQUEST) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = FONTS_URL_START + wanted.slice(
+        start, start + FONTS_PER_REQUEST).map(function toPart(name) {
+        return "family=" + specs[name];
+      }).concat("display=swap").join("&");
+      document.head.appendChild(link);
+    }
   }
 
   /** Load the preview tiles and the fonts of every theme (once). */

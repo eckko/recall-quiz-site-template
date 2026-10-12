@@ -1,0 +1,19 @@
+/* Novel: warm cream pages and a gentle book serif for long reading. */
+[data-theme="novel"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  font-style: italic;
+}
+[data-theme="novel"] .unit-title,
+[data-theme="novel"] .verdict,
+[data-theme="novel"] .panel h2 {
+  font-family: "Crimson Pro","Iowan Old Style",Georgia,serif;
+  font-weight: 600;
+}
+[data-theme="novel"] .question-text {
+  font-family: "Crimson Pro",Georgia,serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}

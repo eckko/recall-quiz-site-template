@@ -1,0 +1,71 @@
+{
+  "name": "Planner",
+  "group": "Professional",
+  "fonts": {
+    "body": "\"Josefin Sans\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Josefin Sans\",\"Segoe UI\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f8f3e8",
+      "card": "#fffdf7",
+      "text": "#23302f",
+      "textMuted": "#58675f",
+      "border": "#d9d1bd",
+      "accent": "#0f6b6b",
+      "accent2": "#1a8080",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#0f6b6b",
+      "pop2": "#c4543a",
+      "pop3": "#b07a12",
+      "pop4": "#5b5fc7",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(120,110,80,.13) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(90deg,rgba(120,110,80,.13) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(#f8f3e8,#f8f3e8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#171c1b",
+      "card": "#212827",
+      "text": "#e8efe9",
+      "textMuted": "#a9b8b0",
+      "border": "#38433f",
+      "accent": "#5fd0c8",
+      "accent2": "#7fe0d8",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#5fd0c8",
+      "pop2": "#f2937c",
+      "pop3": "#e5c06a",
+      "pop4": "#a9acf2",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(232,239,233,.07) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(90deg,rgba(232,239,233,.07) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(#171c1b,#171c1b) fixed"
+    ]
+  }
+}

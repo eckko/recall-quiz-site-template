@@ -1,0 +1,75 @@
+{
+  "name": "Early Roman",
+  "group": "Typography & history",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",Garamond,Georgia,serif",
+    "headings": "\"Cinzel\",\"Trajan Pro\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e9e2d3",
+      "card": "#f8f4ea",
+      "text": "#2a241b",
+      "textMuted": "#5e5442",
+      "border": "#c7bba2",
+      "accent": "#9a3b1f",
+      "accent2": "#b04a28",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#9a3b1f",
+      "pop2": "#3d5a6b",
+      "pop3": "#5a6b3d",
+      "pop4": "#8a6414",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "repeating-linear-gradient(90deg,rgba(90,70,40,.04) 0 3px,transparent 3px 7px) fixed",
+      "linear-gradient(#e9e2d3,#e9e2d3) fixed"
+    ],
+    "buttonShadow": [
+      "0 3px 0 #6b2813"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #6b2813"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#15120e",
+      "card": "#1f1b15",
+      "text": "#ece5d4",
+      "textMuted": "#b3a98f",
+      "border": "#413a2c",
+      "accent": "#e88a68",
+      "accent2": "#f09a78",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#e88a68",
+      "pop2": "#8db8d0",
+      "pop3": "#aac88a",
+      "pop4": "#e0b85c",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "repeating-linear-gradient(90deg,rgba(255,240,210,.025) 0 3px,transparent 3px 7px) fixed",
+      "linear-gradient(#15120e,#15120e) fixed"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "Property",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Barlow\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Barlow\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1ebe3",
+      "card": "#fffdf9",
+      "text": "#2a2220",
+      "textMuted": "#645a55",
+      "border": "#d9cdbf",
+      "accent": "#a8412b",
+      "accent2": "#b84e35",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#a8412b",
+      "pop2": "#37556b",
+      "pop3": "#6b5a1f",
+      "pop4": "#4d6b47",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "repeating-linear-gradient(0deg,transparent 0 17px,rgba(168,65,43,.10) 17px 18px) fixed",
+      "repeating-linear-gradient(90deg,transparent 0 35px,rgba(168,65,43,.07) 35px 36px) fixed",
+      "linear-gradient(#f1ebe3,#f1ebe3) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#171312",
+      "card": "#211b1a",
+      "text": "#efe7de",
+      "textMuted": "#b8aea6",
+      "border": "#3d3431",
+      "accent": "#f09478",
+      "accent2": "#f5a58e",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#f09478",
+      "pop2": "#86b4d2",
+      "pop3": "#e0c070",
+      "pop4": "#9cc795",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "repeating-linear-gradient(0deg,transparent 0 17px,rgba(240,148,120,.07) 17px 18px) fixed",
+      "linear-gradient(#171312,#171312) fixed"
+    ]
+  }
+}

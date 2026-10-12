@@ -1,0 +1,69 @@
+{
+  "name": "Meeting room",
+  "group": "Professional",
+  "fonts": {
+    "body": "\"Poppins\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Poppins\",\"Segoe UI\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "9px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#ebe7e1",
+      "card": "#ffffff",
+      "text": "#232a31",
+      "textMuted": "#5c6670",
+      "border": "#d3ccc1",
+      "accent": "#b3441a",
+      "accent2": "#c4552a",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#b3441a",
+      "pop2": "#2c5d7c",
+      "pop3": "#4d6b47",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(135deg,rgba(255,255,255,.55) 0,transparent 45%) fixed",
+      "linear-gradient(#ebe7e1,#ebe7e1) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#171a1d",
+      "card": "#20252a",
+      "text": "#ece8e1",
+      "textMuted": "#b0b3b6",
+      "border": "#394048",
+      "accent": "#ff9a6b",
+      "accent2": "#ffb08a",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#ff9a6b",
+      "pop2": "#7cc0e8",
+      "pop3": "#9cc795",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(135deg,rgba(255,255,255,.05) 0,transparent 45%) fixed",
+      "linear-gradient(#171a1d,#171a1d) fixed"
+    ]
+  }
+}

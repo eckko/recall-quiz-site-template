@@ -1,0 +1,24 @@
+/* Blackletter: Gothic manuscript: parchment, black ink and red capitals. */
+[data-theme="blackletter"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.1;
+}
+[data-theme="blackletter"] .unit-title,
+[data-theme="blackletter"] .verdict,
+[data-theme="blackletter"] .panel h2 {
+  font-family: "UnifrakturCook","Old English Text MT",Georgia,serif;
+  font-weight: 700;
+  font-size: 1.35em;
+}
+[data-theme="blackletter"] .question-text {
+  font-family: "EB Garamond",Garamond,Georgia,serif;
+  font-size: 1.35rem;
+  line-height: 1.55;
+}
+[data-theme="blackletter"] .panel {
+  border-top: 4px double var(--color-accent);
+}

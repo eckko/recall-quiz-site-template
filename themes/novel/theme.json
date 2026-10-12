@@ -1,0 +1,67 @@
+{
+  "name": "Novel",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Crimson Pro\",\"Iowan Old Style\",Georgia,serif",
+    "headings": "\"Crimson Pro\",\"Iowan Old Style\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "7px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f7f0e1",
+      "card": "#fffaf0",
+      "text": "#2e2418",
+      "textMuted": "#6a5841",
+      "border": "#dccdb0",
+      "accent": "#7a4b2a",
+      "accent2": "#a56b3d",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#7a4b2a",
+      "pop2": "#8a3b3b",
+      "pop3": "#4d6b47",
+      "pop4": "#9a7421",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#f7f0e1,#f7f0e1) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1510",
+      "card": "#231c15",
+      "text": "#eadcc4",
+      "textMuted": "#b3a287",
+      "border": "#43372a",
+      "accent": "#dba46b",
+      "accent2": "#c98f55",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#dba46b",
+      "pop2": "#e29a8f",
+      "pop3": "#9cc795",
+      "pop4": "#e5c77a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#1a1510,#1a1510) fixed"
+    ]
+  }
+}

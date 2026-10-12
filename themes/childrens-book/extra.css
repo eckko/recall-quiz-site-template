@@ -1,0 +1,19 @@
+/* Children's book: big friendly letters and bright primary colours. */
+[data-theme="childrens-book"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
+[data-theme="childrens-book"] .unit-title,
+[data-theme="childrens-book"] .verdict,
+[data-theme="childrens-book"] .panel h2 {
+  font-family: "Fredoka","Quicksand",system-ui,sans-serif;
+  font-weight: 600;
+}
+[data-theme="childrens-book"] .question-text {
+  font-family: "Fredoka","Quicksand",system-ui,sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+}

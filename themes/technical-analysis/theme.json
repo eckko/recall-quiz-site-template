@@ -1,0 +1,71 @@
+{
+  "name": "Technical analysis",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"IBM Plex Sans\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"JetBrains Mono\",\"SFMono-Regular\",Consolas,monospace"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e8ecf1",
+      "card": "#ffffff",
+      "text": "#151b24",
+      "textMuted": "#4d5866",
+      "border": "#c6cdd8",
+      "accent": "#1d4ed8",
+      "accent2": "#2f5fe0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1d4ed8",
+      "pop2": "#b45309",
+      "pop3": "#0f7a4e",
+      "pop4": "#b3322a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(21,27,36,.06) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(90deg,rgba(21,27,36,.06) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(#e8ecf1,#e8ecf1) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0c0f14",
+      "card": "#131820",
+      "text": "#e5e9f0",
+      "textMuted": "#a3adbb",
+      "border": "#272f3b",
+      "accent": "#7fa6ff",
+      "accent2": "#a0bcff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#7fa6ff",
+      "pop2": "#f5a742",
+      "pop3": "#56d9a0",
+      "pop4": "#ff8a80",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(229,233,240,.05) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(90deg,rgba(229,233,240,.05) 1px,transparent 1px) 0 0/24px 24px fixed",
+      "linear-gradient(#0c0f14,#0c0f14) fixed"
+    ]
+  }
+}

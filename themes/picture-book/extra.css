@@ -1,0 +1,19 @@
+/* Picture book: soft gouache colours and rounded shapes, like a storybook page. */
+[data-theme="picture-book"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+}
+[data-theme="picture-book"] .unit-title,
+[data-theme="picture-book"] .verdict,
+[data-theme="picture-book"] .panel h2 {
+  font-family: "Sniglet","Nunito",system-ui,sans-serif;
+  font-weight: 400;
+}
+[data-theme="picture-book"] .question-text {
+  font-family: "Nunito",system-ui,sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.5;
+}

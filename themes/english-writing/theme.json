@@ -1,0 +1,69 @@
+{
+  "name": "English writing",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Andika\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Andika\",\"Segoe UI\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fffef7",
+      "card": "#ffffff",
+      "text": "#1c2a44",
+      "textMuted": "#546482",
+      "border": "#bcd0ec",
+      "accent": "#2563c4",
+      "accent2": "#3a74d6",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#2563c4",
+      "pop2": "#c53030",
+      "pop3": "#1b7a48",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(transparent 0 15px,rgba(37,99,196,.32) 15px 16px,transparent 16px 31px,rgba(197,48,48,.28) 31px 32px,transparent 32px 47px,rgba(37,99,196,.32) 47px 48px,transparent 48px 64px) 0 0/100% 64px fixed",
+      "linear-gradient(#fffef7,#fffef7) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#171f2e",
+      "card": "#1f2a3d",
+      "text": "#e8eef9",
+      "textMuted": "#a9b6cf",
+      "border": "#3a4a66",
+      "accent": "#8db4f5",
+      "accent2": "#a2c4ff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8db4f5",
+      "pop2": "#ff9090",
+      "pop3": "#7fdca8",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(transparent 0 15px,rgba(141,180,245,.2) 15px 16px,transparent 16px 31px,rgba(255,144,144,.2) 31px 32px,transparent 32px 47px,rgba(141,180,245,.2) 47px 48px,transparent 48px 64px) 0 0/100% 64px fixed",
+      "linear-gradient(#171f2e,#171f2e) fixed"
+    ]
+  }
+}

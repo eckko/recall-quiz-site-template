@@ -1,0 +1,69 @@
+{
+  "name": "Land",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Lora\",Georgia,serif",
+    "headings": "\"Roboto Slab\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef0e0",
+      "card": "#fcfdf4",
+      "text": "#27311d",
+      "textMuted": "#5d6847",
+      "border": "#cbd1b0",
+      "accent": "#3f6b1f",
+      "accent2": "#4f7f2a",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#3f6b1f",
+      "pop2": "#8a5a1f",
+      "pop3": "#2c5d7c",
+      "pop4": "#a8392e",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "repeating-linear-gradient(115deg,rgba(63,107,31,.07) 0 22px,transparent 22px 44px) fixed",
+      "linear-gradient(#eef0e0,#eef0e0) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#12170d",
+      "card": "#1b2214",
+      "text": "#e9eed8",
+      "textMuted": "#adb897",
+      "border": "#374229",
+      "accent": "#98d36b",
+      "accent2": "#b2e083",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#98d36b",
+      "pop2": "#e0a45c",
+      "pop3": "#7cc0e8",
+      "pop4": "#f09a8a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "repeating-linear-gradient(115deg,rgba(152,211,107,.05) 0 22px,transparent 22px 44px) fixed",
+      "linear-gradient(#12170d,#12170d) fixed"
+    ]
+  }
+}

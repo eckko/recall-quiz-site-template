@@ -1,0 +1,16 @@
+/* Land: plots and field strips: earthy greens and survey stakes. */
+[data-theme="land"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="land"] .unit-title,
+[data-theme="land"] .verdict,
+[data-theme="land"] .panel h2 {
+  font-family: "Roboto Slab",Georgia,serif;
+  font-weight: 700;
+}
+[data-theme="land"] .panel {
+  border-bottom: 3px solid var(--color-accent-2);
+}

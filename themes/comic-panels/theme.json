@@ -1,0 +1,89 @@
+{
+  "name": "Comic panels",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Comic Neue\",\"Comic Sans MS\",system-ui,sans-serif",
+    "headings": "\"Bangers\",\"Impact\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "3px",
+    "strongBorderWidth": "4px"
+  },
+  "iconStroke": {
+    "width": 4.4,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1ede0",
+      "card": "#ffffff",
+      "text": "#141414",
+      "textMuted": "#4a4a4a",
+      "border": "#141414",
+      "accent": "#1d5fb4",
+      "accent2": "#2f78d4",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1d5fb4",
+      "pop2": "#c2185b",
+      "pop3": "#e6b800",
+      "pop4": "#141414",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(rgba(194,24,91,.16) 1.6px,transparent 1.8px) 0 0/14px 14px fixed",
+      "linear-gradient(#f1ede0,#f1ede0) fixed"
+    ],
+    "buttonShadow": [
+      "4px 4px 0 #141414"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 #141414"
+    ],
+    "panelShadow": [
+      "5px 5px 0 #141414"
+    ],
+    "pressDepth": "3px"
+  },
+  "dark": {
+    "colors": {
+      "page": "#15151b",
+      "card": "#1f1f27",
+      "text": "#f5f2e8",
+      "textMuted": "#bdb9ad",
+      "border": "#f5f2e8",
+      "accent": "#6fa8ff",
+      "accent2": "#8fbcff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#6fa8ff",
+      "pop2": "#ff7aa8",
+      "pop3": "#ffd84d",
+      "pop4": "#f5f2e8",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(rgba(255,122,168,.12) 1.6px,transparent 1.8px) 0 0/14px 14px fixed",
+      "linear-gradient(#15151b,#15151b) fixed"
+    ],
+    "buttonShadow": [
+      "4px 4px 0 #f5f2e8"
+    ],
+    "buttonShadowPressed": [
+      "1px 1px 0 #f5f2e8"
+    ],
+    "panelShadow": [
+      "5px 5px 0 rgba(245,242,232,.8)"
+    ],
+    "pressDepth": "3px"
+  }
+}

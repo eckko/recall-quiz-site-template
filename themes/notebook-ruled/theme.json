@@ -1,0 +1,71 @@
+{
+  "name": "Notebook: Ruled",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Lexend\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Patrick Hand\",\"Lexend\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fffdf4",
+      "card": "#ffffff",
+      "text": "#1f2a3a",
+      "textMuted": "#556275",
+      "border": "#bcd0ea",
+      "accent": "#1f5fbf",
+      "accent2": "#3a74d6",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1f5fbf",
+      "pop2": "#c0392b",
+      "pop3": "#1f7a4a",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 56px,rgba(220,60,60,.4) 56px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 31px,rgba(70,120,200,.28) 31px 32px) 0 0/100% 100% fixed",
+      "linear-gradient(#fffdf4,#fffdf4) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1b2230",
+      "card": "#232c3d",
+      "text": "#e9eef7",
+      "textMuted": "#aab6c8",
+      "border": "#3a475d",
+      "accent": "#8ab6ff",
+      "accent2": "#a2c4ff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8ab6ff",
+      "pop2": "#ff8f84",
+      "pop3": "#7fdca8",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 56px,rgba(255,143,132,.3) 56px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 31px,rgba(138,182,255,.14) 31px 32px) 0 0/100% 100% fixed",
+      "linear-gradient(#1b2230,#1b2230) fixed"
+    ]
+  }
+}

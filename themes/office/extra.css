@@ -1,0 +1,17 @@
+/* Office: clean greys and a confident blue, like business software. */
+[data-theme="office"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+[data-theme="office"] .unit-title,
+[data-theme="office"] .verdict,
+[data-theme="office"] .panel h2 {
+  font-family: "Inter","Segoe UI",system-ui,sans-serif;
+  font-weight: 600;
+}
+[data-theme="office"] .panel {
+  box-shadow: 0 1px 2px rgba(20, 30, 50, 0.10);
+}

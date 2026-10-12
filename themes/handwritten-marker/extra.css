@@ -1,0 +1,20 @@
+/* Handwritten: Marker: felt-tip marker writing on a dotted page. */
+[data-theme="handwritten-marker"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2rem;
+}
+[data-theme="handwritten-marker"] .unit-title,
+[data-theme="handwritten-marker"] .verdict,
+[data-theme="handwritten-marker"] .panel h2 {
+  font-family: "Gloria Hallelujah","Segoe Print","Bradley Hand",cursive;
+  font-weight: 400;
+  font-size: 1.15em;
+}
+[data-theme="handwritten-marker"] .question-text {
+  font-family: "Gloria Hallelujah","Segoe Print",cursive;
+  font-size: 1.25rem;
+  line-height: 1.7;
+}

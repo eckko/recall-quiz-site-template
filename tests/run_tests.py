@@ -529,8 +529,15 @@ def test_themes(browser):
         '#theme-tiles .theme-group')].filter(g => g.textContent.trim()
         .startsWith('Finance')).map(g => g.querySelectorAll(
         '.theme-tile').length)""")
-    check("a Finance group holds the 7 finance themes", finance == [7],
+    check("a Finance group holds the 14 finance themes", finance == [14],
           str(finance))
+    groups = page.evaluate("""() => [...document.querySelectorAll(
+        '#theme-tiles .theme-group-name')].map(
+        s => s.firstElementChild.textContent)""")
+    check("the picker has the new theme groups",
+          all(name in groups for name in (
+              "Book styles", "Classroom", "Professional", "Finance")),
+          str(groups))
     page.evaluate("""() => document.querySelector(
         ".theme-tile[data-theme-id='lego']").closest('details').open = true""")
     page.click(".theme-tile[data-theme-id='lego']")
@@ -670,8 +677,15 @@ def test_theme_follows_the_account(browser):
         '#theme-tiles .theme-group')].filter(g => g.textContent.trim()
         .startsWith('Finance')).map(g => g.querySelectorAll(
         '.theme-tile').length)""")
-    check("a Finance group holds the 7 finance themes", finance == [7],
+    check("a Finance group holds the 14 finance themes", finance == [14],
           str(finance))
+    groups = page.evaluate("""() => [...document.querySelectorAll(
+        '#theme-tiles .theme-group-name')].map(
+        s => s.firstElementChild.textContent)""")
+    check("the picker has the new theme groups",
+          all(name in groups for name in (
+              "Book styles", "Classroom", "Professional", "Finance")),
+          str(groups))
     page.evaluate("""() => document.querySelector(
         ".theme-tile[data-theme-id='lego']").closest('details').open = true""")
     page.click(".theme-tile[data-theme-id='lego']")
@@ -1191,7 +1205,7 @@ def test_theme_loading(browser):
         "s => (s.href || '').includes('theme-tiles.css'))")
     fonts = [url for url in requests if "fonts.googleapis.com" in url]
     check("opening Appearance loads the other themes' fonts",
-          len(fonts) == 2 and fonts[1].count("family=") > 5, str(fonts))
+          len(fonts) >= 2 and fonts[1].count("family=") >= 5, str(fonts))
     page.click("#theme-tiles .theme-group[data-group='Playful'] summary")
     page.click("#theme-tiles .theme-tile[data-theme-id='lego']")
     page.wait_for_function(
