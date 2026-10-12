@@ -33,8 +33,8 @@ index.html  (all screens live here; JS shows and hides them)
 Each app file is an IIFE that receives `window.RecallQuiz` as `quiz` and
 adds one namespace to it (`js/theme-picker.js` is separate: it runs in
 `<head>` and does not use `quiz`). Nothing else is global (apart from
-`window.QUIZ_THEMES` and `window.QUIZ_THEME_FONTS_URL` from the generated
-`js/themes-list.js`).
+`window.QUIZ_THEMES`, `window.QUIZ_THEME_FONTS` and
+`window.QUIZ_FONT_SPECS` from the generated `js/themes-list.js`).
 
 | Namespace | File | Owns |
 |---|---|---|
@@ -137,15 +137,18 @@ type must only use this object, never `quiz.session.state` directly.
 themes/<id>/theme.json + *.svg + extra.css
         │  python3 tools/build_themes.py
         ▼
-css/themes.css     :root[data-theme='<id>'][data-scheme='light|dark']
+css/themes/<id>.css  :root[data-theme='<id>'][data-scheme='light|dark']
                    { --color-*, --font-*, --radius*, --page-background,
                      --mascot-image, --icon-*, --accent-gradient, ... }
-                   + .theme-tile[data-theme-id='<id>'] { --tile-* }
                    + the theme's extra.css
+                   (loaded by theme-picker.js, only for the theme in use)
+css/theme-tiles.css  .theme-tile[data-theme-id='<id>'] { --tile-* }
+                   (loaded when the Appearance section is opened)
 js/default-settings.js  window.RecallQuizDefaults: every first-time
                     default (theme, shown controls, practice, home
                     layout, Settings sections); loaded first
-js/themes-list.js  window.QUIZ_THEMES, window.QUIZ_THEME_FONTS_URL
+js/themes-list.js  window.QUIZ_THEMES, QUIZ_THEME_FONTS (families per
+                   theme), QUIZ_FONT_SPECS (how to ask Google Fonts)
 ```
 
 `js/theme-picker.js` (in `<head>`) sets `data-theme`, `data-mode`
@@ -156,8 +159,8 @@ light or dark) on `<html>`. Defaults for every variable are in
 ## CSS layout
 
 Load order (later wins on equal specificity): `base.css`, `home.css`,
-`question.css`, `question-types.css`, `results.css`, `themes.css`,
-`phone.css`. Each rule is written once with its final value; there are
+`question.css`, `question-types.css`, `results.css`, `phone.css`. The
+theme's own CSS is added just before `phone.css` by `theme-picker.js`. Each rule is written once with its final value; there are
 no "override" layers. Theme `extra.css` rules are scoped with
 `[data-theme="<id>"]`, so they win by specificity.
 

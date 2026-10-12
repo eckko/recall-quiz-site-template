@@ -95,6 +95,12 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* js/theme-picker.js sets this until the first theme's CSS has loaded, so
+   the page never flashes the wrong colours. */
+html.theme-loading body {
+  visibility: hidden;
+}
+
 body {
   margin: 0;
   font: 16px/1.55 var(--font-body);

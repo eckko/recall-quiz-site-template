@@ -12,7 +12,13 @@
  *   data-theme="lego"      which theme
  *   data-mode="system"     what the reader chose: light, dark or system
  *   data-scheme="dark"     what is actually showing: light or dark
- * and css/themes.css has a block of colours for each theme and scheme.
+ * and css/themes/<id>.css has the colours for that theme (light and
+ * dark). Only the theme in use is loaded, together with only the fonts it
+ * needs, so the page starts fast however many themes there are. The
+ * attributes are set once that theme's CSS has arrived, and until then
+ * the first paint waits (html.theme-loading), so there is no flash of the
+ * wrong colours. Opening the Appearance section loads the picker's
+ * preview tiles (css/theme-tiles.css) and the fonts of the other themes.
  *
  * The list of themes comes from js/themes-list.js, which
  * tools/build_themes.py generates. The first-time theme and mode come from
@@ -32,6 +38,15 @@
   const DEFAULTS = window.RecallQuizDefaults;
   const DEFAULT_THEME = DEFAULTS.theme.id;
   const DEFAULT_MODE = DEFAULTS.theme.mode;
+  /** Where each theme's CSS is (written by tools/build_themes.py) */
+  const THEME_CSS_FOLDER = "css/themes/";
+  /** The preview tiles of every theme, for the picker */
+  const TILES_CSS_FILE = "css/theme-tiles.css";
+  /** Stylesheets go before this one, as the old single file did */
+  const PHONE_CSS_SELECTOR = 'link[href$="css/phone.css"]';
+  const FONTS_URL_START = "https://fonts.googleapis.com/css2?";
+  /** Show the page anyway if a theme's CSS has not arrived by now */
+  const THEME_WAIT_LIMIT_MS = 3000;
 
   const pageRoot = document.documentElement;
   const themes = window.QUIZ_THEMES || [[DEFAULT_THEME, DEFAULT_THEME]];
@@ -136,13 +151,27 @@
     return choice.mode === "dark";
   }
 
-  /** Switch the page to the chosen theme and mode, and save it. */
+  /**
+   * Switch the page to the chosen theme and mode, and save it. The theme
+   * shows once its CSS is loaded. Before anything has been shown, the
+   * first paint waits for that (html.theme-loading).
+   */
   function applyChoice() {
+    if (!pageRoot.hasAttribute("data-theme")) {
+      pageRoot.classList.add("theme-loading");
+    }
+    loadFontFamilies((window.QUIZ_THEME_FONTS || {})[choice.themeId] || []);
+    loadStylesheet(THEME_CSS_FOLDER + choice.themeId + ".css", showChoice);
+    saveChoice();
+    markPressedButtons();
+  }
+
+  /** Put the current choice on the page (its CSS is loaded). */
+  function showChoice() {
     pageRoot.setAttribute("data-theme", choice.themeId);
     pageRoot.setAttribute("data-mode", choice.mode);
     pageRoot.setAttribute("data-scheme", shouldBeDark() ? "dark" : "light");
-    saveChoice();
-    markPressedButtons();
+    pageRoot.classList.remove("theme-loading");
   }
 
   /**
@@ -199,15 +228,92 @@
       });
   }
 
-  /** Load the fonts the themes use (one request to Google Fonts). */
-  function loadThemeFonts() {
-    if (!window.QUIZ_THEME_FONTS_URL) {
+  /** Stylesheets asked for: href to {isDone, waiting: Function[]} */
+  const stylesheets = {};
+  /** Font families already asked for, by name */
+  const requestedFonts = {};
+
+  /**
+   * Load a stylesheet once and call back when it is ready (at once if it
+   * already is). The callback also runs if the file fails or is slow, so
+   * the page is never held back for long.
+   * @param {string} href
+   * @param {Function} [onReady]
+   */
+  function loadStylesheet(href, onReady) {
+    let entry = stylesheets[href];
+    if (entry && entry.isDone) {
+      if (onReady) {
+        onReady();
+      }
       return;
     }
+    if (!entry) {
+      entry = { isDone: false, waiting: [] };
+      stylesheets[href] = entry;
+      addStylesheetLink(href, entry);
+    }
+    if (onReady) {
+      entry.waiting.push(onReady);
+    }
+  }
+
+  /**
+   * Add the link element for a stylesheet, before css/phone.css.
+   * @param {string} href
+   * @param {{isDone: boolean, waiting: Function[]}} entry
+   */
+  function addStylesheetLink(href, entry) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = window.QUIZ_THEME_FONTS_URL;
+    link.href = href;
+    function finish() {
+      if (entry.isDone) {
+        return;
+      }
+      entry.isDone = true;
+      entry.waiting.splice(0).forEach(function call(callback) {
+        callback();
+      });
+    }
+    link.addEventListener("load", finish);
+    link.addEventListener("error", finish);
+    setTimeout(finish, THEME_WAIT_LIMIT_MS);
+    const anchor = document.querySelector(PHONE_CSS_SELECTOR);
+    if (anchor && anchor.parentNode) {
+      anchor.parentNode.insertBefore(link, anchor);
+    } else {
+      document.head.appendChild(link);
+    }
+  }
+
+  /**
+   * Load Google Fonts families not asked for yet, in one request.
+   * @param {string[]} families  names such as "Nunito"
+   */
+  function loadFontFamilies(families) {
+    const specs = window.QUIZ_FONT_SPECS || {};
+    const wanted = families.filter(function isNew(name) {
+      return specs[name] && !requestedFonts[name];
+    });
+    if (!wanted.length) {
+      return;
+    }
+    wanted.forEach(function remember(name) {
+      requestedFonts[name] = true;
+    });
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = FONTS_URL_START + wanted.map(function toPart(name) {
+      return "family=" + specs[name];
+    }).concat("display=swap").join("&");
     document.head.appendChild(link);
+  }
+
+  /** Load the preview tiles and the fonts of every theme (once). */
+  function loadPickerAssets() {
+    loadStylesheet(TILES_CSS_FILE);
+    loadFontFamilies(Object.keys(window.QUIZ_FONT_SPECS || {}));
   }
 
   /** @returns {string[]} the theme groups, in picker order */
@@ -245,7 +351,7 @@
 
   /**
    * A preview tile: mascot, three colour dots, a button and the name.
-   * The colours come from css/themes.css, by data-theme-id.
+   * The colours come from css/theme-tiles.css, by data-theme-id.
    * @param {string} themeId
    * @param {string} themeName
    * @returns {HTMLButtonElement}
@@ -333,6 +439,17 @@
         }
       });
     }
+    const section = document.getElementById("appearance-section");
+    if (section) {
+      section.addEventListener("toggle", function loadWhenOpened() {
+        if (section.open) {
+          loadPickerAssets();
+        }
+      });
+      if (section.open) {
+        loadPickerAssets();
+      }
+    }
     applyChoice();
   }
 
@@ -346,6 +463,5 @@
   };
 
   applyChoice();          // before the page is drawn
-  loadThemeFonts();
   document.addEventListener("DOMContentLoaded", setUpPicker);
 })();

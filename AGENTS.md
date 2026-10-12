@@ -13,7 +13,8 @@ Before changing anything, read in this order:
 
 Hard rules:
 
-- Never hand-edit `css/themes.css` or `js/themes-list.js`. Edit the
+- Never hand-edit `css/themes/`, `css/theme-tiles.css` or
+  `js/themes-list.js`. Edit the
   `themes/<id>/` folders and run `python3 tools/build_themes.py`.
 - Never change a question's `id` in `questions.json` unless asked: saved
   progress is keyed by it.

@@ -260,7 +260,8 @@ A theme is one folder in `themes/`. You do not need to touch any code.
 5. **Add the id to `themes/picker-order.txt`** where you want its tile.
    (Themes not listed there go at the end.)
 6. **Build:** `python3 tools/build_themes.py`. This rewrites
-   `css/themes.css` and `js/themes-list.js`. Never edit those two by hand.
+   `css/themes/<id>.css`, `css/theme-tiles.css` and `js/themes-list.js`.
+   Never edit those by hand.
 7. **Check it** in light and dark: open the page, press **Theme**, pick
    yours, and try a session.
 
@@ -299,7 +300,9 @@ css/
   question.css             question card, options, feedback, timers
   question-types.css       the other question types
   results.css              the results screen
-  themes.css               GENERATED: colours and pictures per theme
+  theme-tiles.css          GENERATED: the picker's preview tiles
+  themes/<id>.css          GENERATED: one theme's colours and pictures,
+                           loaded only when that theme is in use
   phone.css                changes for narrow screens (loaded last)
 
 js/
@@ -334,7 +337,8 @@ js/
   themes-list.js           GENERATED: the list of themes
 
 themes/<id>/               one folder per theme (see "Add a new theme")
-tools/build_themes.py      builds css/themes.css and js/themes-list.js
+tools/build_themes.py      builds css/themes/, css/theme-tiles.css and
+                           js/themes-list.js
 tools/extract_book.py      book (PDF/EPUB) to text, for writing questions
 tools/plan_question_bank.py   questions per chapter and per type
 tools/merge_question_bank.py  checks questions and builds questions.json
@@ -392,7 +396,8 @@ choice is saved once for all books under `recall-quiz:theme` and, when you are s
 ### Themes
 
 `tools/build_themes.py` reads each `themes/<id>/` folder and writes one
-block of CSS variables per theme and light/dark (`css/themes.css`). The
+file of CSS variables per theme, light and dark (`css/themes/<id>.css`).
+The page loads only the theme in use, and only the fonts it needs. The
 page switches theme by setting `data-theme` and `data-scheme` on the
 `<html>` element; the stylesheets only ever use the variables, so every
 part of the page follows the theme.
@@ -452,7 +457,8 @@ it after any change to the code.
 - Class names describe what something is (`.question-card`); states start
   with `is-` (`.is-right`, `.hidden` hides).
 - The book content (`questions.json`) and the generated
-  `css/themes.css` are exempt from the line-length rule.
+  `css/themes/*.css` and `css/theme-tiles.css` are exempt from the
+  line-length rule.
 
 More detail for contributors and AI agents is in
 [`ai-context/`](ai-context/).

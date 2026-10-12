@@ -46,7 +46,8 @@ progress.)
 
 ## Generated files
 
-`css/themes.css` and `js/themes-list.js` are overwritten by
+`css/themes/`, `css/theme-tiles.css` and `js/themes-list.js` are
+overwritten by
 `tools/build_themes.py`. Edits there are lost.
 
 ## Question ids are progress keys

@@ -1151,6 +1151,55 @@ def test_first_time_defaults(browser):
     page.close()
 
 
+def test_theme_loading(browser):
+    """Only the theme in use, and its fonts, load at the start."""
+    print("Theme loading")
+    requests = []
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.errors = []
+    page.on("pageerror", lambda error: page.errors.append(str(error)))
+    page.on("request", lambda request: requests.append(request.url))
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
+        content_type="application/javascript",
+        body='window.RecallQuizSyncConfig = {provider: "none"};'))
+    page.goto(PAGE_URL)
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    page.wait_for_function(
+        "() => document.documentElement.dataset.theme === 'sky'")
+    theme_files = [url for url in requests if "/css/themes/" in url]
+    check("only the default theme's CSS loads at the start",
+          len(theme_files) == 1 and theme_files[0].endswith("/sky.css"),
+          str(theme_files))
+    fonts = [url for url in requests if "fonts.googleapis.com" in url]
+    check("only that theme's fonts are asked for",
+          len(fonts) == 1 and "family=Nunito" in fonts[0]
+          and fonts[0].count("family=") == 1, str(fonts))
+    check("the picker's preview tiles wait until Appearance is opened",
+          not any("theme-tiles.css" in url for url in requests))
+    check("the page is not left hidden",
+          "theme-loading" not in page.get_attribute("html", "class")
+          if page.get_attribute("html", "class") else True)
+    page.click("#settings-button")
+    page.click("#appearance-section summary")
+    page.wait_for_function(
+        "() => [...document.styleSheets].some("
+        "s => (s.href || '').includes('theme-tiles.css'))")
+    fonts = [url for url in requests if "fonts.googleapis.com" in url]
+    check("opening Appearance loads the other themes' fonts",
+          len(fonts) == 2 and fonts[1].count("family=") > 5, str(fonts))
+    page.click("#theme-tiles .theme-group[data-group='Playful'] summary")
+    page.click("#theme-tiles .theme-tile[data-theme-id='lego']")
+    page.wait_for_function(
+        "() => document.documentElement.dataset.theme === 'lego'")
+    theme_files = [url for url in requests if "/css/themes/" in url]
+    check("choosing a theme loads just that theme's CSS",
+          len(theme_files) == 2 and theme_files[1].endswith("/lego.css"),
+          str(theme_files))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
 def test_idea_flags(browser):
     """Ideas can be flagged; Bad and Useless ones disappear."""
     print("Idea flags")
@@ -1908,6 +1957,7 @@ def main():
             test_home_layout(browser)
             test_show_hide_and_defaults(browser)
             test_first_time_defaults(browser)
+            test_theme_loading(browser)
             test_lesson_picker_cascade(browser)
             test_flags(browser)
             test_saved_settings_upgrade(browser)

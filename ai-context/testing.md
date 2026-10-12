@@ -61,7 +61,7 @@ Useful tricks for repeatable screenshots:
 
 ```bash
 find . -name "*.js" -o -name "*.css" -o -name "*.py" -o -name "*.html" \
-  | grep -v -e themes.css -e themes-list.js \
+  | grep -v -e css/themes/ -e theme-tiles.css -e themes-list.js \
   | xargs awk 'length > 79 {print FILENAME":"FNR}'
 ```
 
