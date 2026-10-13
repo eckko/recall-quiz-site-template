@@ -15,6 +15,7 @@ when you change how something works.
 | [testing.md](testing.md) | run and extend the tests, and check visual changes |
 | [pitfalls.md](pitfalls.md) | avoid the bugs that have already bitten this code once |
 | [glossary.md](glossary.md) | understand the words used in the code (unit, section, got/part/miss, scheme ...) |
+| [book-types-roadmap.md](book-types-roadmap.md) | see which book types the quiz-advanced skill covers, their status, and the decisions behind them |
 
 ## The project in one paragraph
 
