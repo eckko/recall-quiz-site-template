@@ -282,6 +282,8 @@ def check_card(where, card):
             if isinstance(block, dict) and is_text(block.get("text")):
                 check_text_field(f"{where} block", block["text"])
     least = 0 if "blocks" in card else 1
+    if paragraphs is None and not least:
+        paragraphs = []
     if not isinstance(paragraphs, list) or not least <= len(paragraphs) <= 4:
         error(where, f"card.paragraphs needs {least} to 4 paragraphs")
         paragraphs = []

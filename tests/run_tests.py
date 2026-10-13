@@ -1808,6 +1808,10 @@ def test_template_v2_fields(browser):
     out = run_validator(bank)
     check("the validator accepts the v2 fields", "0 error(s)" in out,
           out[-300:])
+    no_paragraphs = json.loads(json.dumps(bank))
+    no_paragraphs["concepts"][0]["card"].pop("paragraphs")
+    check("a card of blocks needs no paragraphs",
+          "0 error(s)" in run_validator(no_paragraphs))
     broken = json.loads(json.dumps(bank))
     broken["concepts"][0]["card"]["blocks"][0].pop("label")
     broken["questions"][0]["media"][0].pop("alt")
