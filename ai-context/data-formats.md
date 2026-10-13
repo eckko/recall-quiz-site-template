@@ -240,3 +240,27 @@ screen shows defaults plus overrides. Setting a default on the Settings
 screen clears that choice's override. `theme.json` may carry `"group"`; the
 picker shows one group at a time (`window.QUIZ_THEMES` entries are
 `[id, name, group]`).
+
+## Template v2 fields
+
+All optional. Banks without them work exactly as before. Checked by
+`tools/check_rich_content.py` (called from `validate_bank.py`).
+
+| Where | Field | Meaning |
+|---|---|---|
+| bank | `genre` | short label shown as a chip on every card (concept `genre` wins) |
+| bank | `sourceUse` | `paraphrase` (default), `quotes`, `quotes+images`. The last two are only for books whose media is encrypted |
+| bank | `mediaStore` | `repo` (default): files in `media/` of the same repo. `mediaBase` changes the folder |
+| concept | `genre` | chip text, 30 characters at most |
+| `card` | `blocks` | 1 to 6 `{label, text, code, lang, media}` shown after the paragraphs. A card may have blocks and no paragraphs |
+| question, block | `code`, `lang` | a code listing, shown as text in a `<pre>` (never parsed) |
+| question, block | `media` | `[{id or src, alt, role, type}]`. `alt` is required unless `role` is `decorative`, because a question must be answerable from text |
+
+Media files: `media/<id>.enc` is a 12-byte nonce plus AES-GCM data. The
+file key is HKDF-SHA-256 of the book key with info `file:<id>`, and the
+id is the authenticated data. `tools/encrypt_media.py` writes them; the
+nonce is a keyed hash of the content, so a rebuild gives identical bytes.
+The book key is never in the site: `quiz.media.setKeyProvider(fn)` is
+called by whatever signs the reader in (the Firebase document that holds
+the key must be readable only by the reader's account). Without a key the
+card or question shows the `alt` text. Sizes: 3 MB a clip, 100 MB a book.

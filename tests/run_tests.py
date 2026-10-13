@@ -1762,6 +1762,107 @@ def test_new_bank_fields_show(browser):
     page.close()
 
 
+# 1x1 PNG, used as the made-up secret picture in the media tests
+TINY_PNG = bytes.fromhex(
+    "89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c489"
+    "0000000d49444154789c63f8cfc0f01f0005000201a5f6454000000000"
+    "49454e44ae426082")
+MEDIA_ID = "u01/i01/f01"
+
+
+def v2_bank():
+    """The test book with every v2 field: genre, blocks, code, media."""
+    bank = json.loads(json.dumps(BOOK))
+    bank["genre"] = "Algorithms"
+    card = bank["concepts"][0]["card"]
+    card["blocks"] = [
+        {"label": "Problem", "text": "Find a number in a sorted list."},
+        {"label": "Code", "text": "A loop that counts.",
+         "code": "for (int i = 0; i < 3; i++) {\n  print(i);\n}",
+         "lang": "java"}]
+    for question in bank["questions"]:
+        question["code"] = "x = 1 < 2 && y > 0"
+        question["lang"] = "java"
+        question["media"] = [{
+            "id": MEDIA_ID, "type": "image/png", "role": "figure",
+            "alt": "A clock face with the hand pointing at three"}]
+    return bank
+
+
+def encrypted_media():
+    """(base64 book key, the .enc bytes of TINY_PNG) made with the tool."""
+    sys.path.insert(0, str(SITE_FOLDER / "tools"))
+    import base64
+    import os
+    import encrypt_media
+    key = os.urandom(32)
+    return (base64.b64encode(key).decode(),
+            encrypt_media.encrypt(key, MEDIA_ID, TINY_PNG))
+
+
+def test_template_v2_fields(browser):
+    """Genre chip, labelled blocks, code, and encrypted media with a text
+    fallback; the validator accepts them and rejects bad ones."""
+    print("Template v2: blocks, code, media")
+    bank = v2_bank()
+    out = run_validator(bank)
+    check("the validator accepts the v2 fields", "0 error(s)" in out,
+          out[-300:])
+    broken = json.loads(json.dumps(bank))
+    broken["concepts"][0]["card"]["blocks"][0].pop("label")
+    broken["questions"][0]["media"][0].pop("alt")
+    broken["questions"][1]["code"] = ""
+    broken["sourceUse"] = "everything"
+    out = run_validator(broken)
+    for needle, label in (
+            ("label is required", "a block without a label is an error"),
+            ("alt (the words", "media without alt is an error"),
+            ("code must be non-empty", "empty code is an error"),
+            ("sourceUse", "an unknown sourceUse is an error")):
+        check(label, needle in out, out[-300:])
+    key, data = encrypted_media()
+    page = open_page(browser, book=bank)
+    page.route("**/media/" + MEDIA_ID + ".enc",
+               lambda route: route.fulfill(body=data))
+    page.evaluate("k => RecallQuiz.media.setKeyProvider("
+                  "() => Promise.resolve(k))", key)
+    row = open_concept(page, 0)
+    check("the card shows the genre chip",
+          row.locator(".idea-genre").inner_text() == "Algorithms")
+    check("the card shows two labelled blocks",
+          row.locator(".idea-block").count() == 2)
+    check("the card block shows its code",
+          "for (int i = 0" in row.locator(".code-block").inner_text())
+    start_session(page)
+    page.wait_for_selector(".question-wrap .code-block")
+    check("the question shows its code",
+          "x = 1 < 2" in page.inner_text(".question-wrap .code-block"))
+    page.wait_for_selector(".media-figure.is-ready img")
+    check("the secret picture is opened with the key",
+          page.eval_on_selector(".media-figure img",
+                                "i => i.naturalWidth") == 1)
+    check("no page errors with the key", not page.errors,
+          "; ".join(page.errors))
+    page.close()
+    page = open_page(browser, book=bank)
+    page.route("**/media/" + MEDIA_ID + ".enc",
+               lambda route: route.fulfill(body=data))
+    start_session(page)
+    page.wait_for_selector(".media-figure.is-missing")
+    check("without a key the words stand in for the picture",
+          "clock face" in page.inner_text(".media-alt"))
+    check("no page errors without the key", not page.errors,
+          "; ".join(page.errors))
+    page.close()
+    page = open_page(browser, book=bank, width=375)
+    start_session(page)
+    page.wait_for_selector(".question-wrap .code-block")
+    check("a code block does not push the phone page sideways",
+          page.evaluate("() => document.documentElement.scrollWidth <= "
+                        "window.innerWidth"))
+    page.close()
+
+
 def test_results_are_gentle(browser):
     """Results lead with what went right, use 'Needs work', and show an
     average with a noise reminder after two sessions."""
@@ -2006,6 +2107,7 @@ def main():
             test_sync_bar_appears_when_turned_on(browser)
             test_validator_writer_rules()
             test_new_bank_fields_show(browser)
+            test_template_v2_fields(browser)
             test_results_are_gentle(browser)
             test_weak_part_and_easy_ending(browser)
             test_five_minute_session(browser)

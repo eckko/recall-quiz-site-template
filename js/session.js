@@ -414,6 +414,7 @@
   function createQuestionText(question) {
     const wrap = createElement("div", "question-wrap");
     wrap.appendChild(createElement("span", "question-text", question.q));
+    quiz.rich.appendExtras(wrap, question);
     return wrap;
   }
 

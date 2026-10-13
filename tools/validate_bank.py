@@ -19,6 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from merge_question_bank import question_problems  # noqa: E402
+import check_rich_content as rich  # noqa: E402
 
 ROLES = ("pretest", "warmup", "extend", "apply", "transfer",
          "discriminate", "predict", "spot-error")
@@ -180,10 +181,16 @@ def check_wording(where, question):
              "a plausible option")
 
 
+def report(where, found):
+    """Send the (level, message) pairs of check_rich_content on."""
+    for level, message in found:
+        (error if level == "error" else warn)(where, message)
+
+
 def card_text(concept):
     """All the words of a concept card, lower case."""
     card = concept.get("card") or {}
-    parts = list(card.get("paragraphs") or [])
+    parts = list(card.get("paragraphs") or []) + rich.block_texts(card)
     parts += [card.get("example") or "", card.get("rule") or "",
               card.get("limits") or "", concept.get("title") or ""]
     return " ".join(p for p in parts if isinstance(p, str)).lower()
@@ -243,6 +250,8 @@ def check_concept_fields(where, concept, seen):
     if not isinstance(concept.get("requires"), list):
         error(where, "requires must be a list (use [] for none)")
     check_card(where, concept.get("card"))
+    if "genre" in concept:
+        report(where, rich.check_genre(concept["genre"]))
     check_orienting_question(where, concept.get("question"))
     if "core" in concept and not isinstance(concept["core"], bool):
         error(where, "core must be true or false")
@@ -266,8 +275,15 @@ def check_card(where, card):
         error(where, "missing card")
         return
     paragraphs = card.get("paragraphs")
-    if not isinstance(paragraphs, list) or not 1 <= len(paragraphs) <= 4:
-        error(where, "card.paragraphs needs 1 to 4 paragraphs")
+    if "blocks" in card:
+        report(where, rich.check_blocks(card["blocks"]))
+        for block in card["blocks"] if isinstance(
+                card["blocks"], list) else []:
+            if isinstance(block, dict) and is_text(block.get("text")):
+                check_text_field(f"{where} block", block["text"])
+    least = 0 if "blocks" in card else 1
+    if not isinstance(paragraphs, list) or not least <= len(paragraphs) <= 4:
+        error(where, f"card.paragraphs needs {least} to 4 paragraphs")
         paragraphs = []
     for index, paragraph in enumerate(paragraphs):
         if not is_text(paragraph):
@@ -316,6 +332,7 @@ def check_question(question, concepts_by_id):
             if question.get(field) != concept.get(field):
                 error(where, f"{field} {question.get(field)!r} differs from "
                       f"the concept's {concept.get(field)!r}")
+    report(where, rich.check_extras("question", question))
     check_role_and_rung(where, question)
     check_feedback_fields(where, question)
     check_wording(where, question)
@@ -430,6 +447,7 @@ def check_top_level(bank):
     for field in ("id", "book"):
         if not is_text(bank.get(field)):
             error("questions.json", f"missing {field}")
+    report("questions.json", rich.check_book_settings(bank))
     questions = bank.get("questions")
     if not isinstance(questions, list) or not questions:
         error("questions.json", "questions must be a non-empty list")

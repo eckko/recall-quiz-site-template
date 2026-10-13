@@ -764,6 +764,10 @@
   function createCardContent(concept) {
     const card = concept.card || {};
     const content = createElement("div", "idea-card");
+    const genreChip = quiz.rich.createGenreChip(concept);
+    if (genreChip) {
+      content.appendChild(genreChip);
+    }
     if (concept.question) {
       const guide = createElement("p", "idea-question");
       guide.appendChild(createElement("b", null, "Read to answer: "));
@@ -773,6 +777,10 @@
     (card.paragraphs || []).forEach(function addParagraph(text) {
       content.appendChild(createElement("p", "idea-paragraph", text));
     });
+    quiz.rich.createBlocks(card.blocks || []).forEach(
+      function addBlock(block) {
+        content.appendChild(block);
+      });
     if (card.example) {
       const example = createElement("div", "idea-example");
       example.appendChild(createElement("b", null, "Worked example"));

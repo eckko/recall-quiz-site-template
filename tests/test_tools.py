@@ -129,11 +129,39 @@ def test_tag_lister():
           result.returncode == 0 and "inspectional/" in result.stdout)
 
 
+def test_media_encryption():
+    """encrypt_media.py: same bytes every time, id-bound, reversible."""
+    import os
+    import sys
+    sys.path.insert(0, str(TOOLS))
+    import encrypt_media
+    from cryptography.exceptions import InvalidTag
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    key, content = os.urandom(32), b"a secret picture"
+    first = encrypt_media.encrypt(key, "u01/i01/f01", content)
+    check("the same file gives the same bytes",
+          first == encrypt_media.encrypt(key, "u01/i01/f01", content))
+    check("the plain content is not in the file", content not in first)
+    check("another id gives other bytes",
+          first != encrypt_media.encrypt(key, "u01/i01/f02", content))
+    file_key = encrypt_media.derive(key, "file:u01/i01/f01", 32)
+    check("the file opens with its key and id",
+          AESGCM(file_key).decrypt(first[:12], first[12:],
+                                   b"u01/i01/f01") == content)
+    try:
+        AESGCM(file_key).decrypt(first[:12], first[12:], b"u01/i01/f02")
+        swapped = True
+    except InvalidTag:
+        swapped = False
+    check("a file cannot be passed off under another id", not swapped)
+
+
 if __name__ == "__main__":
     print("Bank tools")
     test_round_trip()
     test_refusals()
     test_tag_lister()
+    test_media_encryption()
     if failures:
         raise SystemExit(f"{len(failures)} check(s) failed")
     print("All checks passed.")

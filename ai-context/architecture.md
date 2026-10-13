@@ -13,6 +13,8 @@ index.html  (all screens live here; JS shows and hides them)
      js/helpers.js
      js/transliteration.js, js/math-display.js
      js/book.js
+     js/media-store.js
+     js/rich-content.js
      js/progress-storage.js
      js/spaced-repetition.js
      js/celebration.js
@@ -39,6 +41,8 @@ adds one namespace to it (`js/theme-picker.js` is separate: it runs in
 | Namespace | File | Owns |
 |---|---|---|
 | `quiz.helpers` | helpers.js | `findElement`, `createElement`, `createButton`, `createCheckButton`, `createParagraph`, `shuffledCopy`, `countWithWord`, `formatOneDecimal`, `readWholeNumber`, `prefersReducedMotion` |
+| `quiz.media` | media-store.js | `load(entry)`, `prefetch(entries)`, `setKeyProvider(fn)`: opens encrypted pictures and clips; gives null (so the text shows) without a key |
+| `quiz.rich` | rich-content.js | `createCode`, `createMedia`, `appendExtras`, `createBlocks`, `createGenreChip`: the v2 card and question extras |
 | `quiz.book` | book.js | the loaded `questions.json` (`data`), `labels`, `unitIds`, `unitTitles`; `setBookData`, `allQuestions`, `bookId`, `unitShortName`, `unitFullName`, `questionsInUnit` |
 | `quiz.progress` | progress-storage.js | `saved` (the progress object), `openForBook`, `saveProgress`, `replaceProgress`, `eraseProgress`, `looksLikeProgress`; version upgrades |
 | `quiz.memory` | spaced-repetition.js | `recordAnswer`, `isDueOrNew`, `isWaitingForReview`, `isGap`, `isSolid`, `isLearning`, `timesMissed`, `currentDayStreak`, `countAnsweredToday` |
