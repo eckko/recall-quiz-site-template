@@ -79,6 +79,10 @@
         if (!figure.querySelector(".media-item")) {
           figure.classList.remove("is-missing");
           figure.classList.add("is-loading");
+          const old = figure.querySelector(".media-reason");
+          if (old) {
+            old.remove();
+          }
           openFigure(figure, entry);
         }
       });
@@ -99,8 +103,25 @@
       } else {
         figure.classList.remove("is-loading");
         figure.classList.add("is-missing");
+        showReason(figure, entry);
       }
     });
+  }
+
+  /**
+   * Say, under the words, why the picture did not open.
+   * @param {HTMLElement} figure
+   * @param {object} entry
+   */
+  function showReason(figure, entry) {
+    const old = figure.querySelector(".media-reason");
+    if (old) {
+      old.remove();
+    }
+    const reason = quiz.media.reasonFor ? quiz.media.reasonFor(entry.id) : "";
+    if (reason) {
+      figure.appendChild(createElement("small", "media-reason", reason));
+    }
   }
 
   /**

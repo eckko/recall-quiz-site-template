@@ -26,6 +26,9 @@
 
   const NONCE_BYTES = 12;
   const media = { keyProvider: null };
+  /** id -> why a file could not be opened (words for the reader) */
+  const reasons = new Map();
+  let keyReason = "";
   /** id -> promise of an object URL (or null) */
   const loaded = new Map();
   /** The book key once it has been imported, or null */
@@ -38,7 +41,9 @@
   function setKeyProvider(provider) {
     media.keyProvider = provider;
     bookKeyPromise = null;
+    keyReason = "";
     loaded.clear();
+    reasons.clear();
     // Pictures that showed their words because there was no key try again.
     document.dispatchEvent(new CustomEvent("recallquiz:media-key-changed"));
   }
@@ -68,17 +73,24 @@
 
   /** @returns {Promise<CryptoKey|null>} */
   async function importBookKey() {
-    if (!media.keyProvider || !window.crypto || !crypto.subtle) {
+    if (!window.crypto || !crypto.subtle) {
+      keyReason = "this browser cannot decrypt (needs https)";
+      return null;
+    }
+    if (!media.keyProvider) {
+      keyReason = "not signed in, so no key";
       return null;
     }
     try {
       const encoded = await media.keyProvider();
       if (!encoded) {
+        keyReason = "no key found in your account for this book";
         return null;
       }
       return await crypto.subtle.importKey(
         "raw", fromBase64(encoded), "HKDF", false, ["deriveKey"]);
     } catch (error) {
+      keyReason = "the key in your account is not valid base64";
       return null;
     }
   }
@@ -104,19 +116,29 @@
   async function openEncrypted(entry) {
     const bookKey = await getBookKey();
     if (!bookKey) {
+      reasons.set(entry.id, keyReason);
       return null;
     }
     const base = (quiz.book.data && quiz.book.data.mediaBase) || "media/";
     const response = await fetch(base + entry.id + ".enc");
     if (!response.ok) {
+      reasons.set(entry.id, "file not found (HTTP " + response.status +
+        "): is this branch published?");
       return null;
     }
     const bytes = new Uint8Array(await response.arrayBuffer());
     const fileKey = await deriveFileKey(bookKey, entry.id);
-    const plain = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: bytes.slice(0, NONCE_BYTES),
-        additionalData: new TextEncoder().encode(entry.id) },
-      fileKey, bytes.slice(NONCE_BYTES));
+    let plain;
+    try {
+      plain = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: bytes.slice(0, NONCE_BYTES),
+          additionalData: new TextEncoder().encode(entry.id) },
+        fileKey, bytes.slice(NONCE_BYTES));
+    } catch (error) {
+      reasons.set(entry.id, "the key does not match these files " +
+        "(re-encrypt them, or put the matching key in your account)");
+      return null;
+    }
     const blob = new Blob([plain], { type: entry.type || "image/webp" });
     return URL.createObjectURL(blob);
   }
@@ -135,7 +157,8 @@
       return Promise.resolve(null);
     }
     if (!loaded.has(entry.id)) {
-      loaded.set(entry.id, openEncrypted(entry).catch(function fail() {
+      loaded.set(entry.id, openEncrypted(entry).catch(function fail(error) {
+        reasons.set(entry.id, "could not be opened: " + error.message);
         return null;
       }));
     }
@@ -150,6 +173,10 @@
     (entries || []).forEach(load);
   }
 
+  /** @returns {string} why a file did not open, or "" */
+  media.reasonFor = function reasonFor(id) {
+    return reasons.get(id) || "";
+  };
   media.setKeyProvider = setKeyProvider;
   media.load = load;
   media.prefetch = prefetch;

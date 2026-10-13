@@ -109,3 +109,10 @@
 .book-cover.hidden {
   display: none;
 }
+
+.media-reason {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}

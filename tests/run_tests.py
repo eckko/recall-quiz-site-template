@@ -1868,6 +1868,9 @@ def test_template_v2_fields(browser):
     page.wait_for_selector(".media-figure.is-missing")
     check("without a key the words stand in for the picture",
           "clock face" in page.inner_text(".media-alt"))
+    check("without a key the box says why",
+          "no key" in page.inner_text(".media-reason"),
+          page.inner_html(".media-figure")[:300])
     check("without a key there is no cover",
           page.is_hidden("#book-cover"))
     check("no page errors without the key", not page.errors,
