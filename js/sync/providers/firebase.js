@@ -7,6 +7,12 @@
  *     progress:  the progress as JSON text (see progress-storage.js)
  *     updatedAt: server time of the last save
  *
+ * and, for a book with secret pictures, one read-only document that the
+ * author creates by hand in the Firebase console:
+ *
+ *   users/{user id}/mediaKeys/{book id}
+ *     key:       the book key, 32 random bytes in base64
+ *
  * The Firebase SDK is fetched from Google's CDN only when this adapter
  * is used, with import(), so the quiz itself stays free of modules.
  * Settings come from the "firebase" block in js/sync/sync-config.js.
@@ -137,6 +143,27 @@
     });
   }
 
+  /**
+   * The book key for the secret pictures, or null when this account has
+   * none. Never throws: a missing document, the rules saying no, or a
+   * network problem all give null, and the page shows the words instead.
+   * @param {string} userId
+   * @param {string} bookId
+   * @returns {Promise<string|null>}
+   */
+  function readMediaKey(userId, bookId) {
+    const reference = firebase.dbSdk.doc(firebase.db, "users", userId,
+      "mediaKeys", encodeURIComponent(bookId));
+    return firebase.dbSdk.getDoc(reference)
+      .then(function readKey(snapshot) {
+        const key = snapshot.exists() ? snapshot.data().key : null;
+        return typeof key === "string" && key ? key : null;
+      })
+      .catch(function noKey() {
+        return null;
+      });
+  }
+
   quiz.cloudSync.registerProvider("firebase", {
     label: "Google",
     start,
@@ -144,5 +171,6 @@
     signOut,
     readProgress,
     writeProgress,
+    readMediaKey,
   });
 })((window.RecallQuiz = window.RecallQuiz || {}));

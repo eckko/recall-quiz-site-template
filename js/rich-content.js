@@ -68,15 +68,37 @@
     figure.setAttribute("data-role", entry.role || "figure");
     figure.appendChild(createElement("figcaption", "media-alt",
       entry.alt || ""));
+    openFigure(figure, entry);
+    document.addEventListener("recallquiz:media-key-changed",
+      function retry() {
+        if (!figure.isConnected) {
+          return;
+        }
+        if (!figure.querySelector(".media-item")) {
+          figure.classList.remove("is-missing");
+          figure.classList.add("is-loading");
+          openFigure(figure, entry);
+        }
+      });
+    return figure;
+  }
+
+  /**
+   * Load a figure's file; show it, or leave the words if there is none.
+   * @param {HTMLElement} figure
+   * @param {object} entry
+   */
+  function openFigure(figure, entry) {
     quiz.media.load(entry).then(function show(url) {
       if (url) {
-        fillFigure(figure, entry, url);
+        if (!figure.querySelector(".media-item")) {
+          fillFigure(figure, entry, url);
+        }
       } else {
         figure.classList.remove("is-loading");
         figure.classList.add("is-missing");
       }
     });
-    return figure;
   }
 
   /**

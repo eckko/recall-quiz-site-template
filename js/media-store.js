@@ -39,6 +39,8 @@
     media.keyProvider = provider;
     bookKeyPromise = null;
     loaded.clear();
+    // Pictures that showed their words because there was no key try again.
+    document.dispatchEvent(new CustomEvent("recallquiz:media-key-changed"));
   }
 
   /**

@@ -264,3 +264,10 @@ The book key is never in the site: `quiz.media.setKeyProvider(fn)` is
 called by whatever signs the reader in (the Firebase document that holds
 the key must be readable only by the reader's account). Without a key the
 card or question shows the `alt` text. Sizes: 3 MB a clip, 100 MB a book.
+
+### Where the book key lives
+
+Firestore `users/<uid>/mediaKeys/<book id>` with a string field `key` (32
+random bytes, base64). Created by hand in the console; the rules in
+`js/sync/providers/firebase-firestore.rules` allow the owner to read it and
+nobody to write it. The key is never in the site or the repo.

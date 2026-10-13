@@ -135,7 +135,7 @@ LEGACY_LAYOUT = (
 
 def open_page(browser, questions=None, book=None, width=430, bank=None,
               block=None, view="ideas", keep_going=True,
-              open_sections=True):
+              open_sections=True, sync_config=None, init_script=None):
     """Open the quiz, optionally with a made-up questions.json, a bank
     from banks/ (bank="how-to-read-a-book") or some files blocked.
 
@@ -156,7 +156,10 @@ def open_page(browser, questions=None, book=None, width=430, bank=None,
     page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
     page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
         content_type="application/javascript",
-        body='window.RecallQuizSyncConfig = {provider: "none"};'))
+        body=sync_config
+        or 'window.RecallQuizSyncConfig = {provider: "none"};'))
+    if init_script:
+        page.add_init_script(init_script)
     if open_sections:
         page.add_init_script(OPEN_SECTIONS_SCRIPT)
     if view:
@@ -1867,6 +1870,55 @@ def test_template_v2_fields(browser):
     page.close()
 
 
+def test_media_key_comes_from_the_account(browser):
+    """Signed in, the book key is read from the account (here the test
+    adapter, never the real database) and waiting pictures open; signed
+    out, or with no key, the words stay."""
+    print("Media key from the account")
+    bank = v2_bank()
+    key, data = encrypted_media()
+    book_id = bank.get("id", "book")
+    page = open_page(
+        browser, book=bank,
+        sync_config='window.RecallQuizSyncConfig = {provider: '
+                    '"example-in-browser", saveDelaySeconds: 1, '
+                    '"example-in-browser": {}};',
+        init_script="sessionStorage.setItem("
+                    "'recall-quiz-example-media-key:%s', '%s');"
+                    % (book_id, key))
+    page.route("**/media/" + MEDIA_ID + ".enc",
+               lambda route: route.fulfill(body=data))
+    start_session(page)
+    page.wait_for_selector(".media-figure.is-missing")
+    check("signed out, the words stand in for the picture",
+          "clock face" in page.inner_text(".media-alt"))
+    page.evaluate("() => RecallQuiz.cloudSync.signIn()")
+    page.wait_for_selector(".media-figure.is-ready img", timeout=8000)
+    check("after sign-in the waiting picture opens with the account key",
+          page.eval_on_selector(".media-figure img",
+                                "i => i.naturalWidth") == 1)
+    check("no page errors reading the account key", not page.errors,
+          "; ".join(page.errors))
+    page.close()
+
+
+def test_firebase_key_rules_and_adapter():
+    """The Firebase adapter reads users/<uid>/mediaKeys/<book>; the rules
+    let only that reader read it and let nobody write it."""
+    print("Firebase media key rules")
+    rules = (SITE_FOLDER / "js/sync/providers/firebase-firestore.rules"
+             ).read_text()
+    block = rules[rules.index("mediaKeys"):]
+    check("rules have a mediaKeys block", "mediaKeys/{bookId}" in rules)
+    check("only the owner may read the key",
+          "request.auth.uid == userId" in block)
+    check("nobody may write the key from the page",
+          "allow write: if false" in block)
+    adapter = (SITE_FOLDER / "js/sync/providers/firebase.js").read_text()
+    check("the adapter reads the mediaKeys document",
+          '"mediaKeys"' in adapter and "readMediaKey" in adapter)
+
+
 def test_results_are_gentle(browser):
     """Results lead with what went right, use 'Needs work', and show an
     average with a noise reminder after two sessions."""
@@ -2102,6 +2154,7 @@ def main():
             browser = playwright.chromium.launch()
             test_every_linked_file_exists()
             test_firebase_sync_is_on_in_this_edition()
+            test_firebase_key_rules_and_adapter()
             test_every_question_is_well_formed()
             test_bank_passes_the_validator()
             test_keep_going_teaches_the_next_idea(browser)
@@ -2112,6 +2165,7 @@ def main():
             test_validator_writer_rules()
             test_new_bank_fields_show(browser)
             test_template_v2_fields(browser)
+            test_media_key_comes_from_the_account(browser)
             test_results_are_gentle(browser)
             test_weak_part_and_easy_ending(browser)
             test_five_minute_session(browser)

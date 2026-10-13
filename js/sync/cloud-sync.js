@@ -172,6 +172,7 @@
    */
   function handleBookOpened(event) {
     sync.bookId = event.detail.bookId;
+    connectMediaKey(sync.user);
     if (sync.user) {
       saveNow();
       syncSettings(sync.user);
@@ -184,6 +185,7 @@
    */
   function handleUserChanged(user) {
     sync.user = user;
+    connectMediaKey(user);
     if (!user) {
       showStatus("signed-out");
       return;
@@ -194,6 +196,34 @@
     } else {
       showStatus("saved");
     }
+  }
+
+  /**
+   * Give the media store a way to get this book's key from the account,
+   * or take it away when nobody is signed in. The key is read once, the
+   * first time a picture asks for it, and kept only in memory.
+   * @param {{id: string}|null} user
+   */
+  function connectMediaKey(user) {
+    const provider = sync.provider;
+    const bookId = sync.bookId;
+    if (!quiz.media || !provider || !provider.readMediaKey) {
+      return;
+    }
+    if (!user || !bookId) {
+      quiz.media.setKeyProvider(null);
+      return;
+    }
+    let reading = null;
+    quiz.media.setKeyProvider(function readOnce() {
+      if (!reading) {
+        reading = provider.readMediaKey(user.id, bookId)
+          .catch(function noKey() {
+            return null;
+          });
+      }
+      return reading;
+    });
   }
 
   /** The reader changed a setting, theme or flag: save it to the account
