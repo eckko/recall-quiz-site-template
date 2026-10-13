@@ -1461,6 +1461,22 @@ def test_phone_width(browser):
         "() => document.documentElement.scrollWidth > innerWidth")
     check("the home screen does not scroll sideways",
           not scrolls_sideways)
+    # Everything open (panel, units, ideas): still no sideways scroll, and
+    # a long unbreakable word in an idea must not widen the list.
+    page.evaluate("""() => {
+      document.querySelectorAll(".panel").forEach(
+        p => p.classList.remove("is-collapsed"));
+      document.querySelectorAll("details").forEach(d => d.open = true);
+      const p = document.createElement("p");
+      p.textContent = "x".repeat(120);
+      const body = document.querySelector(".concept-body");
+      if (body) { body.prepend(p); }
+    }""")
+    page.wait_for_timeout(300)
+    opened_scrolls = page.evaluate(
+        "() => document.documentElement.scrollWidth > innerWidth")
+    check("with every list opened it still does not scroll sideways",
+          not opened_scrolls)
     page.close()
 
 

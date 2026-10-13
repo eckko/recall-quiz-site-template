@@ -435,7 +435,7 @@ select {
 
 .unit-progress > summary {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 11px 0;
@@ -488,7 +488,7 @@ select {
 
 .topic-list li {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 5px 0;
@@ -562,7 +562,7 @@ select {
 
 .section-row > summary {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 6px 0;

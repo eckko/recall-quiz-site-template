@@ -169,6 +169,7 @@
 
 .concept-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
   margin: 8px 0 0;
   padding: 0;
@@ -176,6 +177,7 @@
 }
 
 .concept-row {
+  min-width: 0;
   border: var(--border-width) solid var(--color-border);
   border-radius: 10px;
 }

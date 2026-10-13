@@ -401,3 +401,9 @@ button:active:not([disabled]) {
     transition: none !important;
   }
 }
+
+/* Long identifiers (getLastNamesOfUsersWhoLoggedInAfter) may break rather than
+   push the page wider than the screen. Code blocks keep their own scrolling. */
+main {
+  overflow-wrap: anywhere;
+}
