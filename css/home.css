@@ -433,7 +433,7 @@ select {
   border-top: 1px solid var(--color-border);
 }
 
-.unit-progress summary {
+.unit-progress > summary {
   display: grid;
   grid-template-columns: 1fr 90px 40px;
   align-items: center;
@@ -443,7 +443,7 @@ select {
   cursor: pointer;
 }
 
-.unit-progress summary::-webkit-details-marker {
+.unit-progress > summary::-webkit-details-marker {
   display: none;
 }
 
@@ -733,7 +733,7 @@ select {
   gap: 14px;
 }
 
-#where-you-stand .unit-progress summary {
+#where-you-stand .unit-progress > summary {
   padding: 15px 2px;
 }
 
