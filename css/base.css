@@ -105,8 +105,23 @@ body {
   margin: 0;
   font: 16px/1.55 var(--font-body);
   color: var(--color-text);
-  background: var(--page-background);
   background-color: var(--color-page);
+}
+
+/* The theme's page background sits on its own fixed layer. iOS Safari
+   ignores "background-attachment: fixed" on the body and paints only part
+   of a long page (a lighter band down the left), so the layer is the
+   reliable way to keep it behind everything while the page scrolls. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: var(--page-background);
+  pointer-events: none;
 }
 
 main {

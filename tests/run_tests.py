@@ -1841,6 +1841,10 @@ def test_template_v2_fields(browser):
     row = open_concept(page, 0)
     check("the card shows the genre chip",
           row.locator(".idea-genre").inner_text() == "Algorithms")
+    check("the page background sits on a fixed layer (iOS paints it right)",
+          page.evaluate("() => { const s = getComputedStyle(document.body,"
+                        " '::before'); return s.position === 'fixed' && "
+                        "s.zIndex === '-1'; }"))
     check("the card shows two labelled blocks",
           row.locator(".idea-block").count() == 2)
     check("the card shows its own picture under the text",
