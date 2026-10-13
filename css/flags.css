@@ -7,8 +7,9 @@
 }
 
 /* Collapsible "Flag this ..." and "Read the idea" bars: plain muted text
-   with a small chevron after it, so they still read as something that
-   opens without taking space or attention. */
+   with the usual small triangle in front (right when closed, down when
+   open). The triangle is drawn here, not left to the browser, because some
+   themes switch the browser's own marker off. */
 .flag-bar > summary,
 .idea-again > summary {
   cursor: pointer;
@@ -23,24 +24,18 @@
   display: none;
 }
 
-.flag-bar > summary::after,
-.idea-again > summary::after {
-  content: "";
+.flag-bar > summary::before,
+.idea-again > summary::before {
+  content: "\25B6\FE0E";
   display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin: 0 0 3px 8px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  opacity: 0.7;
-  transform: rotate(45deg);
-  transition: transform 0.15s;
+  width: 1.1em;
+  margin-right: 0.35em;
+  font-size: 0.8em;
 }
 
-.flag-bar[open] > summary::after,
-.idea-again[open] > summary::after {
-  margin-bottom: 0;
-  transform: rotate(225deg);
+.flag-bar[open] > summary::before,
+.idea-again[open] > summary::before {
+  content: "\25BC\FE0E";
 }
 
 .flag-buttons {
