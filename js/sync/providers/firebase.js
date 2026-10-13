@@ -145,8 +145,9 @@
 
   /**
    * The book key for the secret pictures, or null when this account has
-   * none. Never throws: a missing document, the rules saying no, or a
-   * network problem all give null, and the page shows the words instead.
+   * none. A missing document gives null; the rules saying no or a network
+   * problem reject with code "read", and either way the page shows the
+   * words instead and says why.
    * @param {string} userId
    * @param {string} bookId
    * @returns {Promise<string|null>}
@@ -159,8 +160,11 @@
         const key = snapshot.exists() ? snapshot.data().key : null;
         return typeof key === "string" && key ? key : null;
       })
-      .catch(function noKey() {
-        return null;
+      .catch(function cannotRead(problem) {
+        console.error("Could not read the media key:", problem);
+        const error = new Error(problem.code || problem.message);
+        error.code = "read";
+        throw error;
       });
   }
 

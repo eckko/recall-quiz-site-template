@@ -214,13 +214,11 @@
       quiz.media.setKeyProvider(null);
       return;
     }
+    quiz.media.keyLocation = "users/" + user.id + "/mediaKeys/" + bookId;
     let reading = null;
     quiz.media.setKeyProvider(function readOnce() {
       if (!reading) {
-        reading = provider.readMediaKey(user.id, bookId)
-          .catch(function noKey() {
-            return null;
-          });
+        reading = provider.readMediaKey(user.id, bookId);
       }
       return reading;
     });

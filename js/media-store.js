@@ -25,7 +25,7 @@
   "use strict";
 
   const NONCE_BYTES = 12;
-  const media = { keyProvider: null };
+  const media = { keyProvider: null, keyLocation: "" };
   /** id -> why a file could not be opened (words for the reader) */
   const reasons = new Map();
   let keyReason = "";
@@ -84,13 +84,17 @@
     try {
       const encoded = await media.keyProvider();
       if (!encoded) {
-        keyReason = "no key found in your account for this book";
+        keyReason = "no key found" + (media.keyLocation ?
+          " at " + media.keyLocation : " in your account for this book");
         return null;
       }
       return await crypto.subtle.importKey(
         "raw", fromBase64(encoded), "HKDF", false, ["deriveKey"]);
     } catch (error) {
-      keyReason = "the key in your account is not valid base64";
+      keyReason = error && error.code === "read" ?
+        "could not read the key at " + (media.keyLocation || "your account") +
+          ": " + error.message :
+        "the key in your account is not valid base64";
       return null;
     }
   }
