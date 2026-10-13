@@ -4,7 +4,10 @@
     python3 tools/encrypt_media.py KEYFILE ID SOURCE [ID SOURCE ...]
             [--out media] [--make-key]
 
-KEYFILE holds the book key (32 random bytes, base64). With --make-key a
+KEYFILE holds the book key (32 random bytes, base64). The word
+"placeholder" stands for a public stand-in key (the SHA-256 of
+"key-placeholder"): files hidden with it are not secret, but
+tools/reencrypt_media.py can later swap them to the real key. With --make-key a
 new key is written to KEYFILE first (it refuses to overwrite one). Keep
 the key out of the repo. Each ID looks like u03/i07/f02 and SOURCE is the
 file to hide; the result is <out>/<ID>.enc, which media-store.js opens.
@@ -34,6 +37,22 @@ LIMITS = {"one file": 50_000_000, "book": 100_000_000}
 WARN_FILE = 3_000_000
 
 
+PLACEHOLDER_TEXT = "key-placeholder"
+
+
+def placeholder_key():
+    """The public stand-in key: SHA-256 of the text 'key-placeholder'."""
+    return hashlib.sha256(PLACEHOLDER_TEXT.encode()).digest()
+
+
+def decrypt(book_key, file_id, data):
+    """The original bytes of one stored file; raises if the key or id is
+    wrong."""
+    file_key = derive(book_key, "file:" + file_id, 32)
+    return AESGCM(file_key).decrypt(
+        data[:NONCE_BYTES], data[NONCE_BYTES:], file_id.encode())
+
+
 def derive(book_key, info, length):
     """HKDF-SHA-256 of the book key for one purpose."""
     return HKDF(algorithm=hashes.SHA256(), length=length, salt=None,
@@ -52,6 +71,8 @@ def encrypt(book_key, file_id, content):
 
 def read_key(path, make):
     """The book key; with make, create the key file first."""
+    if path == "placeholder":
+        return placeholder_key()
     key_path = Path(path)
     if make:
         if key_path.exists():

@@ -94,3 +94,18 @@
   content: "Picture not shown: ";
   font-weight: 600;
 }
+
+/* The book's cover, a small thumbnail by the title. */
+.book-cover {
+  display: block;
+  height: 84px;
+  width: auto;
+  max-width: 100%;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.book-cover.hidden {
+  display: none;
+}

@@ -781,6 +781,9 @@
       function addBlock(block) {
         content.appendChild(block);
       });
+    if (card.media && card.media.length) {
+      content.appendChild(quiz.rich.createMedia(card.media));
+    }
     if (card.example) {
       const example = createElement("div", "idea-example");
       example.appendChild(createElement("b", null, "Worked example"));

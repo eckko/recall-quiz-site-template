@@ -7,6 +7,8 @@
  * questions.json fields (all optional, older banks do not use them):
  *   concept.genre            short label, for example "Algorithms"
  *   card.blocks              [{ label, text, code, lang, media }]
+ *   card.media               [{ id, alt, role, type }] shown under the card text
+ *   cover                    one media entry (role "cover"), shown by the title
  *   question.code, .lang     a code listing under the question
  *   question.media, block.media
  *                            [{ id, alt, role, type }] see media-store.js
@@ -117,6 +119,35 @@
   }
 
   /**
+   * Show the book's cover next to its title, when the bank has one and it
+   * can be opened. With no key or no file the cover stays hidden.
+   * @param {object|undefined} entry  bank.cover
+   */
+  function showCover(entry) {
+    const image = document.getElementById("book-cover");
+    if (!image) {
+      return;
+    }
+    image.classList.add("hidden");
+    if (!entry) {
+      return;
+    }
+    quiz.media.load(entry).then(function show(url) {
+      if (url) {
+        image.src = url;
+        image.alt = entry.alt || "";
+        image.classList.remove("hidden");
+      }
+    });
+  }
+
+  document.addEventListener("recallquiz:media-key-changed", function again() {
+    if (quiz.book && quiz.book.data) {
+      showCover(quiz.book.data.cover);
+    }
+  });
+
+  /**
    * Add a thing's code and pictures to an element.
    * @param {HTMLElement} parent
    * @param {object} thing  a question or a block
@@ -158,6 +189,6 @@
     return genre ? createElement("span", "idea-genre", genre) : null;
   }
 
-  quiz.rich = { createCode, createMedia, appendExtras, createBlocks,
+  quiz.rich = { createCode, createMedia, appendExtras, createBlocks, showCover,
                 createGenreChip };
 })(window.RecallQuiz = window.RecallQuiz || {});

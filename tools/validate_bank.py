@@ -281,6 +281,9 @@ def check_card(where, card):
                 card["blocks"], list) else []:
             if isinstance(block, dict) and is_text(block.get("text")):
                 check_text_field(f"{where} block", block["text"])
+    if "media" in card:
+        report(where, [(level, f"card: {message}") for level, message in
+                       rich.check_media(card["media"])])
     least = 0 if "blocks" in card else 1
     if paragraphs is None and not least:
         paragraphs = []

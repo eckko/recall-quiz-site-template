@@ -31,6 +31,7 @@
       : countWithWord(questionCount, "question") + " across " + unitsText +
         ". Recall first, then check.";
     showBookBlurb();
+    quiz.rich.showCover(book.data.cover);
     quiz.scopePicker.fill();
     showKeepGoingFor(quiz.learning.hasConcepts());
   }

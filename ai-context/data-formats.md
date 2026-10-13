@@ -250,8 +250,10 @@ All optional. Banks without them work exactly as before. Checked by
 |---|---|---|
 | bank | `genre` | short label shown as a chip on every card (concept `genre` wins) |
 | bank | `sourceUse` | `paraphrase` (default), `quotes`, `quotes+images`. The last two are only for books whose media is encrypted |
+| bank | `cover` | one media entry (`role: "cover"`) shown as a small thumbnail by the title; hidden when it cannot be opened |
 | bank | `mediaStore` | `repo` (default): files in `media/` of the same repo. `mediaBase` changes the folder |
 | concept | `genre` | chip text, 30 characters at most |
+| `card` | `media` | `[{id, alt, role, type}]` shown under the card text (before the worked example); role `illustration` is for pictures that decorate but are shown |
 | `card` | `blocks` | 1 to 6 `{label, text, code, lang, media}` shown after the paragraphs. A card may have blocks and no paragraphs |
 | question, block | `code`, `lang` | a code listing, shown as text in a `<pre>` (never parsed) |
 | question, block | `media` | `[{id or src, alt, role, type}]`. `alt` is required unless `role` is `decorative`, because a question must be answerable from text |
@@ -264,6 +266,14 @@ The book key is never in the site: `quiz.media.setKeyProvider(fn)` is
 called by whatever signs the reader in (the Firebase document that holds
 the key must be readable only by the reader's account). Without a key the
 card or question shows the `alt` text. Sizes: 3 MB a clip, 100 MB a book.
+
+Roles: `figure`, `illustration`, `cover`, `logo`, `decorative` (never shown,
+no `alt` needed), `animation`, `clip`.
+
+Placeholder key: `encrypt_media.py placeholder ...` hides files with a
+public stand-in key (SHA-256 of `key-placeholder`). Those files are not
+secret. `tools/reencrypt_media.py placeholder <real key file>` swaps them
+to the real key later; it is safe to run again.
 
 ### Where the book key lives
 

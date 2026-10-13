@@ -7,8 +7,8 @@ described in ai-context/data-formats.md ("Template v2 fields").
 
 import re
 
-MEDIA_ROLES = ("figure", "cover", "logo", "decorative", "animation",
-               "clip")
+MEDIA_ROLES = ("figure", "illustration", "cover", "logo", "decorative",
+               "animation", "clip")
 MEDIA_ID = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*(/[a-z0-9]+(-[a-z0-9]+)*)*$")
 SOURCE_USES = ("paraphrase", "quotes", "quotes+images")
 MEDIA_STORES = ("repo",)
@@ -135,6 +135,13 @@ def check_book_settings(bank):
         found.append(("error", "mediaStore must be 'repo'"))
     if "genre" in bank:
         found.extend(check_genre(bank["genre"]))
+    if "cover" in bank:
+        cover = bank["cover"]
+        if not isinstance(cover, dict):
+            found.append(("error", "cover must be one media entry"))
+        else:
+            found.extend((level, f"cover: {message}") for level, message in
+                         check_media_entry("media", cover))
     return found
 
 

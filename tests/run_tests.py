@@ -1777,7 +1777,12 @@ def v2_bank():
     """The test book with every v2 field: genre, blocks, code, media."""
     bank = json.loads(json.dumps(BOOK))
     bank["genre"] = "Algorithms"
+    bank["cover"] = {"id": MEDIA_ID, "type": "image/png", "role": "cover",
+                     "alt": "The book cover: a blue galaxy and a title"}
     card = bank["concepts"][0]["card"]
+    card["media"] = [{
+        "id": MEDIA_ID, "type": "image/png", "role": "illustration",
+        "alt": "A pencil cartoon of a clock on a wall"}]
     card["blocks"] = [
         {"label": "Problem", "text": "Find a number in a sorted list."},
         {"label": "Code", "text": "A loop that counts.",
@@ -1838,6 +1843,11 @@ def test_template_v2_fields(browser):
           row.locator(".idea-genre").inner_text() == "Algorithms")
     check("the card shows two labelled blocks",
           row.locator(".idea-block").count() == 2)
+    check("the card shows its own picture under the text",
+          row.locator(".idea-card > .media-list .media-figure").count() == 1)
+    page.wait_for_selector("#book-cover:not(.hidden)")
+    check("the cover shows by the title with its key",
+          page.eval_on_selector("#book-cover", "i => i.naturalWidth") == 1)
     check("the card block shows its code",
           "for (int i = 0" in row.locator(".code-block").inner_text())
     start_session(page)
@@ -1858,6 +1868,8 @@ def test_template_v2_fields(browser):
     page.wait_for_selector(".media-figure.is-missing")
     check("without a key the words stand in for the picture",
           "clock face" in page.inner_text(".media-alt"))
+    check("without a key there is no cover",
+          page.is_hidden("#book-cover"))
     check("no page errors without the key", not page.errors,
           "; ".join(page.errors))
     page.close()
