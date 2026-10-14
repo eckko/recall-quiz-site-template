@@ -5,8 +5,8 @@
 ```
 index.html  (all screens live here; JS shows and hides them)
 │
-├─ <head>  css/*.css, js/default-settings.js, js/themes-list.js,
-│           js/theme-picker.js
+├─ <head>  js/asset-base.js (first), css/*.css, js/default-settings.js,
+│           js/themes-list.js, js/theme-picker.js
 │           theme-picker applies the saved theme before first paint
 │
 └─ end of <body>: the app scripts, in this order
@@ -148,6 +148,11 @@ css/themes/<id>.css  :root[data-theme='<id>'][data-scheme='light|dark']
                    (loaded by theme-picker.js, only for the theme in use)
 css/theme-tiles.css  .theme-tile[data-theme-id='<id>'] { --tile-* }
                    (loaded when the Appearance section is opened)
+js/asset-base.js   window.RecallQuizAssetBase: "" when the shared files
+                   sit next to the page, or the CDN folder when this
+                   script came from another site; the four places that
+                   build a path to a shared file at run time (theme-picker,
+                   math-display, cloud-sync, htrab) put it in front
 js/default-settings.js  window.RecallQuizDefaults: every first-time
                     default (theme, shown controls, practice, home
                     layout, Settings sections); loaded first

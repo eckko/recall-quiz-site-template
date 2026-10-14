@@ -27,6 +27,11 @@
     "3": "Stage 3: Is it true? What of it?",
     kind: "By kind of book",
   };
+  /** Where the shared files are: "" for this site, or a CDN folder
+      (js/asset-base.js) */
+  const ASSET_BASE = window.RecallQuizAssetBase || "";
+  const TAGS_FILE = ASSET_BASE + "htrab/tags.json";
+  const CATALOGUE_FILE = ASSET_BASE + "htrab/catalogue.json";
   const MOST_ADVICE_ITEMS = 3;
   const TYPE_ORDER = ["rule", "question", "advice", "warning",
     "definition", "distinction", "exercise"];
@@ -50,10 +55,10 @@
       return Promise.resolve();
     }
     return Promise.all([
-      fetch("htrab/tags.json").then(function read(response) {
+      fetch(TAGS_FILE).then(function read(response) {
         return response.json();
       }),
-      fetch("htrab/catalogue.json").then(function read(response) {
+      fetch(CATALOGUE_FILE).then(function read(response) {
         return response.json();
       }),
     ]).then(function keep(results) {

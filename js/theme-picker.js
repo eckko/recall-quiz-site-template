@@ -38,10 +38,13 @@
   const DEFAULTS = window.RecallQuizDefaults;
   const DEFAULT_THEME = DEFAULTS.theme.id;
   const DEFAULT_MODE = DEFAULTS.theme.mode;
+  /** Where the shared files are: "" for this site, or a CDN folder
+      (js/asset-base.js, loaded first) */
+  const ASSET_BASE = window.RecallQuizAssetBase || "";
   /** Where each theme's CSS is (written by tools/build_themes.py) */
-  const THEME_CSS_FOLDER = "css/themes/";
+  const THEME_CSS_FOLDER = ASSET_BASE + "css/themes/";
   /** The preview tiles of every theme, for the picker */
-  const TILES_CSS_FILE = "css/theme-tiles.css";
+  const TILES_CSS_FILE = ASSET_BASE + "css/theme-tiles.css";
   /** Stylesheets go before this one, as the old single file did */
   const PHONE_CSS_SELECTOR = 'link[href$="css/phone.css"]';
   /** Font families asked for in one Google Fonts request. */

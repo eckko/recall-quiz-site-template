@@ -11,7 +11,9 @@
 (function setUpMathDisplay(quiz) {
   "use strict";
 
-  const KATEX_FOLDER = "vendor/katex/";
+  /** "" for this site, or a CDN folder (js/asset-base.js) */
+  const ASSET_BASE = window.RecallQuizAssetBase || "";
+  const KATEX_FOLDER = ASSET_BASE + "vendor/katex/";
   const DELIMITERS = [
     { left: "$$", right: "$$", display: true },
     { left: "\\[", right: "\\]", display: true },

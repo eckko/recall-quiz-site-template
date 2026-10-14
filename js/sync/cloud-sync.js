@@ -24,7 +24,9 @@
 (function setUpCloudSync(quiz) {
   "use strict";
 
-  const PROVIDER_FOLDER = "js/sync/providers/";
+  /** "" for this site, or a CDN folder (js/asset-base.js) */
+  const ASSET_BASE = window.RecallQuizAssetBase || "";
+  const PROVIDER_FOLDER = ASSET_BASE + "js/sync/providers/";
   const OWNER_KEY_PREFIX = "recall-quiz-sync-owner:";
   const DEFAULT_SAVE_DELAY_SECONDS = 20;
   /** The account document that holds one book's settings (theme, layout,

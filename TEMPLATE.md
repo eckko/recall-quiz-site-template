@@ -16,7 +16,14 @@ skill reads this repo's default branch directly.
 | `README.md` | the book's own readme |
 
 Everything else is template code and should stay identical in every repo.
-The list is also in `.templatesyncignore`.
+The list is also in `.templatesyncignore`. `media/` and `banks/` also belong
+to a book when it uses them.
+
+A book site can instead hold only `index.html`, `questions.json` and
+`images/` (plus `media/` and `banks/` if used) and load the code from the
+CDN at one template tag. Its `index.html` is written by
+`python3 tools/make_book_index.py TAG FILE` (see the README), so such a
+book does not use the template sync.
 
 ## Rules for changing the template
 

@@ -26,6 +26,7 @@ from playwright.sync_api import sync_playwright
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 from merge_question_bank import question_problems  # noqa: E402
+import make_book_index  # noqa: E402
 
 SITE_FOLDER = Path(__file__).resolve().parent.parent
 PORT = 8765
@@ -1221,6 +1222,85 @@ def test_theme_loading(browser):
     page.close()
 
 
+def test_book_page_loads_from_a_cdn(browser):
+    """A book page made by tools/make_book_index.py, with only its own
+    questions.json beside it, gets every shared file from the CDN: the
+    scripts, the theme CSS, KaTeX, the HTRAB data and the sync adapter."""
+    print("Loading from a CDN")
+    cdn = make_book_index.cdn_base("9.9.9") + "/"
+    book_url = f"http://localhost:{PORT}/book/index.html"
+    questions_url = book_url.replace("index.html", "questions.json")
+    book_page = make_book_index.point_at_cdn(
+        (SITE_FOLDER / "index.html").read_text(), cdn.rstrip("/"))
+    math_question = {
+        "id": "t-cdn", "unit": "Chapter 1", "section": "Algebra",
+        "kind": "mcq", "q": "What is \\(x^2\\) when \\(x = 3\\)?",
+        "options": ["\\(9\\)", "\\(6\\)"], "answer": 0}
+    served = dict(BOOK, questions=[math_question])
+    requests = []
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.errors = []
+    page.on("pageerror", lambda error: page.errors.append(str(error)))
+    page.on("request", lambda request: requests.append(request.url))
+
+    def serve_cdn_file(route):
+        """The CDN: files of this site folder, with the CORS header the
+        real one sends."""
+        name = route.request.url[len(cdn):].split("?")[0]
+        path = SITE_FOLDER / name
+        if path.is_file():
+            route.fulfill(path=str(path),
+                          headers={"access-control-allow-origin": "*"})
+        else:
+            route.fulfill(status=404)
+
+    page.route(cdn + "**", serve_cdn_file)
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
+        content_type="application/javascript",
+        body='window.RecallQuizSyncConfig = {provider: "example-in-browser",'
+             ' saveDelaySeconds: 1, "example-in-browser": {}};'))
+    page.route(book_url, lambda route: route.fulfill(
+        body=book_page, content_type="text/html"))
+    page.route(questions_url, lambda route: route.fulfill(json=served))
+    page.goto(book_url)
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    page.wait_for_function(
+        "() => document.documentElement.dataset.theme === 'sky'")
+    page.wait_for_function("() => typeof window.katex !== 'undefined'")
+    page.evaluate("() => window.RecallQuiz.htrab.useRemote(true)")
+    page.click("#settings-button")
+    page.click("#appearance-section summary")
+    page.wait_for_function(
+        "() => [...document.styleSheets].some("
+        "s => (s.href || '').includes('theme-tiles.css'))")
+    page.wait_for_timeout(800)
+    leaked = [url for url in requests
+              if re.search(r"/book/(css|js|htrab|vendor|themes)/", url)]
+    check("no shared file is asked for from the book's own site",
+          not leaked, str(leaked))
+    check("the app scripts come from the CDN",
+          cdn + "js/asset-base.js" in requests
+          and cdn + "js/main.js" in requests)
+    check("the base is the CDN folder", page.evaluate(
+        "() => window.RecallQuizAssetBase") == cdn)
+    check("the default theme's CSS comes from the CDN",
+          cdn + "css/themes/sky.css" in requests)
+    check("the picker's preview tiles come from the CDN",
+          cdn + "css/theme-tiles.css" in requests)
+    check("the maths library comes from the CDN",
+          cdn + "vendor/katex/katex.min.js" in requests)
+    check("the HTRAB data comes from the CDN",
+          cdn + "htrab/tags.json" in requests
+          and cdn + "htrab/catalogue.json" in requests)
+    check("the sync adapter comes from the CDN",
+          cdn + "js/sync/providers/example-in-browser.js" in requests)
+    check("the questions come from the book's own site",
+          questions_url in requests)
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
 def test_early_download(browser):
     """The question bank is requested before the app scripts run, and a
     loading note shows until it arrives."""
@@ -2222,6 +2302,7 @@ def main():
             test_show_hide_and_defaults(browser)
             test_first_time_defaults(browser)
             test_theme_loading(browser)
+            test_book_page_loads_from_a_cdn(browser)
             test_early_download(browser)
             test_lesson_picker_cascade(browser)
             test_flags(browser)

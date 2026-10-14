@@ -86,3 +86,13 @@ unless its result is on screen: the "Up next" line is only worked out while
 Keep me going is shown. Download `questions.json` early
 (`js/early-questions.js`), and load only the theme and fonts in use
 (`js/theme-picker.js`).
+
+## Paths to shared files must go through the asset base
+
+A book site can load the code from a CDN while its `questions.json`,
+`images/`, `media/` and `banks/` stay on its own site. Addresses written in
+`index.html` are rewritten by `tools/make_book_index.py`, but a path the
+code builds at run time is not: start it with
+`window.RecallQuizAssetBase || ""` (see `js/asset-base.js`), or the page
+will look for that file on the book's own site and fail. Do the opposite
+for the book's own files: never put the base in front of them.

@@ -196,6 +196,43 @@ def test_reencrypt_media():
               "0 file(s) moved" in out and stored.read_bytes() == again)
 
 
+def test_book_index_tool():
+    """make_book_index.py moves the shared files to the CDN, leaves the
+    book's own files alone, and refuses what cannot load from a CDN."""
+    import re
+    page = (ROOT / "index.html").read_text()
+    base = "https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/"
+    shared = r'(?:href|src)="(?:css|js|htrab)/'
+    with tempfile.TemporaryDirectory() as folder:
+        output = Path(folder) / "index.html"
+        result = run(TOOLS / "make_book_index.py", "2.1.0", output,
+                     "--source", ROOT / "index.html", cwd=folder)
+        book = output.read_text() if output.exists() else ""
+        check("the book page is written",
+              result.returncode == 0 and bool(book))
+        check("no shared file is left on the book's own site",
+              re.search(shared, book) is None)
+        check("every shared address now starts with the CDN folder",
+              book.count('="' + base) == len(re.findall(shared, page)))
+        check("the book's own files keep their address",
+              'href="images/favicon.png"' in book)
+        check("nothing else in the page changed",
+              book.replace(base, "") == page)
+        check("the base script is loaded from the CDN",
+              'src="' + base + 'js/asset-base.js"' in book)
+        output.unlink()
+        branch = run(TOOLS / "make_book_index.py", "main", output,
+                     "--source", ROOT / "index.html", cwd=folder)
+        check("a branch name is refused", branch.returncode != 0
+              and not output.exists())
+        old_page = Path(folder) / "old.html"
+        old_page.write_text(page.replace("js/asset-base.js", "js/other.js"))
+        old = run(TOOLS / "make_book_index.py", "2.0.0", output,
+                  "--source", old_page, cwd=folder)
+        check("a page without the base script is refused",
+              old.returncode != 0 and not output.exists())
+
+
 if __name__ == "__main__":
     print("Bank tools")
     test_round_trip()
@@ -203,6 +240,7 @@ if __name__ == "__main__":
     test_tag_lister()
     test_media_encryption()
     test_reencrypt_media()
+    test_book_index_tool()
     if failures:
         raise SystemExit(f"{len(failures)} check(s) failed")
     print("All checks passed.")

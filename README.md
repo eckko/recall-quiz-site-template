@@ -91,6 +91,30 @@ too.)
 
 Every push to `main` updates the site.
 
+### A book site that holds only its own files (jsDelivr)
+
+A book site does not need its own copy of the code. It can hold just
+`index.html`, `questions.json` and `images/` (plus `media/` and `banks/`
+if the book uses them) and load every `css/`, `js/` and `htrab/` file
+from one tagged copy of this repo on [jsDelivr](https://www.jsdelivr.com/):
+
+1. Tag a release of the template, for example
+   `git tag 2.1.0 && git push origin 2.1.0`. The tag must contain
+   `js/asset-base.js`, so tags before 2.1.0 cannot be used.
+2. In a checkout of the template, write the book's page from that tag:
+   `python3 tools/make_book_index.py 2.1.0 ../my-book/index.html`
+3. In the book repo, delete `css/`, `js/`, `htrab/`, `themes/` and
+   `vendor/`, and turn off any template sync.
+
+The new `index.html` is this page with the shared addresses pointing at
+`https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/...`.
+`js/asset-base.js` loads first, notices it came from another site and
+makes the files the code asks for later (theme CSS, KaTeX, HTRAB data, the
+sync adapter) come from the same place. The book's own files
+(`questions.json`, `images/`, `media/`, `banks/`) always come from its own
+site. To move a book to a newer template, run the tool again with the new
+tag. Always use an exact tag: a tag never changes, a branch does.
+
 ---
 
 ## Add a new book
@@ -112,6 +136,7 @@ The tools it uses are in `tools/` and work on their own too:
 | `plan_question_bank.py CHAPTERS --per-page 6` | decides how many questions each chapter gets (pages x weight) and of which types |
 | `merge_question_bank.py PLAN --book-text TEXT` | checks every chapter's questions (fields, duplicates, answer positions, exact quotes) and merges them into `questions.json` |
 | `pack_template.py pack FILE` | packs this site, minus the book, into one text file (how the skill keeps its template) |
+| `make_book_index.py TAG FILE` | writes a book's `index.html` that loads the shared files from that tag on the CDN |
 
 ### By hand
 
@@ -306,6 +331,8 @@ css/
   phone.css                changes for narrow screens (loaded last)
 
 js/
+  asset-base.js            where the shared files are: this site or a CDN
+                           (loaded first, in <head>)
   helpers.js               creating elements, shuffling, wording counts
   book.js                  the loaded book: chapters, titles, labels
   progress-storage.js      saving and loading progress (localStorage)
@@ -343,6 +370,7 @@ tools/extract_book.py      book (PDF/EPUB) to text, for writing questions
 tools/plan_question_bank.py   questions per chapter and per type
 tools/merge_question_bank.py  checks questions and builds questions.json
 tools/pack_template.py     packs the site into one text file and back
+tools/make_book_index.py   writes a book's index.html for the CDN
 tests/run_tests.py         browser tests
 ai-context/                notes for AI agents (and curious humans)
 ```
