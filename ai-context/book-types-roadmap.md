@@ -60,6 +60,17 @@ Order of work: technical books first, then the rest. The template already carrie
 
 `has-code`, `has-formulas`, `heavily-visual`, `has-animation`, `sanskrit` / non-Latin script, `reference-style`, `health-content`.
 
+| Modifier | Status | For |
+| --- | --- | --- |
+| `has-formulas` | stable | maths, physics, metrics |
+| `has-code` | draft | code listings with a language label |
+| `heavily-visual` | draft | pictures carry the content |
+| `technique-catalogue` | draft | books that list named techniques or patterns |
+| `has-animation` | planned | short clips and animations (physics, maths, yoga, design) |
+| `sanskrit` | planned | Sanskrit text, transliteration, meaning |
+| `health-content` | planned | exercise, yoga and medical texts; care with claims |
+| `reference-style` | planned | look-up books read in pieces |
+
 (Also in the skill: `technique-catalogue`, for books that list named techniques or patterns.)
 
 ## Honest limits
