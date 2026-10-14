@@ -21,9 +21,9 @@ to a book when it uses them.
 
 A book site can instead hold only `index.html`, `questions.json` and
 `images/` (plus `media/` and `banks/` if used) and load the code from the
-CDN at one template tag. Its `index.html` is written by
-`python3 tools/make_book_index.py TAG FILE` (see the README), so such a
-book does not use the template sync.
+CDN at one template tag. Its `index.html` is a tiny loader (favicon plus `js/boot.js`) written by
+`python3 tools/make_book_index.py TAG FILE` (see the README); list it in
+`.templatesyncignore` or do not use the template sync.
 
 ## Rules for changing the template
 

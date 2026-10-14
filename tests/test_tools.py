@@ -196,9 +196,35 @@ def test_reencrypt_media():
               "0 file(s) moved" in out and stored.read_bytes() == again)
 
 
+def test_book_index_shell():
+    """make_book_index.py writes a small page that only shows the
+    favicon and loads boot.js from the tag on the CDN."""
+    import re
+    base = "https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/"
+    with tempfile.TemporaryDirectory() as folder:
+        output = Path(folder) / "index.html"
+        result = run(TOOLS / "make_book_index.py", "2.1.0", output,
+                     "--no-check", cwd=folder)
+        page = output.read_text() if output.exists() else ""
+        check("the loader page is written",
+              result.returncode == 0 and bool(page))
+        check("it loads boot.js from the tagged CDN folder",
+              'src="' + base + 'js/boot.js"' in page)
+        check("it shows the book's favicon",
+              'rel="icon" href="images/favicon.png"' in page)
+        check("it loads nothing else",
+              len(re.findall(r'(?:href|src)="', page)) == 2)
+        check("it is small", len(page) < 1500)
+        output.unlink()
+        branch = run(TOOLS / "make_book_index.py", "main", output,
+                     "--no-check", cwd=folder)
+        check("a branch name is refused for the loader page",
+              branch.returncode != 0 and not output.exists())
+
+
 def test_book_index_tool():
-    """make_book_index.py moves the shared files to the CDN, leaves the
-    book's own files alone, and refuses what cannot load from a CDN."""
+    """make_book_index.py --full moves the shared files to the CDN, leaves
+    the book's own files alone, and refuses what cannot load from one."""
     import re
     page = (ROOT / "index.html").read_text()
     base = "https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/"
@@ -206,7 +232,7 @@ def test_book_index_tool():
     with tempfile.TemporaryDirectory() as folder:
         output = Path(folder) / "index.html"
         result = run(TOOLS / "make_book_index.py", "2.1.0", output,
-                     "--source", ROOT / "index.html", cwd=folder)
+                     "--full", "--source", ROOT / "index.html", cwd=folder)
         book = output.read_text() if output.exists() else ""
         check("the book page is written",
               result.returncode == 0 and bool(book))
@@ -222,13 +248,13 @@ def test_book_index_tool():
               'src="' + base + 'js/asset-base.js"' in book)
         output.unlink()
         branch = run(TOOLS / "make_book_index.py", "main", output,
-                     "--source", ROOT / "index.html", cwd=folder)
+                     "--full", "--source", ROOT / "index.html", cwd=folder)
         check("a branch name is refused", branch.returncode != 0
               and not output.exists())
         old_page = Path(folder) / "old.html"
         old_page.write_text(page.replace("js/asset-base.js", "js/other.js"))
         old = run(TOOLS / "make_book_index.py", "2.0.0", output,
-                  "--source", old_page, cwd=folder)
+                  "--full", "--source", old_page, cwd=folder)
         check("a page without the base script is refused",
               old.returncode != 0 and not output.exists())
 
@@ -240,6 +266,7 @@ if __name__ == "__main__":
     test_tag_lister()
     test_media_encryption()
     test_reencrypt_media()
+    test_book_index_shell()
     test_book_index_tool()
     if failures:
         raise SystemExit(f"{len(failures)} check(s) failed")

@@ -41,7 +41,7 @@ Hard rules:
 - A path the code builds at run time to a shared file (`css/`, `js/`,
   `htrab/`, `vendor/`) must start with `window.RecallQuizAssetBase || ""`
   (`js/asset-base.js`), so a book site can load the code from a CDN
-  (`tools/make_book_index.py`). Paths to the book's own files
+  (`tools/make_book_index.py`, `js/boot.js`). Paths to the book's own files
   (`questions.json`, `images/`, `media/`, `banks/`) stay relative to the
   page.
 - Run `python3 tests/run_tests.py` and `python3 tests/test_tools.py`

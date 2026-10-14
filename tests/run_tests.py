@@ -1301,6 +1301,89 @@ def test_book_page_loads_from_a_cdn(browser):
     page.close()
 
 
+def test_book_shell_loads_from_a_cdn(browser):
+    """A book's index.html made by tools/make_book_index.py (only the
+    favicon and boot.js) loads the whole quiz from the CDN, while
+    questions.json still comes from the book's own site."""
+    print("Loader page")
+    cdn = make_book_index.cdn_base("9.9.9") + "/"
+    book_url = f"http://localhost:{PORT}/book/index.html"
+    questions_url = book_url.replace("index.html", "questions.json")
+    shell = make_book_index.shell_page("9.9.9")
+    requests = []
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.errors = []
+    page.on("pageerror", lambda error: page.errors.append(str(error)))
+    page.on("request", lambda request: requests.append(request.url))
+
+    def serve_cdn_file(route):
+        """The CDN: files of this site folder; .html as text/plain, as
+        jsDelivr serves it."""
+        name = route.request.url[len(cdn):].split("?")[0]
+        path = SITE_FOLDER / name
+        if not path.is_file():
+            route.fulfill(status=404)
+            return
+        headers = {"access-control-allow-origin": "*"}
+        if name.endswith(".html"):
+            headers["content-type"] = "text/plain; charset=utf-8"
+        route.fulfill(path=str(path), headers=headers)
+
+    page.route(cdn + "**", serve_cdn_file)
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
+        content_type="application/javascript",
+        body='window.RecallQuizSyncConfig = {provider: "none"};'))
+    page.route(book_url, lambda route: route.fulfill(
+        body=shell, content_type="text/html"))
+    page.route(questions_url, lambda route: route.fulfill(json=BOOK))
+    page.goto(book_url)
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    page.wait_for_function(
+        "() => document.documentElement.dataset.theme === 'sky'")
+    leaked = [url for url in requests
+              if re.search(r"/book/(css|js|htrab|vendor|themes)/", url)]
+    check("the quiz page itself comes from the CDN",
+          cdn + "index.html" in requests)
+    check("no shared file is asked for from the book's own site",
+          not leaked, str(leaked))
+    check("the app scripts come from the CDN",
+          cdn + "js/main.js" in requests and cdn + "css/base.css" in requests)
+    check("the base is the CDN folder", page.evaluate(
+        "() => window.RecallQuizAssetBase") == cdn)
+    check("the default theme's CSS comes from the CDN",
+          cdn + "css/themes/sky.css" in requests)
+    check("the questions come from the book's own site",
+          questions_url in requests)
+    check("the address of the page is still the book's",
+          page.url == book_url)
+    check("the favicon is the book's own", page.evaluate(
+        "() => document.querySelector('link[rel=icon]').href")
+          .endswith("/book/images/favicon.png"))
+    check("the quiz shows its home screen",
+          page.is_visible("#settings-button"))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_book_shell_reports_a_missing_page(browser):
+    """When the CDN does not have the page, the reader is told so."""
+    cdn = make_book_index.cdn_base("9.9.9") + "/"
+    book_url = f"http://localhost:{PORT}/book/index.html"
+    page = browser.new_page()
+    page.route(cdn + "**", lambda route: route.fulfill(status=404))
+    page.route(cdn + "js/boot.js", lambda route: route.fulfill(
+        path=str(SITE_FOLDER / "js/boot.js"),
+        content_type="application/javascript"))
+    page.route(book_url, lambda route: route.fulfill(
+        body=make_book_index.shell_page("9.9.9"), content_type="text/html"))
+    page.goto(book_url)
+    page.wait_for_selector("p[role=alert]")
+    check("a missing CDN page gives a message", "could not be loaded"
+          in page.inner_text("p[role=alert]"))
+    page.close()
+
+
 def test_early_download(browser):
     """The question bank is requested before the app scripts run, and a
     loading note shows until it arrives."""
@@ -2303,6 +2386,8 @@ def main():
             test_first_time_defaults(browser)
             test_theme_loading(browser)
             test_book_page_loads_from_a_cdn(browser)
+            test_book_shell_loads_from_a_cdn(browser)
+            test_book_shell_reports_a_missing_page(browser)
             test_early_download(browser)
             test_lesson_picker_cascade(browser)
             test_flags(browser)

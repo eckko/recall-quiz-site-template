@@ -91,7 +91,7 @@ Keep me going is shown. Download `questions.json` early
 
 A book site can load the code from a CDN while its `questions.json`,
 `images/`, `media/` and `banks/` stay on its own site. Addresses written in
-`index.html` are rewritten by `tools/make_book_index.py`, but a path the
+`index.html` are rewritten by `js/boot.js` (or `tools/make_book_index.py --full`), but a path the
 code builds at run time is not: start it with
 `window.RecallQuizAssetBase || ""` (see `js/asset-base.js`), or the page
 will look for that file on the book's own site and fail. Do the opposite

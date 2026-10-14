@@ -153,6 +153,11 @@ js/asset-base.js   window.RecallQuizAssetBase: "" when the shared files
                    script came from another site; the four places that
                    build a path to a shared file at run time (theme-picker,
                    math-display, cloud-sync, htrab) put it in front
+js/boot.js         only in a book's loader index.html (favicon + boot.js):
+                   fetches this template's index.html from the same CDN
+                   folder, prefixes its css/, js/, htrab/ addresses and
+                   replaces the page with it (document.write, so the
+                   start-up order is unchanged)
 js/default-settings.js  window.RecallQuizDefaults: every first-time
                     default (theme, shown controls, practice, home
                     layout, Settings sections); loaded first

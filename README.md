@@ -100,17 +100,23 @@ from one tagged copy of this repo on [jsDelivr](https://www.jsdelivr.com/):
 
 1. Tag a release of the template, for example
    `git tag 2.1.0 && git push origin 2.1.0`. The tag must contain
-   `js/asset-base.js`, so tags before 2.1.0 cannot be used.
-2. In a checkout of the template, write the book's page from that tag:
+   `js/boot.js`, so tags before 2.1.0 cannot be used.
+2. In a checkout of the template, write the book's page for that tag:
    `python3 tools/make_book_index.py 2.1.0 ../my-book/index.html`
 3. In the book repo, delete `css/`, `js/`, `htrab/`, `themes/` and
-   `vendor/`, and turn off any template sync.
+   `vendor/`, and turn off any template sync (or list `index.html` in
+   `.templatesyncignore`).
 
-The new `index.html` is this page with the shared addresses pointing at
-`https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/...`.
-`js/asset-base.js` loads first, notices it came from another site and
-makes the files the code asks for later (theme CSS, KaTeX, HTRAB data, the
-sync adapter) come from the same place. The book's own files
+The new `index.html` is a few lines: it shows the book's favicon and loads
+`https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/js/boot.js`.
+`boot.js` downloads the template's `index.html` from that same folder,
+points its `css/`, `js/` and `htrab/` addresses at the folder and shows it,
+so the quiz starts as usual. `js/asset-base.js` then makes the files the
+code asks for later (theme CSS, KaTeX, HTRAB data, the sync adapter) come
+from the same place. The cost is one extra small download before the quiz
+starts. With `--full` the tool instead writes the whole quiz page with the
+CDN addresses in it (no extra download, but a long file that must be
+rewritten for each release). The book's own files
 (`questions.json`, `images/`, `media/`, `banks/`) always come from its own
 site. To move a book to a newer template, run the tool again with the new
 tag. Always use an exact tag: a tag never changes, a branch does.
@@ -136,7 +142,7 @@ The tools it uses are in `tools/` and work on their own too:
 | `plan_question_bank.py CHAPTERS --per-page 6` | decides how many questions each chapter gets (pages x weight) and of which types |
 | `merge_question_bank.py PLAN --book-text TEXT` | checks every chapter's questions (fields, duplicates, answer positions, exact quotes) and merges them into `questions.json` |
 | `pack_template.py pack FILE` | packs this site, minus the book, into one text file (how the skill keeps its template) |
-| `make_book_index.py TAG FILE` | writes a book's `index.html` that loads the shared files from that tag on the CDN |
+| `make_book_index.py TAG FILE` | writes a book's small `index.html` (favicon + `boot.js`) that loads the whole quiz from that tag on the CDN; `--full` writes the whole page instead |
 
 ### By hand
 
@@ -333,6 +339,8 @@ css/
 js/
   asset-base.js            where the shared files are: this site or a CDN
                            (loaded first, in <head>)
+  boot.js                  used only by a book's loader index.html: loads
+                           the quiz page from the CDN
   helpers.js               creating elements, shuffling, wording counts
   book.js                  the loaded book: chapters, titles, labels
   progress-storage.js      saving and loading progress (localStorage)
