@@ -2,6 +2,8 @@
 
 The full list of book types planned for the `quiz-advanced` skill (repo `eckko/claude-memory`, folder `skills/quiz-advanced/`). One skill and one template. Each kind is one small file, and modifiers can be added to any of them. The skill's `INDEX.md` is the live status (stable, draft, planned); this page is the plan.
 
+Status (2026-10-14): all kinds below now have a kind file (technical kinds drafted, the rest drafted for trial). Each kind file has machine-readable front matter, a worked example, and is checked by `tools/check_kind_blocks.py` in the skill. Next step is to trial them on real books and fix what the trials show.
+
 Order of work: technical books first, then the rest. The template already carries the fields the later types need (genre, labelled card blocks, code, pictures, cover).
 
 ## Theoretical (argument-led)
@@ -17,6 +19,7 @@ Order of work: technical books first, then the rest. The template already carrie
 | Social science | Economics, sociology, psychology | Charts |
 | History | Narrative and analytical history | Maps, timelines |
 | Biography and autobiography | Life stories | Photos, if you want them |
+| Reading method (how to read) | *How to Read a Book* and similar | Rarely |
 
 ## Practical (rules and action)
 
@@ -58,7 +61,7 @@ Order of work: technical books first, then the rest. The template already carrie
 
 ## Modifiers (stack on any kind)
 
-`has-code`, `has-formulas`, `heavily-visual`, `has-animation`, `sanskrit` / non-Latin script, `reference-style`, `health-content`.
+`has-code`, `has-formulas`, `heavily-visual`, `has-animation`, `sanskrit` / non-Latin script, `reference-style`, `health-content`, `canonical`, `named-framework`, `exercises`, `anecdote-evidence`, `case-studies`.
 
 | Modifier | Status | For |
 | --- | --- | --- |
@@ -66,17 +69,26 @@ Order of work: technical books first, then the rest. The template already carrie
 | `has-code` | draft | code listings with a language label |
 | `heavily-visual` | draft | pictures carry the content |
 | `technique-catalogue` | draft | books that list named techniques or patterns |
-| `has-animation` | planned | short clips and animations (physics, maths, yoga, design) |
-| `sanskrit` | planned | Sanskrit text, transliteration, meaning |
-| `health-content` | planned | exercise, yoga and medical texts; care with claims |
-| `reference-style` | planned | look-up books read in pieces |
+| `has-animation` | draft | short clips (`video/*`, roles `animation`, `clip`, 3 MB each, no audio) and animated GIF or WebP as pictures |
+| `canonical` | draft | scripture and classical texts read within a tradition |
+| `named-framework` | draft | a named model, acronym or step list |
+| `exercises` | draft | reflection prompts, practices, worksheets |
+| `anecdote-evidence` | draft | claims backed by stories and single studies |
+| `case-studies` | draft | business, law, medicine and engineering cases |
+| `sanskrit` | draft | Sanskrit text, transliteration, meaning |
+| `health-content` | draft | exercise, yoga and medical texts; care with claims |
+| `reference-style` | draft | look-up books read in pieces |
 
-(Also in the skill: `technique-catalogue`, for books that list named techniques or patterns.)
+
+## Across books (stage 11)
+
+A separate run builds one discussion deck across several finished books, following the syntopical level of *How to Read a Book*. Kind `syntopical`, output in its own repo, no side taken between authors.
 
 ## Honest limits
 
 - Fiction and the Vedic hymns are the weakest fits for a quiz. They work, but at lower value.
 - Anything where learning depends on live demonstration (a yoga flow, for example) is best taught with your own clips or schematic animations. Realistic video cannot be made.
+- Art-history books work with pictures and `heavily-visual` (each picture needs alt text that answers the question). Music books are limited: notation works only as pictures with good alt text, and there is no audio support.
 - A book that fits no kind falls back to the default expository teaching, so it still works.
 
 ## Decisions that shape every type
