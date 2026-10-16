@@ -570,7 +570,12 @@ def test_sanskrit_parts_and_font(browser):
     check("hiding the aids part hides the whole aids block",
           "aids" not in page.evaluate(VISIBLE_ITEMS,
                                       ".idea-block[data-part]"))
-    page.click("#sanskrit-font-choice [data-font='kalam']")
+    page.select_option("#sanskrit-font-choice", "kalam")
+    check("the preview shows sample text in that font",
+          page.locator("#sanskrit-font-preview .font-preview-row").count()
+          == 3 and "Kalam" in page.evaluate(
+              "getComputedStyle(document.querySelector("
+              "'#sanskrit-font-preview span')).fontFamily"))
     font = page.evaluate("document.documentElement.style"
                          ".getPropertyValue('--font-verse')")
     check("the verse font is set", "Kalam" in font, font)
@@ -591,7 +596,7 @@ def test_sanskrit_parts_and_font(browser):
           == ["aids", "english", "hindi", "note"])
     page.click("#settings-button")
     page.click("#sanskrit-parts-all")
-    page.click("#sanskrit-font-choice [data-font='']")
+    page.select_option("#sanskrit-font-choice", "")
     check("Show all parts and Theme font reset the card",
           page.inner_text("#sanskrit-section-current") == "All on"
           and page.evaluate("document.documentElement.style"

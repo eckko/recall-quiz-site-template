@@ -917,7 +917,35 @@ details.settings-section[open] > summary {
   color: var(--color-text-muted);
 }
 
-.sanskrit-fonts {
-  flex-wrap: wrap;
+.sanskrit-font-select {
+  width: 100%;
+  margin: 4px 0 8px;
+}
+
+/* Sample of the chosen verse font, in a few weights */
+.font-preview {
+  display: grid;
   gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-card);
+  font-family: var(--preview-font, var(--font-heading));
+}
+
+.font-preview-row {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+}
+
+.font-preview-row small {
+  font: 400 0.7rem var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.font-preview-row span {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
