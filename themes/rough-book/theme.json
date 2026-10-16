@@ -1,0 +1,70 @@
+{
+  "name": "Rough book",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Architects Daughter\",\"Patrick Hand\",system-ui,sans-serif",
+    "headings": "\"Architects Daughter\",\"Patrick Hand\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "3px 12px 4px 10px / 10px 4px 12px 3px",
+    "smallRadius": "3px 8px 3px 8px / 8px 3px 8px 3px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e6e4dc",
+      "card": "#f7f6f0",
+      "text": "#262626",
+      "textMuted": "#555349",
+      "border": "#8a877a",
+      "accent": "#3b4a6b",
+      "accent2": "#4a5a7e",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#3b4a6b",
+      "pop2": "#a33a2a",
+      "pop3": "#3d6b47",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "repeating-linear-gradient(180deg,transparent 0 35px,rgba(80,80,70,.12) 35px 36px) 0 0/100% 100% fixed",
+      "radial-gradient(rgba(70,60,40,.10) 1px,transparent 1.2px) 0 0/6px 6px fixed",
+      "linear-gradient(#e6e4dc,#e6e4dc) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c1c1a",
+      "card": "#262623",
+      "text": "#ecebe4",
+      "textMuted": "#b2b0a4",
+      "border": "#5b594f",
+      "accent": "#a9bbe0",
+      "accent2": "#c4d0ee",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#a9bbe0",
+      "pop2": "#f09a8a",
+      "pop3": "#86c99a",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "repeating-linear-gradient(180deg,transparent 0 35px,rgba(255,255,255,.07) 35px 36px) 0 0/100% 100% fixed",
+      "linear-gradient(#1c1c1a,#1c1c1a) fixed"
+    ]
+  }
+}

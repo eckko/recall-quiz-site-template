@@ -1,0 +1,18 @@
+/* Extra touches for the Kitchen theme. */
+[data-theme="kitchen"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="kitchen"] .unit-title,
+[data-theme="kitchen"] .verdict,
+[data-theme="kitchen"] .panel h2 {
+  font-family: var(--font-heading);
+}
+/* A dashed olive edge, like a recipe card. */
+[data-theme="kitchen"] .panel {
+  outline: 1px dashed var(--color-accent-2);
+  outline-offset: -6px;
+}

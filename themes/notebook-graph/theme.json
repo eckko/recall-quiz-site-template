@@ -1,0 +1,71 @@
+{
+  "name": "Notebook: Graph",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Lexend\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Patrick Hand\",\"Lexend\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f7fbff",
+      "card": "#ffffff",
+      "text": "#17283d",
+      "textMuted": "#4f6179",
+      "border": "#b9d6ee",
+      "accent": "#0f6fb5",
+      "accent2": "#2a7fc0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#0f6fb5",
+      "pop2": "#c2410c",
+      "pop3": "#0f7f5c",
+      "pop4": "#7a4cc2",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(90,160,215,.25) 1px,transparent 1px) 0 0/28px 28px fixed",
+      "linear-gradient(90deg,rgba(90,160,215,.25) 1px,transparent 1px) 0 0/28px 28px fixed",
+      "linear-gradient(#f7fbff,#f7fbff) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#101c2a",
+      "card": "#172636",
+      "text": "#e4f0fb",
+      "textMuted": "#a4b9cf",
+      "border": "#2c4560",
+      "accent": "#6dc0ff",
+      "accent2": "#8ccfff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#6dc0ff",
+      "pop2": "#ff9a63",
+      "pop3": "#6fdcb0",
+      "pop4": "#b9a0f5",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(109,192,255,.12) 1px,transparent 1px) 0 0/28px 28px fixed",
+      "linear-gradient(90deg,rgba(109,192,255,.12) 1px,transparent 1px) 0 0/28px 28px fixed",
+      "linear-gradient(#101c2a,#101c2a) fixed"
+    ]
+  }
+}

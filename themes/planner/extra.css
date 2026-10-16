@@ -1,0 +1,17 @@
+/* Planner: a desk planner: cream grid paper with teal and coral tabs. */
+[data-theme="planner"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+[data-theme="planner"] .unit-title,
+[data-theme="planner"] .verdict,
+[data-theme="planner"] .panel h2 {
+  font-family: "Josefin Sans","Segoe UI",system-ui,sans-serif;
+  font-weight: 700;
+}
+[data-theme="planner"] .panel {
+  border-left: 6px solid var(--color-pop-2);
+}

@@ -1,0 +1,16 @@
+/* Value investing: a patient ledger: green accounting paper, ink and a brass scale. */
+[data-theme="value-investing"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="value-investing"] .unit-title,
+[data-theme="value-investing"] .verdict,
+[data-theme="value-investing"] .panel h2 {
+  font-family: "Libre Baskerville",Georgia,serif;
+  font-weight: 700;
+}
+[data-theme="value-investing"] .panel {
+  border-top: 3px double var(--color-pop-2);
+}

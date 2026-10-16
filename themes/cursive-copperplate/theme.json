@@ -1,0 +1,67 @@
+{
+  "name": "Cursive: Copperplate",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Lora\",Georgia,serif",
+    "headings": "\"Great Vibes\",\"Snell Roundhand\",\"Apple Chancery\",cursive"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#faf6ea",
+      "card": "#fffdf6",
+      "text": "#1b2a4a",
+      "textMuted": "#56607a",
+      "border": "#ddd3bb",
+      "accent": "#2b3f7a",
+      "accent2": "#3f5499",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#2b3f7a",
+      "pop2": "#6a2f5c",
+      "pop3": "#2f6b57",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#faf6ea,#faf6ea) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#12151f",
+      "card": "#1a1f2d",
+      "text": "#ebe6d6",
+      "textMuted": "#aab0c4",
+      "border": "#363e55",
+      "accent": "#a9baf0",
+      "accent2": "#c0cdf5",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#a9baf0",
+      "pop2": "#e0a0d2",
+      "pop3": "#86c9b0",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#12151f,#12151f) fixed"
+    ]
+  }
+}

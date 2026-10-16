@@ -1,0 +1,21 @@
+/* E-reader: calm paper and a clean reading serif, like a reading app. */
+[data-theme="ereader"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
+[data-theme="ereader"] .unit-title,
+[data-theme="ereader"] .verdict,
+[data-theme="ereader"] .panel h2 {
+  font-family: "Literata",Georgia,"Times New Roman",serif;
+  font-weight: 600;
+}
+[data-theme="ereader"] .question-text {
+  font-family: "Literata",Georgia,serif;
+  line-height: 1.65;
+  font-weight: 500;
+}
+[data-theme="ereader"] .panel {
+  box-shadow: none;
+}

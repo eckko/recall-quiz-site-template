@@ -1,0 +1,21 @@
+/* Cursive: Copperplate: formal copperplate headings in navy ink on ivory. */
+[data-theme="cursive-copperplate"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.6rem;
+  line-height: 1.1;
+}
+[data-theme="cursive-copperplate"] .unit-title,
+[data-theme="cursive-copperplate"] .verdict,
+[data-theme="cursive-copperplate"] .panel h2 {
+  font-family: "Great Vibes","Snell Roundhand","Apple Chancery",cursive;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+[data-theme="cursive-copperplate"] .question-text {
+  font-family: "Lora",Georgia,serif;
+  font-style: italic;
+  line-height: 1.6;
+}

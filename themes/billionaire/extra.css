@@ -1,0 +1,12 @@
+/* Billionaire: midnight blue, spare and square. */
+[data-theme="billionaire"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  letter-spacing: 0.06em;
+}
+[data-theme="billionaire"] .panel {
+  border-top: 2px solid var(--color-accent-2);
+  border-bottom: 2px solid var(--color-accent-2);
+}

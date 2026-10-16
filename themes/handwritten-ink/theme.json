@@ -1,0 +1,71 @@
+{
+  "name": "Handwritten: Ink",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Indie Flower\",\"Segoe Print\",\"Bradley Hand\",cursive",
+    "headings": "\"Indie Flower\",\"Segoe Print\",\"Bradley Hand\",cursive"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f8fbff",
+      "card": "#ffffff",
+      "text": "#14306b",
+      "textMuted": "#47598a",
+      "border": "#bfd5ef",
+      "accent": "#1d4ed8",
+      "accent2": "#3a62e0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1d4ed8",
+      "pop2": "#be123c",
+      "pop3": "#0f766e",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(120,160,215,.25) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(90deg,rgba(120,160,215,.25) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(#f8fbff,#f8fbff) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f1a33",
+      "card": "#16244a",
+      "text": "#e2ebff",
+      "textMuted": "#a5b8e6",
+      "border": "#2d4274",
+      "accent": "#8fb0ff",
+      "accent2": "#a3bcff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8fb0ff",
+      "pop2": "#ff8fa8",
+      "pop3": "#6fdcd0",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(143,176,255,.11) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(90deg,rgba(143,176,255,.11) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(#0f1a33,#0f1a33) fixed"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Playful Devanagari · खेल",
+  "group": "Playful",
+  "fonts": {
+    "body": "\"Kalam\",Georgia,serif",
+    "headings": "\"Baloo 2\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "22px",
+    "smallRadius": "14px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 4,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff8e6",
+      "card": "#ffffff",
+      "text": "#2a2340",
+      "textMuted": "#615a7a",
+      "border": "#2a2340",
+      "accent": "#d63a3f",
+      "accent2": "#2a6fd1",
+      "highlight": "#ffeab0",
+      "correct": "#23703a",
+      "wrong": "#b3261e",
+      "partly": "#8a5a00",
+      "pop1": "#d63a3f",
+      "pop2": "#2a6fd1",
+      "pop3": "#e59a00",
+      "pop4": "#2a9a5a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff",
+      "study": "#17753f",
+      "studyBg": "#dff5e7"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/96px 96px fixed",
+      "#fff8e6"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1d1a2e",
+      "card": "#2a2540",
+      "text": "#fff4dd",
+      "textMuted": "#bdb5d8",
+      "border": "#7a70b0",
+      "accent": "#ff7a7f",
+      "accent2": "#6db3ff",
+      "highlight": "#383056",
+      "correct": "#8fdc9a",
+      "wrong": "#ff9d94",
+      "partly": "#ffc857",
+      "pop1": "#ff7a7f",
+      "pop2": "#6db3ff",
+      "pop3": "#ffc857",
+      "pop4": "#7be0a0",
+      "onAccent": "#1d1a2e",
+      "onHero": "#1d1a2e",
+      "study": "#7be0a0",
+      "studyBg": "#1c3a2c"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/96px 96px fixed",
+      "#1d1a2e"
+    ]
+  }
+}

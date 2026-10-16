@@ -1,0 +1,69 @@
+{
+  "name": "Vedas",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Source Serif 4\",\"Lora\",Georgia,serif",
+    "headings": "\"Playfair Display\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 2.6,
+    "cap": "square",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1e6c8",
+      "card": "#fbf5e1",
+      "text": "#34140f",
+      "textMuted": "#6b4a3a",
+      "border": "#d5c08e",
+      "accent": "#7a1f1f",
+      "accent2": "#8a4b00",
+      "highlight": "#f0c460",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#a32d2d",
+      "pop2": "#d08a10",
+      "pop3": "#4a1414",
+      "pop4": "#e07b1a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/140px auto fixed",
+      "linear-gradient(180deg,#f4e9cb,#e9d9ab) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a100a",
+      "card": "#261811",
+      "text": "#f4e6c4",
+      "textMuted": "#c7ab85",
+      "border": "#46301f",
+      "accent": "#f08a7a",
+      "accent2": "#f0b45a",
+      "highlight": "#c8962e",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f2977f",
+      "pop2": "#f3c264",
+      "pop3": "#d9a37a",
+      "pop4": "#ffa23d",
+      "onAccent": "#1a100a",
+      "onHero": "#1a100a"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/140px auto fixed",
+      "linear-gradient(180deg,#20140c,#140c07) fixed"
+    ]
+  }
+}

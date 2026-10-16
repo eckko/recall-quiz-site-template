@@ -1,0 +1,69 @@
+{
+  "name": "Machine Learning",
+  "group": "Software",
+  "fonts": {
+    "body": "\"Nunito\",\"Instrument Sans\",system-ui,sans-serif",
+    "headings": "\"Source Serif 4\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f5f5fc",
+      "card": "#ffffff",
+      "text": "#1c1b3f",
+      "textMuted": "#555479",
+      "border": "#d5d4ec",
+      "accent": "#4338ca",
+      "accent2": "#b45309",
+      "highlight": "#fde9b6",
+      "correct": "#177a4a",
+      "wrong": "#be3a30",
+      "partly": "#8f5500",
+      "pop1": "#4338ca",
+      "pop2": "#b45309",
+      "pop3": "#0f7a8a",
+      "pop4": "#9333ea",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f5f5fc,#ebeaf8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f0e24",
+      "card": "#1a1938",
+      "text": "#ebeaff",
+      "textMuted": "#adabd6",
+      "border": "#312f5c",
+      "accent": "#9ea0ff",
+      "accent2": "#fbbf24",
+      "highlight": "#4a3a17",
+      "correct": "#5fd69a",
+      "wrong": "#ff9088",
+      "partly": "#fbbf24",
+      "pop1": "#9ea0ff",
+      "pop2": "#fbbf24",
+      "pop3": "#5ecfdc",
+      "pop4": "#d19cff",
+      "onAccent": "#0f0e24",
+      "onHero": "#0f0e24"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0f0e24,#161440) fixed"
+    ]
+  }
+}

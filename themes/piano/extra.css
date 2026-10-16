@@ -1,0 +1,11 @@
+/* Extra touches for the Piano theme: ivory, ebony and deep red. */
+[data-theme="piano"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="piano"] .panel {
+  border-top: 5px solid var(--color-text);
+}

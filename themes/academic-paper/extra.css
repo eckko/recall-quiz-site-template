@@ -1,0 +1,22 @@
+/* Academic paper: journal-style: white page, black text, a refined serif and a restrained blue. */
+[data-theme="academic-paper"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  text-align: left;
+}
+[data-theme="academic-paper"] .unit-title,
+[data-theme="academic-paper"] .verdict,
+[data-theme="academic-paper"] .panel h2 {
+  font-family: "STIX Two Text","Times New Roman",Times,serif;
+  font-weight: 600;
+}
+[data-theme="academic-paper"] .question-text {
+  font-family: "STIX Two Text","Times New Roman",serif;
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+[data-theme="academic-paper"] .panel {
+  box-shadow: none;
+}

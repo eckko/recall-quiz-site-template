@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect x="8" y="10" width="48" height="40" rx="14" fill="#ffd45e" stroke="#2a2340" stroke-width="4"/><path d="M20 50l-4 8 12-8" fill="#ffd45e" stroke="#2a2340" stroke-width="4" stroke-linejoin="round"/>
+<text x="32" y="40" font-size="26" font-weight="700" text-anchor="middle" fill="#d63a3f" font-family="sans-serif">अ</text>
+</svg>

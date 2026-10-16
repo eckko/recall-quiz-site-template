@@ -1,0 +1,71 @@
+{
+  "name": "Lab",
+  "group": "Professional",
+  "fonts": {
+    "body": "\"IBM Plex Sans\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"IBM Plex Mono\",\"SFMono-Regular\",Consolas,monospace"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eaf4f4",
+      "card": "#ffffff",
+      "text": "#10292b",
+      "textMuted": "#4a6668",
+      "border": "#c3dcdc",
+      "accent": "#0b7a7a",
+      "accent2": "#1a8c8c",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#0b7a7a",
+      "pop2": "#b3402a",
+      "pop3": "#5b4bc4",
+      "pop4": "#8a6a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(11,122,122,.08) 1px,transparent 1px) 0 0/32px 32px fixed",
+      "linear-gradient(90deg,rgba(11,122,122,.08) 1px,transparent 1px) 0 0/32px 32px fixed",
+      "linear-gradient(#eaf4f4,#eaf4f4) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0b1819",
+      "card": "#122426",
+      "text": "#def2f2",
+      "textMuted": "#9cc0c0",
+      "border": "#25474a",
+      "accent": "#4fd6d6",
+      "accent2": "#7ae0e0",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#4fd6d6",
+      "pop2": "#ff9a80",
+      "pop3": "#b0a6f5",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(79,214,214,.06) 1px,transparent 1px) 0 0/32px 32px fixed",
+      "linear-gradient(90deg,rgba(79,214,214,.06) 1px,transparent 1px) 0 0/32px 32px fixed",
+      "linear-gradient(#0b1819,#0b1819) fixed"
+    ]
+  }
+}

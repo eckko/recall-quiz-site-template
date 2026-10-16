@@ -1,0 +1,69 @@
+{
+  "name": "Ramayan",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Nunito\",\"Lora\",Georgia,serif",
+    "headings": "\"Lora\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eaf3e0",
+      "card": "#fbfff5",
+      "text": "#1b2e1a",
+      "textMuted": "#4b6247",
+      "border": "#c3d9b4",
+      "accent": "#2f6b34",
+      "accent2": "#b45309",
+      "highlight": "#f7c873",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#3f8f46",
+      "pop2": "#e08a1e",
+      "pop3": "#1f5226",
+      "pop4": "#d96b1b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/130px auto fixed",
+      "linear-gradient(160deg,#e3f0d5,#d4e8c2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f1d12",
+      "card": "#172a1a",
+      "text": "#e8f3dc",
+      "textMuted": "#a9c49c",
+      "border": "#2c4a30",
+      "accent": "#7bd17f",
+      "accent2": "#ffb35c",
+      "highlight": "#d9a441",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#8fdc90",
+      "pop2": "#ffbf66",
+      "pop3": "#6fb577",
+      "pop4": "#ff9a5c",
+      "onAccent": "#0f1d12",
+      "onHero": "#0f1d12"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/130px auto fixed",
+      "linear-gradient(160deg,#142616,#0b1610) fixed"
+    ]
+  }
+}

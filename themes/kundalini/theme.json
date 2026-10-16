@@ -1,0 +1,73 @@
+{
+  "name": "Kundalini · कुण्डलिनी",
+  "group": "Yoga & mindfulness",
+  "fonts": {
+    "body": "\"Hind\",Georgia,serif",
+    "headings": "\"Tillana\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "10px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6effa",
+      "card": "#fffaff",
+      "text": "#25123a",
+      "textMuted": "#66527a",
+      "border": "#dcc9ec",
+      "accent": "#7b2d9e",
+      "accent2": "#b0156b",
+      "highlight": "#efe0f7",
+      "correct": "#2f6b3a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#7b2d9e",
+      "pop2": "#b0156b",
+      "pop3": "#b07a00",
+      "pop4": "#2f7a74",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff",
+      "study": "#17685d",
+      "studyBg": "#dff2ee"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/96px 96px fixed",
+      "#f6effa"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#130a1f",
+      "card": "#1e1230",
+      "text": "#f1e6fb",
+      "textMuted": "#b7a3cc",
+      "border": "#3a2756",
+      "accent": "#d29cf0",
+      "accent2": "#f07ac0",
+      "highlight": "#2b1a40",
+      "correct": "#92c88a",
+      "wrong": "#f29a90",
+      "partly": "#e8b44f",
+      "pop1": "#d29cf0",
+      "pop2": "#f07ac0",
+      "pop3": "#f0c24f",
+      "pop4": "#7cd0c0",
+      "onAccent": "#130a1f",
+      "onHero": "#130a1f",
+      "study": "#7cd0c0",
+      "studyBg": "#16302e"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/96px 96px fixed",
+      "#130a1f"
+    ]
+  }
+}

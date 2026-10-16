@@ -5,14 +5,17 @@ Run this after adding or changing a theme:
 
     python3 tools/build_themes.py
 
-It reads every themes/<theme-id>/ folder and writes two generated files:
+It reads every themes/<theme-id>/ folder and writes these generated files:
 
-    css/themes.css       one block of CSS variables per theme and scheme,
-                         the picker tile previews, and each theme's extra.css
-    js/themes-list.js    the list of themes for the picker, and the
-                         Google Fonts link the themes need
+    css/themes/<id>.css  one theme's CSS variables (light and dark) and its
+                         extra.css. The page loads only the theme in use,
+                         so a new theme costs nothing until it is chosen.
+    css/theme-tiles.css  the preview tiles of every theme for the picker
+                         (loaded when the Appearance section is opened)
+    js/themes-list.js    the list of themes for the picker, the Google
+                         Fonts each theme needs, and how to ask for them
 
-Never edit those two files by hand; your changes would be overwritten.
+Never edit those files by hand; your changes would be overwritten.
 
 A theme folder contains:
 
@@ -26,6 +29,7 @@ A theme folder contains:
 See README.md ("Add a new theme") for a walk-through.
 """
 
+import colorsys
 import json
 import re
 from pathlib import Path
@@ -34,7 +38,9 @@ from urllib.parse import quote
 SITE_FOLDER = Path(__file__).resolve().parent.parent
 THEMES_FOLDER = SITE_FOLDER / "themes"
 PICKER_ORDER_FILE = THEMES_FOLDER / "picker-order.txt"
-THEMES_CSS_FILE = SITE_FOLDER / "css" / "themes.css"
+THEME_CSS_FOLDER = SITE_FOLDER / "css" / "themes"
+THEME_TILES_FILE = SITE_FOLDER / "css" / "theme-tiles.css"
+OLD_THEMES_CSS_FILE = SITE_FOLDER / "css" / "themes.css"
 THEMES_LIST_FILE = SITE_FOLDER / "js" / "themes-list.js"
 
 GENERATED_WARNING = (
@@ -61,6 +67,17 @@ COLOR_VARIABLES = {
     "pop4": "--color-pop-4",
     "onAccent": "--color-on-accent",
     "onHero": "--color-on-hero",
+    "study": "--color-study",
+    "studyBg": "--color-study-bg",
+}
+
+# Verse-study blocks use a colour pair that must differ from the theme's
+# own accents. A theme may set "study" and "studyBg" in its colours; when
+# it does not, they are worked out here (see study_colors).
+STUDY_HUES = (178, 28, 275, 330)  # teal, orange, violet, magenta
+STUDY_SHAPE = {                   # lightness, saturation of each colour
+    "light": {"study": (0.30, 0.45), "studyBg": (0.92, 0.30)},
+    "dark": {"study": (0.67, 0.42), "studyBg": (0.15, 0.32)},
 }
 
 # Optional per-scheme values. When a theme leaves one out, the default in
@@ -95,6 +112,27 @@ GOOGLE_FONTS = {
     "Nunito": "Nunito:wght@400;600;700",
     "EB Garamond": "EB+Garamond:wght@400;500;600",
     "Inter": "Inter:wght@400;500;600",
+    "Noto Serif Devanagari": "Noto+Serif+Devanagari:wght@400;600",
+    "Kalam": "Kalam:wght@400;700",
+    "Dekko": "Dekko",
+    "Yatra One": "Yatra+One",
+    "Sarala": "Sarala:wght@400;700",
+    "Rozha One": "Rozha+One",
+    "Amita": "Amita:wght@400;700",
+    "Inknut Antiqua": "Inknut+Antiqua:wght@400;600",
+    "Tillana": "Tillana:wght@400;600",
+    "Sahitya": "Sahitya:wght@400;700",
+    "Laila": "Laila:wght@400;600",
+    "Karma": "Karma:wght@400;600",
+    "Eczar": "Eczar:wght@400;600",
+    "Martel": "Martel:wght@400;600",
+    "Sura": "Sura:wght@400;700",
+    "Arya": "Arya:wght@400;700",
+    "Halant": "Halant:wght@400;600",
+    "Hind": "Hind:wght@400;600",
+    "Khand": "Khand:wght@400;600",
+    "Gotu": "Gotu",
+    "Modak": "Modak",
     "Marcellus": "Marcellus",
     "Lora": "Lora:wght@400;600",
     "Cormorant Garamond": "Cormorant+Garamond:wght@500;600",
@@ -107,6 +145,28 @@ GOOGLE_FONTS = {
     "Poppins": "Poppins:wght@400;500;600",
     "Playfair Display": "Playfair+Display:wght@500;700",
     "Permanent Marker": "Permanent+Marker",
+    "Literata": "Literata:wght@400;600",
+    "Libre Baskerville": "Libre+Baskerville:wght@400;700",
+    "Crimson Pro": "Crimson+Pro:wght@400;600",
+    "Merriweather": "Merriweather:wght@400;700",
+    "STIX Two Text": "STIX+Two+Text:wght@400;600",
+    "Sniglet": "Sniglet:wght@400;800",
+    "Dancing Script": "Dancing+Script:wght@500;700",
+    "Great Vibes": "Great+Vibes",
+    "Satisfy": "Satisfy",
+    "Kalam": "Kalam:wght@400;700",
+    "Indie Flower": "Indie+Flower",
+    "Gloria Hallelujah": "Gloria+Hallelujah",
+    "Architects Daughter": "Architects+Daughter",
+    "Andika": "Andika:wght@400;700",
+    "UnifrakturCook": "UnifrakturCook:wght@700",
+    "Cinzel": "Cinzel:wght@400;600;700",
+    "IBM Plex Sans": "IBM+Plex+Sans:wght@400;500;600",
+    "IBM Plex Mono": "IBM+Plex+Mono:wght@400;500",
+    "JetBrains Mono": "JetBrains+Mono:wght@400;600",
+    "Space Grotesk": "Space+Grotesk:wght@400;500;700",
+    "Source Sans 3": "Source+Sans+3:wght@400;600",
+    "Roboto Slab": "Roboto+Slab:wght@400;600",
 }
 
 # The "next" arrow and the "check" tick drawn on buttons. Every theme
@@ -233,12 +293,42 @@ def accent_gradient(colors):
 # ------------------------------------------------------------- css blocks
 
 
+def hex_hue(colour):
+    """Hue in degrees (0 to 360) of a #rrggbb colour."""
+    red, green, blue = (int(colour[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    return colorsys.rgb_to_hls(red, green, blue)[0] * 360
+
+
+def hue_gap(first, second):
+    """Smallest angle between two hues."""
+    gap = abs(first - second) % 360
+    return min(gap, 360 - gap)
+
+
+def hls_hex(hue, lightness, saturation):
+    """A #rrggbb colour from hue (degrees), lightness and saturation."""
+    red, green, blue = colorsys.hls_to_rgb(hue / 360, lightness, saturation)
+    return "#%02x%02x%02x" % (round(red * 255), round(green * 255),
+                              round(blue * 255))
+
+
+def study_colors(colors, scheme):
+    """Colour pair for verse-study blocks that stands apart from the
+    theme: the hue (teal, orange or violet) farthest from both accents."""
+    accents = [hex_hue(colors["accent"]), hex_hue(colors["accent2"])]
+    hue = max(STUDY_HUES, key=lambda candidate: min(
+        hue_gap(candidate, accent) for accent in accents))
+    shape = STUDY_SHAPE[scheme]
+    return {key: hls_hex(hue, *shape[key]) for key in shape}
+
+
 def theme_variables(theme, scheme):
     """Every CSS variable one theme sets for light or dark."""
     settings = theme[scheme]
     colors = settings["colors"]
     on_accent = colors["onAccent"]
     stroke = theme["iconStroke"]
+    colors = {**study_colors(colors, scheme), **colors}
     variables = {COLOR_VARIABLES[key]: value
                  for key, value in colors.items()}
     variables.update({
@@ -320,43 +410,33 @@ def font_family_names(theme):
     return re.findall(r'"([^"]+)"', font_settings)
 
 
-def google_fonts_needed(themes):
-    """The Google Fonts families the themes use, each listed once."""
+def google_fonts_for_theme(theme):
+    """The Google Fonts families one theme uses, each listed once."""
     needed = []
-    for theme in themes:
-        for family in font_family_names(theme):
-            if family in GOOGLE_FONTS and family not in needed:
-                needed.append(family)
+    for family in font_family_names(theme):
+        if family in GOOGLE_FONTS and family not in needed:
+            needed.append(family)
     return needed
-
-
-def google_fonts_url_code(themes):
-    """JavaScript that builds one Google Fonts link for every theme.
-
-    Written as a list joined with "&" so each font sits on its own line.
-    """
-    url_parts = ["family=" + GOOGLE_FONTS[name]
-                 for name in google_fonts_needed(themes)]
-    url_parts.append("display=swap")
-    parts_text = "".join(f"    {json.dumps(part)},\n" for part in url_parts)
-    return (
-        '  "https://fonts.googleapis.com/css2?" +\n'
-        f"  [\n{parts_text}  ].join(\"&\")"
-    )
 
 
 # ------------------------------------------------------------- writing
 
 
-def build_themes_css(themes):
-    """The full text of css/themes.css."""
-    parts = [f"/* themes.css: {GENERATED_WARNING} */\n\n"]
+def build_theme_css(theme):
+    """The full text of css/themes/<id>.css: one theme, both schemes."""
+    parts = [f"/* {theme['id']}.css: {GENERATED_WARNING} */\n\n"]
+    parts.append(theme_variables_rule(theme, "light"))
+    parts.append(theme_variables_rule(theme, "dark"))
+    parts.append(theme["extraCss"])
+    return "".join(parts)
+
+
+def build_theme_tiles_css(themes):
+    """The full text of css/theme-tiles.css: every picker preview tile."""
+    parts = [f"/* theme-tiles.css: {GENERATED_WARNING} */\n\n"]
     for theme in themes:
         parts.append(f"/* ---------- {theme['name']} ---------- */\n")
-        parts.append(theme_variables_rule(theme, "light"))
-        parts.append(theme_variables_rule(theme, "dark"))
         parts.append(picker_tile_rules(theme))
-        parts.append(theme["extraCss"])
         parts.append("\n")
     return "".join(parts)
 
@@ -367,24 +447,55 @@ def build_themes_list_js(themes):
                        theme.get("group", "More")] for theme in themes]
     entries_text = ",\n".join(
         f"  {json.dumps(entry)}" for entry in picker_entries)
+    fonts_by_theme = {theme["id"]: google_fonts_for_theme(theme)
+                      for theme in themes}
+    fonts_text = ",\n".join(
+        f"  {json.dumps(theme_id)}: {json.dumps(families)}"
+        for theme_id, families in fonts_by_theme.items())
+    every_family = []
+    for families in fonts_by_theme.values():
+        every_family += [name for name in families
+                         if name not in every_family]
+    specs_text = ",\n".join(
+        f"  {json.dumps(name)}: {json.dumps(GOOGLE_FONTS[name])}"
+        for name in every_family)
     return (
         "/*\n * themes-list.js\n"
         " * GENERATED by tools/build_themes.py from the themes/ folder.\n"
         " * Do not edit by hand.\n */\n\n"
         "/** Theme id, display name and group, in picker order. */\n"
         f"window.QUIZ_THEMES = [\n{entries_text}\n];\n\n"
-        "/** The Google Fonts every theme needs, in one request. */\n"
-        "window.QUIZ_THEME_FONTS_URL =\n"
-        f"{google_fonts_url_code(themes)};\n"
+        "/** The Google Fonts each theme uses, by theme id. */\n"
+        f"window.QUIZ_THEME_FONTS = {{\n{fonts_text}\n}};\n\n"
+        "/** How to ask Google Fonts for each family (the part after\n"
+        "    \"family=\" in a css2 link). */\n"
+        f"window.QUIZ_FONT_SPECS = {{\n{specs_text}\n}};\n"
     )
+
+
+def write_theme_css_files(themes):
+    """Write one CSS file per theme and remove ones for deleted themes."""
+    THEME_CSS_FOLDER.mkdir(exist_ok=True)
+    wanted = set()
+    for theme in themes:
+        file_name = f"{theme['id']}.css"
+        wanted.add(file_name)
+        (THEME_CSS_FOLDER / file_name).write_text(build_theme_css(theme))
+    for old_file in THEME_CSS_FOLDER.glob("*.css"):
+        if old_file.name not in wanted:
+            old_file.unlink()
 
 
 def main():
     themes = [load_theme(theme_id) for theme_id in find_theme_ids()]
-    THEMES_CSS_FILE.write_text(build_themes_css(themes))
+    write_theme_css_files(themes)
+    THEME_TILES_FILE.write_text(build_theme_tiles_css(themes))
     THEMES_LIST_FILE.write_text(build_themes_list_js(themes))
+    if OLD_THEMES_CSS_FILE.exists():
+        OLD_THEMES_CSS_FILE.unlink()
     print(f"Built {len(themes)} themes into "
-          f"{THEMES_CSS_FILE.relative_to(SITE_FOLDER)} and "
+          f"{THEME_CSS_FOLDER.relative_to(SITE_FOLDER)}/, "
+          f"{THEME_TILES_FILE.relative_to(SITE_FOLDER)} and "
           f"{THEMES_LIST_FILE.relative_to(SITE_FOLDER)}")
 
 

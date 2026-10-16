@@ -1,0 +1,69 @@
+{
+  "name": "Equity",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Lexend\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Lexend\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "8px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef0fb",
+      "card": "#fbfbff",
+      "text": "#181a3b",
+      "textMuted": "#53578a",
+      "border": "#cdd1f0",
+      "accent": "#4a4fd6",
+      "accent2": "#7a52e0",
+      "highlight": "#ffe08a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#4a4fd6",
+      "pop2": "#e0457b",
+      "pop3": "#1e8fa8",
+      "pop4": "#b8860b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f3f4fe,#e0e3f8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#12132b",
+      "card": "#1b1d3d",
+      "text": "#e6e8ff",
+      "textMuted": "#a9aee0",
+      "border": "#32356b",
+      "accent": "#9aa0ff",
+      "accent2": "#b79bff",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#9aa0ff",
+      "pop2": "#ff8fb3",
+      "pop3": "#6fd3e6",
+      "pop4": "#f2d46a",
+      "onAccent": "#0e0f24",
+      "onHero": "#0e0f24"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#15163a,#0d0e24) fixed"
+    ]
+  }
+}

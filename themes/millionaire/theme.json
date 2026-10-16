@@ -1,0 +1,69 @@
+{
+  "name": "Millionaire",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Cormorant Garamond\",\"Georgia\",serif",
+    "headings": "\"Playfair Display\",\"Georgia\",serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f8eef0",
+      "card": "#fffafa",
+      "text": "#3a0f1a",
+      "textMuted": "#7a4a55",
+      "border": "#e6c5cc",
+      "accent": "#8a1c3a",
+      "accent2": "#b0304f",
+      "highlight": "#f6dfa0",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#8a1c3a",
+      "pop2": "#b8860b",
+      "pop3": "#2f6f73",
+      "pop4": "#5a3a7a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fcf2f4,#f1dade) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1f0c12",
+      "card": "#2d1219",
+      "text": "#fbe6ea",
+      "textMuted": "#d3a3ad",
+      "border": "#522330",
+      "accent": "#f08aa5",
+      "accent2": "#ff9db6",
+      "highlight": "#f2d08a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#f08aa5",
+      "pop2": "#f2d46a",
+      "pop3": "#6fd3d6",
+      "pop4": "#c9a0e6",
+      "onAccent": "#1a070c",
+      "onHero": "#1a070c"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#240d14,#16070b) fixed"
+    ]
+  }
+}

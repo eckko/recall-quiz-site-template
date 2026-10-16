@@ -1,0 +1,69 @@
+{
+  "name": "Hatha Yoga",
+  "group": "Yoga & mindfulness",
+  "fonts": {
+    "body": "\"Poppins\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Poppins\",\"Nunito\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fdeede",
+      "card": "#fffaf3",
+      "text": "#3a1c0a",
+      "textMuted": "#6f4a33",
+      "border": "#f0cfae",
+      "accent": "#b8460a",
+      "accent2": "#1f5f9a",
+      "highlight": "#ffd08a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#8a5a00",
+      "pop1": "#e2661c",
+      "pop2": "#3b7fc0",
+      "pop3": "#8a3305",
+      "pop4": "#f0a020",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/140px auto fixed",
+      "linear-gradient(160deg,#ffe6cc,#e3ecf8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#101a2b",
+      "card": "#182640",
+      "text": "#fdecd6",
+      "textMuted": "#b7c3dc",
+      "border": "#2c4068",
+      "accent": "#ff9a5c",
+      "accent2": "#8cc4ff",
+      "highlight": "#e8a24a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ffa066",
+      "pop2": "#9fcdff",
+      "pop3": "#ffc58f",
+      "pop4": "#ffbf59",
+      "onAccent": "#101a2b",
+      "onHero": "#101a2b"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/140px auto fixed",
+      "linear-gradient(160deg,#15233b,#0b1424) fixed"
+    ]
+  }
+}

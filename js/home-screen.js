@@ -24,8 +24,6 @@
       book.labels.unit.toLowerCase(), book.labels.units);
     findElement("book-title").textContent = book.data.book;
     document.title = book.data.book;
-    findElement("unit-picker-label").textContent = book.labels.unit;
-    findElement("default-unit-label").textContent = book.labels.unit;
     findElement("book-summary").textContent = quiz.learning.hasConcepts()
       ? countWithWord(quiz.learning.concepts().length, "idea") + ", " +
         countWithWord(questionCount, "question") + ", " + unitsText +
@@ -33,7 +31,8 @@
       : countWithWord(questionCount, "question") + " across " + unitsText +
         ". Recall first, then check.";
     showBookBlurb();
-    fillUnitPicker();
+    quiz.rich.showCover(book.data.cover);
+    quiz.scopePicker.fill();
     showKeepGoingFor(quiz.learning.hasConcepts());
   }
 
@@ -47,28 +46,14 @@
 
   /**
    * Show "Keep me going" for a book with ideas. A book without ideas
-   * only has the custom practice, which then starts open.
+   * only has the custom practice (js/home-layout.js opens it, unless the
+   * reader chose otherwise).
    * @param {boolean} hasConcepts
    */
   function showKeepGoingFor(hasConcepts) {
     findElement("keep-going-block").classList.toggle("hidden", !hasConcepts);
     findElement("quick-session-button")
       .classList.toggle("hidden", !hasConcepts);
-    findElement("custom-practice").open = !hasConcepts;
-  }
-
-  /** The chapter drop-down: "Whole book" and then every chapter. */
-  function fillUnitPicker() {
-    ["unit-picker", "default-unit"].forEach(function fill(id) {
-      const picker = findElement(id);
-      picker.textContent = "";
-      picker.appendChild(new Option(quiz.book.labels.whole, "all"));
-      quiz.book.unitIds.forEach(function addUnit(unitId) {
-        const title = quiz.book.unitTitles[unitId];
-        const text = unitId + (title ? ": " + title : "");
-        picker.appendChild(new Option(text, unitId));
-      });
-    });
   }
 
   /** Redraw everything that depends on the reader's progress. */
@@ -506,6 +491,10 @@
         ". You can still start here."));
     }
     appendWeakPart(body, concept);
+    const flagBar = quiz.flags.createIdeaFlagBar(concept);
+    if (flagBar) {
+      body.appendChild(flagBar);
+    }
     body.appendChild(createConceptActions(concept, status));
     row.appendChild(body);
     return row;
@@ -642,6 +631,51 @@
     if (quiz.book.data) {
       }
   });
+
+  /** The ideas that were hidden the last time the home screen was drawn */
+  let hiddenIdeaKey = "";
+
+  /** @returns {string} the ids of the hidden ideas, as one text */
+  function readHiddenIdeaKey() {
+    return quiz.bookSettings.listFlaggedIdeas()
+      .filter(function isHidden(entry) {
+        return quiz.bookSettings.isIdeaHidden(entry.id);
+      })
+      .map(function idOf(entry) {
+        return entry.id;
+      }).sort().join("|");
+  }
+
+  /**
+   * An idea was flagged. Only an idea that appears or disappears needs a
+   * redraw (so an open idea does not fold shut while it is flagged
+   * Revisit or Important).
+   */
+  function ideaFlagsChanged() {
+    const key = readHiddenIdeaKey();
+    if (!quiz.book.data || key === hiddenIdeaKey) {
+      return;
+    }
+    hiddenIdeaKey = key;
+    showBookDetails();
+    refresh();
+  }
+
+  /** The book was opened or settings arrived: draw the ideas again. */
+  function ideasMayHaveChanged() {
+    hiddenIdeaKey = readHiddenIdeaKey();
+    if (quiz.book.data) {
+      showBookDetails();
+      refresh();
+    }
+  }
+  document.addEventListener("recallquiz:book-opened", function noteHidden() {
+    hiddenIdeaKey = readHiddenIdeaKey();
+  });
+  document.addEventListener("recallquiz:idea-flags-changed",
+    ideaFlagsChanged);
+  document.addEventListener("recallquiz:book-settings-applied",
+    ideasMayHaveChanged);
 
   quiz.homeScreen = { showBookDetails, refresh };
 })((window.RecallQuiz = window.RecallQuiz || {}));

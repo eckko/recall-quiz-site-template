@@ -27,6 +27,8 @@
   const DEFAULT_CONCEPT_COUNT = 2;
   const KEEP_GOING_REVIEWS = 4;      // due questions before a new idea
   const KEEP_GOING_FALLBACK = 10;    // questions when nothing is due
+  const IMPORTANT_LEVEL_BONUS = 2;   // Important questions rank this far
+                                     // ahead of other reviews
   const QUICK_REVIEWS = 2;           // due questions in a 5-minute session
   const CLOSER_MIN_LEVEL = 2;        // an "easy ending" is at least this solid
   const WEAK_LEVEL = 1;              // a missed question this low is shaky
@@ -63,15 +65,27 @@
 
   // ---------------------------------------------------------- concepts
 
-  /** @returns {object[]} the concepts of the loaded book, in order */
-  function concepts() {
+  /** @returns {object[]} every concept of the loaded book, in order,
+      including ideas the reader hid */
+  function allConcepts() {
     const list = quiz.book.data && quiz.book.data.concepts;
     return Array.isArray(list) ? list : [];
   }
 
+  /**
+   * @returns {object[]} the concepts of the loaded book, in order, except
+   *   the ideas the reader flagged Bad or Useless (they disappear from
+   *   the lists; their questions stay)
+   */
+  function concepts() {
+    return allConcepts().filter(function isVisible(concept) {
+      return !quiz.bookSettings.isIdeaHidden(concept.id);
+    });
+  }
+
   /** @returns {boolean} true if the loaded book teaches with concepts */
   function hasConcepts() {
-    return concepts().length > 0;
+    return allConcepts().length > 0;
   }
 
   /** @returns {boolean} true if the book marks any idea as core */
@@ -96,7 +110,7 @@
    * @returns {object|undefined}
    */
   function conceptById(conceptId) {
-    return concepts().find(function matches(concept) {
+    return allConcepts().find(function matches(concept) {
       return concept.id === conceptId;
     });
   }
@@ -252,10 +266,33 @@
   // ----------------------------------------------------- learn session
 
   /**
+   * The lesson a plan covers: a chapter, a topic in it, or an idea.
+   * @param {{scope?: object, unitId?: string}} options
+   * @returns {{unit: string, section?: string, concept?: string}}
+   */
+  function scopeOf(options) {
+    return options.scope || { unit: options.unitId || "all" };
+  }
+
+  /**
+   * @param {object} scope  see scopeOf
+   * @param {object} concept
+   * @returns {boolean} true if the idea is inside the lesson
+   */
+  function isConceptInScope(scope, concept) {
+    if (!scope.unit || scope.unit === "all") {
+      return true;
+    }
+    return concept.unit === scope.unit &&
+      (!scope.section || concept.section === scope.section) &&
+      (!scope.concept || concept.id === scope.concept);
+  }
+
+  /**
    * The concepts a Learn session would teach next, in book order.
    * A concept that waits only for one taught earlier in the same
    * session counts as ready.
-   * @param {{unitId?: string, conceptIds?: string[],
+   * @param {{scope?: object, unitId?: string, conceptIds?: string[],
    *          conceptCount?: number, onlyUnfinished?: boolean}} options
    *   onlyUnfinished: skip started ideas whose questions have all been
    *   answered (their questions come back as reviews instead)
@@ -263,7 +300,7 @@
    */
   function conceptsToLearn(options) {
     const wanted = options.conceptIds || null;
-    const unitId = options.unitId || "all";
+    const scope = scopeOf(options);
     const limit = wanted ? wanted.length : (
       options.conceptCount || DEFAULT_CONCEPT_COUNT);
     const chosen = [];
@@ -273,7 +310,7 @@
         return;
       }
       const inScope = wanted ? wanted.includes(concept.id) :
-        unitId === "all" || concept.unit === unitId;
+        isConceptInScope(scope, concept);
       const progress = progressOf(concept.id);
       const needsTeaching = wanted || progress === "new" ||
         (progress === "learning" &&
@@ -293,18 +330,36 @@
 
   /**
    * The ideas in the order they are offered: book order, except that
-   * core ideas come first when nobody asked for particular ideas.
+   * core ideas come first when nobody asked for particular ideas, and
+   * ideas flagged Important come ahead of the others in their group.
    * @param {boolean} isAskedFor  the reader chose the ideas
    * @returns {object[]}
    */
   function inTeachingOrder(isAskedFor) {
     const list = concepts().slice();
-    if (isAskedFor || !hasCoreIdeas()) {
+    if (isAskedFor) {
       return list;
     }
-    return list.filter(isCore).concat(list.filter(function notCore(concept) {
-      return !isCore(concept);
-    }));
+    const groups = hasCoreIdeas() ?
+      [list.filter(isCore), list.filter(function notCore(concept) {
+        return !isCore(concept);
+      })] : [list];
+    return [].concat.apply([], groups.map(importantFirst));
+  }
+
+  /**
+   * @param {object[]} ideas
+   * @returns {object[]} the ideas flagged Important first, each part in
+   *   its old order
+   */
+  function importantFirst(ideas) {
+    function isImportant(concept) {
+      return quiz.bookSettings.hasIdeaFlag(concept.id, "important");
+    }
+    return ideas.filter(isImportant).concat(
+      ideas.filter(function isOther(concept) {
+        return !isImportant(concept);
+      }));
   }
 
   /** @returns {boolean} true if a ladder question was never answered */
@@ -376,34 +431,37 @@
    * session ends on something the reader knows. With nothing due and
    * nothing new it falls back to questions the reader finds hard, then
    * to a mixed set.
-   * @param {{unitId?: string, coreOnly?: boolean, maxReviews?: number,
-   *          scopeName?: string}} options
+   * Questions flagged Important always count as waiting for review (once
+   * answered) and are put a little ahead of other questions, so they come
+   * back again and again.
+   * @param {{scope?: object, unitId?: string, coreOnly?: boolean,
+   *          maxReviews?: number, scopeName?: string}} options
    *   coreOnly: teach and review core ideas only (the 5-minute session)
    * @returns {{questions: object[], isGuided: boolean, isTimed: boolean,
    *            conceptTitles: string[], scopeName: string,
    *            reviewCount: number, fallback: string}}
    */
   function createKeepGoingPlan(options) {
-    const unitId = options.unitId || "all";
+    const scope = scopeOf(options);
     const inScope = function isInScope(question) {
-      return (unitId === "all" || question.unit === unitId) &&
+      return quiz.book.matchesScope(question, scope) &&
         (!options.coreOnly || isCoreQuestion(question));
     };
     const reviews = quiz.book.allQuestions()
       .filter(function isDue(question) {
-        return inScope(question) &&
-          quiz.memory.isWaitingForReview(question.id);
+        return inScope(question) && (
+          quiz.memory.isWaitingForReview(question.id) ||
+          isImportantAndAnswered(question));
       })
       .sort(function weakestFirst(first, second) {
-        return quiz.memory.memoryLevelOf(first.id) -
-          quiz.memory.memoryLevelOf(second.id);
+        return reviewRank(first) - reviewRank(second);
       })
       .slice(0, options.maxReviews || KEEP_GOING_REVIEWS)
       .map(function markAsReview(question) {
         return Object.assign({}, question, { isReviewRun: true });
       });
     const built = buildLearnSession({
-      unitId, conceptCount: 1, onlyUnfinished: true,
+      scope, conceptCount: 1, onlyUnfinished: true,
       coreOnly: options.coreOnly,
     });
     const seen = new Set(reviews.map(function idOf(question) {
@@ -431,13 +489,36 @@
   }
 
   /**
+   * @param {object} question
+   * @returns {boolean} true if the reader flagged it Important and has
+   *   answered it before
+   */
+  function isImportantAndAnswered(question) {
+    return quiz.memory.isScored(question.id) &&
+      quiz.bookSettings.hasFlag(question.id, "important");
+  }
+
+  /**
+   * Lower comes first: the weakest questions, with Important ones put
+   * ahead by IMPORTANT_LEVEL_BONUS levels.
+   * @param {object} question
+   * @returns {number}
+   */
+  function reviewRank(question) {
+    const isImportant = quiz.bookSettings.hasFlag(question.id, "important");
+    return quiz.memory.memoryLevelOf(question.id) -
+      (isImportant ? IMPORTANT_LEVEL_BONUS : 0);
+  }
+
+  /**
    * The 5-minute session: the same plan as Keep me going, but only core
    * ideas (the few that give most of the value) and fewer reviews.
-   * @param {{unitId?: string}} options
+   * @param {{scope?: object, unitId?: string}} options
    * @returns {object} a plan, see createKeepGoingPlan
    */
   function createQuickPlan(options) {
     return createKeepGoingPlan({
+      scope: options.scope,
       unitId: options.unitId,
       coreOnly: true,
       maxReviews: QUICK_REVIEWS,
@@ -683,6 +764,10 @@
   function createCardContent(concept) {
     const card = concept.card || {};
     const content = createElement("div", "idea-card");
+    const genreChip = quiz.rich.createGenreChip(concept);
+    if (genreChip) {
+      content.appendChild(genreChip);
+    }
     if (concept.question) {
       const guide = createElement("p", "idea-question");
       guide.appendChild(createElement("b", null, "Read to answer: "));
@@ -692,6 +777,13 @@
     (card.paragraphs || []).forEach(function addParagraph(text) {
       content.appendChild(createElement("p", "idea-paragraph", text));
     });
+    quiz.rich.createBlocks(card.blocks || []).forEach(
+      function addBlock(block) {
+        content.appendChild(block);
+      });
+    if (card.media && card.media.length) {
+      content.appendChild(quiz.rich.createMedia(card.media));
+    }
     if (card.example) {
       const example = createElement("div", "idea-example");
       example.appendChild(createElement("b", null, "Worked example"));
@@ -714,20 +806,17 @@
   }
 
   /**
-   * A panel with a concept's card inside. Before an answer it is called
-   * "Read the idea" (the full card, not a hint); after an answer it is
-   * "Show the idea again".
+   * A closed panel with a concept's card inside, "Read the idea: <title>".
+   * It is always closed; the reader opens it to read the card. It sits
+   * above a question (before and after the answer) and is not offered
+   * anywhere else.
    * @param {object} concept
-   * @param {boolean} isOpen
-   * @param {boolean} [isBeforeAnswer]
    * @returns {HTMLElement}
    */
-  function createIdeaAgainPanel(concept, isOpen, isBeforeAnswer) {
+  function createIdeaPanel(concept) {
     const details = createElement("details", "idea-again");
-    details.open = isOpen;
     details.appendChild(createElement("summary", null,
-      (isBeforeAnswer ? "Read the idea: " : "Show the idea again: ") +
-      concept.title));
+      "Read the idea: " + concept.title));
     details.appendChild(createCardContent(concept));
     return details;
   }
@@ -772,7 +861,7 @@
     countScoredSteps,
     stepLabel,
     createCardContent,
-    createIdeaAgainPanel,
+    createIdeaPanel,
     rereadText,
   };
 })((window.RecallQuiz = window.RecallQuiz || {}));

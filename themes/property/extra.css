@@ -1,0 +1,19 @@
+/* Property: brick, slate and cream, with condensed signage letters. */
+[data-theme="property"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="property"] .unit-title,
+[data-theme="property"] .verdict,
+[data-theme="property"] .panel h2 {
+  font-family: "Barlow Condensed","Barlow",system-ui,sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+[data-theme="property"] .panel {
+  border-top: 3px solid var(--color-accent);
+}

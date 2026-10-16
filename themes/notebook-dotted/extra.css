@@ -1,0 +1,15 @@
+/* Notebook: Dotted: a dot-grid journal page in calm neutrals. */
+[data-theme="notebook-dotted"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+[data-theme="notebook-dotted"] .unit-title,
+[data-theme="notebook-dotted"] .verdict,
+[data-theme="notebook-dotted"] .panel h2 {
+  font-family: "Patrick Hand","Lexend",system-ui,sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+}

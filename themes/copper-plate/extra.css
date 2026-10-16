@@ -1,0 +1,15 @@
+/* Extra touches for the Copper Plate theme. */
+[data-theme="copper-plate"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+}
+[data-theme="copper-plate"] .unit-title,
+[data-theme="copper-plate"] .verdict,
+[data-theme="copper-plate"] .panel h2 {
+  font-family: var(--font-heading);
+}
+[data-theme="copper-plate"] .panel {
+  border-style: double;
+}

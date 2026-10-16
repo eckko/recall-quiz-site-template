@@ -1,0 +1,18 @@
+/* English writing: four-line handwriting paper: blue lines with a red dashed middle line. */
+[data-theme="english-writing"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="english-writing"] .unit-title,
+[data-theme="english-writing"] .verdict,
+[data-theme="english-writing"] .panel h2 {
+  font-family: "Andika","Segoe UI",system-ui,sans-serif;
+  font-weight: 700;
+}
+[data-theme="english-writing"] .question-text {
+  font-family: "Andika","Segoe UI",sans-serif;
+  font-size: 1.3rem;
+  line-height: 2;
+}

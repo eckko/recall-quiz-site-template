@@ -1,0 +1,19 @@
+/* Handwritten: Pencil: graphite pencil writing on ruled paper. */
+[data-theme="handwritten-pencil"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+[data-theme="handwritten-pencil"] .unit-title,
+[data-theme="handwritten-pencil"] .verdict,
+[data-theme="handwritten-pencil"] .panel h2 {
+  font-family: "Kalam","Segoe Print","Bradley Hand",cursive;
+  font-weight: 700;
+}
+[data-theme="handwritten-pencil"] .question-text {
+  font-family: "Kalam","Segoe Print",cursive;
+  font-size: 1.45rem;
+  line-height: 1.6;
+}

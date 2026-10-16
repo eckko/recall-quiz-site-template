@@ -1,0 +1,69 @@
+{
+  "name": "Painting",
+  "group": "Art & music",
+  "fonts": {
+    "body": "\"Nunito\",\"Quicksand\",system-ui,sans-serif",
+    "headings": "\"Caveat\",\"Patrick Hand\",cursive"
+  },
+  "shape": {
+    "radius": "26px",
+    "smallRadius": "14px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff7ee",
+      "card": "#fffdf9",
+      "text": "#2b1d3a",
+      "textMuted": "#6a5578",
+      "border": "#f1d9c4",
+      "accent": "#c2185b",
+      "accent2": "#2563eb",
+      "highlight": "#ffe27a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#f43f5e",
+      "pop2": "#0d9488",
+      "pop3": "#7c3aed",
+      "pop4": "#ea580c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fffaf2,#ffeedd) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a1226",
+      "card": "#251a35",
+      "text": "#fdeffa",
+      "textMuted": "#c4b0d4",
+      "border": "#46345e",
+      "accent": "#ff7aa8",
+      "accent2": "#7aa8ff",
+      "highlight": "#6b5a1c",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff7a8e",
+      "pop2": "#4fd6c4",
+      "pop3": "#c79bff",
+      "pop4": "#ffa24d",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1c1328,#130c1d) fixed"
+    ]
+  }
+}

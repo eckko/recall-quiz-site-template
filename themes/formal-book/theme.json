@@ -1,0 +1,67 @@
+{
+  "name": "Formal",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Libre Baskerville\",Baskerville,Georgia,serif",
+    "headings": "\"Libre Baskerville\",Baskerville,Georgia,serif"
+  },
+  "shape": {
+    "radius": "3px",
+    "smallRadius": "2px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f4f1ea",
+      "card": "#fffefb",
+      "text": "#1c2433",
+      "textMuted": "#575f6d",
+      "border": "#cdc6b5",
+      "accent": "#1f3a5f",
+      "accent2": "#2f5489",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1f3a5f",
+      "pop2": "#7a1f2b",
+      "pop3": "#3d6b4f",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#f4f1ea,#f4f1ea) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#10141b",
+      "card": "#181e28",
+      "text": "#e8e4da",
+      "textMuted": "#a8acb4",
+      "border": "#333c4a",
+      "accent": "#9db7d9",
+      "accent2": "#85a5cf",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#9db7d9",
+      "pop2": "#d98a96",
+      "pop3": "#86c9a0",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#10141b,#10141b) fixed"
+    ]
+  }
+}

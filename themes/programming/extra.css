@@ -1,0 +1,12 @@
+/* Extra touches for the Programming theme. */
+[data-theme="programming"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+/* Warm orange edge on panels, like a block that snaps in place. */
+[data-theme="programming"] .panel {
+  border-left: 5px solid var(--color-accent-2);
+}

@@ -1,7 +1,8 @@
 /*
  * main.js
- * Starts the quiz: reads questions.json, opens the reader's saved
- * progress for that book, and shows the home screen.
+ * Starts the quiz: reads questions.json (downloaded early, see
+ * js/early-questions.js), opens the reader's saved
+ * progress and settings for that book, and shows the home screen.
  *
  * Browsers will not read questions.json when the page is opened straight
  * from a folder (file://). In that case a panel asks the reader to pick
@@ -11,7 +12,6 @@
   "use strict";
 
   const { findElement } = quiz.helpers;
-  const QUESTIONS_FILE = "questions.json";
 
   /**
    * Use a book's data and show the home screen.
@@ -21,8 +21,13 @@
     quiz.math.enableIfNeeded(bookData);
     quiz.book.setBookData(bookData);
     quiz.progress.openForBook(quiz.book.bookId());
+    quiz.bookSettings.openForBook(quiz.book.bookId());
+    if (window.RecallQuizTheme) {
+      window.RecallQuizTheme.useBook(quiz.book.bookId());
+    }
     quiz.homeScreen.showBookDetails();
     findElement("load-error").classList.add("hidden");
+    findElement("loading-note").classList.add("hidden");
     findElement("home-screen").classList.remove("hidden");
     findElement("where-you-stand").classList.remove("hidden");
     quiz.homeScreen.refresh();
@@ -33,32 +38,18 @@
 
   /** Hide the home screen and offer to pick questions.json by hand. */
   function showLoadError() {
+    findElement("loading-note").classList.add("hidden");
     findElement("home-screen").classList.add("hidden");
     findElement("where-you-stand").classList.add("hidden");
     findElement("load-error").classList.remove("hidden");
   }
 
   /**
-   * The bank to load: questions.json, or a file in banks/ named in the
-   * address (index.html?bank=banks/how-to-read-a-book.json), which lets
-   * one site hold several sample banks.
-   * @returns {string}
+   * Use the question bank that js/early-questions.js started downloading
+   * when the page began to load.
    */
-  function questionsFileName() {
-    const wanted = new URLSearchParams(window.location.search).get("bank");
-    return /^banks\/[\w-]+\.json$/.test(wanted || "") ?
-      wanted : QUESTIONS_FILE;
-  }
-
-  /** Fetch the question bank from next to this page. */
   function loadQuestionsFile() {
-    fetch(questionsFileName(), { cache: "no-cache" })
-      .then(function readJson(response) {
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-        return response.json();
-      })
+    window.RecallQuizQuestions.promise
       .then(openBook)
       .catch(showLoadError);
   }

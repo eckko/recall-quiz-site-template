@@ -1,0 +1,71 @@
+{
+  "name": "Note taker",
+  "group": "Professional",
+  "fonts": {
+    "body": "\"Source Sans 3\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Source Sans 3\",\"Segoe UI\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf0a8",
+      "card": "#fffbe0",
+      "text": "#262418",
+      "textMuted": "#5e5a3e",
+      "border": "#b9b36e",
+      "accent": "#1d4f91",
+      "accent2": "#2f66b0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1d4f91",
+      "pop2": "#b3261e",
+      "pop3": "#2f6b47",
+      "pop4": "#8a5a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 52px,rgba(200,50,50,.5) 52px 53px,transparent 53px 57px,rgba(200,50,50,.5) 57px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 29px,rgba(60,110,170,.35) 29px 30px) 0 0/100% 100% fixed",
+      "linear-gradient(#fbf0a8,#fbf0a8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1f1d12",
+      "card": "#2a281a",
+      "text": "#f3efd2",
+      "textMuted": "#bdb88e",
+      "border": "#4d492b",
+      "accent": "#8fb8ee",
+      "accent2": "#a6c9f5",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8fb8ee",
+      "pop2": "#ff8f84",
+      "pop3": "#86c99a",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 52px,rgba(255,143,132,.35) 52px 53px,transparent 53px 57px,rgba(255,143,132,.35) 57px 58px,transparent 58px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 29px,rgba(143,184,238,.14) 29px 30px) 0 0/100% 100% fixed",
+      "linear-gradient(#1f1d12,#1f1d12) fixed"
+    ]
+  }
+}

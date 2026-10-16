@@ -1,0 +1,69 @@
+{
+  "name": "Stock market",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Barlow\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Barlow\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef7f2",
+      "card": "#fbfffc",
+      "text": "#0f2a20",
+      "textMuted": "#4a6b5c",
+      "border": "#bfdccd",
+      "accent": "#13805a",
+      "accent2": "#1a9e6e",
+      "highlight": "#ffe58a",
+      "correct": "#13805a",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#13805a",
+      "pop2": "#c8402f",
+      "pop3": "#2563a8",
+      "pop4": "#b8860b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f2fbf6,#dff1e8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0b1a14",
+      "card": "#12271e",
+      "text": "#e3f5ec",
+      "textMuted": "#9cc4b2",
+      "border": "#234536",
+      "accent": "#4fd9a0",
+      "accent2": "#38c48a",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#4fd9a0",
+      "pop2": "#ff8a7a",
+      "pop3": "#7ab4ff",
+      "pop4": "#f2d46a",
+      "onAccent": "#06140d",
+      "onHero": "#06140d"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0d1d16,#08130e) fixed"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Neural Network",
+  "group": "Math",
+  "fonts": {
+    "body": "\"Lexend\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Lexend\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "9px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef2fb",
+      "card": "#ffffff",
+      "text": "#0b1530",
+      "textMuted": "#4a5a7e",
+      "border": "#c6d0ea",
+      "accent": "#1d4ed8",
+      "accent2": "#be185d",
+      "highlight": "#fbcfe8",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#1d4ed8",
+      "pop2": "#be185d",
+      "pop3": "#0e7490",
+      "pop4": "#6d28d9",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f2f5fd,#e1e8f8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#08112b",
+      "card": "#0f1c40",
+      "text": "#e6ecff",
+      "textMuted": "#9eb0dc",
+      "border": "#233669",
+      "accent": "#4d8dff",
+      "accent2": "#ff4fa3",
+      "highlight": "#ff8fc8",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#4d8dff",
+      "pop2": "#ff4fa3",
+      "pop3": "#35d0e6",
+      "pop4": "#b79cff",
+      "onAccent": "#07102a",
+      "onHero": "#07102a"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0a1432,#050b1d) fixed"
+    ]
+  }
+}

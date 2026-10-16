@@ -190,19 +190,51 @@ progress is still unchanged (format v2): a pretest only adds `pretested` and
 
 ## Settings (home layout and practice defaults)
 
-`localStorage` key `recall-quiz-home-layout` holds `{progress, recent, setup,
-stand, chapters, inner, timer, confidence, htrab, units, at}`:
-panels `progress`/`recent`/`setup`/`stand` are "open" | "closed"; `chapters`
-is "next" | "open" | "closed"; `inner` is "closed" | "open"; `timer` is
-0/15/30/60; `confidence` and `htrab` are booleans; `units` maps book id to the
-chapter picked; `at` is the time of the last change. In the account, the
-`_settings` document holds `layout: {p, r, s, w, c, i, t, f, h, u, a}` next to
-`theme`; the newest `a` wins. Code: `js/home-layout.js` (Settings screen,
+Everything the reader sets is kept **per book**, in `localStorage` key
+`recall-quiz-book:<bookId>` (`js/book-settings.js`):
+`{version: 3, layout, flags, ideaFlags, sanskrit}`. `sanskrit` is
+`{off: ["part:hindi", "aid:pegs"], font, at}`: the card parts and memory-aid
+kinds the reader switched off and the verse font (`at` = when saved; the
+newer copy wins when it syncs to the account). `layout` is owned by `js/home-layout.js`
+(a value the reader never saved comes from `js/default-settings.js`, so
+change a first-time default there, not in the code):
+folding keys (`progress`, `recent`, `setup`, `stand` = "open"|"closed";
+`chapters` "next"|"open"|"closed"; `inner`), practice defaults (`timer`
+0/15/30/60, `confidence`, `htrab`, `count` (0 = all), `minutes`, `scope`
+`{unit, section?, concept?}`, `filter` all|due|gaps|important, `lengthMode`),
+`customStart` (auto|open|closed), `show` (`setup`, `keepGoing`, `timer`,
+`confidence`, `htrab`, `quick`, `custom`, `filter`, `filterDue`,
+`filterGaps`, `filterImportant`, `filterAll`, `length`, `flagBar`,
+`ideaFlagBar`; hidden controls still apply their defaults. `keepGoing`
+(the button, its "Up next" line and the hint), `filterDue` and `filterGaps`
+are hidden until shown; a key that is missing takes that default. When all
+four `filter*` options are hidden the whole row is hidden and the default
+`filter` is used) and `at` (last change). Theme is per book too:
+`recall-quiz:theme:<bookId>` = `{v: 1, t, m, a}`; the global
+`recall-quiz:theme` is only the last theme shown, to avoid a flash.
+Flags: `flags: {questionId: {f: ["bad"|"revisit"|"useless"|"important"],
+a: time}}`. Bad and Useless hide the question (`quiz.book.setHiddenIds`).
+`ideaFlags` has the same shape, keyed by idea (concept) id, and is kept
+apart from question flags: Bad and Useless hide only the idea from the idea
+lists (`quiz.learning.concepts()`), never its questions; Important ideas
+are offered first in Keep me going. Version 1 records had no `ideaFlags`;
+`MIGRATIONS[1]` adds it.
+Versioning: bump `CURRENT_VERSION` and add a step to `MIGRATIONS[N]` (N to
+N+1); newer-version data is read-only and never overwritten. The tab's
+practice overrides (`sessionStorage`
+`recall-quiz-practice-override:<bookId>`, `{v: 1, ...}`) are versioned the
+same way. Account: one document per book, `_settings:<bookId>`:
+`{v: 2, layout, flags, ideaFlags, theme: {t, m, a}}` (newest `at` wins for
+layout and theme; flags and idea flags merge per item by time). Sign-in is global.
+Code: `js/home-layout.js` (Settings screen,
 folding, Expand all), `js/session-settings.js` (`readChoices`/`useChoices`),
 `htrab/htrab.js` (`quiz.htrab.isOn`/`useRemote`). The HTRAB On/Off switch is
 shown on the Settings screen; its level/stage picker stays on the home screen.
 The sign-in bar shows on the home screen only when the reader must act
-(signed out, error); the Account section of Settings always shows.
+(signed out, error); the Account section of Settings always shows. Every
+Settings section is a folded `<details>` that starts closed on each visit
+(nothing is remembered); its title carries a short summary (`<id>-current`),
+and Account's is the signed-in name.
 
 Practice values in this record are *defaults*. A change made on the home
 screen is an override kept in `sessionStorage` key
@@ -211,3 +243,61 @@ screen shows defaults plus overrides. Setting a default on the Settings
 screen clears that choice's override. `theme.json` may carry `"group"`; the
 picker shows one group at a time (`window.QUIZ_THEMES` entries are
 `[id, name, group]`).
+
+## Template v2 fields
+
+All optional. Banks without them work exactly as before. Checked by
+`tools/check_rich_content.py` (called from `validate_bank.py`).
+
+| Where | Field | Meaning |
+|---|---|---|
+| bank | `genre` | short label shown as a chip on every card (concept `genre` wins) |
+| bank | `sourceUse` | `paraphrase` (default), `quotes`, `quotes+images`. The last two are only for books whose media is encrypted |
+| bank | `cover` | one media entry (`role: "cover"`) shown as a small thumbnail by the title; hidden when it cannot be opened |
+| bank | `mediaStore` | `repo` (default): files in `media/` of the same repo. `mediaBase` changes the folder |
+| concept | `genre` | chip text, 30 characters at most |
+| `card` | `media` | `[{id, alt, role, type}]` shown under the card text (before the worked example); role `illustration` is for pictures that decorate but are shown |
+| `card` | `blocks` | 1 to 6 `{label, text, code, lang, media}` shown after the paragraphs. A card may have blocks and no paragraphs |
+| block | `study` | `true` marks a verse-study block: it uses `--color-study` and `--color-study-bg`, a pair every theme sets so these blocks differ from the theme's own accent. A card with a study block may hold 8 blocks instead of 6 |
+| block | `key` | which part of a Sanskrit card this is: `ref`, `verse`, `words`, `hindi`, `english`, `explain`, `aids`, `note`. Settings > Sanskrit cards can hide each part; the section appears only when the book has blocks with `key` or `aids` |
+| bank | `scrollButtons` | `true` shows two round buttons that jump to the top and bottom of the page |
+| block | `lines` | 1 to 4 lines of verse text, one paragraph each |
+| block | `words` | one list per verse line of `{w, gloss, gram}` word chips (30 per line at most). Tapping a chip shows `gram`; a button above shows or hides all of them. `w` and `gloss` are required. A study block with romanised (IAST) letters in `lines` or `w` gets a warning: write Devanagari |
+| question, block | `code`, `lang` | a code listing, shown as text in a `<pre>` (never parsed) |
+| question, block | `media` | `[{id or src, alt, role, type}]`. `alt` is required unless `role` is `decorative`, because a question must be answerable from text |
+
+Media files: `media/<id>.enc` is a 12-byte nonce plus AES-GCM data. The
+file key is HKDF-SHA-256 of the book key with info `file:<id>`, and the
+id is the authenticated data. `tools/encrypt_media.py` writes them; the
+nonce is a keyed hash of the content, so a rebuild gives identical bytes.
+The book key is never in the site: `quiz.media.setKeyProvider(fn)` is
+called by whatever signs the reader in (the Firebase document that holds
+the key must be readable only by the reader's account). Without a key the
+card or question shows the `alt` text. Sizes: 3 MB a clip, 100 MB a book.
+
+Theme colours `study` and `studyBg` (in a theme's `colors`) are optional.
+When a theme leaves them out, `tools/build_themes.py` picks teal, orange,
+violet or magenta, whichever is farthest in hue from the theme's accents.
+
+Roles: `figure`, `illustration`, `cover`, `logo`, `decorative` (never shown,
+no `alt` needed), `animation`, `clip`.
+
+Placeholder key: `encrypt_media.py placeholder ...` hides files with a
+public stand-in key (SHA-256 of `key-placeholder`). Those files are not
+secret. `tools/reencrypt_media.py placeholder <real key file>` swaps them
+to the real key later; it is safe to run again.
+
+### Where the book key lives
+
+Firestore `users/<uid>/mediaKeys/<book id>` with a string field `key` (32
+random bytes, base64). Created by hand in the console; the rules in
+`js/sync/providers/firebase-firestore.rules` allow the owner to read it and
+nobody to write it. The key is never in the site or the repo.
+
+## Book start-up defaults
+
+A book's `index.html` may set `window.RecallQuizBookDefaults` before
+`boot.js` (write it with `tools/make_book_index.py TAG index.html
+--defaults file.json`). Its groups (for example `theme`, `homeLayout`) are
+merged one level deep over `js/default-settings.js`; unknown groups are
+ignored. A reader's own saved choice always wins.

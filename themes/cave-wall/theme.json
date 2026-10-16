@@ -1,0 +1,69 @@
+{
+  "name": "Cave Wall · गुहा",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Sarala\",Georgia,serif",
+    "headings": "\"Yatra One\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "7px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e6d5b8",
+      "card": "#f3e8d0",
+      "text": "#2a2018",
+      "textMuted": "#65503a",
+      "border": "#c9ae82",
+      "accent": "#a8461c",
+      "accent2": "#7d5f0a",
+      "highlight": "#dcc79f",
+      "correct": "#2f6b34",
+      "wrong": "#a3261c",
+      "partly": "#8a5600",
+      "pop1": "#a8461c",
+      "pop2": "#7d5f0a",
+      "pop3": "#7d5f0a",
+      "pop4": "#4a4a44",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "#e6d5b8"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#151210",
+      "card": "#201b17",
+      "text": "#eadcc4",
+      "textMuted": "#aa987e",
+      "border": "#3a3028",
+      "accent": "#e0804c",
+      "accent2": "#d9b14a",
+      "highlight": "#2c241d",
+      "correct": "#8fd08a",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#e0804c",
+      "pop2": "#d9b14a",
+      "pop3": "#d9b14a",
+      "pop4": "#b8b2a4",
+      "onAccent": "#151210",
+      "onHero": "#151210"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "#151210"
+    ]
+  }
+}

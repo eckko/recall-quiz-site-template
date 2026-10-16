@@ -1,0 +1,69 @@
+{
+  "name": "Behavior",
+  "group": "Psychology & brain",
+  "fonts": {
+    "body": "\"Lexend\",\"Nunito\",system-ui,sans-serif",
+    "headings": "\"Baloo 2\",\"Lexend\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "26px",
+    "smallRadius": "16px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fff8d6",
+      "card": "#fffef2",
+      "text": "#1f3a38",
+      "textMuted": "#566a5c",
+      "border": "#f1e0a0",
+      "accent": "#0f766e",
+      "accent2": "#d99a00",
+      "highlight": "#ffe066",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#e4572e",
+      "pop2": "#0891b2",
+      "pop3": "#7c3aed",
+      "pop4": "#ca8a04",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fffbe6,#fff0b0) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0e2423",
+      "card": "#163332",
+      "text": "#fff3c4",
+      "textMuted": "#b9cfb4",
+      "border": "#28504c",
+      "accent": "#3fd6c6",
+      "accent2": "#f5c518",
+      "highlight": "#f2d46a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff8a6a",
+      "pop2": "#5fd0e8",
+      "pop3": "#b79cff",
+      "pop4": "#f5c518",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#102827,#0a1b1a) fixed"
+    ]
+  }
+}

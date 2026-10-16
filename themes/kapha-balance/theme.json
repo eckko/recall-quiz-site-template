@@ -1,0 +1,69 @@
+{
+  "name": "Kapha Balance · कफ",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Arya\",Georgia,serif",
+    "headings": "\"Sura\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "20px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f3f2e8",
+      "card": "#fcfcf6",
+      "text": "#262a1c",
+      "textMuted": "#5f634c",
+      "border": "#dcdcc6",
+      "accent": "#4f6b2a",
+      "accent2": "#9a5a1f",
+      "highlight": "#e8e4c8",
+      "correct": "#2f6b2a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#4f6b2a",
+      "pop2": "#9a5a1f",
+      "pop3": "#b8761a",
+      "pop4": "#8a8470",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg)",
+      "#f3f2e8"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#14160e",
+      "card": "#1c1f14",
+      "text": "#ecefdc",
+      "textMuted": "#a9ae92",
+      "border": "#31351f",
+      "accent": "#a9c872",
+      "accent2": "#e0a050",
+      "highlight": "#262a18",
+      "correct": "#9fd28f",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#a9c872",
+      "pop2": "#e0a050",
+      "pop3": "#f0b030",
+      "pop4": "#b9b296",
+      "onAccent": "#14160e",
+      "onHero": "#14160e"
+    },
+    "background": [
+      "url(background-dark.svg)",
+      "#14160e"
+    ]
+  }
+}

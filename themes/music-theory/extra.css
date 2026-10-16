@@ -1,0 +1,13 @@
+/* Extra touches for the Music Theory theme. */
+[data-theme="music-theory"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="music-theory"] .unit-title,
+[data-theme="music-theory"] .verdict,
+[data-theme="music-theory"] .panel h2 {
+  font-family: var(--font-heading);
+}

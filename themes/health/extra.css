@@ -1,0 +1,13 @@
+/* Extra touches for the Health theme. */
+[data-theme="health"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="health"] .unit-title,
+[data-theme="health"] .verdict,
+[data-theme="health"] .panel h2 {
+  font-family: var(--font-heading);
+}

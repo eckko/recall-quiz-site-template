@@ -1,0 +1,15 @@
+/* Notebook: Composition: the black-and-white marbled cover with a name label. */
+[data-theme="notebook-composition"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+[data-theme="notebook-composition"] .unit-title,
+[data-theme="notebook-composition"] .verdict,
+[data-theme="notebook-composition"] .panel h2 {
+  font-family: "Patrick Hand","Lexend",system-ui,sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+}

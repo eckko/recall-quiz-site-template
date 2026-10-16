@@ -1,0 +1,67 @@
+{
+  "name": "Cursive: Flowing",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Dancing Script\",\"Segoe Script\",\"Brush Script MT\",cursive",
+    "headings": "\"Dancing Script\",\"Segoe Script\",\"Brush Script MT\",cursive"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "10px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f5f0fb",
+      "card": "#fffdff",
+      "text": "#2e1f45",
+      "textMuted": "#665282",
+      "border": "#dccff0",
+      "accent": "#6a3fb0",
+      "accent2": "#7b4fc4",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#6a3fb0",
+      "pop2": "#b0407f",
+      "pop3": "#2f7a8a",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#f5f0fb,#f5f0fb) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#171120",
+      "card": "#211830",
+      "text": "#f0e8fb",
+      "textMuted": "#bfb0d6",
+      "border": "#3d2e56",
+      "accent": "#c3a3f5",
+      "accent2": "#d3b9f8",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#c3a3f5",
+      "pop2": "#f09ac6",
+      "pop3": "#7cd0de",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#171120,#171120) fixed"
+    ]
+  }
+}

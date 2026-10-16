@@ -1,0 +1,12 @@
+/* Extra touches for the Cave Wall theme. */
+[data-theme="cave-wall"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+}
+[data-theme="cave-wall"] .unit-title,
+[data-theme="cave-wall"] .verdict,
+[data-theme="cave-wall"] .panel h2 {
+  font-family: var(--font-heading);
+}

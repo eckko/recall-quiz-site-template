@@ -1,0 +1,16 @@
+/* Class book: a school exercise book: blue cover label, red teacher's ticks. */
+[data-theme="class-book"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 700;
+}
+[data-theme="class-book"] .unit-title,
+[data-theme="class-book"] .verdict,
+[data-theme="class-book"] .panel h2 {
+  font-family: "Andika","Segoe UI",system-ui,sans-serif;
+  font-weight: 700;
+}
+[data-theme="class-book"] .panel {
+  border-top: 6px solid var(--color-accent);
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Chaos",
+  "group": "Math",
+  "fonts": {
+    "body": "\"Exo 2\",\"Lexend\",system-ui,sans-serif",
+    "headings": "\"Exo 2\",\"Lexend\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "22px",
+    "smallRadius": "14px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6effb",
+      "card": "#ffffff",
+      "text": "#2a1245",
+      "textMuted": "#62497f",
+      "border": "#dcc8f0",
+      "accent": "#6d28d9",
+      "accent2": "#b0189f",
+      "highlight": "#fde68a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#6d28d9",
+      "pop2": "#c026d3",
+      "pop3": "#b7791f",
+      "pop4": "#2563eb",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f8f1fd,#ecdcf8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#170a2b",
+      "card": "#22123c",
+      "text": "#f3e8ff",
+      "textMuted": "#bfa5de",
+      "border": "#3d2668",
+      "accent": "#b78cff",
+      "accent2": "#f06be8",
+      "highlight": "#f5c542",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#b78cff",
+      "pop2": "#f06be8",
+      "pop3": "#f5c542",
+      "pop4": "#6aa2ff",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1a0b30,#10071f) fixed"
+    ]
+  }
+}

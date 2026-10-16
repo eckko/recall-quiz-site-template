@@ -1,0 +1,95 @@
+/* ------------------------------------------------------------------ */
+/* Flags: the collapsed bar on a question and the list in Settings     */
+/* ------------------------------------------------------------------ */
+
+.flag-bar {
+  margin: 12px 0 0;
+}
+
+/* Collapsible "Flag this ..." and "Read the idea" bars: plain muted text
+   with the usual small triangle in front (right when closed, down when
+   open). The triangle is drawn here, not left to the browser, because some
+   themes switch the browser's own marker off. */
+.flag-bar > summary,
+.idea-again > summary {
+  display: block;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  list-style: none;
+}
+
+.flag-bar > summary::-webkit-details-marker,
+.idea-again > summary::-webkit-details-marker {
+  display: none;
+}
+
+.flag-bar > summary::before,
+.idea-again > summary::before {
+  content: "\25B6\FE0E";
+  display: inline-block;
+  width: 1.1em;
+  margin-right: 0.35em;
+  font-size: 0.8em;
+}
+
+.flag-bar[open] > summary::before,
+.idea-again[open] > summary::before {
+  content: "\25BC\FE0E";
+}
+
+.flag-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.flag-button[aria-pressed="true"] {
+  color: var(--color-on-accent);
+  background: var(--accent-gradient);
+  border-color: transparent;
+}
+
+.flag-note {
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.flag-note:empty {
+  display: none;
+}
+
+.flag-review-list {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.flag-review-row {
+  padding: 10px 12px;
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.flag-review-text {
+  margin: 6px 0 0;
+}
+
+.flag-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.flag-chip {
+  padding: 2px 10px;
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--color-pop-2-soft);
+  border-radius: 999px;
+}

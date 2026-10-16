@@ -1,0 +1,69 @@
+{
+  "name": "Kitchen",
+  "group": "Food & health",
+  "fonts": {
+    "body": "\"Lora\",\"Source Serif 4\",Georgia,serif",
+    "headings": "\"Playfair Display\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "10px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf1e6",
+      "card": "#fffaf3",
+      "text": "#3b2416",
+      "textMuted": "#74533f",
+      "border": "#e6cdb4",
+      "accent": "#b5481f",
+      "accent2": "#5f6b1d",
+      "highlight": "#f3dba8",
+      "correct": "#3f7a2a",
+      "wrong": "#b3261e",
+      "partly": "#8c5300",
+      "pop1": "#b5481f",
+      "pop2": "#5f6b1d",
+      "pop3": "#c9852b",
+      "pop4": "#8a4b2a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fbf1e6,#f4e2cd) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1d130d",
+      "card": "#2a1b12",
+      "text": "#f7e8d6",
+      "textMuted": "#d1b79c",
+      "border": "#4a3322",
+      "accent": "#ee8a5c",
+      "accent2": "#b9c76a",
+      "highlight": "#4a3a1a",
+      "correct": "#8bd472",
+      "wrong": "#ff9a8a",
+      "partly": "#efbb55",
+      "pop1": "#ee8a5c",
+      "pop2": "#b9c76a",
+      "pop3": "#e9a850",
+      "pop4": "#d1936a",
+      "onAccent": "#1a0f08",
+      "onHero": "#1a0f08"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1d130d,#170f09) fixed"
+    ]
+  }
+}

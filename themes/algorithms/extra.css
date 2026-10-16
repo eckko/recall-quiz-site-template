@@ -1,0 +1,15 @@
+/* Extra touches for the Algorithms theme. */
+[data-theme="algorithms"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+[data-theme="algorithms"] .unit-title,
+[data-theme="algorithms"] .panel h2 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+}

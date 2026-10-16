@@ -1,0 +1,73 @@
+{
+  "name": "Board room",
+  "group": "Professional",
+  "fonts": {
+    "body": "\"Lora\",Georgia,serif",
+    "headings": "\"Playfair Display\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1ece0",
+      "card": "#fffdf7",
+      "text": "#1d2a24",
+      "textMuted": "#53635a",
+      "border": "#cfc4a8",
+      "accent": "#1d5a43",
+      "accent2": "#2a6b50",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1d5a43",
+      "pop2": "#8a6414",
+      "pop3": "#7a2e2e",
+      "pop4": "#2c5d7c",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#f1ece0,#f1ece0) fixed"
+    ],
+    "buttonShadow": [
+      "0 3px 0 #123a2a"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #123a2a"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0e1512",
+      "card": "#151f1b",
+      "text": "#ece6d6",
+      "textMuted": "#a9b5ab",
+      "border": "#2e3d36",
+      "accent": "#6fd0a4",
+      "accent2": "#8fe0bc",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#6fd0a4",
+      "pop2": "#e0b85c",
+      "pop3": "#e49a9a",
+      "pop4": "#7cc0e8",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#0e1512,#0e1512) fixed"
+    ]
+  }
+}

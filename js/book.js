@@ -16,6 +16,7 @@
     unit: "Chapter",
     units: "chapters",
     topic: "Topic",
+    idea: "Idea",
     whole: "Whole book",
   };
 
@@ -28,6 +29,11 @@
     unitIds: [],
     /** Chapter titles, keyed by chapter id */
     unitTitles: {},
+    /** Ids of questions the reader flagged Bad or Useless; they are left
+        out of everything (see book-settings.js) */
+    hiddenIds: new Set(),
+    /** allQuestions() result, kept until the hidden ids change */
+    visibleQuestions: null,
   };
 
   /**
@@ -42,7 +48,18 @@
     }
     book.data = bookData;
     book.labels = Object.assign({}, DEFAULT_LABELS, bookData.labels);
+    book.hiddenIds = new Set();
+    book.visibleQuestions = null;
     collectUnits(bookData.questions);
+  }
+
+  /**
+   * Leave these questions out of the book (flagged Bad or Useless).
+   * @param {Iterable<string>} questionIds
+   */
+  function setHiddenIds(questionIds) {
+    book.hiddenIds = new Set(questionIds);
+    book.visibleQuestions = null;
   }
 
   /**
@@ -60,9 +77,49 @@
     });
   }
 
-  /** @returns {object[]} every question in the book */
+  /** @returns {object[]} every question in the book, except hidden ones */
   function allQuestions() {
-    return book.data.questions;
+    if (!book.visibleQuestions) {
+      book.visibleQuestions = book.hiddenIds.size === 0 ?
+        book.data.questions : book.data.questions.filter(
+          function isVisible(question) {
+            return !book.hiddenIds.has(question.id);
+          });
+    }
+    return book.visibleQuestions;
+  }
+
+  /**
+   * @param {string} unitId
+   * @returns {string[]} the topics (sections) of a chapter, in book order
+   */
+  function sectionsInUnit(unitId) {
+    const sections = [];
+    book.data.questions.forEach(function collect(question) {
+      const isNew = question.unit === unitId && question.section &&
+        !sections.includes(question.section);
+      if (isNew) {
+        sections.push(question.section);
+      }
+    });
+    return sections;
+  }
+
+  /**
+   * True if a question is inside the lesson the reader picked.
+   * @param {object} question
+   * @param {{unit?: string, section?: string, concept?: string}} scope
+   *   unit "all" or missing means the whole book
+   * @returns {boolean}
+   */
+  function matchesScope(question, scope) {
+    const wanted = scope || {};
+    if (!wanted.unit || wanted.unit === "all") {
+      return true;
+    }
+    return question.unit === wanted.unit &&
+      (!wanted.section || question.section === wanted.section) &&
+      (!wanted.concept || question.concept === wanted.concept);
   }
 
   /** @returns {string} the id used to keep this book's progress apart */
@@ -120,6 +177,9 @@
 
   quiz.book = Object.assign(book, {
     setBookData,
+    setHiddenIds,
+    sectionsInUnit,
+    matchesScope,
     allQuestions,
     bookId,
     unitShortName,

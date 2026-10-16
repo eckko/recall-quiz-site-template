@@ -1,0 +1,70 @@
+{
+  "name": "Value investing",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Libre Baskerville\",Georgia,serif",
+    "headings": "\"Libre Baskerville\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e9f1e2",
+      "card": "#fbfdf6",
+      "text": "#1b2b1d",
+      "textMuted": "#52674f",
+      "border": "#bdd0b3",
+      "accent": "#1f5d2e",
+      "accent2": "#2f7a40",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#1f5d2e",
+      "pop2": "#8a5a14",
+      "pop3": "#2c5d7c",
+      "pop4": "#a8392e",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(90deg,transparent 60px,rgba(180,60,60,.30) 60px 61px,transparent 61px) 0 0/100% 100% fixed",
+      "repeating-linear-gradient(180deg,transparent 0 27px,rgba(31,93,46,.20) 27px 28px) 0 0/100% 100% fixed",
+      "linear-gradient(#e9f1e2,#e9f1e2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0e150f",
+      "card": "#162018",
+      "text": "#e3eedc",
+      "textMuted": "#a5b8a0",
+      "border": "#2b3f2e",
+      "accent": "#7bd48c",
+      "accent2": "#95e0a4",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#7bd48c",
+      "pop2": "#e3b05c",
+      "pop3": "#7cc0e8",
+      "pop4": "#f09a8a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "repeating-linear-gradient(180deg,transparent 0 27px,rgba(123,212,140,.10) 27px 28px) 0 0/100% 100% fixed",
+      "linear-gradient(#0e150f,#0e150f) fixed"
+    ]
+  }
+}

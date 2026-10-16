@@ -1,0 +1,69 @@
+{
+  "name": "Tridosha Balance · त्रिदोष",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Gotu\",Georgia,serif",
+    "headings": "\"Halant\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#faf6ec",
+      "card": "#fffdf6",
+      "text": "#262421",
+      "textMuted": "#625c52",
+      "border": "#e6dfcd",
+      "accent": "#7a52b3",
+      "accent2": "#2f7a4a",
+      "highlight": "#ece4d2",
+      "correct": "#2a6b3a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#6b55b0",
+      "pop2": "#c9482f",
+      "pop3": "#3c7c4a",
+      "pop4": "#b08a1a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg)",
+      "#faf6ec"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#191816",
+      "card": "#232120",
+      "text": "#f0ece2",
+      "textMuted": "#b0a99a",
+      "border": "#38352f",
+      "accent": "#b9a0ee",
+      "accent2": "#86c898",
+      "highlight": "#2b2925",
+      "correct": "#8fd2a0",
+      "wrong": "#f4a090",
+      "partly": "#e6b04f",
+      "pop1": "#b9a0ee",
+      "pop2": "#f08a6e",
+      "pop3": "#86c898",
+      "pop4": "#e0c070",
+      "onAccent": "#191816",
+      "onHero": "#191816"
+    },
+    "background": [
+      "url(background-dark.svg)",
+      "#191816"
+    ]
+  }
+}

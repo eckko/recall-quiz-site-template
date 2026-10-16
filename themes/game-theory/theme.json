@@ -1,0 +1,87 @@
+{
+  "name": "Game Theory",
+  "group": "Math",
+  "fonts": {
+    "body": "\"Barlow\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Barlow Condensed\",\"Barlow\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "0px",
+    "smallRadius": "0px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.4,
+    "cap": "square",
+    "join": "miter"
+  },
+  "light": {
+    "colors": {
+      "page": "#f3f1ef",
+      "card": "#ffffff",
+      "text": "#222629",
+      "textMuted": "#5a5f63",
+      "border": "#cfcac5",
+      "accent": "#c62828",
+      "accent2": "#00796b",
+      "highlight": "#fcd9a8",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#c62828",
+      "pop2": "#00796b",
+      "pop3": "#37474f",
+      "pop4": "#b45309",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f6f4f2,#e8e4e0) fixed"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #8e1c1c"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #8e1c1c"
+    ],
+    "panelShadow": [
+      "4px 4px 0 rgba(34,38,41,.2)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#17191b",
+      "card": "#222629",
+      "text": "#eceff1",
+      "textMuted": "#aab2b7",
+      "border": "#3c4347",
+      "accent": "#ff6b61",
+      "accent2": "#4fd1c1",
+      "highlight": "#e0a85a",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#ff6b61",
+      "pop2": "#4fd1c1",
+      "pop3": "#b0bec5",
+      "pop4": "#ffb74d",
+      "onAccent": "#101418",
+      "onHero": "#101418"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1b1e20,#121415) fixed"
+    ],
+    "buttonShadow": [
+      "0 4px 0 #a8423b"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #a8423b"
+    ],
+    "panelShadow": [
+      "4px 4px 0 rgba(0,0,0,.5)"
+    ]
+  }
+}

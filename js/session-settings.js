@@ -19,8 +19,9 @@
 
   /** The current choices. Changed by the buttons on the panel. */
   const current = {
-    /** "due" (due and new), "gaps" (missed and still weak) or "all" */
-    questionFilter: "due",
+    /** "all" (everything), "due" (due and new), "gaps" (missed and
+        still weak) or "important" (flagged Important) */
+    questionFilter: "all",
     /** "questions" (a number of questions) or "time" (minutes) */
     lengthMode: "questions",
     /** 0 for no timer, otherwise 15, 30 or 60 */
@@ -32,36 +33,40 @@
 
   // ---------------------------------------------------------- questions
 
-  /** @returns {string} the chapter id picked, or "all" */
-  function chosenUnit() {
-    return findElement("unit-picker").value;
+  /** @returns {{unit: string, section?: string, concept?: string}}
+      the lesson picked: a chapter, a topic in it, or an idea in that */
+  function chosenScope() {
+    return quiz.scopePicker.read();
   }
 
-  /** @returns {string} e.g. "Whole book" or "Chapter 9", for history */
+  /** @returns {string} e.g. "Whole book", "Chapter 9" or an idea's title,
+      for history */
   function scopeName() {
-    const unit = chosenUnit();
-    return unit === "all" ? quiz.book.labels.whole : unit;
+    return quiz.scopePicker.scopeName(chosenScope());
   }
 
   /** @returns {object[]} the Review questions that match the choices */
   function questionsMatchingSettings() {
-    const unit = chosenUnit();
+    const scope = chosenScope();
     return quiz.book.allQuestions().filter(function matches(question) {
-      const inChosenUnit = unit === "all" || question.unit === unit;
-      return inChosenUnit && passesQuestionFilter(question);
+      return quiz.book.matchesScope(question, scope) &&
+        passesQuestionFilter(question);
     });
   }
 
   /**
-   * True if a question fits "Due and new", "My gaps" or "Everything".
-   * Questions of ideas that have not been taught yet are left out of
-   * Due and My gaps; Everything includes them.
+   * True if a question fits "Due and new", "My gaps", "Important only" or
+   * "Everything". Questions of ideas that have not been taught yet are
+   * left out of Due and My gaps; Everything and Important include them.
    * @param {object} question
    * @returns {boolean}
    */
   function passesQuestionFilter(question) {
     if (current.questionFilter === "all") {
       return true;
+    }
+    if (current.questionFilter === "important") {
+      return quiz.bookSettings.hasFlag(question.id, "important");
     }
     if (!quiz.learning.isAvailableForReview(question)) {
       return false;
@@ -106,12 +111,12 @@
 
   /** @returns {object} the 5-minute plan: core ideas only */
   function chooseQuickSession() {
-    return quiz.learning.createQuickPlan({ unitId: chosenUnit() });
+    return quiz.learning.createQuickPlan({ scope: chosenScope() });
   }
 
   /** @returns {object} the "Keep me going" plan for the chosen lesson */
   function chooseKeepGoing() {
-    return quiz.learning.createKeepGoingPlan({ unitId: chosenUnit() });
+    return quiz.learning.createKeepGoingPlan({ scope: chosenScope() });
   }
 
   // ---------------------------------------------------------- summary
@@ -119,6 +124,17 @@
   /** The lines under the two start buttons. */
   function updateReadySummary() {
     findElement("ready-summary").textContent = readySummaryText();
+    if (quiz.layout.isShown("keepGoing")) {
+      updateKeepGoingSummary();
+    }
+  }
+
+  /**
+   * Write the "Up next" line. Working it out plans a whole session, which
+   * takes a moment in a big book, so it is skipped while Keep me going is
+   * hidden and done when the reader shows it (js/home-layout.js).
+   */
+  function updateKeepGoingSummary() {
     findElement("keep-going-summary").textContent = keepGoingSummaryText();
   }
 
@@ -126,8 +142,7 @@
   function keepGoingSummaryText() {
     const plan = chooseKeepGoing();
     if (plan.questions.length === 0) {
-      return "No questions in this " + quiz.book.labels.unit.toLowerCase() +
-        " yet.";
+      return "No questions in this lesson yet.";
     }
     const titles = plan.conceptTitles.join(" and ");
     const reviews = countWithWord(plan.reviewCount, "due question");
@@ -179,6 +194,10 @@
       return "No gaps yet. Answer a few questions and any you miss " +
         "will appear here.";
     }
+    if (current.questionFilter === "important") {
+      return "No questions are flagged Important here yet. Flag a " +
+        "question while you practise and it will appear here.";
+    }
     if (current.questionFilter === "due") {
       return quiz.learning.hasConcepts() ?
         "Nothing is due here right now. Try Keep me going to learn " +
@@ -186,8 +205,7 @@
         "Nothing is due here right now. Try Everything to " +
         "practise ahead.";
     }
-    return "No questions in this " + quiz.book.labels.unit.toLowerCase() +
-      " yet.";
+    return "No questions in this lesson yet.";
   }
 
   // ---------------------------------------------------------- controls
@@ -215,13 +233,13 @@
 
   /**
    * Tell the page that a choice kept with the reader's settings changed
-   * (the timer, the confidence check or the chapter). The custom
+   * (the timer, the confidence check or the lesson). The custom
    * practice choices are for one session and are not announced.
    * @param {string} groupId
    */
   function notifyPracticeChanged(groupId) {
     if (groupId === "question-timer-choice" ||
-        groupId === "confidence-choice" || groupId === "unit-picker") {
+        groupId === "confidence-choice" || groupId === "lesson") {
       document.dispatchEvent(new CustomEvent("recallquiz:practice-changed"));
     }
   }
@@ -235,19 +253,21 @@
       });
   }
 
-  /** @returns {{timer: number, confidence: boolean, unit: string}} */
+  /** @returns {{timer: number, confidence: boolean, scope: object}} */
   function readChoices() {
     return {
       timer: current.secondsPerQuestion,
       confidence: current.askConfidence,
-      unit: chosenUnit(),
+      scope: chosenScope(),
     };
   }
 
   /**
    * Use saved choices (from this browser or the account). Values that do
    * not fit this book (a chapter it does not have) are ignored.
-   * @param {{timer?: number, confidence?: boolean, unit?: string}} wanted
+   * @param {{timer?: number, confidence?: boolean, scope?: object,
+   *          filter?: string, lengthMode?: string, count?: number,
+   *          minutes?: number}} wanted
    */
   function useChoices(wanted) {
     if ([0, 15, 30, 60].indexOf(wanted.timer) >= 0) {
@@ -258,12 +278,35 @@
       current.askConfidence = wanted.confidence;
       markGroup("confidence-choice", wanted.confidence ? "on" : "off");
     }
-    const picker = findElement("unit-picker");
-    if (wanted.unit && Array.from(picker.options).some(
-        function has(option) { return option.value === wanted.unit; })) {
-      picker.value = wanted.unit;
+    if (wanted.scope) {
+      quiz.scopePicker.write(wanted.scope);
     }
+    useCustomPracticeChoices(wanted);
     updateReadySummary();
+  }
+
+  /**
+   * Use the Custom practice defaults that are present.
+   * @param {{filter?: string, lengthMode?: string, count?: number,
+   *          minutes?: number}} wanted
+   */
+  function useCustomPracticeChoices(wanted) {
+    if (wanted.filter) {
+      current.questionFilter = wanted.filter;
+      markGroup("question-filter-choice", wanted.filter);
+    }
+    if (wanted.lengthMode) {
+      current.lengthMode = wanted.lengthMode;
+      markGroup("session-length-choice", wanted.lengthMode);
+      showLengthRowFor(wanted.lengthMode);
+    }
+    if (typeof wanted.count === "number") {
+      findElement("question-count-input").value =
+        wanted.count ? String(wanted.count) : "";
+    }
+    if (typeof wanted.minutes === "number") {
+      findElement("minutes-input").value = String(wanted.minutes);
+    }
   }
 
   /** Quick-pick buttons (5, 10, 25 ...) fill in their input box. */
@@ -303,9 +346,9 @@
   ["question-count-input", "minutes-input"].forEach(function watch(id) {
     findElement(id).addEventListener("input", updateReadySummary);
   });
-  findElement("unit-picker").addEventListener("change", function onUnit() {
+  quiz.scopePicker.onChange(function onLessonChange() {
     updateReadySummary();
-    notifyPracticeChanged("unit-picker");
+    notifyPracticeChanged("lesson");
   });
 
   quiz.settings = {
@@ -316,6 +359,7 @@
     chooseKeepGoing,
     chooseQuickSession,
     updateReadySummary,
+    updateKeepGoingSummary,
     readChoices,
     useChoices,
   };

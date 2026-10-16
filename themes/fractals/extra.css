@@ -1,0 +1,13 @@
+/* Extra touches for the Fractals theme. */
+[data-theme="fractals"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="fractals"] .unit-title,
+[data-theme="fractals"] .verdict,
+[data-theme="fractals"] .panel h2 {
+  font-family: var(--font-heading);
+}

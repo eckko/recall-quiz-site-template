@@ -1,0 +1,69 @@
+{
+  "name": "Handwritten: Marker",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Gloria Hallelujah\",\"Segoe Print\",\"Bradley Hand\",cursive",
+    "headings": "\"Gloria Hallelujah\",\"Segoe Print\",\"Bradley Hand\",cursive"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "8px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fffaf2",
+      "card": "#ffffff",
+      "text": "#232323",
+      "textMuted": "#5a5a5a",
+      "border": "#e3d3bd",
+      "accent": "#0f766e",
+      "accent2": "#1a8078",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#0f766e",
+      "pop2": "#c2410c",
+      "pop3": "#6d28d9",
+      "pop4": "#a16207",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(rgba(194,65,12,.30) 1.4px,transparent 1.6px) 0 0/28px 28px fixed",
+      "linear-gradient(#fffaf2,#fffaf2) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1b1a18",
+      "card": "#252320",
+      "text": "#f2efe8",
+      "textMuted": "#b5b0a4",
+      "border": "#463f35",
+      "accent": "#5eead4",
+      "accent2": "#8ff0e0",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#5eead4",
+      "pop2": "#fb923c",
+      "pop3": "#c4b5fd",
+      "pop4": "#facc15",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(rgba(251,146,60,.20) 1.4px,transparent 1.6px) 0 0/28px 28px fixed",
+      "linear-gradient(#1b1a18,#1b1a18) fixed"
+    ]
+  }
+}

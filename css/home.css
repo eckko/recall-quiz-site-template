@@ -57,10 +57,44 @@
   display: none;
 }
 
+/* The theme picker: folded groups, each holding a grid of tiles */
 .theme-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.theme-group {
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.theme-group-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.theme-group-name small {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.theme-group.has-current .theme-group-name span::after {
+  content: " \25CF";
+  color: var(--color-accent);
+}
+
+.theme-group-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 10px;
+  padding: 4px 10px 12px;
 }
 
 /* Each tile previews its theme using its own --tile-* colours, which
@@ -399,9 +433,9 @@ select {
   border-top: 1px solid var(--color-border);
 }
 
-.unit-progress summary {
+.unit-progress > summary {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 11px 0;
@@ -409,7 +443,7 @@ select {
   cursor: pointer;
 }
 
-.unit-progress summary::-webkit-details-marker {
+.unit-progress > summary::-webkit-details-marker {
   display: none;
 }
 
@@ -454,7 +488,7 @@ select {
 
 .topic-list li {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 5px 0;
@@ -471,6 +505,39 @@ select {
 
 .topic-list .is-weak {
   color: var(--color-wrong);
+}
+
+/* "Loading your book..." under the header, until the questions arrive */
+.loading-note {
+  margin: 12px 0;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.loading-bar {
+  display: block;
+  position: relative;
+  height: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+
+.loading-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 35%;
+  border-radius: 2px;
+  background: var(--color-accent);
+  animation: loading-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes loading-slide {
+  from { left: -35%; }
+  to { left: 100%; }
 }
 
 /* The "Choose questions.json" button on the load-error panel */
@@ -495,7 +562,7 @@ select {
 
 .section-row > summary {
   display: grid;
-  grid-template-columns: 1fr 90px 40px;
+  grid-template-columns: minmax(0, 1fr) 90px 40px;
   align-items: center;
   gap: 10px;
   padding: 6px 0;
@@ -666,7 +733,7 @@ select {
   gap: 14px;
 }
 
-#where-you-stand .unit-progress summary {
+#where-you-stand .unit-progress > summary {
   padding: 15px 2px;
 }
 
@@ -766,7 +833,8 @@ select {
   }
 }
 
-/* Appearance: folded by default, shows the current theme */
+/* Settings sections: every one folds, and its folded title shows a short
+   summary (the current theme, how many things are hidden, ...) */
 details.settings-section > summary {
   display: flex;
   align-items: center;
@@ -784,14 +852,20 @@ details.settings-section > summary h2 {
   margin: 0;
 }
 
-.appearance-current {
+.section-current {
   position: relative;
+  min-width: 0;
+  max-width: 62%;
   padding-right: 20px;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--color-text-muted);
   font-size: 0.88rem;
 }
 
-.appearance-current::after {
+.section-current::after {
   position: absolute;
   top: 3px;
   right: 2px;
@@ -804,7 +878,7 @@ details.settings-section > summary h2 {
   transition: transform 0.15s;
 }
 
-details.settings-section[open] .appearance-current::after {
+details.settings-section[open] .section-current::after {
   top: 6px;
   transform: rotate(-135deg);
 }
@@ -813,28 +887,37 @@ details.settings-section[open] > summary {
   margin-bottom: 4px;
 }
 
-/* Theme groups: one row of chips, one group of tiles at a time */
-.theme-groups {
-  display: flex;
+/* Parts of the home screen the reader hid in Settings. js/home-layout.js
+   puts the names on <body data-hide="...">. A hidden control keeps its
+   default value; it is only out of sight. */
+[data-hide~="setup"] #session-setup,
+[data-hide~="timer"] #timer-field,
+[data-hide~="confidence"] #confidence-field,
+[data-hide~="htrab"] #htrab-home-switch,
+[data-hide~="htrab"] #htrab-body,
+[data-hide~="keepGoing"] #keep-going-button,
+[data-hide~="keepGoing"] #keep-going-summary,
+[data-hide~="keepGoing"] #study-hint,
+[data-hide~="quick"] #quick-session-button,
+[data-hide~="custom"] #custom-practice,
+[data-hide~="filter"] #filter-field,
+[data-hide~="filterDue"] #question-filter-choice [data-value="due"],
+[data-hide~="filterGaps"] #question-filter-choice [data-value="gaps"],
+[data-hide~="filterImportant"]
+  #question-filter-choice [data-value="important"],
+[data-hide~="filterAll"] #question-filter-choice [data-value="all"],
+[data-hide~="length"] #length-field {
+  display: none;
+}
+
+/* Settings > Sanskrit cards */
+.settings-subhead {
+  margin: 14px 0 4px;
+  font: 600 0.95rem var(--font-heading);
+  color: var(--color-text-muted);
+}
+
+.sanskrit-fonts {
   flex-wrap: wrap;
-  gap: 8px;
-}
-
-.theme-groups button {
-  padding: 7px 14px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  background: var(--color-page);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-}
-
-.theme-groups button[aria-pressed="true"] {
-  color: var(--color-on-accent);
-  background: var(--accent-gradient);
-  border-color: transparent;
-}
-
-.theme-tiles {
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 6px;
 }

@@ -65,6 +65,12 @@
     return Promise.resolve();
   }
 
+  /** @returns {Promise<string|null>} a key a test put in sessionStorage */
+  function readMediaKey(userId, bookId) {
+    return Promise.resolve(sessionStorage.getItem(
+      "recall-quiz-example-media-key:" + bookId));
+  }
+
   quiz.cloudSync.registerProvider("example-in-browser", {
     label: "a test account",
     start,
@@ -72,5 +78,6 @@
     signOut,
     readProgress,
     writeProgress,
+    readMediaKey,
   });
 })((window.RecallQuiz = window.RecallQuiz || {}));

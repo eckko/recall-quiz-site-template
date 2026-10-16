@@ -274,3 +274,19 @@ shows its step, and the feedback and the concept card show Adler's advice
 for the step. The valid tags are in `htrab/tags.json`; the validator checks
 them. Delete the `htrab/` folder and its three tags in `index.html` to
 remove the overlay; banks keep their tags and still work.
+
+## Idea panel and question flags
+
+Every question (warm-ups included) shows one collapsed "Read the idea"
+panel when the concept has an idea card. There is no second panel after
+answering. A collapsed flag bar (Bad, Revisit, Useless, Important; several
+allowed) sits under each question unless hidden in Settings. Bad and Useless
+questions leave the book at once (undo in Settings); Important questions are
+reviewed more often in Keep me going and have an "Important only" filter.
+
+Ideas can be flagged the same way (a collapsed "Flag this idea" bar on an
+idea row and under a teaching card, hideable in Settings). Idea flags are
+separate from question flags. Bad and Useless remove only the idea from the
+lists (undo in Settings; its questions stay); Important ideas are taught
+ahead of the others in their group. Settings lists flagged ideas and has its
+own JSON export.

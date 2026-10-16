@@ -91,6 +91,38 @@ too.)
 
 Every push to `main` updates the site.
 
+### A book site that holds only its own files (jsDelivr)
+
+A book site does not need its own copy of the code. It can hold just
+`index.html`, `questions.json` and `images/` (plus `media/` and `banks/`
+if the book uses them) and load every `css/`, `js/` and `htrab/` file
+from one tagged copy of this repo on [jsDelivr](https://www.jsdelivr.com/):
+
+1. Tag a release of the template, for example
+   `git tag 2.1.0 && git push origin 2.1.0`. The tag must contain
+   `js/boot.js`, so tags before 2.1.0 cannot be used.
+2. In a checkout of the template, write the book's page for that tag:
+   `python3 tools/make_book_index.py 2.1.0 ../my-book/index.html`
+   (add `--defaults file.json` to give the book its own starting theme or
+   layout)
+3. In the book repo, delete `css/`, `js/`, `htrab/`, `themes/` and
+   `vendor/`, and turn off any template sync (or list `index.html` in
+   `.templatesyncignore`).
+
+The new `index.html` is a few lines: it shows the book's favicon and loads
+`https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/js/boot.js`.
+`boot.js` downloads the template's `index.html` from that same folder,
+points its `css/`, `js/` and `htrab/` addresses at the folder and shows it,
+so the quiz starts as usual. `js/asset-base.js` then makes the files the
+code asks for later (theme CSS, KaTeX, HTRAB data, the sync adapter) come
+from the same place. The cost is one extra small download before the quiz
+starts. With `--full` the tool instead writes the whole quiz page with the
+CDN addresses in it (no extra download, but a long file that must be
+rewritten for each release). The book's own files
+(`questions.json`, `images/`, `media/`, `banks/`) always come from its own
+site. To move a book to a newer template, run the tool again with the new
+tag. Always use an exact tag: a tag never changes, a branch does.
+
 ---
 
 ## Add a new book
@@ -112,6 +144,7 @@ The tools it uses are in `tools/` and work on their own too:
 | `plan_question_bank.py CHAPTERS --per-page 6` | decides how many questions each chapter gets (pages x weight) and of which types |
 | `merge_question_bank.py PLAN --book-text TEXT` | checks every chapter's questions (fields, duplicates, answer positions, exact quotes) and merges them into `questions.json` |
 | `pack_template.py pack FILE` | packs this site, minus the book, into one text file (how the skill keeps its template) |
+| `make_book_index.py TAG FILE` | writes a book's small `index.html` (favicon + `boot.js`) that loads the whole quiz from that tag on the CDN; `--full` writes the whole page instead |
 
 ### By hand
 
@@ -260,7 +293,8 @@ A theme is one folder in `themes/`. You do not need to touch any code.
 5. **Add the id to `themes/picker-order.txt`** where you want its tile.
    (Themes not listed there go at the end.)
 6. **Build:** `python3 tools/build_themes.py`. This rewrites
-   `css/themes.css` and `js/themes-list.js`. Never edit those two by hand.
+   `css/themes/<id>.css`, `css/theme-tiles.css` and `js/themes-list.js`.
+   Never edit those by hand.
 7. **Check it** in light and dark: open the page, press **Theme**, pick
    yours, and try a session.
 
@@ -299,10 +333,16 @@ css/
   question.css             question card, options, feedback, timers
   question-types.css       the other question types
   results.css              the results screen
-  themes.css               GENERATED: colours and pictures per theme
+  theme-tiles.css          GENERATED: the picker's preview tiles
+  themes/<id>.css          GENERATED: one theme's colours and pictures,
+                           loaded only when that theme is in use
   phone.css                changes for narrow screens (loaded last)
 
 js/
+  asset-base.js            where the shared files are: this site or a CDN
+                           (loaded first, in <head>)
+  boot.js                  used only by a book's loader index.html: loads
+                           the quiz page from the CDN
   helpers.js               creating elements, shuffling, wording counts
   book.js                  the loaded book: chapters, titles, labels
   progress-storage.js      saving and loading progress (localStorage)
@@ -322,7 +362,11 @@ js/
   session.js               runs a session: one question after another
   results-screen.js        the end of a session
   home-screen.js           progress ring, recent results, where you stand
-  home-layout.js           Settings screen, folding panels, Expand all, saved choices
+  book-settings.js         per-book saved settings and flags (versioned)
+  scope-picker.js          cascading lesson picker (chapter, topic, idea)
+  flags.js                 Bad / Revisit / Useless / Important flag bars
+  default-settings.js      every first-time default, in one place (in <head>)
+  home-layout.js           Settings screen, show/hide, defaults, folding panels
   session-settings.js      the "What do you want to practise?" panel
   progress-file.js         download, load and reset progress
   main.js                  starts everything (loaded last)
@@ -330,11 +374,13 @@ js/
   themes-list.js           GENERATED: the list of themes
 
 themes/<id>/               one folder per theme (see "Add a new theme")
-tools/build_themes.py      builds css/themes.css and js/themes-list.js
+tools/build_themes.py      builds css/themes/, css/theme-tiles.css and
+                           js/themes-list.js
 tools/extract_book.py      book (PDF/EPUB) to text, for writing questions
 tools/plan_question_bank.py   questions per chapter and per type
 tools/merge_question_bank.py  checks questions and builds questions.json
 tools/pack_template.py     packs the site into one text file and back
+tools/make_book_index.py   writes a book's index.html for the CDN
 tests/run_tests.py         browser tests
 ai-context/                notes for AI agents (and curious humans)
 ```
@@ -388,7 +434,8 @@ choice is saved once for all books under `recall-quiz:theme` and, when you are s
 ### Themes
 
 `tools/build_themes.py` reads each `themes/<id>/` folder and writes one
-block of CSS variables per theme and light/dark (`css/themes.css`). The
+file of CSS variables per theme, light and dark (`css/themes/<id>.css`).
+The page loads only the theme in use, and only the fonts it needs. The
 page switches theme by setting `data-theme` and `data-scheme` on the
 `<html>` element; the stylesheets only ever use the variables, so every
 part of the page follows the theme.
@@ -448,7 +495,20 @@ it after any change to the code.
 - Class names describe what something is (`.question-card`); states start
   with `is-` (`.is-right`, `.hidden` hides).
 - The book content (`questions.json`) and the generated
-  `css/themes.css` are exempt from the line-length rule.
+  `css/themes/*.css` and `css/theme-tiles.css` are exempt from the
+  line-length rule.
 
 More detail for contributors and AI agents is in
 [`ai-context/`](ai-context/).
+
+## Sanskrit study cards (2.2.0)
+
+Banks may mark card blocks with `key` (ref, verse, words, hindi, english,
+explain, aids, note) and `aids` (13 memory-aid kinds). Settings then shows a
+**Sanskrit cards** section: switch each part and each aid kind on or off,
+and pick a verse font (Kalam, Dekko, Baloo 2, Amita, Inknut Antiqua,
+Sarala, Noto Serif Devanagari, Yatra One, Rozha One, Tillana). The choice is
+saved with the book settings and syncs to the account. 15 themes for Vedic
+study (palm-leaf, bhurja-bark, cave-wall, stone-inscription, copper-plate,
+pothi-books, kundalini, sanskrit-playful, shalya-tantra, rasayana, vata,
+pitta, kapha and tridosha balance, parchment-verse) were added.

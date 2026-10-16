@@ -1,0 +1,16 @@
+/* Meeting room: warm wood, glass and slate with an orange accent. */
+[data-theme="meeting-room"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+}
+[data-theme="meeting-room"] .unit-title,
+[data-theme="meeting-room"] .verdict,
+[data-theme="meeting-room"] .panel h2 {
+  font-family: "Poppins","Segoe UI",system-ui,sans-serif;
+  font-weight: 600;
+}
+[data-theme="meeting-room"] .panel {
+  border-radius: var(--radius);
+}

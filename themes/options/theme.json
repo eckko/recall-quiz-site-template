@@ -1,0 +1,71 @@
+{
+  "name": "Options",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Space Grotesk\",\"Inter\",system-ui,sans-serif",
+    "headings": "\"Space Grotesk\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1f0fb",
+      "card": "#ffffff",
+      "text": "#1e1b3a",
+      "textMuted": "#58557c",
+      "border": "#d4d1ee",
+      "accent": "#5b3fd6",
+      "accent2": "#7050e0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#5b3fd6",
+      "pop2": "#0b8a6a",
+      "pop3": "#c2410c",
+      "pop4": "#0f6fb5",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(91,63,214,.07) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(90deg,rgba(91,63,214,.07) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(#f1f0fb,#f1f0fb) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0f0e1e",
+      "card": "#17162b",
+      "text": "#ebeafb",
+      "textMuted": "#adaad0",
+      "border": "#2e2c52",
+      "accent": "#b3a2ff",
+      "accent2": "#c4b6ff",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#b3a2ff",
+      "pop2": "#5fe0b8",
+      "pop3": "#ff9a63",
+      "pop4": "#6dc0ff",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(179,162,255,.06) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(90deg,rgba(179,162,255,.06) 1px,transparent 1px) 0 0/30px 30px fixed",
+      "linear-gradient(#0f0e1e,#0f0e1e) fixed"
+    ]
+  }
+}

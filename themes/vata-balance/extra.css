@@ -1,0 +1,18 @@
+/* Extra touches for the vata-balance theme. */
+[data-theme="vata-balance"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="vata-balance"] .unit-title,
+[data-theme="vata-balance"] .verdict,
+[data-theme="vata-balance"] .panel h2 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+[data-theme="vata-balance"] .panel {
+  border-style: solid;
+  border-color: var(--color-border);
+}

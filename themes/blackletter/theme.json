@@ -1,0 +1,75 @@
+{
+  "name": "Blackletter",
+  "group": "Typography & history",
+  "fonts": {
+    "body": "\"EB Garamond\",Garamond,Georgia,serif",
+    "headings": "\"UnifrakturCook\",\"Old English Text MT\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eadfc6",
+      "card": "#f6eed8",
+      "text": "#1a1410",
+      "textMuted": "#5a4c3a",
+      "border": "#8a7656",
+      "accent": "#8c1c13",
+      "accent2": "#a3281c",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#8c1c13",
+      "pop2": "#1f3a5f",
+      "pop3": "#3d5a2f",
+      "pop4": "#8a6414",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(ellipse at 50% 0,rgba(255,250,230,.55) 0,transparent 70%) fixed",
+      "linear-gradient(#eadfc6,#eadfc6) fixed"
+    ],
+    "buttonShadow": [
+      "0 3px 0 #4f0f0a"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #4f0f0a"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#110e0b",
+      "card": "#1b1612",
+      "text": "#eadfc6",
+      "textMuted": "#b3a688",
+      "border": "#4a3f2e",
+      "accent": "#e8736a",
+      "accent2": "#f08a7f",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#e8736a",
+      "pop2": "#8db1ea",
+      "pop3": "#9cc88a",
+      "pop4": "#e0b85c",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(ellipse at 50% 0,rgba(232,115,106,.08) 0,transparent 70%) fixed",
+      "linear-gradient(#110e0b,#110e0b) fixed"
+    ]
+  }
+}

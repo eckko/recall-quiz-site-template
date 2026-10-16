@@ -1,0 +1,69 @@
+{
+  "name": "Health",
+  "group": "Food & health",
+  "fonts": {
+    "body": "\"Nunito\",\"Quicksand\",system-ui,sans-serif",
+    "headings": "\"Nunito\",\"Quicksand\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "18px",
+    "smallRadius": "12px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef8f6",
+      "card": "#ffffff",
+      "text": "#123a38",
+      "textMuted": "#486c69",
+      "border": "#c5e3de",
+      "accent": "#0d7c78",
+      "accent2": "#c4452f",
+      "highlight": "#c7efe2",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#0d7c78",
+      "pop2": "#c4452f",
+      "pop3": "#2f8f4e",
+      "pop4": "#0369a1",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f1faf8,#dff2ee) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0a2523",
+      "card": "#103432",
+      "text": "#def7f3",
+      "textMuted": "#9cc7c2",
+      "border": "#1f524e",
+      "accent": "#3fd0c6",
+      "accent2": "#ff8a78",
+      "highlight": "#7fddc0",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#3fd0c6",
+      "pop2": "#ff8a78",
+      "pop3": "#7ddb8c",
+      "pop4": "#6cc4f2",
+      "onAccent": "#0b1a19",
+      "onHero": "#0b1a19"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0c2a28,#071a19) fixed"
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+/* Extra touches for Playful Devanagari. */
+[data-theme="sanskrit-playful"] h1 { background: none; color: var(--color-accent); -webkit-text-fill-color: currentColor; font-family: var(--font-heading); font-weight: 800; }
+[data-theme="sanskrit-playful"] .panel { border-width: 3px; }

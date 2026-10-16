@@ -1,0 +1,67 @@
+{
+  "name": "E-reader",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"Literata\",Georgia,\"Times New Roman\",serif",
+    "headings": "\"Literata\",Georgia,\"Times New Roman\",serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6f1e6",
+      "card": "#fffdf8",
+      "text": "#2b2620",
+      "textMuted": "#665d51",
+      "border": "#ddd3c1",
+      "accent": "#4f6a8c",
+      "accent2": "#6f87a6",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#4f6a8c",
+      "pop2": "#a8523f",
+      "pop3": "#3f7a62",
+      "pop4": "#8a6a1f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#f6f1e6,#f6f1e6) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#15161a",
+      "card": "#1e2025",
+      "text": "#e4dfd3",
+      "textMuted": "#a9a498",
+      "border": "#383a41",
+      "accent": "#9db3d0",
+      "accent2": "#8aa2c2",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#9db3d0",
+      "pop2": "#e08c78",
+      "pop3": "#7fcba7",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#15161a,#15161a) fixed"
+    ]
+  }
+}

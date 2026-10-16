@@ -1,0 +1,12 @@
+/* Dhyana: dusk purple and candle gold, calm and spacious. */
+[data-theme="dhyana"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+[data-theme="dhyana"] .panel {
+  border-radius: 24px;
+}

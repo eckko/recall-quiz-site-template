@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <g fill="currentColor"><rect x="3" y="10" width="4" height="8" rx="1"/><rect x="10" y="5" width="4" height="10" rx="1"/><rect x="17" y="8" width="4" height="12" rx="1"/><path d="M5 5v5M12 2v3M19 4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>
+</svg>

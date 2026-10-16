@@ -1,0 +1,69 @@
+{
+  "name": "Birch Bark · भूर्जपत्र",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Dekko\",Georgia,serif",
+    "headings": "\"Dekko\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "7px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#ead8c6",
+      "card": "#f6e9db",
+      "text": "#2e1a12",
+      "textMuted": "#6a4838",
+      "border": "#cba98e",
+      "accent": "#8c2f1a",
+      "accent2": "#7a5a2a",
+      "highlight": "#e2c9b0",
+      "correct": "#2f6b34",
+      "wrong": "#a3261c",
+      "partly": "#8a5600",
+      "pop1": "#8c2f1a",
+      "pop2": "#7a5a2a",
+      "pop3": "#7a5a2a",
+      "pop4": "#6b7d3a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "#ead8c6"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c110c",
+      "card": "#271811",
+      "text": "#f0dcc8",
+      "textMuted": "#b99884",
+      "border": "#43291d",
+      "accent": "#e8896a",
+      "accent2": "#d8a66a",
+      "highlight": "#33200f",
+      "correct": "#8fd08a",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#e8896a",
+      "pop2": "#d8a66a",
+      "pop3": "#d8a66a",
+      "pop4": "#a9c27a",
+      "onAccent": "#1c110c",
+      "onHero": "#1c110c"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "#1c110c"
+    ]
+  }
+}

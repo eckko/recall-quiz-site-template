@@ -1,0 +1,15 @@
+/* Notebook: Graph: squared maths paper with fine blue lines. */
+[data-theme="notebook-graph"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+[data-theme="notebook-graph"] .unit-title,
+[data-theme="notebook-graph"] .verdict,
+[data-theme="notebook-graph"] .panel h2 {
+  font-family: "Patrick Hand","Lexend",system-ui,sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+}

@@ -21,5 +21,14 @@ service cloud.firestore {
                             && request.resource.data.progress.size()
                                  < 700000;
     }
+
+    // The book key for a book's secret pictures (media/*.enc). The
+    // author writes it by hand in the console; the page can only read
+    // it, and only for the signed-in reader's own account.
+    match /users/{userId}/mediaKeys/{bookId} {
+      allow read: if request.auth != null
+                  && request.auth.uid == userId;
+      allow write: if false;
+    }
   }
 }

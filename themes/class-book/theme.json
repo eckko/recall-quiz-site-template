@@ -1,0 +1,67 @@
+{
+  "name": "Class book",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Andika\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Andika\",\"Segoe UI\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#e8eef9",
+      "card": "#ffffff",
+      "text": "#17274d",
+      "textMuted": "#4d5d83",
+      "border": "#b7c6e6",
+      "accent": "#2149a8",
+      "accent2": "#3a5ec0",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#2149a8",
+      "pop2": "#c62828",
+      "pop3": "#1b7a48",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#e8eef9,#e8eef9) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#111a30",
+      "card": "#1a2442",
+      "text": "#e8eefc",
+      "textMuted": "#a9b7d8",
+      "border": "#2e3d66",
+      "accent": "#8caaf5",
+      "accent2": "#a2baf8",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8caaf5",
+      "pop2": "#ff8a8a",
+      "pop3": "#7fdca8",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#111a30,#111a30) fixed"
+    ]
+  }
+}

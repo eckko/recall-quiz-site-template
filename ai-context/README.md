@@ -15,6 +15,7 @@ when you change how something works.
 | [testing.md](testing.md) | run and extend the tests, and check visual changes |
 | [pitfalls.md](pitfalls.md) | avoid the bugs that have already bitten this code once |
 | [glossary.md](glossary.md) | understand the words used in the code (unit, section, got/part/miss, scheme ...) |
+| [book-types-roadmap.md](book-types-roadmap.md) | see which book types the quiz-advanced skill covers, their status, and the decisions behind them |
 
 ## The project in one paragraph
 
@@ -23,7 +24,7 @@ results screen, hiding and showing sections. Questions come from
 `questions.json` (one book per site). Each answer updates a per-question
 memory level (Leitner-style spaced repetition, levels 0 to 4, gaps of 0,
 1, 3, 7, 21 days) saved in localStorage per book. Eight question types
-plug into a small registry. Thirty-four visual themes are data folders
+plug into a small registry. 121 visual themes are data folders
 compiled by a Python script into CSS variables; the stylesheets only use
 those variables. No framework, no bundler, no npm dependencies at runtime.
 

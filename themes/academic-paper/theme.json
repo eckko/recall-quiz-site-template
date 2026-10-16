@@ -1,0 +1,76 @@
+{
+  "name": "Academic paper",
+  "group": "Book styles",
+  "fonts": {
+    "body": "\"STIX Two Text\",\"Times New Roman\",Times,serif",
+    "headings": "\"STIX Two Text\",\"Times New Roman\",Times,serif"
+  },
+  "shape": {
+    "radius": "2px",
+    "smallRadius": "2px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#efefed",
+      "card": "#ffffff",
+      "text": "#111111",
+      "textMuted": "#505050",
+      "border": "#cfcfcc",
+      "accent": "#27508f",
+      "accent2": "#3a62a8",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#27508f",
+      "pop2": "#6b2a2a",
+      "pop3": "#3d6b4f",
+      "pop4": "#6a4aa8",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(#efefed,#efefed) fixed"
+    ],
+    "buttonShadow": [
+      "0 1px 0 #1b3a6b"
+    ],
+    "buttonShadowPressed": [
+      "0 0 0 #1b3a6b"
+    ],
+    "panelShadow": [
+      "0 1px 3px rgba(0,0,0,.12)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#121212",
+      "card": "#1b1b1b",
+      "text": "#ececec",
+      "textMuted": "#a8a8a8",
+      "border": "#383838",
+      "accent": "#8db1ea",
+      "accent2": "#a7c4f2",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#8db1ea",
+      "pop2": "#e09a9a",
+      "pop3": "#86c9a0",
+      "pop4": "#b9a2f0",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(#121212,#121212) fixed"
+    ]
+  }
+}

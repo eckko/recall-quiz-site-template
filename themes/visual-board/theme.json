@@ -1,0 +1,79 @@
+{
+  "name": "Visual board",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Patrick Hand\",\"Comic Sans MS\",system-ui,sans-serif",
+    "headings": "\"Permanent Marker\",\"Patrick Hand\",cursive"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#c9a574",
+      "card": "#fffdf2",
+      "text": "#2a2118",
+      "textMuted": "#43352a",
+      "border": "#7a5a34",
+      "accent": "#b3261e",
+      "accent2": "#c43a30",
+      "highlight": "#ffe680",
+      "correct": "#17703f",
+      "wrong": "#b3261e",
+      "partly": "#8a5a00",
+      "pop1": "#b3261e",
+      "pop2": "#1a5fb4",
+      "pop3": "#1a7a4a",
+      "pop4": "#b86e00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(rgba(90,60,30,.22) 1.4px,transparent 1.6px) 0 0/9px 9px fixed",
+      "radial-gradient(rgba(255,235,190,.35) 1.2px,transparent 1.4px) 4px 4px/11px 11px fixed",
+      "linear-gradient(#c9a574,#c9a574) fixed"
+    ],
+    "buttonShadow": [
+      "2px 3px 0 rgba(42,33,24,.6)"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 rgba(42,33,24,.6)"
+    ],
+    "panelShadow": [
+      "3px 5px 8px rgba(42,33,24,.35)"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#2a2118",
+      "card": "#3a2e22",
+      "text": "#f6ead6",
+      "textMuted": "#cdbb9e",
+      "border": "#6a5238",
+      "accent": "#ff8a7f",
+      "accent2": "#f59a8f",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#ff8a7f",
+      "pop2": "#7fb4f5",
+      "pop3": "#7fdca8",
+      "pop4": "#ffc566",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(rgba(0,0,0,.28) 1.4px,transparent 1.6px) 0 0/9px 9px fixed",
+      "linear-gradient(#2a2118,#2a2118) fixed"
+    ]
+  }
+}

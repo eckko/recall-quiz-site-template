@@ -5,13 +5,16 @@
 ```
 index.html  (all screens live here; JS shows and hides them)
 │
-├─ <head>  css/*.css, js/themes-list.js, js/theme-picker.js
+├─ <head>  js/asset-base.js (first), css/*.css, js/default-settings.js,
+│           js/themes-list.js, js/theme-picker.js
 │           theme-picker applies the saved theme before first paint
 │
 └─ end of <body>: the app scripts, in this order
      js/helpers.js
      js/transliteration.js, js/math-display.js
      js/book.js
+     js/media-store.js
+     js/rich-content.js
      js/progress-storage.js
      js/spaced-repetition.js
      js/celebration.js
@@ -32,12 +35,14 @@ index.html  (all screens live here; JS shows and hides them)
 Each app file is an IIFE that receives `window.RecallQuiz` as `quiz` and
 adds one namespace to it (`js/theme-picker.js` is separate: it runs in
 `<head>` and does not use `quiz`). Nothing else is global (apart from
-`window.QUIZ_THEMES` and `window.QUIZ_THEME_FONTS_URL` from the generated
-`js/themes-list.js`).
+`window.QUIZ_THEMES`, `window.QUIZ_THEME_FONTS` and
+`window.QUIZ_FONT_SPECS` from the generated `js/themes-list.js`).
 
 | Namespace | File | Owns |
 |---|---|---|
 | `quiz.helpers` | helpers.js | `findElement`, `createElement`, `createButton`, `createCheckButton`, `createParagraph`, `shuffledCopy`, `countWithWord`, `formatOneDecimal`, `readWholeNumber`, `prefersReducedMotion` |
+| `quiz.media` | media-store.js | `load(entry)`, `prefetch(entries)`, `setKeyProvider(fn)`: opens encrypted pictures and clips; gives null (so the text shows) without a key. cloud-sync.js sets the provider from the adapter's `readMediaKey` on sign-in and clears it on sign-out; figures retry on `recallquiz:media-key-changed` |
+| `quiz.rich` | rich-content.js | `createCode`, `createMedia`, `appendExtras`, `createBlocks`, `createGenreChip`: the v2 card and question extras |
 | `quiz.book` | book.js | the loaded `questions.json` (`data`), `labels`, `unitIds`, `unitTitles`; `setBookData`, `allQuestions`, `bookId`, `unitShortName`, `unitFullName`, `questionsInUnit` |
 | `quiz.progress` | progress-storage.js | `saved` (the progress object), `openForBook`, `saveProgress`, `replaceProgress`, `eraseProgress`, `looksLikeProgress`; version upgrades |
 | `quiz.memory` | spaced-repetition.js | `recordAnswer`, `isDueOrNew`, `isWaitingForReview`, `isGap`, `isSolid`, `isLearning`, `timesMissed`, `currentDayStreak`, `countAnsweredToday` |
@@ -136,12 +141,28 @@ type must only use this object, never `quiz.session.state` directly.
 themes/<id>/theme.json + *.svg + extra.css
         │  python3 tools/build_themes.py
         ▼
-css/themes.css     :root[data-theme='<id>'][data-scheme='light|dark']
+css/themes/<id>.css  :root[data-theme='<id>'][data-scheme='light|dark']
                    { --color-*, --font-*, --radius*, --page-background,
                      --mascot-image, --icon-*, --accent-gradient, ... }
-                   + .theme-tile[data-theme-id='<id>'] { --tile-* }
                    + the theme's extra.css
-js/themes-list.js  window.QUIZ_THEMES, window.QUIZ_THEME_FONTS_URL
+                   (loaded by theme-picker.js, only for the theme in use)
+css/theme-tiles.css  .theme-tile[data-theme-id='<id>'] { --tile-* }
+                   (loaded when the Appearance section is opened)
+js/asset-base.js   window.RecallQuizAssetBase: "" when the shared files
+                   sit next to the page, or the CDN folder when this
+                   script came from another site; the four places that
+                   build a path to a shared file at run time (theme-picker,
+                   math-display, cloud-sync, htrab) put it in front
+js/boot.js         only in a book's loader index.html (favicon + boot.js):
+                   fetches this template's index.html from the same CDN
+                   folder, prefixes its css/, js/, htrab/ addresses and
+                   replaces the page with it (document.write, so the
+                   start-up order is unchanged)
+js/default-settings.js  window.RecallQuizDefaults: every first-time
+                    default (theme, shown controls, practice, home
+                    layout, Settings sections); loaded first
+js/themes-list.js  window.QUIZ_THEMES, QUIZ_THEME_FONTS (families per
+                   theme), QUIZ_FONT_SPECS (how to ask Google Fonts)
 ```
 
 `js/theme-picker.js` (in `<head>`) sets `data-theme`, `data-mode`
@@ -152,8 +173,8 @@ light or dark) on `<html>`. Defaults for every variable are in
 ## CSS layout
 
 Load order (later wins on equal specificity): `base.css`, `home.css`,
-`question.css`, `question-types.css`, `results.css`, `themes.css`,
-`phone.css`. Each rule is written once with its final value; there are
+`question.css`, `question-types.css`, `results.css`, `phone.css`. The
+theme's own CSS is added just before `phone.css` by `theme-picker.js`. Each rule is written once with its final value; there are
 no "override" layers. Theme `extra.css` rules are scoped with
 `[data-theme="<id>"]`, so they win by specificity.
 

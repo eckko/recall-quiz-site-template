@@ -1,0 +1,13 @@
+/* Extra touches for the Painting theme: bright, watercolour-like. */
+[data-theme="painting"] h1 {
+  background: linear-gradient(90deg,
+    var(--color-accent), var(--color-pop-3), var(--color-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-heading);
+  font-size: 1.25em;
+}
+[data-theme="painting"] .panel {
+  border-bottom: 5px solid var(--color-pop-4);
+}

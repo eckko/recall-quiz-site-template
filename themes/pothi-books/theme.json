@@ -1,0 +1,73 @@
+{
+  "name": "Pothi Books · पोथी",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Inknut Antiqua\",Georgia,serif",
+    "headings": "\"Inknut Antiqua\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f6ecd6",
+      "card": "#fffaf0",
+      "text": "#2b1a14",
+      "textMuted": "#6e5646",
+      "border": "#e0cfae",
+      "accent": "#9b2226",
+      "accent2": "#2c3e78",
+      "highlight": "#f3e3bd",
+      "correct": "#2f6b3a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#9b2226",
+      "pop2": "#2c3e78",
+      "pop3": "#c98a00",
+      "pop4": "#2f6b3a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff",
+      "study": "#1f6f6a",
+      "studyBg": "#dff0ee"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/64px 64px fixed",
+      "#f6ecd6"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#181008",
+      "card": "#231810",
+      "text": "#f1e3c8",
+      "textMuted": "#b39d7c",
+      "border": "#43321f",
+      "accent": "#e07a6e",
+      "accent2": "#8fa2e6",
+      "highlight": "#33241a",
+      "correct": "#92c88a",
+      "wrong": "#f29a90",
+      "partly": "#e8b44f",
+      "pop1": "#e07a6e",
+      "pop2": "#8fa2e6",
+      "pop3": "#e8b44f",
+      "pop4": "#92c88a",
+      "onAccent": "#181008",
+      "onHero": "#181008",
+      "study": "#7cc7bf",
+      "studyBg": "#1b2e2c"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/64px 64px fixed",
+      "#181008"
+    ]
+  }
+}

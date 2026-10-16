@@ -1,0 +1,22 @@
+/* Comic panels: newsprint, inked panel borders and halftone dots. */
+[data-theme="comic-panels"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-theme="comic-panels"] .unit-title,
+[data-theme="comic-panels"] .verdict,
+[data-theme="comic-panels"] .panel h2 {
+  font-family: "Bangers","Impact",system-ui,sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+[data-theme="comic-panels"] .option,
+[data-theme="comic-panels"] .match-item,
+[data-theme="comic-panels"] .order-item,
+[data-theme="comic-panels"] .sort-chip {
+  box-shadow: 3px 3px 0 var(--color-border);
+}

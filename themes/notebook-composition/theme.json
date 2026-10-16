@@ -1,0 +1,77 @@
+{
+  "name": "Notebook: Composition",
+  "group": "Classroom",
+  "fonts": {
+    "body": "\"Lexend\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"Patrick Hand\",\"Lexend\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "4px",
+    "smallRadius": "3px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#d9d9d6",
+      "card": "#ffffff",
+      "text": "#171717",
+      "textMuted": "#4a4a4a",
+      "border": "#2b2b2b",
+      "accent": "#2a2a2a",
+      "accent2": "#3d3d3d",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#2a2a2a",
+      "pop2": "#b3261e",
+      "pop3": "#1a5fb4",
+      "pop4": "#7a5a00",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "radial-gradient(ellipse at 20% 30%,rgba(0,0,0,.20) 0,transparent 22%) 0 0/160px 120px fixed",
+      "radial-gradient(ellipse at 70% 60%,rgba(0,0,0,.16) 0,transparent 20%) 40px 30px/180px 140px fixed",
+      "linear-gradient(#d9d9d6,#d9d9d6) fixed"
+    ],
+    "buttonShadow": [
+      "2px 3px 0 #171717"
+    ],
+    "buttonShadowPressed": [
+      "0 1px 0 #171717"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#141414",
+      "card": "#1f1f1f",
+      "text": "#f0f0ee",
+      "textMuted": "#bdbdb8",
+      "border": "#e6e6e2",
+      "accent": "#e8e8e4",
+      "accent2": "#d4d4d0",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#e8e8e4",
+      "pop2": "#ff8a7f",
+      "pop3": "#7fb4f5",
+      "pop4": "#e0c070",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "radial-gradient(ellipse at 20% 30%,rgba(255,255,255,.10) 0,transparent 22%) 0 0/160px 120px fixed",
+      "radial-gradient(ellipse at 70% 60%,rgba(255,255,255,.08) 0,transparent 20%) 40px 30px/180px 140px fixed",
+      "linear-gradient(#141414,#141414) fixed"
+    ]
+  }
+}

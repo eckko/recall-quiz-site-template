@@ -1,0 +1,13 @@
+/* Extra touches for the Chaos theme. */
+[data-theme="chaos"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+[data-theme="chaos"] .unit-title,
+[data-theme="chaos"] .verdict,
+[data-theme="chaos"] .panel h2 {
+  font-family: var(--font-heading);
+}

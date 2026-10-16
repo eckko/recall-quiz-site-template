@@ -22,7 +22,8 @@ import textwrap
 from pathlib import Path
 
 SITE_FOLDER = Path(__file__).resolve().parent.parent
-LEFT_OUT = {"questions.json", "css/themes.css", "js/themes-list.js"}
+LEFT_OUT = {"questions.json", "css/theme-tiles.css", "js/themes-list.js"}
+LEFT_OUT_PREFIXES = ("css/themes/",)
 LEFT_OUT_FOLDERS = {"__pycache__", ".git", "work"}
 TOP_FOLDER = "htrab-quiz"
 
@@ -33,6 +34,8 @@ def files_to_pack():
     for path in sorted(SITE_FOLDER.rglob("*")):
         relative = path.relative_to(SITE_FOLDER)
         if not path.is_file() or relative.as_posix() in LEFT_OUT:
+            continue
+        if relative.as_posix().startswith(LEFT_OUT_PREFIXES):
             continue
         if LEFT_OUT_FOLDERS & set(relative.parts):
             continue

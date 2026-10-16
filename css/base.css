@@ -31,6 +31,8 @@
   --color-pop-4: #ff9f1c;
   --color-on-accent: #ffffff;
   --color-on-hero: #ffffff;
+  --color-study: #2f6f6a;
+  --color-study-bg: #e3f0ee;
 
   /* Fonts */
   --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -95,12 +97,33 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* js/theme-picker.js sets this until the first theme's CSS has loaded, so
+   the page never flashes the wrong colours. */
+html.theme-loading body {
+  visibility: hidden;
+}
+
 body {
   margin: 0;
   font: 16px/1.55 var(--font-body);
   color: var(--color-text);
-  background: var(--page-background);
   background-color: var(--color-page);
+}
+
+/* The theme's page background sits on its own fixed layer. iOS Safari
+   ignores "background-attachment: fixed" on the body and paints only part
+   of a long page (a lighter band down the left), so the layer is the
+   reliable way to keep it behind everything while the page scrolls. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: var(--page-background);
+  pointer-events: none;
 }
 
 main {
@@ -379,4 +402,10 @@ button:active:not([disabled]) {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Long identifiers (getLastNamesOfUsersWhoLoggedInAfter) may break rather than
+   push the page wider than the screen. Code blocks keep their own scrolling. */
+main {
+  overflow-wrap: anywhere;
 }

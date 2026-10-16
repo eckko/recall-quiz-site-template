@@ -1,0 +1,17 @@
+/* Rough book: scruffy rough work: grey paper, pencil scribbles and doodles. */
+[data-theme="rough-book"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 400;
+  font-size: 2.2rem;
+  text-decoration: underline wavy var(--color-pop-2);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
+}
+[data-theme="rough-book"] .unit-title,
+[data-theme="rough-book"] .verdict,
+[data-theme="rough-book"] .panel h2 {
+  font-family: "Architects Daughter","Patrick Hand",system-ui,sans-serif;
+  font-weight: 400;
+}

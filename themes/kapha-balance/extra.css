@@ -1,0 +1,18 @@
+/* Extra touches for the kapha-balance theme. */
+[data-theme="kapha-balance"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="kapha-balance"] .unit-title,
+[data-theme="kapha-balance"] .verdict,
+[data-theme="kapha-balance"] .panel h2 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+[data-theme="kapha-balance"] .panel {
+  border-style: solid;
+  border-color: var(--color-border);
+}

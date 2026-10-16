@@ -1,0 +1,17 @@
+/* Lab: a clean laboratory: white surfaces, teal glassware and monospaced headings. */
+[data-theme="lab"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+[data-theme="lab"] .unit-title,
+[data-theme="lab"] .verdict,
+[data-theme="lab"] .panel h2 {
+  font-family: "IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  font-weight: 600;
+}
+[data-theme="lab"] .panel {
+  border-top: 3px solid var(--color-accent);
+}

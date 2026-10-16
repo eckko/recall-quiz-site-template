@@ -1,0 +1,69 @@
+{
+  "name": "Guitar",
+  "group": "Art & music",
+  "fonts": {
+    "body": "\"Lora\",\"Source Serif 4\",Georgia,serif",
+    "headings": "\"Josefin Sans\",\"Lora\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f7ecda",
+      "card": "#fffaf1",
+      "text": "#3a2415",
+      "textMuted": "#765843",
+      "border": "#e2cba8",
+      "accent": "#0f766e",
+      "accent2": "#8a4b1f",
+      "highlight": "#f6d79a",
+      "correct": "#1e7f5c",
+      "wrong": "#c8402f",
+      "partly": "#a15f00",
+      "pop1": "#b45309",
+      "pop2": "#0f766e",
+      "pop3": "#7c2d12",
+      "pop4": "#a16207",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#fbf1e0,#f1dcb8) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1c120b",
+      "card": "#2a1b11",
+      "text": "#f8e9d2",
+      "textMuted": "#cdb394",
+      "border": "#4d3421",
+      "accent": "#4fd1c0",
+      "accent2": "#d9a066",
+      "highlight": "#6a4a1c",
+      "correct": "#5fd6a4",
+      "wrong": "#ff8a7a",
+      "partly": "#eab64a",
+      "pop1": "#e8944f",
+      "pop2": "#4fd1c0",
+      "pop3": "#e0a07a",
+      "pop4": "#f2c14e",
+      "onAccent": "#14110f",
+      "onHero": "#14110f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#1e140c,#140d07) fixed"
+    ]
+  }
+}

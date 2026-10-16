@@ -61,7 +61,7 @@ Useful tricks for repeatable screenshots:
 
 ```bash
 find . -name "*.js" -o -name "*.css" -o -name "*.py" -o -name "*.html" \
-  | grep -v -e themes.css -e themes-list.js \
+  | grep -v -e css/themes/ -e theme-tiles.css -e themes-list.js \
   | xargs awk 'length > 79 {print FILENAME":"FNR}'
 ```
 
@@ -83,3 +83,13 @@ and easy ending, the 5-minute session, and the HTRAB overlay (picker, only
 tagged questions, chip, advice, remembered switch, and the quiz still
 working with `htrab/` blocked). `open_page(browser, bank="name")` opens a
 bank from `banks/`; `block="**/htrab/**"` blocks files.
+
+Tests also cover show/hide and defaults, per-book isolation, the cascading
+lesson picker, flags, saved-settings versions and the folded theme groups.
+Further tests cover the Keep me going switch (hidden by default), the
+per-option "Which questions" switches, idea flags (hiding, export, upgrade
+from a version 1 record, account sync, Important first), the folded
+Settings sections and the Finance theme group. `open_page` seeds a saved
+record that shows Keep me going (`keep_going=False` gives the fresh
+defaults) and opens every Settings section as the screen opens
+(`open_sections=False` keeps them folded).

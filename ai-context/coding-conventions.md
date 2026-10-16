@@ -63,7 +63,8 @@ fear. When in doubt, match the file you are editing.
 
 - Lines under 80 characters, 2-space indent (4 in Python).
 - Exempt: `questions.json` (book content) and the generated files
-  `css/themes.css` (contains data URIs) and `js/themes-list.js`.
+  `css/themes/*.css` and `css/theme-tiles.css` (contain data URIs) and
+  `js/themes-list.js`.
 - Comments explain why, in plain words. Keep them true when you change
   the code.
 - Keep `README.md` and `ai-context/` in step with behaviour changes.

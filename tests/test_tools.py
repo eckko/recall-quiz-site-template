@@ -129,11 +129,236 @@ def test_tag_lister():
           result.returncode == 0 and "inspectional/" in result.stdout)
 
 
+def test_media_encryption():
+    """encrypt_media.py: same bytes every time, id-bound, reversible."""
+    import os
+    import sys
+    sys.path.insert(0, str(TOOLS))
+    import encrypt_media
+    from cryptography.exceptions import InvalidTag
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    key, content = os.urandom(32), b"a secret picture"
+    first = encrypt_media.encrypt(key, "u01/i01/f01", content)
+    check("the same file gives the same bytes",
+          first == encrypt_media.encrypt(key, "u01/i01/f01", content))
+    check("the plain content is not in the file", content not in first)
+    check("another id gives other bytes",
+          first != encrypt_media.encrypt(key, "u01/i01/f02", content))
+    file_key = encrypt_media.derive(key, "file:u01/i01/f01", 32)
+    check("the file opens with its key and id",
+          AESGCM(file_key).decrypt(first[:12], first[12:],
+                                   b"u01/i01/f01") == content)
+    try:
+        AESGCM(file_key).decrypt(first[:12], first[12:], b"u01/i01/f02")
+        swapped = True
+    except InvalidTag:
+        swapped = False
+    check("a file cannot be passed off under another id", not swapped)
+
+
+def test_reencrypt_media():
+    """reencrypt_media.py: placeholder key to a real key, safe to repeat."""
+    import base64
+    import os
+    import subprocess
+    import sys
+    import tempfile
+    sys.path.insert(0, str(TOOLS))
+    import encrypt_media
+    with tempfile.TemporaryDirectory() as folder:
+        root = Path(folder)
+        source = root / "pic.bin"
+        source.write_bytes(b"a pretend picture")
+        subprocess.run([sys.executable, str(TOOLS / "encrypt_media.py"),
+                        "placeholder", "u01/fig-1", str(source),
+                        "--out", str(root / "media")],
+                       check=True, capture_output=True)
+        stored = root / "media" / "u01" / "fig-1.enc"
+        check("a file made with the placeholder opens with it",
+              encrypt_media.decrypt(encrypt_media.placeholder_key(),
+                                    "u01/fig-1", stored.read_bytes())
+              == b"a pretend picture")
+        key_file = root / "real.key"
+        key = os.urandom(32)
+        key_file.write_text(base64.b64encode(key).decode())
+        run = [sys.executable, str(TOOLS / "reencrypt_media.py"),
+               "placeholder", str(key_file), "--media", str(root / "media")]
+        out = subprocess.run(run, check=True, capture_output=True,
+                             text=True).stdout
+        check("one file is moved to the new key", "1 file(s) moved" in out)
+        check("it opens with the real key",
+              encrypt_media.decrypt(key, "u01/fig-1", stored.read_bytes())
+              == b"a pretend picture")
+        again = stored.read_bytes()
+        out = subprocess.run(run, check=True, capture_output=True,
+                             text=True).stdout
+        check("running it again changes nothing",
+              "0 file(s) moved" in out and stored.read_bytes() == again)
+
+
+def test_book_index_shell():
+    """make_book_index.py writes a small page that only shows the
+    favicon and loads boot.js from the tag on the CDN."""
+    import re
+    base = "https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/"
+    with tempfile.TemporaryDirectory() as folder:
+        output = Path(folder) / "index.html"
+        result = run(TOOLS / "make_book_index.py", "2.1.0", output,
+                     "--no-check", cwd=folder)
+        page = output.read_text() if output.exists() else ""
+        check("the loader page is written",
+              result.returncode == 0 and bool(page))
+        check("it loads boot.js from the tagged CDN folder",
+              'src="' + base + 'js/boot.js"' in page)
+        check("it shows the book's favicon",
+              'rel="icon" href="images/favicon.png"' in page)
+        check("it loads nothing else",
+              len(re.findall(r'(?:href|src)="', page)) == 2)
+        check("it is small", len(page) < 1500)
+        output.unlink()
+        branch = run(TOOLS / "make_book_index.py", "main", output,
+                     "--no-check", cwd=folder)
+        check("a branch name is refused for the loader page",
+              branch.returncode != 0 and not output.exists())
+
+
+def test_book_index_tool():
+    """make_book_index.py --full moves the shared files to the CDN, leaves
+    the book's own files alone, and refuses what cannot load from one."""
+    import re
+    page = (ROOT / "index.html").read_text()
+    base = "https://cdn.jsdelivr.net/gh/eckko/recall-quiz-site-template@2.1.0/"
+    shared = r'(?:href|src)="(?:css|js|htrab)/'
+    with tempfile.TemporaryDirectory() as folder:
+        output = Path(folder) / "index.html"
+        result = run(TOOLS / "make_book_index.py", "2.1.0", output,
+                     "--full", "--source", ROOT / "index.html", cwd=folder)
+        book = output.read_text() if output.exists() else ""
+        check("the book page is written",
+              result.returncode == 0 and bool(book))
+        check("no shared file is left on the book's own site",
+              re.search(shared, book) is None)
+        check("every shared address now starts with the CDN folder",
+              book.count('="' + base) == len(re.findall(shared, page)))
+        check("the book's own files keep their address",
+              'href="images/favicon.png"' in book)
+        check("nothing else in the page changed",
+              book.replace(base, "") == page)
+        check("the base script is loaded from the CDN",
+              'src="' + base + 'js/asset-base.js"' in book)
+        output.unlink()
+        branch = run(TOOLS / "make_book_index.py", "main", output,
+                     "--full", "--source", ROOT / "index.html", cwd=folder)
+        check("a branch name is refused", branch.returncode != 0
+              and not output.exists())
+        old_page = Path(folder) / "old.html"
+        old_page.write_text(page.replace("js/asset-base.js", "js/other.js"))
+        old = run(TOOLS / "make_book_index.py", "2.0.0", output,
+                  "--full", "--source", old_page, cwd=folder)
+        check("a page without the base script is refused",
+              old.returncode != 0 and not output.exists())
+
+
+def test_study_blocks():
+    """Verse-study blocks: the block cap, lines and words are checked."""
+    sys.path.insert(0, str(TOOLS))
+    import check_rich_content as rich
+    plain = [{"label": f"B{n}", "text": "x"} for n in range(7)]
+    check("7 plain blocks are still refused",
+          rich.check_blocks(plain)[0][0] == "error")
+    study = [dict(block, study=True) for block in plain] + [
+        {"label": "B8", "text": "x"}]
+    check("a card with study blocks may hold 8 blocks",
+          rich.check_blocks(study) == [])
+    check("9 blocks are refused even with study blocks",
+          rich.check_blocks(study + [{"label": "B9", "text": "x"}])[0][0]
+          == "error")
+    verse = {"label": "V", "study": True, "lines": ["a", "b"],
+             "words": [[{"w": "a", "gloss": "g", "gram": "n."}]]}
+    check("lines and words are accepted", rich.check_blocks([verse]) == [])
+    bad = {"label": "V", "words": [[{"w": "a"}]]}
+    check("a word without a gloss is refused",
+          rich.check_blocks([bad])[0][0] == "error")
+    romanised = {"label": "V", "study": True, "lines": ["dīrghaṃ"]}
+    check("romanised verse lines get a warning",
+          rich.check_blocks([romanised])[0][0] == "warn")
+    check("empty lines are refused",
+          rich.check_blocks([{"label": "V", "lines": []}])[0][0] == "error")
+
+
+def test_aids():
+    """Memory aids on a block: shape checks."""
+    sys.path.insert(0, str(TOOLS))
+    import check_rich_content as rich
+    good = [{"aid": "chain", "label": "Chain", "steps": ["a", "b", "c"]},
+            {"aid": "story", "label": "Story", "text": "a short story"},
+            {"aid": "diagram", "label": "Ledges",
+             "groups": [{"label": "Top", "items": ["x", "y"]}]},
+            {"aid": "metre", "label": "Metre", "lines": ["a | b"]}]
+    block = {"label": "Aids", "study": True, "aids": good}
+    check("a block of aids is accepted", rich.check_blocks([block]) == [])
+    bad_kind = [dict(good[0], aid="Chain!")]
+    check("an aid id must be a lower-case word",
+          rich.check_blocks([dict(block, aids=bad_kind)])[0][0] == "error")
+    check("two aids of one kind on a card are refused",
+          rich.check_blocks([dict(block, aids=[good[0], good[0]])])[0][0]
+          == "error")
+    check("an aid with no content is refused",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "label": "C"}])])[0][0] == "error")
+    check("one step is not a chain",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "label": "C", "steps": ["a"]}])])[0][0]
+          == "error")
+    pic = {"aid": "pegs", "label": "P", "text": "t",
+           "image": {"src": "images/aids/a.svg",
+                     "alt": "a rope and an umbrella"}}
+    check("an aid with a picture and alt text is accepted",
+          rich.check_blocks([dict(block, aids=[pic])]) == [])
+    check("a picture without alt text is refused",
+          rich.check_blocks([dict(block, aids=[dict(
+              pic, image={"src": "images/aids/a.svg", "alt": "rope"})])]
+          )[0][0] == "error")
+    check("a picture from another site is refused",
+          rich.check_blocks([dict(block, aids=[dict(
+              pic, image={"src": "https://x.test/a.svg",
+                          "alt": "a rope and an umbrella"})])])[0][0]
+          == "error")
+    check("an aid needs a label",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "steps": ["a", "b"]}])])[0][0] == "error")
+
+
+def test_study_colours():
+    """Every theme's study colour is clearly different from its accents."""
+    sys.path.insert(0, str(TOOLS))
+    import build_themes as themes
+    worst = 180
+    for theme_id in themes.find_theme_ids():
+        theme = themes.load_theme(theme_id)
+        for scheme in ("light", "dark"):
+            colours = {**themes.study_colors(
+                theme[scheme]["colors"], scheme), **theme[scheme]["colors"]}
+            gap = min(themes.hue_gap(themes.hex_hue(colours["study"]),
+                                     themes.hex_hue(colours[key]))
+                      for key in ("accent", "accent2"))
+            worst = min(worst, gap)
+    check("study hue is at least 45 degrees from both accents everywhere",
+          worst >= 45)
+
+
 if __name__ == "__main__":
     print("Bank tools")
+    test_study_blocks()
+    test_aids()
+    test_study_colours()
     test_round_trip()
     test_refusals()
     test_tag_lister()
+    test_media_encryption()
+    test_reencrypt_media()
+    test_book_index_shell()
+    test_book_index_tool()
     if failures:
         raise SystemExit(f"{len(failures)} check(s) failed")
     print("All checks passed.")

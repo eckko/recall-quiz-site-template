@@ -1,0 +1,69 @@
+{
+  "name": "Rasayana · रसायन",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Karma\",Georgia,serif",
+    "headings": "\"Laila\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "14px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fbf5e4",
+      "card": "#fffcf2",
+      "text": "#2b2412",
+      "textMuted": "#6b5f3e",
+      "border": "#ecdfb8",
+      "accent": "#8a5a00",
+      "accent2": "#4a6b1f",
+      "highlight": "#f6e8b0",
+      "correct": "#2f6b2a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#8a5a00",
+      "pop2": "#4a6b1f",
+      "pop3": "#c7782a",
+      "pop4": "#b08a1a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg)",
+      "#fbf5e4"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#17140a",
+      "card": "#211c0e",
+      "text": "#f3ead0",
+      "textMuted": "#b3a67e",
+      "border": "#3b3418",
+      "accent": "#e6b84a",
+      "accent2": "#a9c96a",
+      "highlight": "#2e2810",
+      "correct": "#9fd28f",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#e6b84a",
+      "pop2": "#a9c96a",
+      "pop3": "#e89a52",
+      "pop4": "#d4b84a",
+      "onAccent": "#17140a",
+      "onHero": "#17140a"
+    },
+    "background": [
+      "url(background-dark.svg)",
+      "#17140a"
+    ]
+  }
+}

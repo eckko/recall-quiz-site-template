@@ -1,0 +1,69 @@
+{
+  "name": "Programming",
+  "group": "Software",
+  "fonts": {
+    "body": "\"Inter\",\"Instrument Sans\",system-ui,sans-serif",
+    "headings": "\"Poppins\",\"Inter\",system-ui,sans-serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "6px",
+    "borderWidth": "2px",
+    "strongBorderWidth": "3px"
+  },
+  "iconStroke": {
+    "width": 3.2,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f4f7fc",
+      "card": "#ffffff",
+      "text": "#16233b",
+      "textMuted": "#50617e",
+      "border": "#cddaee",
+      "accent": "#1d5fc4",
+      "accent2": "#c2570c",
+      "highlight": "#ffe2c2",
+      "correct": "#177a4a",
+      "wrong": "#c0392b",
+      "partly": "#9a5b00",
+      "pop1": "#1d5fc4",
+      "pop2": "#c2570c",
+      "pop3": "#0f8a8a",
+      "pop4": "#6b4fc9",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#f4f7fc,#e6eefa) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0d1626",
+      "card": "#16223a",
+      "text": "#e6eefb",
+      "textMuted": "#a3b5d1",
+      "border": "#2b3d5e",
+      "accent": "#6aa8ff",
+      "accent2": "#ffa05c",
+      "highlight": "#4a3320",
+      "correct": "#5fd69a",
+      "wrong": "#ff8f85",
+      "partly": "#f2c14e",
+      "pop1": "#6aa8ff",
+      "pop2": "#ffa05c",
+      "pop3": "#4fd1c5",
+      "pop4": "#b69cff",
+      "onAccent": "#07121f",
+      "onHero": "#07121f"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "linear-gradient(160deg,#0d1626,#091120) fixed"
+    ]
+  }
+}

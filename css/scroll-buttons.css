@@ -1,0 +1,31 @@
+/* Two round buttons floating at the right edge: jump to top / bottom. */
+.scroll-jump {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.scroll-jump button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font: 700 1.1rem/1 var(--font-heading, inherit);
+  color: var(--color-text);
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  opacity: 0.85;
+}
+.scroll-jump button:hover,
+.scroll-jump button:focus-visible {
+  opacity: 1;
+  border-color: var(--color-accent);
+}
+.scroll-jump button svg { width: 20px; height: 20px; }

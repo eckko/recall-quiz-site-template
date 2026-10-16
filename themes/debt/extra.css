@@ -1,0 +1,11 @@
+/* Debt: a heavy brick-red rule, plain and sober. */
+[data-theme="debt"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+[data-theme="debt"] .panel {
+  border-left: 6px solid var(--color-accent);
+}

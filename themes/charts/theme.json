@@ -1,0 +1,71 @@
+{
+  "name": "Charts",
+  "group": "Finance",
+  "fonts": {
+    "body": "\"Inter\",\"Segoe UI\",system-ui,sans-serif",
+    "headings": "\"JetBrains Mono\",\"SFMono-Regular\",Consolas,monospace"
+  },
+  "shape": {
+    "radius": "8px",
+    "smallRadius": "5px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f3f6f4",
+      "card": "#ffffff",
+      "text": "#14231c",
+      "textMuted": "#4e625a",
+      "border": "#d0dcd5",
+      "accent": "#0f7a4e",
+      "accent2": "#1a8f5c",
+      "highlight": "#fde68a",
+      "correct": "#1b7a4b",
+      "wrong": "#b5364a",
+      "partly": "#8a5a00",
+      "pop1": "#0f7a4e",
+      "pop2": "#b3322a",
+      "pop3": "#1f5fd6",
+      "pop4": "#a8681f",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "linear-gradient(rgba(20,35,28,.06) 1px,transparent 1px) 0 0/40px 40px fixed",
+      "linear-gradient(90deg,rgba(20,35,28,.06) 1px,transparent 1px) 0 0/40px 40px fixed",
+      "linear-gradient(#f3f6f4,#f3f6f4) fixed"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#0d1311",
+      "card": "#151d1a",
+      "text": "#e4efe9",
+      "textMuted": "#a2b5ab",
+      "border": "#28352f",
+      "accent": "#56d9a0",
+      "accent2": "#7aeab8",
+      "highlight": "#f3d673",
+      "correct": "#6fdca6",
+      "wrong": "#ff8f9f",
+      "partly": "#f0c15a",
+      "pop1": "#56d9a0",
+      "pop2": "#ff8a80",
+      "pop3": "#7fadff",
+      "pop4": "#f0b97a",
+      "onAccent": "#10141a",
+      "onHero": "#10141a"
+    },
+    "background": [
+      "linear-gradient(rgba(228,239,233,.05) 1px,transparent 1px) 0 0/40px 40px fixed",
+      "linear-gradient(90deg,rgba(228,239,233,.05) 1px,transparent 1px) 0 0/40px 40px fixed",
+      "linear-gradient(#0d1311,#0d1311) fixed"
+    ]
+  }
+}
