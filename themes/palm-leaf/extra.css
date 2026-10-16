@@ -1,0 +1,12 @@
+/* Extra touches for the Palm Leaf theme. */
+[data-theme="palm-leaf"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+}
+[data-theme="palm-leaf"] .unit-title,
+[data-theme="palm-leaf"] .verdict,
+[data-theme="palm-leaf"] .panel h2 {
+  font-family: var(--font-heading);
+}

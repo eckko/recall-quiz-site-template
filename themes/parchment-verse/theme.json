@@ -1,0 +1,71 @@
+{
+  "name": "Parchment & Teal",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Source Serif 4\",\"Noto Serif Devanagari\",Georgia,serif",
+    "headings": "\"Source Serif 4\",\"Noto Serif Devanagari\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#faf6ee",
+      "card": "#fffdf8",
+      "text": "#2a2118",
+      "textMuted": "#7a6c5a",
+      "border": "#e4d9c6",
+      "accent": "#a4400f",
+      "accent2": "#8a5a2b",
+      "highlight": "#f1e7d3",
+      "correct": "#3f6b3a",
+      "wrong": "#a3261c",
+      "partly": "#9a6000",
+      "pop1": "#a4400f",
+      "pop2": "#2f6f6a",
+      "pop3": "#8a5a2b",
+      "pop4": "#6b7d3a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff",
+      "study": "#2f6f6a",
+      "studyBg": "#e3f0ee"
+    },
+    "background": [
+      "#faf6ee"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#17130e",
+      "card": "#201a13",
+      "text": "#efe5d3",
+      "textMuted": "#a49478",
+      "border": "#3a3023",
+      "accent": "#e58a54",
+      "accent2": "#d1a56a",
+      "highlight": "#2e2518",
+      "correct": "#8fc088",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#e58a54",
+      "pop2": "#7cc7bf",
+      "pop3": "#d1a56a",
+      "pop4": "#a9c27a",
+      "onAccent": "#17130e",
+      "onHero": "#17130e",
+      "study": "#7cc7bf",
+      "studyBg": "#1b2e2c"
+    },
+    "background": [
+      "#17130e"
+    ]
+  }
+}

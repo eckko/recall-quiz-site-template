@@ -3286,3 +3286,468 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M32 8V50M18 14H46%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M18 14L10 32H26zM46 14L38 32H54z%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M8 32H28M36 32H56%22 fill=%22none%22 stroke=%22%238a5a14%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Cpath d=%22M20 52H44%22 fill=%22none%22 stroke=%22%231b2b1d%22 stroke-width=%223.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 /%3E%3Ccircle cx=%2218%22 cy=%2228%22 r=%225%22 fill=%22%23e3b05c%22 stroke=%22%231b2b1d%22 stroke-width=%221.8%22/%3E%3Ccircle cx=%2246%22 cy=%2228%22 r=%223.2%22 fill=%22%237bd48c%22 stroke=%22%231b2b1d%22 stroke-width=%221.8%22/%3E%3C/svg%3E");
 }
 
+/* ---------- Parchment & Teal ---------- */
+.theme-tile[data-theme-id='parchment-verse'] {
+  --tile-page: #faf6ee;
+  --tile-card: #fffdf8;
+  --tile-text: #2a2118;
+  --tile-border: #e4d9c6;
+  --tile-accent: #a4400f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #a4400f;
+  --tile-pop-2: #2f6f6a;
+  --tile-pop-3: #8a5a2b;
+  --tile-radius: 8px;
+  --tile-background: #faf6ee;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='parchment-verse'] {
+  --tile-page: #17130e;
+  --tile-card: #201a13;
+  --tile-text: #efe5d3;
+  --tile-border: #3a3023;
+  --tile-accent: #e58a54;
+  --tile-on-accent: #17130e;
+  --tile-pop-1: #e58a54;
+  --tile-pop-2: #7cc7bf;
+  --tile-pop-3: #d1a56a;
+  --tile-radius: 8px;
+  --tile-background: #17130e;
+}
+.theme-tile[data-theme-id='parchment-verse'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M8 16c8-3 16-3 24 2v34c-8-5-16-5-24-2z%22 fill=%22none%22 stroke=%22%23a4400f%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M56 16c-8-3-16-3-24 2v34c8-5 16-5 24-2z%22 fill=%22none%22 stroke=%22%232f6f6a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cg stroke=%22%23a4400f%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M14 26h12M14 33h12M14 40h9%22/%3E%3C/g%3E%3Cg stroke=%22%232f6f6a%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M38 26h12M38 33h12M38 40h9%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---------- Palm Leaf · ताड़पत्र ---------- */
+.theme-tile[data-theme-id='palm-leaf'] {
+  --tile-page: #ece6c4;
+  --tile-card: #f6f1d6;
+  --tile-text: #2b2a14;
+  --tile-border: #cfc58f;
+  --tile-accent: #5e6b1c;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #5e6b1c;
+  --tile-pop-2: #8a5a1c;
+  --tile-pop-3: #8a5a1c;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg stroke=%22%235e6b1c%22 stroke-opacity=%220.16%22 stroke-width=%221%22 fill=%22none%22%3E%3Cpath d=%22M0 6h120%22 /%3E%3Cpath d=%22M0 15h120%22 /%3E%3Cpath d=%22M0 24h120%22 /%3E%3Cpath d=%22M0 33h120%22 /%3E%3Cpath d=%22M0 42h120%22 /%3E%3Cpath d=%22M0 51h120%22 /%3E%3Cpath d=%22M0 60h120%22 /%3E%3Cpath d=%22M0 69h120%22 /%3E%3Cpath d=%22M0 78h120%22 /%3E%3Cpath d=%22M0 87h120%22 /%3E%3Cpath d=%22M0 96h120%22 /%3E%3Cpath d=%22M0 105h120%22 /%3E%3Cpath d=%22M0 114h120%22 /%3E%3Cpath d=%22M10 20h40M60 47h50M0 83h70M40 101h60%22 stroke-width=%222%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, #ece6c4;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='palm-leaf'] {
+  --tile-page: #14160a;
+  --tile-card: #1d200f;
+  --tile-text: #ece6c4;
+  --tile-border: #3a3d1c;
+  --tile-accent: #b9c85a;
+  --tile-on-accent: #14160a;
+  --tile-pop-1: #b9c85a;
+  --tile-pop-2: #d9a45a;
+  --tile-pop-3: #d9a45a;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg stroke=%22%23d9d28a%22 stroke-opacity=%220.14%22 stroke-width=%221%22 fill=%22none%22%3E%3Cpath d=%22M0 6h120%22 /%3E%3Cpath d=%22M0 15h120%22 /%3E%3Cpath d=%22M0 24h120%22 /%3E%3Cpath d=%22M0 33h120%22 /%3E%3Cpath d=%22M0 42h120%22 /%3E%3Cpath d=%22M0 51h120%22 /%3E%3Cpath d=%22M0 60h120%22 /%3E%3Cpath d=%22M0 69h120%22 /%3E%3Cpath d=%22M0 78h120%22 /%3E%3Cpath d=%22M0 87h120%22 /%3E%3Cpath d=%22M0 96h120%22 /%3E%3Cpath d=%22M0 105h120%22 /%3E%3Cpath d=%22M0 114h120%22 /%3E%3Cpath d=%22M10 20h40M60 47h50M0 83h70M40 101h60%22 stroke-width=%222%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, #14160a;
+}
+.theme-tile[data-theme-id='palm-leaf'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M6 20h52v24H6z%22 fill=%22%23e9e2b0%22 stroke=%22%235e6b1c%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cg stroke=%22%235e6b1c%22 stroke-width=%221.6%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M12 27h40M12 32h40M12 37h40%22/%3E%3C/g%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%223.2%22 fill=%22%23faf6e0%22 stroke=%22%238a5a1c%22 stroke-width=%222%22/%3E%3Cpath d=%22M32 29V14c0-5 8-5 8 0v6%22 fill=%22none%22 stroke=%22%238a5a1c%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M32 35v16%22 stroke=%22%238a5a1c%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Birch Bark · भूर्जपत्र ---------- */
+.theme-tile[data-theme-id='bhurja-bark'] {
+  --tile-page: #ead8c6;
+  --tile-card: #f6e9db;
+  --tile-text: #2e1a12;
+  --tile-border: #cba98e;
+  --tile-accent: #8c2f1a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #8c2f1a;
+  --tile-pop-2: #7a5a2a;
+  --tile-pop-3: #7a5a2a;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg stroke=%22%235a2412%22 stroke-opacity=%220.16%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 fill=%22none%22%3E%3Cpath d=%22M8 12h22%22 /%3E%3Cpath d=%22M60 20h30%22 /%3E%3Cpath d=%22M20 40h14%22 /%3E%3Cpath d=%22M80 52h26%22 /%3E%3Cpath d=%22M5 68h30%22 /%3E%3Cpath d=%22M55 84h18%22 /%3E%3Cpath d=%22M90 100h20%22 /%3E%3Cpath d=%22M30 106h26%22 /%3E%3C/g%3E%3Cpath d=%22M0 30q30-6 60 0t60 0M0 92q30 6 60 0t60 0%22 stroke=%22%235a2412%22 stroke-opacity=%22.08%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #ead8c6;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='bhurja-bark'] {
+  --tile-page: #1c110c;
+  --tile-card: #271811;
+  --tile-text: #f0dcc8;
+  --tile-border: #43291d;
+  --tile-accent: #e8896a;
+  --tile-on-accent: #1c110c;
+  --tile-pop-1: #e8896a;
+  --tile-pop-2: #d8a66a;
+  --tile-pop-3: #d8a66a;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg stroke=%22%23e3a98a%22 stroke-opacity=%220.14%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 fill=%22none%22%3E%3Cpath d=%22M8 12h22%22 /%3E%3Cpath d=%22M60 20h30%22 /%3E%3Cpath d=%22M20 40h14%22 /%3E%3Cpath d=%22M80 52h26%22 /%3E%3Cpath d=%22M5 68h30%22 /%3E%3Cpath d=%22M55 84h18%22 /%3E%3Cpath d=%22M90 100h20%22 /%3E%3Cpath d=%22M30 106h26%22 /%3E%3C/g%3E%3Cpath d=%22M0 30q30-6 60 0t60 0M0 92q30 6 60 0t60 0%22 stroke=%22%23e3a98a%22 stroke-opacity=%22.08%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #1c110c;
+}
+.theme-tile[data-theme-id='bhurja-bark'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M12 12h40v40H12z%22 fill=%22%23c98f6b%22 stroke=%22%238c2f1a%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M8 14c0-6 8-6 8 0v36c0 6-8 6-8 0z%22 fill=%22%23e0b08f%22 stroke=%22%238c2f1a%22 stroke-width=%222.2%22/%3E%3Cpath d=%22M56 14c0-6-8-6-8 0v36c0 6 8 6 8 0z%22 fill=%22%23e0b08f%22 stroke=%22%238c2f1a%22 stroke-width=%222.2%22/%3E%3Cg stroke=%22%235a2412%22 stroke-width=%222.2%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M22 22h8M36 22h6M22 32h6M32 32h10M22 42h10M38 42h4%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---------- Cave Wall · गुहा ---------- */
+.theme-tile[data-theme-id='cave-wall'] {
+  --tile-page: #e6d5b8;
+  --tile-card: #f3e8d0;
+  --tile-text: #2a2018;
+  --tile-border: #c9ae82;
+  --tile-accent: #a8461c;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #a8461c;
+  --tile-pop-2: #7d5f0a;
+  --tile-pop-3: #7d5f0a;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22%236a3a14%22 fill-opacity=%22.12%22%3E%3Ccircle cx=%2214%22 cy=%2218%22 r=%223%22/%3E%3Ccircle cx=%2270%22 cy=%2230%22 r=%222%22/%3E%3Ccircle cx=%22104%22 cy=%2212%22 r=%223.5%22/%3E%3Ccircle cx=%2240%22 cy=%2264%22 r=%222.5%22/%3E%3Ccircle cx=%2296%22 cy=%2278%22 r=%223%22/%3E%3Ccircle cx=%2222%22 cy=%22104%22 r=%222%22/%3E%3Ccircle cx=%2268%22 cy=%22108%22 r=%223.5%22/%3E%3C/g%3E%3Cpath d=%22M0 50q20-8 40 0t40 4t40-6M0 118q30-8 60 0t60-4%22 stroke=%22%236a3a14%22 stroke-opacity=%22.12%22 stroke-width=%221.5%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #e6d5b8;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='cave-wall'] {
+  --tile-page: #151210;
+  --tile-card: #201b17;
+  --tile-text: #eadcc4;
+  --tile-border: #3a3028;
+  --tile-accent: #e0804c;
+  --tile-on-accent: #151210;
+  --tile-pop-1: #e0804c;
+  --tile-pop-2: #d9b14a;
+  --tile-pop-3: #d9b14a;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22%23e0a060%22 fill-opacity=%22.12%22%3E%3Ccircle cx=%2214%22 cy=%2218%22 r=%223%22/%3E%3Ccircle cx=%2270%22 cy=%2230%22 r=%222%22/%3E%3Ccircle cx=%22104%22 cy=%2212%22 r=%223.5%22/%3E%3Ccircle cx=%2240%22 cy=%2264%22 r=%222.5%22/%3E%3Ccircle cx=%2296%22 cy=%2278%22 r=%223%22/%3E%3Ccircle cx=%2222%22 cy=%22104%22 r=%222%22/%3E%3Ccircle cx=%2268%22 cy=%22108%22 r=%223.5%22/%3E%3C/g%3E%3Cpath d=%22M0 50q20-8 40 0t40 4t40-6M0 118q30-8 60 0t60-4%22 stroke=%22%23e0a060%22 stroke-opacity=%22.12%22 stroke-width=%221.5%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #151210;
+}
+.theme-tile[data-theme-id='cave-wall'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M4 54c2-14 4-30 12-40 10-8 22-8 34-2 8 6 10 24 10 42z%22 fill=%22%23d9c3a0%22 stroke=%22%234a4a44%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M16 44c0-8 4-12 12-12h8l6-6 4 3-3 5c2 3 2 6 2 10h-4v6h-3v-6h-12v6h-3v-6h-3v6h-3v-6z%22 fill=%22none%22 stroke=%22%23a8461c%22 stroke-width=%222.4%22 stroke-linejoin=%22round%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M40 26l-2-4%22 stroke=%22%23a8461c%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Stone Inscription · शिलालेख ---------- */
+.theme-tile[data-theme-id='stone-inscription'] {
+  --tile-page: #d9d9d4;
+  --tile-card: #e8e8e3;
+  --tile-text: #22262a;
+  --tile-border: #a9aca8;
+  --tile-accent: #3f6b2a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #3f6b2a;
+  --tile-pop-2: #7a5230;
+  --tile-pop-3: #7a5230;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22%232a3036%22 fill-opacity=%22.1%22%3E%3Ccircle cx=%2212%22 cy=%2214%22 r=%221.5%22/%3E%3Ccircle cx=%2250%22 cy=%2240%22 r=%221%22/%3E%3Ccircle cx=%2290%22 cy=%2220%22 r=%221.5%22/%3E%3Ccircle cx=%2230%22 cy=%2280%22 r=%221%22/%3E%3Ccircle cx=%22104%22 cy=%2290%22 r=%221.5%22/%3E%3Ccircle cx=%2270%22 cy=%22108%22 r=%221%22/%3E%3C/g%3E%3Cpath d=%22M0 60l18 4 14-6 20 8M70 0l6 20-8 14M100 70l-10 18 6 20%22 stroke=%22%232a3036%22 stroke-opacity=%22.12%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #d9d9d4;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='stone-inscription'] {
+  --tile-page: #15181a;
+  --tile-card: #1e2326;
+  --tile-text: #e2e4df;
+  --tile-border: #343b3f;
+  --tile-accent: #9cc46a;
+  --tile-on-accent: #15181a;
+  --tile-pop-1: #9cc46a;
+  --tile-pop-2: #d09a68;
+  --tile-pop-3: #d09a68;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22%23c8d0cc%22 fill-opacity=%22.1%22%3E%3Ccircle cx=%2212%22 cy=%2214%22 r=%221.5%22/%3E%3Ccircle cx=%2250%22 cy=%2240%22 r=%221%22/%3E%3Ccircle cx=%2290%22 cy=%2220%22 r=%221.5%22/%3E%3Ccircle cx=%2230%22 cy=%2280%22 r=%221%22/%3E%3Ccircle cx=%22104%22 cy=%2290%22 r=%221.5%22/%3E%3Ccircle cx=%2270%22 cy=%22108%22 r=%221%22/%3E%3C/g%3E%3Cpath d=%22M0 60l18 4 14-6 20 8M70 0l6 20-8 14M100 70l-10 18 6 20%22 stroke=%22%23c8d0cc%22 stroke-opacity=%22.12%22 fill=%22none%22/%3E%3C/svg%3E") 0 0/120px 120px fixed, #15181a;
+}
+.theme-tile[data-theme-id='stone-inscription'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M14 58V24c0-12 8-18 18-18s18 6 18 18v34z%22 fill=%22%23c4c6c0%22 stroke=%22%233f4448%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M19 56V25c0-9 6-14 13-14s13 5 13 14v31z%22 fill=%22none%22 stroke=%22%233f4448%22 stroke-opacity=%22.5%22 stroke-width=%221.5%22/%3E%3Cg stroke=%22%232a3036%22 stroke-width=%222.4%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M24 26h16M24 34h10M24 42h16%22/%3E%3C/g%3E%3Cpath d=%22M12 58q6-6 10 0t10 0t10 0t10 0%22 fill=%22none%22 stroke=%22%233f6b2a%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Copper Plate · ताम्रपत्र ---------- */
+.theme-tile[data-theme-id='copper-plate'] {
+  --tile-page: #f1dcc8;
+  --tile-card: #f9ebdc;
+  --tile-text: #2e1b10;
+  --tile-border: #d3a888;
+  --tile-accent: #9a4a22;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #9a4a22;
+  --tile-pop-2: #1f6f62;
+  --tile-pop-3: #1f6f62;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22none%22 stroke=%22%237a3a12%22 stroke-opacity=%22.12%22 stroke-width=%221%22%3E%3Cpath d=%22M0 12h120M0 36h120M0 60h120M0 84h120M0 108h120%22/%3E%3C/g%3E%3Cg fill=%22%231f6f62%22 fill-opacity=%22.12%22%3E%3Ccircle cx=%2220%22 cy=%2230%22 r=%224%22/%3E%3Ccircle cx=%2284%22 cy=%2270%22 r=%225%22/%3E%3Ccircle cx=%2250%22 cy=%22104%22 r=%223%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, #f1dcc8;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='copper-plate'] {
+  --tile-page: #1a0f0a;
+  --tile-card: #25160f;
+  --tile-text: #f3dfcb;
+  --tile-border: #46291b;
+  --tile-accent: #e89a6a;
+  --tile-on-accent: #1a0f0a;
+  --tile-pop-1: #e89a6a;
+  --tile-pop-2: #5fc2ae;
+  --tile-pop-3: #5fc2ae;
+  --tile-radius: 7px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22%3E%3Cg fill=%22none%22 stroke=%22%23f0a070%22 stroke-opacity=%22.12%22 stroke-width=%221%22%3E%3Cpath d=%22M0 12h120M0 36h120M0 60h120M0 84h120M0 108h120%22/%3E%3C/g%3E%3Cg fill=%22%235fc2ae%22 fill-opacity=%22.12%22%3E%3Ccircle cx=%2220%22 cy=%2230%22 r=%224%22/%3E%3Ccircle cx=%2284%22 cy=%2270%22 r=%225%22/%3E%3Ccircle cx=%2250%22 cy=%22104%22 r=%223%22/%3E%3C/g%3E%3C/svg%3E") 0 0/120px 120px fixed, #1a0f0a;
+}
+.theme-tile[data-theme-id='copper-plate'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M6 16h52a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18a2 2 0 0 1 2-2z%22 fill=%22%23c9733f%22 stroke=%22%237a3a12%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M9 21h46v22H9z%22 fill=%22none%22 stroke=%22%23f0b27f%22 stroke-width=%221.5%22/%3E%3Cg stroke=%22%235a2a0e%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M16 27h26M16 33h32M16 39h20%22/%3E%3C/g%3E%3Ccircle cx=%2252%22 cy=%2228%22 r=%225%22 fill=%22%232f9a86%22 stroke=%22%231f6f62%22 stroke-width=%222%22/%3E%3Cpath d=%22M10 54h44%22 stroke=%22%231f6f62%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Pothi Books · पोथी ---------- */
+.theme-tile[data-theme-id='pothi-books'] {
+  --tile-page: #f6ecd6;
+  --tile-card: #fffaf0;
+  --tile-text: #2b1a14;
+  --tile-border: #e0cfae;
+  --tile-accent: #9b2226;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #9b2226;
+  --tile-pop-2: #2c3e78;
+  --tile-pop-3: #c98a00;
+  --tile-radius: 6px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Cg opacity=%220.08%22 fill=%22none%22 stroke-width=%222%22%3E%3Crect x=%228%22 y=%2210%22 width=%2244%22 height=%2212%22 rx=%222%22 stroke=%22%239b2226%22/%3E%3Crect x=%2214%22 y=%2226%22 width=%2238%22 height=%2212%22 rx=%222%22 stroke=%22%232c3e78%22/%3E%3Crect x=%226%22 y=%2242%22 width=%2246%22 height=%2212%22 rx=%222%22 stroke=%22%239b2226%22/%3E%3Cpath d=%22M14 16h30M20 32h24M12 48h32%22 stroke=%22%232c3e78%22 stroke-width=%221.5%22/%3E%3C/g%3E%3C/svg%3E") 0 0/64px 64px fixed, #f6ecd6;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='pothi-books'] {
+  --tile-page: #181008;
+  --tile-card: #231810;
+  --tile-text: #f1e3c8;
+  --tile-border: #43321f;
+  --tile-accent: #e07a6e;
+  --tile-on-accent: #181008;
+  --tile-pop-1: #e07a6e;
+  --tile-pop-2: #8fa2e6;
+  --tile-pop-3: #e8b44f;
+  --tile-radius: 6px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Cg opacity=%220.07%22 fill=%22none%22 stroke-width=%222%22%3E%3Crect x=%228%22 y=%2210%22 width=%2244%22 height=%2212%22 rx=%222%22 stroke=%22%23e8b44f%22/%3E%3Crect x=%2214%22 y=%2226%22 width=%2238%22 height=%2212%22 rx=%222%22 stroke=%22%23e07a6e%22/%3E%3Crect x=%226%22 y=%2242%22 width=%2246%22 height=%2212%22 rx=%222%22 stroke=%22%23e8b44f%22/%3E%3Cpath d=%22M14 16h30M20 32h24M12 48h32%22 stroke=%22%23e07a6e%22 stroke-width=%221.5%22/%3E%3C/g%3E%3C/svg%3E") 0 0/64px 64px fixed, #181008;
+}
+.theme-tile[data-theme-id='pothi-books'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%2240%22 width=%2252%22 height=%2212%22 rx=%222%22 fill=%22%232c3e78%22/%3E%3Crect x=%2210%22 y=%2228%22 width=%2246%22 height=%2212%22 rx=%222%22 fill=%22%239b2226%22/%3E%3Crect x=%228%22 y=%2216%22 width=%2244%22 height=%2212%22 rx=%222%22 fill=%22%23c98a00%22/%3E%3Cpath d=%22M14 46h40M18 34h34M16 22h30%22 stroke=%22%23fffaf0%22 stroke-width=%221.6%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2212%22 cy=%2222%22 r=%222%22 fill=%22%23fffaf0%22/%3E%3Cpath d=%22M6 56h52%22 stroke=%22%232b1a14%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Kundalini · कुण्डलिनी ---------- */
+.theme-tile[data-theme-id='kundalini'] {
+  --tile-page: #f6effa;
+  --tile-card: #fffaff;
+  --tile-text: #25123a;
+  --tile-border: #dcc9ec;
+  --tile-accent: #7b2d9e;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #7b2d9e;
+  --tile-pop-2: #b0156b;
+  --tile-pop-3: #b07a00;
+  --tile-radius: 10px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2296%22 height=%2296%22 viewBox=%220 0 96 96%22%3E%3Cg opacity=%220.09%22 fill=%22none%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M40 8c-14 0-20 12-12 18s20 2 16 12-22 10-30 6%22 stroke=%22%237b2d9e%22 stroke-width=%222%22/%3E%3Ccircle cx=%2240%22 cy=%228%22 r=%222%22 fill=%22%23b07a00%22/%3E%3Cpath d=%22M74 70c-8 0-12 6-8 10s12 1 10 7%22 stroke=%22%23b07a00%22 stroke-width=%221.5%22/%3E%3C/g%3E%3C/svg%3E") 0 0/96px 96px fixed, #f6effa;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='kundalini'] {
+  --tile-page: #130a1f;
+  --tile-card: #1e1230;
+  --tile-text: #f1e6fb;
+  --tile-border: #3a2756;
+  --tile-accent: #d29cf0;
+  --tile-on-accent: #130a1f;
+  --tile-pop-1: #d29cf0;
+  --tile-pop-2: #f07ac0;
+  --tile-pop-3: #f0c24f;
+  --tile-radius: 10px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2296%22 height=%2296%22 viewBox=%220 0 96 96%22%3E%3Cg opacity=%220.09%22 fill=%22none%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M40 8c-14 0-20 12-12 18s20 2 16 12-22 10-30 6%22 stroke=%22%23d29cf0%22 stroke-width=%222%22/%3E%3Ccircle cx=%2240%22 cy=%228%22 r=%222%22 fill=%22%23f0c24f%22/%3E%3Cpath d=%22M74 70c-8 0-12 6-8 10s12 1 10 7%22 stroke=%22%23f0c24f%22 stroke-width=%221.5%22/%3E%3C/g%3E%3C/svg%3E") 0 0/96px 96px fixed, #130a1f;
+}
+.theme-tile[data-theme-id='kundalini'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M32 6c-14 0-22 10-14 18s24 4 22 14-20 10-26 8%22 fill=%22none%22 stroke=%22%237b2d9e%22 stroke-width=%225%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2232%22 cy=%226%22 r=%223%22 fill=%22%23b0156b%22/%3E%3Cg fill=%22%23d9a400%22%3E%3Ccircle cx=%2246%22 cy=%2256%22 r=%223%22/%3E%3C/g%3E%3Cg stroke-width=%223%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M50 8v0%22 stroke=%22%237b2d9e%22/%3E%3Cpath d=%22M54 14v0%22 stroke=%22%23b0156b%22/%3E%3Cpath d=%22M54 24v0%22 stroke=%22%23d9a400%22/%3E%3Cpath d=%22M54 34v0%22 stroke=%22%232f7a74%22/%3E%3Cpath d=%22M54 44v0%22 stroke=%22%233a62c9%22/%3E%3Cpath d=%22M12 56c10 4 22 2 30-4%22 fill=%22none%22 stroke=%22%23d9a400%22/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---------- Playful Devanagari · खेल ---------- */
+.theme-tile[data-theme-id='sanskrit-playful'] {
+  --tile-page: #fff8e6;
+  --tile-card: #ffffff;
+  --tile-text: #2a2340;
+  --tile-border: #2a2340;
+  --tile-accent: #d63a3f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #d63a3f;
+  --tile-pop-2: #2a6fd1;
+  --tile-pop-3: #e59a00;
+  --tile-radius: 14px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2296%22 height=%2296%22 viewBox=%220 0 96 96%22%3E%3Cg opacity=%220.12%22 fill=%22none%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%228%22 stroke=%22%23d63a3f%22/%3E%3Cpath d=%22M70 14l10 18H60z%22 stroke=%22%232a6fd1%22/%3E%3Cpath d=%22M14 74q8-12 16 0t16 0%22 stroke=%22%23e59a00%22/%3E%3Crect x=%2262%22 y=%2262%22 width=%2218%22 height=%2218%22 rx=%225%22 stroke=%22%23d63a3f%22/%3E%3C/g%3E%3C/svg%3E") 0 0/96px 96px fixed, #fff8e6;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='sanskrit-playful'] {
+  --tile-page: #1d1a2e;
+  --tile-card: #2a2540;
+  --tile-text: #fff4dd;
+  --tile-border: #7a70b0;
+  --tile-accent: #ff7a7f;
+  --tile-on-accent: #1d1a2e;
+  --tile-pop-1: #ff7a7f;
+  --tile-pop-2: #6db3ff;
+  --tile-pop-3: #ffc857;
+  --tile-radius: 14px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2296%22 height=%2296%22 viewBox=%220 0 96 96%22%3E%3Cg opacity=%220.1%22 fill=%22none%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%228%22 stroke=%22%23ff7a7f%22/%3E%3Cpath d=%22M70 14l10 18H60z%22 stroke=%22%236db3ff%22/%3E%3Cpath d=%22M14 74q8-12 16 0t16 0%22 stroke=%22%23ffc857%22/%3E%3Crect x=%2262%22 y=%2262%22 width=%2218%22 height=%2218%22 rx=%225%22 stroke=%22%23ff7a7f%22/%3E%3C/g%3E%3C/svg%3E") 0 0/96px 96px fixed, #1d1a2e;
+}
+.theme-tile[data-theme-id='sanskrit-playful'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect x=%228%22 y=%2210%22 width=%2248%22 height=%2240%22 rx=%2214%22 fill=%22%23ffd45e%22 stroke=%22%232a2340%22 stroke-width=%224%22/%3E%3Cpath d=%22M20 50l-4 8 12-8%22 fill=%22%23ffd45e%22 stroke=%22%232a2340%22 stroke-width=%224%22 stroke-linejoin=%22round%22/%3E%3Ctext x=%2232%22 y=%2240%22 font-size=%2226%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22%23d63a3f%22 font-family=%22sans-serif%22%3E%E0%A4%85%3C/text%3E%3C/svg%3E");
+}
+
+/* ---------- Shalya Tantra · शल्य तन्त्र ---------- */
+.theme-tile[data-theme-id='shalya-tantra'] {
+  --tile-page: #eef1f0;
+  --tile-card: #fbfaf4;
+  --tile-text: #1c2a28;
+  --tile-border: #cdd5d2;
+  --tile-accent: #1f5c4a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #1f5c4a;
+  --tile-pop-2: #a3202c;
+  --tile-pop-3: #5b6b73;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 80 80%22%3E%3Cg opacity=%220.07%22 fill=%22none%22 stroke-width=%221.5%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M0 40h80M40 0v80%22 stroke=%22%235b6b73%22/%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%223%22 stroke=%22%23a3202c%22/%3E%3Cpath d=%22M10 10l6 6M64 64l6 6%22 stroke=%22%23a3202c%22/%3E%3C/g%3E%3C/svg%3E") 0 0/80px 80px fixed, #eef1f0;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='shalya-tantra'] {
+  --tile-page: #10171a;
+  --tile-card: #172226;
+  --tile-text: #e6eeec;
+  --tile-border: #2c3d42;
+  --tile-accent: #6fcaa8;
+  --tile-on-accent: #10171a;
+  --tile-pop-1: #6fcaa8;
+  --tile-pop-2: #ee8a90;
+  --tile-pop-3: #9fb2ad;
+  --tile-radius: 4px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 80 80%22%3E%3Cg opacity=%220.07%22 fill=%22none%22 stroke-width=%221.5%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M0 40h80M40 0v80%22 stroke=%22%239fb2ad%22/%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%223%22 stroke=%22%23ee8a90%22/%3E%3Cpath d=%22M10 10l6 6M64 64l6 6%22 stroke=%22%23ee8a90%22/%3E%3C/g%3E%3C/svg%3E") 0 0/80px 80px fixed, #10171a;
+}
+.theme-tile[data-theme-id='shalya-tantra'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M10 54C10 30 26 12 50 10c4 0 5 4 2 5C36 20 28 34 28 54z%22 fill=%22none%22 stroke=%22%231f5c4a%22 stroke-width=%223%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M28 54h-6l0 6h6z%22 fill=%22%23cdd5d2%22 stroke=%22%235b6b73%22 stroke-width=%222%22/%3E%3Cpath d=%22M10 54h18%22 stroke=%22%231f5c4a%22 stroke-width=%223%22/%3E%3Cpath d=%22M14 46c2-12 10-22 24-28%22 fill=%22none%22 stroke=%22%23a3202c%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2250%22 cy=%2210%22 r=%222.5%22 fill=%22%23a3202c%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Rasayana · रसायन ---------- */
+.theme-tile[data-theme-id='rasayana'] {
+  --tile-page: #fbf5e4;
+  --tile-card: #fffcf2;
+  --tile-text: #2b2412;
+  --tile-border: #ecdfb8;
+  --tile-accent: #8a5a00;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #8a5a00;
+  --tile-pop-2: #4a6b1f;
+  --tile-pop-3: #c7782a;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%23b08a1a%22 fill-opacity=%220.16%22%3E%3Cpath d=%22M30 20c10 6 12 16 4 26-10-4-14-16-4-26z%22/%3E%3Cpath d=%22M100 80c-10-6-12-16-4-26 10 4 14 16 4 26z%22/%3E%3C/g%3E%3Cg fill=%22%234a6b1f%22 fill-opacity=%220.2%22%3E%3Cpath d=%22M96 22c4 6 4 10 0 13-4-3-4-8 0-13z%22/%3E%3Cpath d=%22M40 98c4 6 4 10 0 13-4-3-4-8 0-13z%22/%3E%3C/g%3E%3Ccircle cx=%2270%22 cy=%2264%22 r=%222%22 fill=%22%234a6b1f%22 fill-opacity=%22.25%22/%3E%3C/svg%3E"), #fbf5e4;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='rasayana'] {
+  --tile-page: #17140a;
+  --tile-card: #211c0e;
+  --tile-text: #f3ead0;
+  --tile-border: #3b3418;
+  --tile-accent: #e6b84a;
+  --tile-on-accent: #17140a;
+  --tile-pop-1: #e6b84a;
+  --tile-pop-2: #a9c96a;
+  --tile-pop-3: #e89a52;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%23e6b84a%22 fill-opacity=%220.16%22%3E%3Cpath d=%22M30 20c10 6 12 16 4 26-10-4-14-16-4-26z%22/%3E%3Cpath d=%22M100 80c-10-6-12-16-4-26 10 4 14 16 4 26z%22/%3E%3C/g%3E%3Cg fill=%22%23a9c96a%22 fill-opacity=%220.2%22%3E%3Cpath d=%22M96 22c4 6 4 10 0 13-4-3-4-8 0-13z%22/%3E%3Cpath d=%22M40 98c4 6 4 10 0 13-4-3-4-8 0-13z%22/%3E%3C/g%3E%3Ccircle cx=%2270%22 cy=%2264%22 r=%222%22 fill=%22%23a9c96a%22 fill-opacity=%22.25%22/%3E%3C/svg%3E"), #17140a;
+}
+.theme-tile[data-theme-id='rasayana'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M32 6c3 4 3 7 0 10-3-3-3-6 0-10z%22 fill=%22%23d98a1c%22 stroke=%22%238a5a00%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M26 20h12M28 20v8L14 50c-2 5 1 8 6 8h24c5 0 8-3 6-8L36 28v-8%22 fill=%22%23fbe9b0%22 stroke=%22%238a5a00%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M19 44h26l5 8c1 3-1 4-4 4H18c-3 0-5-1-4-4z%22 fill=%22%23d98a1c%22 fill-opacity=%22.8%22/%3E%3Cpath d=%22M40 38c5 0 9-3 11-9-6 0-10 3-11 9z%22 fill=%22%234a6b1f%22 stroke=%22%2333500f%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Vata Balance · वात ---------- */
+.theme-tile[data-theme-id='vata-balance'] {
+  --tile-page: #f1f3f8;
+  --tile-card: #fbfcfe;
+  --tile-text: #232a3b;
+  --tile-border: #d7dce9;
+  --tile-accent: #4a5f9a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #4a5f9a;
+  --tile-pop-2: #8a6410;
+  --tile-pop-3: #7a6aa8;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22none%22 stroke=%22%234a5f9a%22 stroke-opacity=%220.14%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M10 40c20-14 40-14 56 0s24 6 30-2%22/%3E%3Cpath d=%22M30 90c16-10 32-10 46 0s22 4 28-2%22/%3E%3Cpath d=%22M70 20a8 8 0 1 1 8 8%22/%3E%3Cpath d=%22M20 66a6 6 0 1 0-6-6%22/%3E%3C/g%3E%3Ccircle cx=%22108%22 cy=%22104%22 r=%223%22 fill=%22%23c99a2e%22 fill-opacity=%22.2%22/%3E%3C/svg%3E"), #f1f3f8;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='vata-balance'] {
+  --tile-page: #12151e;
+  --tile-card: #1a1e2a;
+  --tile-text: #e8ebf4;
+  --tile-border: #2c3347;
+  --tile-accent: #9fb4ee;
+  --tile-on-accent: #12151e;
+  --tile-pop-1: #9fb4ee;
+  --tile-pop-2: #e0b45c;
+  --tile-pop-3: #b7a6e6;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22none%22 stroke=%22%239fb4ee%22 stroke-opacity=%220.14%22 stroke-width=%222%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M10 40c20-14 40-14 56 0s24 6 30-2%22/%3E%3Cpath d=%22M30 90c16-10 32-10 46 0s22 4 28-2%22/%3E%3Cpath d=%22M70 20a8 8 0 1 1 8 8%22/%3E%3Cpath d=%22M20 66a6 6 0 1 0-6-6%22/%3E%3C/g%3E%3Ccircle cx=%22108%22 cy=%22104%22 r=%223%22 fill=%22%23e0b45c%22 fill-opacity=%22.2%22/%3E%3C/svg%3E"), #12151e;
+}
+.theme-tile[data-theme-id='vata-balance'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cg fill=%22none%22 stroke=%22%234a5f9a%22 stroke-width=%223%22 stroke-linecap=%22round%22%3E%3Cpath d=%22M6 22h28a7 7 0 1 0-7-7%22/%3E%3Cpath d=%22M6 34h40a8 8 0 1 1-8 8%22/%3E%3Cpath d=%22M6 46h20%22/%3E%3C/g%3E%3Ccircle cx=%2248%22 cy=%2254%22 r=%225%22 fill=%22%23c99a2e%22 stroke=%22%238a6410%22 stroke-width=%222%22/%3E%3Cpath d=%22M40 60h16%22 stroke=%22%238a6410%22 stroke-width=%222.5%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Pitta Balance · पित्त ---------- */
+.theme-tile[data-theme-id='pitta-balance'] {
+  --tile-page: #fdf4ef;
+  --tile-card: #fffcf9;
+  --tile-text: #2e1d18;
+  --tile-border: #f0d9cc;
+  --tile-accent: #b3391f;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #b3391f;
+  --tile-pop-2: #0e7a78;
+  --tile-pop-3: #d98a1c;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%23d9532f%22 fill-opacity=%220.14%22%3E%3Cpath d=%22M30 50c-8-10-4-18 2-26 2 8 10 12 8 22-1 6-6 8-10 4z%22/%3E%3Cpath d=%22M100 118c-8-10-4-18 2-26 2 8 10 12 8 22-1 6-6 8-10 4z%22/%3E%3C/g%3E%3Cg fill=%22%230e7a78%22 fill-opacity=%220.18%22%3E%3Cpath d=%22M98 40c6 8 8 14 4 18-5 3-10-1-9-6 0-4 3-8 5-12z%22/%3E%3Cpath d=%22M30 108c6 8 8 14 4 18-5 3-10-1-9-6 0-4 3-8 5-12z%22/%3E%3C/g%3E%3C/svg%3E"), #fdf4ef;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='pitta-balance'] {
+  --tile-page: #18110f;
+  --tile-card: #221916;
+  --tile-text: #f6e8e0;
+  --tile-border: #3d2c26;
+  --tile-accent: #f08a6e;
+  --tile-on-accent: #18110f;
+  --tile-pop-1: #f08a6e;
+  --tile-pop-2: #6fd4c8;
+  --tile-pop-3: #e8b04a;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%23f08a6e%22 fill-opacity=%220.14%22%3E%3Cpath d=%22M30 50c-8-10-4-18 2-26 2 8 10 12 8 22-1 6-6 8-10 4z%22/%3E%3Cpath d=%22M100 118c-8-10-4-18 2-26 2 8 10 12 8 22-1 6-6 8-10 4z%22/%3E%3C/g%3E%3Cg fill=%22%236fd4c8%22 fill-opacity=%220.18%22%3E%3Cpath d=%22M98 40c6 8 8 14 4 18-5 3-10-1-9-6 0-4 3-8 5-12z%22/%3E%3Cpath d=%22M30 108c6 8 8 14 4 18-5 3-10-1-9-6 0-4 3-8 5-12z%22/%3E%3C/g%3E%3C/svg%3E"), #18110f;
+}
+.theme-tile[data-theme-id='pitta-balance'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpath d=%22M28 6c-2 10-14 16-14 30a14 14 0 0 0 28 0c0-6-3-9-5-12-1 5-3 7-5 7 2-9-1-17-4-25z%22 fill=%22%23e0572f%22 stroke=%22%23b3391f%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M26 30c-1 6-6 9-6 15a8 8 0 0 0 16 0c0-5-4-8-6-12z%22 fill=%22%23f3b23c%22/%3E%3Cpath d=%22M48 32c6 8 10 13 10 19a10 10 0 0 1-20 0c0-6 5-11 10-19z%22 fill=%22%237fd6cc%22 stroke=%22%230e7a78%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M45 52a4 4 0 0 0 4 4%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Kapha Balance · कफ ---------- */
+.theme-tile[data-theme-id='kapha-balance'] {
+  --tile-page: #f3f2e8;
+  --tile-card: #fcfcf6;
+  --tile-text: #262a1c;
+  --tile-border: #dcdcc6;
+  --tile-accent: #4f6b2a;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #4f6b2a;
+  --tile-pop-2: #9a5a1f;
+  --tile-pop-3: #b8761a;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%236b7a4a%22 fill-opacity=%220.14%22%3E%3Cellipse cx=%2230%22 cy=%2234%22 rx=%2216%22 ry=%2211%22/%3E%3Cellipse cx=%2294%22 cy=%2286%22 rx=%2218%22 ry=%2212%22/%3E%3Cellipse cx=%2262%22 cy=%22110%22 rx=%229%22 ry=%226%22/%3E%3C/g%3E%3Cg fill=%22%23b8761a%22 fill-opacity=%220.18%22%3E%3Cellipse cx=%2288%22 cy=%2226%22 rx=%229%22 ry=%227%22/%3E%3Cellipse cx=%2224%22 cy=%2282%22 rx=%228%22 ry=%226%22/%3E%3Ccircle cx=%2260%22 cy=%2262%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E"), #f3f2e8;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='kapha-balance'] {
+  --tile-page: #14160e;
+  --tile-card: #1c1f14;
+  --tile-text: #ecefdc;
+  --tile-border: #31351f;
+  --tile-accent: #a9c872;
+  --tile-on-accent: #14160e;
+  --tile-pop-1: #a9c872;
+  --tile-pop-2: #e0a050;
+  --tile-pop-3: #f0b030;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22%23a9c872%22 fill-opacity=%220.14%22%3E%3Cellipse cx=%2230%22 cy=%2234%22 rx=%2216%22 ry=%2211%22/%3E%3Cellipse cx=%2294%22 cy=%2286%22 rx=%2218%22 ry=%2212%22/%3E%3Cellipse cx=%2262%22 cy=%22110%22 rx=%229%22 ry=%226%22/%3E%3C/g%3E%3Cg fill=%22%23e0a050%22 fill-opacity=%220.18%22%3E%3Cellipse cx=%2288%22 cy=%2226%22 rx=%229%22 ry=%227%22/%3E%3Cellipse cx=%2224%22 cy=%2282%22 rx=%228%22 ry=%226%22/%3E%3Ccircle cx=%2260%22 cy=%2262%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E"), #14160e;
+}
+.theme-tile[data-theme-id='kapha-balance'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cellipse cx=%2232%22 cy=%2250%22 rx=%2224%22 ry=%229%22 fill=%22%239a8f78%22 stroke=%22%236b6350%22 stroke-width=%222.5%22/%3E%3Cellipse cx=%2230%22 cy=%2236%22 rx=%2217%22 ry=%228%22 fill=%22%23b4764a%22 stroke=%22%237d4a28%22 stroke-width=%222.5%22/%3E%3Cellipse cx=%2234%22 cy=%2224%22 rx=%2211%22 ry=%226%22 fill=%22%238aa05a%22 stroke=%22%234f6b2a%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M32 18c1-5 5-8 10-8-1 5-5 8-10 8z%22 fill=%22%23f0a830%22 stroke=%22%23b8761a%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E");
+}
+
+/* ---------- Tridosha Balance · त्रिदोष ---------- */
+.theme-tile[data-theme-id='tridosha-balance'] {
+  --tile-page: #faf6ec;
+  --tile-card: #fffdf6;
+  --tile-text: #262421;
+  --tile-border: #e6dfcd;
+  --tile-accent: #7a52b3;
+  --tile-on-accent: #ffffff;
+  --tile-pop-1: #6b55b0;
+  --tile-pop-2: #c9482f;
+  --tile-pop-3: #3c7c4a;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22none%22 stroke-width=%222%22 stroke-opacity=%220.2%22%3E%3Ccircle cx=%2236%22 cy=%2240%22 r=%2216%22 stroke=%22%236b55b0%22/%3E%3Ccircle cx=%2252%22 cy=%2240%22 r=%2216%22 stroke=%22%23c9482f%22/%3E%3Ccircle cx=%2244%22 cy=%2254%22 r=%2216%22 stroke=%22%233c7c4a%22/%3E%3C/g%3E%3Cg fill-opacity=%220.2%22%3E%3Ccircle cx=%22104%22 cy=%2296%22 r=%224%22 fill=%22%236b55b0%22/%3E%3Ccircle cx=%22114%22 cy=%2296%22 r=%224%22 fill=%22%23c9482f%22/%3E%3Ccircle cx=%22109%22 cy=%22105%22 r=%224%22 fill=%22%233c7c4a%22/%3E%3C/g%3E%3C/svg%3E"), #faf6ec;
+}
+[data-scheme='dark'] .theme-tile[data-theme-id='tridosha-balance'] {
+  --tile-page: #191816;
+  --tile-card: #232120;
+  --tile-text: #f0ece2;
+  --tile-border: #38352f;
+  --tile-accent: #b9a0ee;
+  --tile-on-accent: #191816;
+  --tile-pop-1: #b9a0ee;
+  --tile-pop-2: #f08a6e;
+  --tile-pop-3: #86c898;
+  --tile-radius: 8px;
+  --tile-background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22130%22 height=%22130%22%3E%3Cg fill=%22none%22 stroke-width=%222%22 stroke-opacity=%220.2%22%3E%3Ccircle cx=%2236%22 cy=%2240%22 r=%2216%22 stroke=%22%23b9a0ee%22/%3E%3Ccircle cx=%2252%22 cy=%2240%22 r=%2216%22 stroke=%22%23f08a6e%22/%3E%3Ccircle cx=%2244%22 cy=%2254%22 r=%2216%22 stroke=%22%2386c898%22/%3E%3C/g%3E%3Cg fill-opacity=%220.2%22%3E%3Ccircle cx=%22104%22 cy=%2296%22 r=%224%22 fill=%22%23b9a0ee%22/%3E%3Ccircle cx=%22114%22 cy=%2296%22 r=%224%22 fill=%22%23f08a6e%22/%3E%3Ccircle cx=%22109%22 cy=%22105%22 r=%224%22 fill=%22%2386c898%22/%3E%3C/g%3E%3C/svg%3E"), #191816;
+}
+.theme-tile[data-theme-id='tridosha-balance'] .tile-mascot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cg stroke-width=%222.5%22 fill-opacity=%22.35%22%3E%3Ccircle cx=%2225%22 cy=%2222%22 r=%2217%22 fill=%22%238b6fd0%22 stroke=%22%236b55b0%22/%3E%3Ccircle cx=%2239%22 cy=%2222%22 r=%2217%22 fill=%22%23e0603f%22 stroke=%22%23c9482f%22/%3E%3Ccircle cx=%2232%22 cy=%2234%22 r=%2217%22 fill=%22%234c9a62%22 stroke=%22%232f7a4a%22/%3E%3C/g%3E%3Cg stroke-width=%222.5%22 fill=%22none%22%3E%3Ccircle cx=%2225%22 cy=%2222%22 r=%2217%22 stroke=%22%236b55b0%22/%3E%3Ccircle cx=%2239%22 cy=%2222%22 r=%2217%22 stroke=%22%23c9482f%22/%3E%3Ccircle cx=%2232%22 cy=%2234%22 r=%2217%22 stroke=%22%232f7a4a%22/%3E%3C/g%3E%3Cpath d=%22M32 54c-3 4-4 6-4 8a4 4 0 0 0 8 0c0-2-1-4-4-8z%22 fill=%22%23b08a1a%22/%3E%3C/svg%3E");
+}
+

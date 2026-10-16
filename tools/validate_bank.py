@@ -474,6 +474,9 @@ def check_core_and_summaries(bank):
     if concepts and len(core) / len(concepts) > MOST_CORE_SHARE:
         warn("concepts", f"{len(core)} of {len(concepts)} ideas are core: "
              "core means the few that matter most")
+    if "scrollButtons" in bank and not isinstance(
+            bank["scrollButtons"], bool):
+        error("questions.json", "scrollButtons must be true or false")
     summary = bank.get("summary")
     if not is_text(summary):
         warn("questions.json", "no book `summary` (one sentence)")

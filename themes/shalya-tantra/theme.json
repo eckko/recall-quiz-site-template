@@ -1,0 +1,73 @@
+{
+  "name": "Shalya Tantra · शल्य तन्त्र",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Sahitya\",Georgia,serif",
+    "headings": "\"Sahitya\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "6px",
+    "smallRadius": "4px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 2.5,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#eef1f0",
+      "card": "#fbfaf4",
+      "text": "#1c2a28",
+      "textMuted": "#55645f",
+      "border": "#cdd5d2",
+      "accent": "#1f5c4a",
+      "accent2": "#a3202c",
+      "highlight": "#e3e9e6",
+      "correct": "#2f6b3a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#1f5c4a",
+      "pop2": "#a3202c",
+      "pop3": "#5b6b73",
+      "pop4": "#3a5f8a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff",
+      "study": "#3a5f8a",
+      "studyBg": "#e1eaf3"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/80px 80px fixed",
+      "#eef1f0"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#10171a",
+      "card": "#172226",
+      "text": "#e6eeec",
+      "textMuted": "#9fb2ad",
+      "border": "#2c3d42",
+      "accent": "#6fcaa8",
+      "accent2": "#ee8a90",
+      "highlight": "#1e2d32",
+      "correct": "#92c88a",
+      "wrong": "#f29a90",
+      "partly": "#e8b44f",
+      "pop1": "#6fcaa8",
+      "pop2": "#ee8a90",
+      "pop3": "#9fb2ad",
+      "pop4": "#8fb4e3",
+      "onAccent": "#10171a",
+      "onHero": "#10171a",
+      "study": "#8fb4e3",
+      "studyBg": "#1a2a3d"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/80px 80px fixed",
+      "#10171a"
+    ]
+  }
+}

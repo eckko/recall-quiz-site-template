@@ -6,7 +6,15 @@
  *
  * questions.json fields (all optional, older banks do not use them):
  *   concept.genre            short label, for example "Algorithms"
- *   card.blocks              [{ label, text, code, lang, media }]
+ *   card.blocks              [{ label, text, code, lang, media, study,
+ *                                lines, words }]
+ *   block.study              true marks a verse-study block (own colours)
+ *   block.key                which part of a Sanskrit card this is (ref,
+ *                            verse, words, hindi, english, explain, aids,
+ *                            note); Settings can hide each part
+ *   block.lines              ["line", ...] shown one per line (verse text)
+ *   block.words              [[{ w, gloss, gram }, ...], ...] one list of
+ *                            word chips per verse line; tap shows gram
  *   card.media               [{ id, alt, role, type }] shown under the card text
  *   cover                    one media entry (role "cover"), shown by the title
  *   question.code, .lang     a code listing under the question
@@ -19,6 +27,8 @@
   "use strict";
 
   const { createElement } = quiz.helpers;
+  const SHOW_GRAMMAR = "Show all grammar";
+  const HIDE_GRAMMAR = "Hide grammar";
 
   /**
    * A code listing.
@@ -183,6 +193,132 @@
   }
 
   /**
+   * The lines of a verse, one paragraph per line.
+   * @param {string[]} lines
+   * @returns {HTMLElement}
+   */
+  function createVerseLines(lines) {
+    const verse = createElement("div", "verse-lines");
+    lines.forEach(function addLine(line) {
+      verse.appendChild(createElement("p", "verse-line", line));
+    });
+    return verse;
+  }
+
+  /**
+   * One word chip: the word, its meaning, and its grammar on tap.
+   * @param {{w: string, gloss: string, gram: string}} word
+   * @returns {HTMLElement}
+   */
+  function createWordChip(word) {
+    const chip = createElement("button", "word-chip");
+    chip.type = "button";
+    chip.setAttribute("aria-expanded", "false");
+    chip.appendChild(createElement("b", "word-form", word.w));
+    chip.appendChild(createElement("span", "word-gloss", word.gloss));
+    chip.appendChild(createElement("small", "word-gram", word.gram || ""));
+    chip.addEventListener("click", function toggleGrammar() {
+      const open = chip.classList.toggle("is-open");
+      chip.setAttribute("aria-expanded", String(open));
+    });
+    return chip;
+  }
+
+  /**
+   * A button that shows or hides the grammar of every chip in a list.
+   * @param {HTMLElement} list the element that holds the chips
+   * @returns {HTMLElement}
+   */
+  function createGrammarToggle(list) {
+    const button = createElement("button", "grammar-toggle",
+      SHOW_GRAMMAR);
+    button.type = "button";
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", function toggleAll() {
+      const show = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(show));
+      button.textContent = show ? HIDE_GRAMMAR : SHOW_GRAMMAR;
+      list.querySelectorAll(".word-chip").forEach(function set(chip) {
+        chip.classList.toggle("is-open", show);
+        chip.setAttribute("aria-expanded", String(show));
+      });
+    });
+    return button;
+  }
+
+  /**
+   * Word chips for a verse, one row per verse line, with a button that
+   * shows all the grammar at once.
+   * @param {object[][]} rows
+   * @returns {HTMLElement}
+   */
+  function createWordRows(rows) {
+    const list = createElement("div", "word-rows");
+    rows.forEach(function addRow(row) {
+      const line = createElement("div", "word-row");
+      row.forEach(function addWord(word) {
+        line.appendChild(createWordChip(word));
+      });
+      list.appendChild(line);
+    });
+    const wrapper = createElement("div", "word-list");
+    wrapper.appendChild(createGrammarToggle(list));
+    wrapper.appendChild(list);
+    return wrapper;
+  }
+
+  /**
+   * The memory aids of a block: one labelled item per aid, each marked
+   * with its kind (data-aid) so Settings can switch the kind off.
+   * @param {object[]} aids
+   * @returns {HTMLElement}
+   */
+  function createAids(aids) {
+    const list = createElement("div", "aid-list");
+    aids.forEach(function addAid(aid) {
+      const item = createElement("div", "aid-item");
+      item.dataset.aid = aid.aid;
+      item.appendChild(createElement("small", "aid-label", aid.label));
+      if (aid.text) {
+        item.appendChild(createElement("p", "aid-text", aid.text));
+      }
+      if (aid.steps) {
+        const steps = createElement("ol", "aid-steps");
+        aid.steps.forEach(function addStep(step) {
+          steps.appendChild(createElement("li", null, step));
+        });
+        item.appendChild(steps);
+      }
+      if (aid.groups) {
+        const tiers = createElement("div", "aid-tiers");
+        aid.groups.forEach(function addTier(group, index) {
+          const tier = createElement("div", "aid-tier");
+          tier.dataset.tier = String(index);
+          tier.appendChild(createElement("b", null, group.label));
+          tier.appendChild(createElement("span", null,
+            group.items.join(" · ")));
+          tiers.appendChild(tier);
+        });
+        item.appendChild(tiers);
+      }
+      if (aid.lines) {
+        aid.lines.forEach(function addLine(line) {
+          item.appendChild(createElement("p", "aid-line", line));
+        });
+      }
+      if (aid.image) {
+        const picture = createElement("img", "aid-image");
+        picture.src = aid.image.src;
+        picture.alt = aid.image.alt;
+        picture.loading = "lazy";
+        item.appendChild(picture);
+      }
+      list.appendChild(item);
+    });
+    return list;
+  }
+
+  /**
    * The labelled blocks of a card.
    * @param {object[]} blocks
    * @returns {HTMLElement[]}
@@ -190,12 +326,31 @@
   function createBlocks(blocks) {
     return blocks.map(function build(block) {
       const element = createElement("div", "idea-block");
+      if (block.study) {
+        element.classList.add("is-study");
+      }
+      if (block.key) {
+        element.dataset.part = block.key;
+      }
       element.appendChild(createElement("b", "idea-block-label",
         block.label));
+      if (block.lines) {
+        element.appendChild(createVerseLines(block.lines));
+      }
+      if (block.words) {
+        element.appendChild(createWordRows(block.words));
+      }
       if (block.text) {
         element.appendChild(createElement("p", null, block.text));
       }
+      if (block.aids) {
+        element.classList.add("aid-block");
+        element.appendChild(createAids(block.aids));
+      }
       appendExtras(element, block);
+      if (block.aids && quiz.studyAids) {
+        quiz.studyAids.applyToBlock(element);
+      }
       return element;
     });
   }

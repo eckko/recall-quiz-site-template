@@ -1,0 +1,69 @@
+{
+  "name": "Pitta Balance · पित्त",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Martel\",Georgia,serif",
+    "headings": "\"Eczar\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "12px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#fdf4ef",
+      "card": "#fffcf9",
+      "text": "#2e1d18",
+      "textMuted": "#74554b",
+      "border": "#f0d9cc",
+      "accent": "#b3391f",
+      "accent2": "#0e7a78",
+      "highlight": "#fbe0cf",
+      "correct": "#2a6b3a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#b3391f",
+      "pop2": "#0e7a78",
+      "pop3": "#d98a1c",
+      "pop4": "#5aa89a",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg)",
+      "#fdf4ef"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#18110f",
+      "card": "#221916",
+      "text": "#f6e8e0",
+      "textMuted": "#bfa294",
+      "border": "#3d2c26",
+      "accent": "#f08a6e",
+      "accent2": "#6fd4c8",
+      "highlight": "#33201a",
+      "correct": "#8fd2a0",
+      "wrong": "#f4a090",
+      "partly": "#e6b04f",
+      "pop1": "#f08a6e",
+      "pop2": "#6fd4c8",
+      "pop3": "#e8b04a",
+      "pop4": "#8fd0c0",
+      "onAccent": "#18110f",
+      "onHero": "#18110f"
+    },
+    "background": [
+      "url(background-dark.svg)",
+      "#18110f"
+    ]
+  }
+}

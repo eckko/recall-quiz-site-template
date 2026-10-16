@@ -2,6 +2,7 @@
 """Write a book site's index.html so the shared code comes from a CDN.
 
     python3 tools/make_book_index.py 2.1.0 ../my-book/index.html
+    python3 tools/make_book_index.py 2.2.0 index.html --defaults d.json
 
 A book site then needs only index.html, questions.json and images/ (plus
 media/ or banks/ when the book uses them). The index.html this tool
@@ -22,6 +23,7 @@ The page is read from that tag on the CDN, or from --source FILE.
 """
 
 import argparse
+import json
 import re
 import sys
 import urllib.request
@@ -49,7 +51,7 @@ SHELL_PAGE = """<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="icon" href="images/favicon.png" type="image/png">{defaults}
   <script src="{base}/js/boot.js"></script>
 </head>
 <body></body>
@@ -63,9 +65,20 @@ def cdn_base(version):
     return f"{CDN_FOLDER}@{version}"
 
 
-def shell_page(version):
-    """The tiny page: favicon plus the boot script of that tag."""
-    return SHELL_PAGE.format(version=version, base=cdn_base(version))
+def defaults_script(defaults):
+    """The script tag that gives the quiz this book's own start-up choices
+    (see js/default-settings.js), or "" when there are none."""
+    if not defaults:
+        return ""
+    text = json.dumps(defaults, separators=(",", ":")).replace("</", "<\\/")
+    return f"\n  <script>window.RecallQuizBookDefaults={text};</script>"
+
+
+def shell_page(version, defaults=None):
+    """The tiny page: favicon, the book's start-up choices (if any) and
+    the boot script of that tag."""
+    return SHELL_PAGE.format(version=version, base=cdn_base(version),
+                             defaults=defaults_script(defaults))
 
 
 def download_text(address):
@@ -117,6 +130,10 @@ def parse_arguments():
                         " instead of the small loader page")
     parser.add_argument("--source", help="with --full: read this index.html"
                         " instead of downloading it from the tag")
+    parser.add_argument("--defaults", help="a JSON file with this book's own"
+                        " start-up choices, for example {\"theme\": {\"id\":"
+                        " \"parchment-verse\"}}; the keys are those of"
+                        " js/default-settings.js (small loader page only)")
     parser.add_argument("--no-check", action="store_true",
                         help="do not check that the tag holds js/boot.js")
     return parser.parse_args()
@@ -126,8 +143,12 @@ def write_shell(arguments):
     """Write the small loader page."""
     if not arguments.no_check:
         download_text(f"{cdn_base(arguments.version)}/{BOOT_SCRIPT}")
-    Path(arguments.output).write_text(shell_page(arguments.version),
-                                      encoding="utf-8")
+    defaults = None
+    if arguments.defaults:
+        defaults = json.loads(
+            Path(arguments.defaults).read_text(encoding="utf-8"))
+    Path(arguments.output).write_text(
+        shell_page(arguments.version, defaults), encoding="utf-8")
     print(f"Wrote {arguments.output}: it loads {BOOT_SCRIPT} from "
           f"{cdn_base(arguments.version)}/")
 

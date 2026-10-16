@@ -14,6 +14,11 @@
  * default is known before the page is drawn. It is plain data on
  * window.RecallQuizDefaults (frozen); it has no functions and no
  * dependencies.
+ *
+ * A book may change some of these for its own readers: it sets
+ * window.RecallQuizBookDefaults in its index.html (see
+ * `tools/make_book_index.py --defaults`). Only keys that exist here are
+ * taken, one level deep.
  */
 (function setUpDefaultSettings() {
   "use strict";
@@ -32,7 +37,35 @@
     return Object.freeze(value);
   }
 
-  window.RecallQuizDefaults = freezeDeeply({
+  /**
+   * Lay a book's own start-up choices over the standard ones, one level
+   * deep (so a book may change only `theme.id`, or only `homeLayout.stand`).
+   * A book sets them in its index.html, before the loader:
+   * `<script>window.RecallQuizBookDefaults = { theme: { id: "x" } }</script>`.
+   * @param {object} standard  the defaults below
+   * @param {object|undefined} own  window.RecallQuizBookDefaults
+   * @returns {object} standard, changed in place
+   */
+  function applyBookDefaults(standard, own) {
+    if (!own || typeof own !== "object") {
+      return standard;
+    }
+    Object.keys(own).forEach(function lay(group) {
+      const target = standard[group];
+      const source = own[group];
+      if (target && typeof target === "object" && source &&
+          typeof source === "object") {
+        Object.keys(source).forEach(function set(key) {
+          if (key in target) {
+            target[key] = source[key];
+          }
+        });
+      }
+    });
+    return standard;
+  }
+
+  window.RecallQuizDefaults = freezeDeeply(applyBookDefaults({
 
     /** The look: a theme id (a folder in themes/) and light, dark or
         system (follow the device) */
@@ -115,8 +148,9 @@
       "custom-practice-section": false,
       "flags-section": false,
       "idea-flags-section": false,
+      "sanskrit-section": false,
       "home-section": false,
       "progress-file-panel": false,
     },
-  });
+  }, window.RecallQuizBookDefaults));
 }());

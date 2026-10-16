@@ -192,7 +192,10 @@ progress is still unchanged (format v2): a pretest only adds `pretested` and
 
 Everything the reader sets is kept **per book**, in `localStorage` key
 `recall-quiz-book:<bookId>` (`js/book-settings.js`):
-`{version: 2, layout, flags, ideaFlags}`. `layout` is owned by `js/home-layout.js`
+`{version: 3, layout, flags, ideaFlags, sanskrit}`. `sanskrit` is
+`{off: ["part:hindi", "aid:pegs"], font, at}`: the card parts and memory-aid
+kinds the reader switched off and the verse font (`at` = when saved; the
+newer copy wins when it syncs to the account). `layout` is owned by `js/home-layout.js`
 (a value the reader never saved comes from `js/default-settings.js`, so
 change a first-time default there, not in the code):
 folding keys (`progress`, `recent`, `setup`, `stand` = "open"|"closed";
@@ -255,6 +258,11 @@ All optional. Banks without them work exactly as before. Checked by
 | concept | `genre` | chip text, 30 characters at most |
 | `card` | `media` | `[{id, alt, role, type}]` shown under the card text (before the worked example); role `illustration` is for pictures that decorate but are shown |
 | `card` | `blocks` | 1 to 6 `{label, text, code, lang, media}` shown after the paragraphs. A card may have blocks and no paragraphs |
+| block | `study` | `true` marks a verse-study block: it uses `--color-study` and `--color-study-bg`, a pair every theme sets so these blocks differ from the theme's own accent. A card with a study block may hold 8 blocks instead of 6 |
+| block | `key` | which part of a Sanskrit card this is: `ref`, `verse`, `words`, `hindi`, `english`, `explain`, `aids`, `note`. Settings > Sanskrit cards can hide each part; the section appears only when the book has blocks with `key` or `aids` |
+| bank | `scrollButtons` | `true` shows two round buttons that jump to the top and bottom of the page |
+| block | `lines` | 1 to 4 lines of verse text, one paragraph each |
+| block | `words` | one list per verse line of `{w, gloss, gram}` word chips (30 per line at most). Tapping a chip shows `gram`; a button above shows or hides all of them. `w` and `gloss` are required. A study block with romanised (IAST) letters in `lines` or `w` gets a warning: write Devanagari |
 | question, block | `code`, `lang` | a code listing, shown as text in a `<pre>` (never parsed) |
 | question, block | `media` | `[{id or src, alt, role, type}]`. `alt` is required unless `role` is `decorative`, because a question must be answerable from text |
 
@@ -266,6 +274,10 @@ The book key is never in the site: `quiz.media.setKeyProvider(fn)` is
 called by whatever signs the reader in (the Firebase document that holds
 the key must be readable only by the reader's account). Without a key the
 card or question shows the `alt` text. Sizes: 3 MB a clip, 100 MB a book.
+
+Theme colours `study` and `studyBg` (in a theme's `colors`) are optional.
+When a theme leaves them out, `tools/build_themes.py` picks teal, orange,
+violet or magenta, whichever is farthest in hue from the theme's accents.
 
 Roles: `figure`, `illustration`, `cover`, `logo`, `decorative` (never shown,
 no `alt` needed), `animation`, `clip`.
@@ -281,3 +293,11 @@ Firestore `users/<uid>/mediaKeys/<book id>` with a string field `key` (32
 random bytes, base64). Created by hand in the console; the rules in
 `js/sync/providers/firebase-firestore.rules` allow the owner to read it and
 nobody to write it. The key is never in the site or the repo.
+
+## Book start-up defaults
+
+A book's `index.html` may set `window.RecallQuizBookDefaults` before
+`boot.js` (write it with `tools/make_book_index.py TAG index.html
+--defaults file.json`). Its groups (for example `theme`, `homeLayout`) are
+merged one level deep over `js/default-settings.js`; unknown groups are
+ignored. A reader's own saved choice always wins.

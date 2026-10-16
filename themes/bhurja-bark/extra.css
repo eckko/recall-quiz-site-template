@@ -1,0 +1,12 @@
+/* Extra touches for the Birch Bark theme. */
+[data-theme="bhurja-bark"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+}
+[data-theme="bhurja-bark"] .unit-title,
+[data-theme="bhurja-bark"] .verdict,
+[data-theme="bhurja-bark"] .panel h2 {
+  font-family: var(--font-heading);
+}

@@ -909,3 +909,15 @@ details.settings-section[open] > summary {
 [data-hide~="length"] #length-field {
   display: none;
 }
+
+/* Settings > Sanskrit cards */
+.settings-subhead {
+  margin: 14px 0 4px;
+  font: 600 0.95rem var(--font-heading);
+  color: var(--color-text-muted);
+}
+
+.sanskrit-fonts {
+  flex-wrap: wrap;
+  gap: 6px;
+}

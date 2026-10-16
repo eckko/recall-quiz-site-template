@@ -259,8 +259,99 @@ def test_book_index_tool():
               old.returncode != 0 and not output.exists())
 
 
+def test_study_blocks():
+    """Verse-study blocks: the block cap, lines and words are checked."""
+    sys.path.insert(0, str(TOOLS))
+    import check_rich_content as rich
+    plain = [{"label": f"B{n}", "text": "x"} for n in range(7)]
+    check("7 plain blocks are still refused",
+          rich.check_blocks(plain)[0][0] == "error")
+    study = [dict(block, study=True) for block in plain] + [
+        {"label": "B8", "text": "x"}]
+    check("a card with study blocks may hold 8 blocks",
+          rich.check_blocks(study) == [])
+    check("9 blocks are refused even with study blocks",
+          rich.check_blocks(study + [{"label": "B9", "text": "x"}])[0][0]
+          == "error")
+    verse = {"label": "V", "study": True, "lines": ["a", "b"],
+             "words": [[{"w": "a", "gloss": "g", "gram": "n."}]]}
+    check("lines and words are accepted", rich.check_blocks([verse]) == [])
+    bad = {"label": "V", "words": [[{"w": "a"}]]}
+    check("a word without a gloss is refused",
+          rich.check_blocks([bad])[0][0] == "error")
+    romanised = {"label": "V", "study": True, "lines": ["dīrghaṃ"]}
+    check("romanised verse lines get a warning",
+          rich.check_blocks([romanised])[0][0] == "warn")
+    check("empty lines are refused",
+          rich.check_blocks([{"label": "V", "lines": []}])[0][0] == "error")
+
+
+def test_aids():
+    """Memory aids on a block: shape checks."""
+    sys.path.insert(0, str(TOOLS))
+    import check_rich_content as rich
+    good = [{"aid": "chain", "label": "Chain", "steps": ["a", "b", "c"]},
+            {"aid": "story", "label": "Story", "text": "a short story"},
+            {"aid": "diagram", "label": "Ledges",
+             "groups": [{"label": "Top", "items": ["x", "y"]}]},
+            {"aid": "metre", "label": "Metre", "lines": ["a | b"]}]
+    block = {"label": "Aids", "study": True, "aids": good}
+    check("a block of aids is accepted", rich.check_blocks([block]) == [])
+    bad_kind = [dict(good[0], aid="Chain!")]
+    check("an aid id must be a lower-case word",
+          rich.check_blocks([dict(block, aids=bad_kind)])[0][0] == "error")
+    check("two aids of one kind on a card are refused",
+          rich.check_blocks([dict(block, aids=[good[0], good[0]])])[0][0]
+          == "error")
+    check("an aid with no content is refused",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "label": "C"}])])[0][0] == "error")
+    check("one step is not a chain",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "label": "C", "steps": ["a"]}])])[0][0]
+          == "error")
+    pic = {"aid": "pegs", "label": "P", "text": "t",
+           "image": {"src": "images/aids/a.svg",
+                     "alt": "a rope and an umbrella"}}
+    check("an aid with a picture and alt text is accepted",
+          rich.check_blocks([dict(block, aids=[pic])]) == [])
+    check("a picture without alt text is refused",
+          rich.check_blocks([dict(block, aids=[dict(
+              pic, image={"src": "images/aids/a.svg", "alt": "rope"})])]
+          )[0][0] == "error")
+    check("a picture from another site is refused",
+          rich.check_blocks([dict(block, aids=[dict(
+              pic, image={"src": "https://x.test/a.svg",
+                          "alt": "a rope and an umbrella"})])])[0][0]
+          == "error")
+    check("an aid needs a label",
+          rich.check_blocks([dict(block, aids=[
+              {"aid": "chain", "steps": ["a", "b"]}])])[0][0] == "error")
+
+
+def test_study_colours():
+    """Every theme's study colour is clearly different from its accents."""
+    sys.path.insert(0, str(TOOLS))
+    import build_themes as themes
+    worst = 180
+    for theme_id in themes.find_theme_ids():
+        theme = themes.load_theme(theme_id)
+        for scheme in ("light", "dark"):
+            colours = {**themes.study_colors(
+                theme[scheme]["colors"], scheme), **theme[scheme]["colors"]}
+            gap = min(themes.hue_gap(themes.hex_hue(colours["study"]),
+                                     themes.hex_hue(colours[key]))
+                      for key in ("accent", "accent2"))
+            worst = min(worst, gap)
+    check("study hue is at least 45 degrees from both accents everywhere",
+          worst >= 45)
+
+
 if __name__ == "__main__":
     print("Bank tools")
+    test_study_blocks()
+    test_aids()
+    test_study_colours()
     test_round_trip()
     test_refusals()
     test_tag_lister()

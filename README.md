@@ -103,6 +103,8 @@ from one tagged copy of this repo on [jsDelivr](https://www.jsdelivr.com/):
    `js/boot.js`, so tags before 2.1.0 cannot be used.
 2. In a checkout of the template, write the book's page for that tag:
    `python3 tools/make_book_index.py 2.1.0 ../my-book/index.html`
+   (add `--defaults file.json` to give the book its own starting theme or
+   layout)
 3. In the book repo, delete `css/`, `js/`, `htrab/`, `themes/` and
    `vendor/`, and turn off any template sync (or list `index.html` in
    `.templatesyncignore`).
@@ -498,3 +500,15 @@ it after any change to the code.
 
 More detail for contributors and AI agents is in
 [`ai-context/`](ai-context/).
+
+## Sanskrit study cards (2.2.0)
+
+Banks may mark card blocks with `key` (ref, verse, words, hindi, english,
+explain, aids, note) and `aids` (13 memory-aid kinds). Settings then shows a
+**Sanskrit cards** section: switch each part and each aid kind on or off,
+and pick a verse font (Kalam, Dekko, Baloo 2, Amita, Inknut Antiqua,
+Sarala, Noto Serif Devanagari, Yatra One, Rozha One, Tillana). The choice is
+saved with the book settings and syncs to the account. 15 themes for Vedic
+study (palm-leaf, bhurja-bark, cave-wall, stone-inscription, copper-plate,
+pothi-books, kundalini, sanskrit-playful, shalya-tantra, rasayana, vata,
+pitta, kapha and tridosha balance, parchment-verse) were added.

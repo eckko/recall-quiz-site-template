@@ -1,0 +1,69 @@
+{
+  "name": "Vata Balance · वात",
+  "group": "Ayurveda",
+  "fonts": {
+    "body": "\"Hind\",Georgia,serif",
+    "headings": "\"Khand\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "16px",
+    "smallRadius": "8px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1f3f8",
+      "card": "#fbfcfe",
+      "text": "#232a3b",
+      "textMuted": "#566078",
+      "border": "#d7dce9",
+      "accent": "#4a5f9a",
+      "accent2": "#8a6410",
+      "highlight": "#e6e2f2",
+      "correct": "#2a6b4a",
+      "wrong": "#a3261c",
+      "partly": "#8a5a00",
+      "pop1": "#4a5f9a",
+      "pop2": "#8a6410",
+      "pop3": "#7a6aa8",
+      "pop4": "#5a8aa8",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg)",
+      "#f1f3f8"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#12151e",
+      "card": "#1a1e2a",
+      "text": "#e8ebf4",
+      "textMuted": "#a3abc2",
+      "border": "#2c3347",
+      "accent": "#9fb4ee",
+      "accent2": "#e0b45c",
+      "highlight": "#272b3d",
+      "correct": "#8fd2a8",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#9fb4ee",
+      "pop2": "#e0b45c",
+      "pop3": "#b7a6e6",
+      "pop4": "#8ac0dc",
+      "onAccent": "#12151e",
+      "onHero": "#12151e"
+    },
+    "background": [
+      "url(background-dark.svg)",
+      "#12151e"
+    ]
+  }
+}

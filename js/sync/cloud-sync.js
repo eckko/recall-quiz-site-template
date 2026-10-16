@@ -157,6 +157,8 @@
       handleThemeChanged);
     document.addEventListener("recallquiz:idea-flags-changed",
       handleThemeChanged);
+    document.addEventListener("recallquiz:sanskrit-changed",
+      handleThemeChanged);
     document.addEventListener("visibilitychange",
       function saveWhenHidden() {
         if (document.visibilityState === "hidden") {

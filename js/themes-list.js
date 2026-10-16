@@ -111,7 +111,22 @@ window.QUIZ_THEMES = [
   ["derivatives", "Derivatives", "Finance"],
   ["charts", "Charts", "Finance"],
   ["technical-analysis", "Technical analysis", "Finance"],
-  ["value-investing", "Value investing", "Finance"]
+  ["value-investing", "Value investing", "Finance"],
+  ["parchment-verse", "Parchment & Teal", "Vedic & Sanskrit"],
+  ["palm-leaf", "Palm Leaf \u00b7 \u0924\u093e\u0921\u093c\u092a\u0924\u094d\u0930", "Vedic & Sanskrit"],
+  ["bhurja-bark", "Birch Bark \u00b7 \u092d\u0942\u0930\u094d\u091c\u092a\u0924\u094d\u0930", "Vedic & Sanskrit"],
+  ["cave-wall", "Cave Wall \u00b7 \u0917\u0941\u0939\u093e", "Vedic & Sanskrit"],
+  ["stone-inscription", "Stone Inscription \u00b7 \u0936\u093f\u0932\u093e\u0932\u0947\u0916", "Vedic & Sanskrit"],
+  ["copper-plate", "Copper Plate \u00b7 \u0924\u093e\u092e\u094d\u0930\u092a\u0924\u094d\u0930", "Vedic & Sanskrit"],
+  ["pothi-books", "Pothi Books \u00b7 \u092a\u094b\u0925\u0940", "Vedic & Sanskrit"],
+  ["kundalini", "Kundalini \u00b7 \u0915\u0941\u0923\u094d\u0921\u0932\u093f\u0928\u0940", "Yoga & mindfulness"],
+  ["sanskrit-playful", "Playful Devanagari \u00b7 \u0916\u0947\u0932", "Playful"],
+  ["shalya-tantra", "Shalya Tantra \u00b7 \u0936\u0932\u094d\u092f \u0924\u0928\u094d\u0924\u094d\u0930", "Ayurveda"],
+  ["rasayana", "Rasayana \u00b7 \u0930\u0938\u093e\u092f\u0928", "Ayurveda"],
+  ["vata-balance", "Vata Balance \u00b7 \u0935\u093e\u0924", "Ayurveda"],
+  ["pitta-balance", "Pitta Balance \u00b7 \u092a\u093f\u0924\u094d\u0924", "Ayurveda"],
+  ["kapha-balance", "Kapha Balance \u00b7 \u0915\u092b", "Ayurveda"],
+  ["tridosha-balance", "Tridosha Balance \u00b7 \u0924\u094d\u0930\u093f\u0926\u094b\u0937", "Ayurveda"]
 ];
 
 /** The Google Fonts each theme uses, by theme id. */
@@ -221,7 +236,22 @@ window.QUIZ_THEME_FONTS = {
   "derivatives": ["IBM Plex Sans", "IBM Plex Mono"],
   "charts": ["Inter", "JetBrains Mono"],
   "technical-analysis": ["IBM Plex Sans", "JetBrains Mono"],
-  "value-investing": ["Libre Baskerville"]
+  "value-investing": ["Libre Baskerville"],
+  "parchment-verse": ["Source Serif 4", "Noto Serif Devanagari"],
+  "palm-leaf": ["Kalam"],
+  "bhurja-bark": ["Dekko"],
+  "cave-wall": ["Sarala", "Yatra One"],
+  "stone-inscription": ["Noto Serif Devanagari", "Rozha One"],
+  "copper-plate": ["Amita"],
+  "pothi-books": ["Inknut Antiqua"],
+  "kundalini": ["Hind", "Tillana"],
+  "sanskrit-playful": ["Kalam", "Baloo 2"],
+  "shalya-tantra": ["Sahitya"],
+  "rasayana": ["Karma", "Laila"],
+  "vata-balance": ["Hind", "Khand"],
+  "pitta-balance": ["Martel", "Eczar"],
+  "kapha-balance": ["Arya", "Sura"],
+  "tridosha-balance": ["Gotu", "Halant"]
 };
 
 /** How to ask Google Fonts for each family (the part after
@@ -272,5 +302,24 @@ window.QUIZ_FONT_SPECS = {
   "Cinzel": "Cinzel:wght@400;600;700",
   "Roboto Slab": "Roboto+Slab:wght@400;600",
   "Space Grotesk": "Space+Grotesk:wght@400;500;700",
-  "JetBrains Mono": "JetBrains+Mono:wght@400;600"
+  "JetBrains Mono": "JetBrains+Mono:wght@400;600",
+  "Noto Serif Devanagari": "Noto+Serif+Devanagari:wght@400;600",
+  "Dekko": "Dekko",
+  "Sarala": "Sarala:wght@400;700",
+  "Yatra One": "Yatra+One",
+  "Rozha One": "Rozha+One",
+  "Amita": "Amita:wght@400;700",
+  "Inknut Antiqua": "Inknut+Antiqua:wght@400;600",
+  "Hind": "Hind:wght@400;600",
+  "Tillana": "Tillana:wght@400;600",
+  "Sahitya": "Sahitya:wght@400;700",
+  "Karma": "Karma:wght@400;600",
+  "Laila": "Laila:wght@400;600",
+  "Khand": "Khand:wght@400;600",
+  "Martel": "Martel:wght@400;600",
+  "Eczar": "Eczar:wght@400;600",
+  "Arya": "Arya:wght@400;700",
+  "Sura": "Sura:wght@400;700",
+  "Gotu": "Gotu",
+  "Halant": "Halant:wght@400;600"
 };

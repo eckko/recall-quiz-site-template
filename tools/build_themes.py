@@ -29,6 +29,7 @@ A theme folder contains:
 See README.md ("Add a new theme") for a walk-through.
 """
 
+import colorsys
 import json
 import re
 from pathlib import Path
@@ -66,6 +67,17 @@ COLOR_VARIABLES = {
     "pop4": "--color-pop-4",
     "onAccent": "--color-on-accent",
     "onHero": "--color-on-hero",
+    "study": "--color-study",
+    "studyBg": "--color-study-bg",
+}
+
+# Verse-study blocks use a colour pair that must differ from the theme's
+# own accents. A theme may set "study" and "studyBg" in its colours; when
+# it does not, they are worked out here (see study_colors).
+STUDY_HUES = (178, 28, 275, 330)  # teal, orange, violet, magenta
+STUDY_SHAPE = {                   # lightness, saturation of each colour
+    "light": {"study": (0.30, 0.45), "studyBg": (0.92, 0.30)},
+    "dark": {"study": (0.67, 0.42), "studyBg": (0.15, 0.32)},
 }
 
 # Optional per-scheme values. When a theme leaves one out, the default in
@@ -100,6 +112,27 @@ GOOGLE_FONTS = {
     "Nunito": "Nunito:wght@400;600;700",
     "EB Garamond": "EB+Garamond:wght@400;500;600",
     "Inter": "Inter:wght@400;500;600",
+    "Noto Serif Devanagari": "Noto+Serif+Devanagari:wght@400;600",
+    "Kalam": "Kalam:wght@400;700",
+    "Dekko": "Dekko",
+    "Yatra One": "Yatra+One",
+    "Sarala": "Sarala:wght@400;700",
+    "Rozha One": "Rozha+One",
+    "Amita": "Amita:wght@400;700",
+    "Inknut Antiqua": "Inknut+Antiqua:wght@400;600",
+    "Tillana": "Tillana:wght@400;600",
+    "Sahitya": "Sahitya:wght@400;700",
+    "Laila": "Laila:wght@400;600",
+    "Karma": "Karma:wght@400;600",
+    "Eczar": "Eczar:wght@400;600",
+    "Martel": "Martel:wght@400;600",
+    "Sura": "Sura:wght@400;700",
+    "Arya": "Arya:wght@400;700",
+    "Halant": "Halant:wght@400;600",
+    "Hind": "Hind:wght@400;600",
+    "Khand": "Khand:wght@400;600",
+    "Gotu": "Gotu",
+    "Modak": "Modak",
     "Marcellus": "Marcellus",
     "Lora": "Lora:wght@400;600",
     "Cormorant Garamond": "Cormorant+Garamond:wght@500;600",
@@ -260,12 +293,42 @@ def accent_gradient(colors):
 # ------------------------------------------------------------- css blocks
 
 
+def hex_hue(colour):
+    """Hue in degrees (0 to 360) of a #rrggbb colour."""
+    red, green, blue = (int(colour[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    return colorsys.rgb_to_hls(red, green, blue)[0] * 360
+
+
+def hue_gap(first, second):
+    """Smallest angle between two hues."""
+    gap = abs(first - second) % 360
+    return min(gap, 360 - gap)
+
+
+def hls_hex(hue, lightness, saturation):
+    """A #rrggbb colour from hue (degrees), lightness and saturation."""
+    red, green, blue = colorsys.hls_to_rgb(hue / 360, lightness, saturation)
+    return "#%02x%02x%02x" % (round(red * 255), round(green * 255),
+                              round(blue * 255))
+
+
+def study_colors(colors, scheme):
+    """Colour pair for verse-study blocks that stands apart from the
+    theme: the hue (teal, orange or violet) farthest from both accents."""
+    accents = [hex_hue(colors["accent"]), hex_hue(colors["accent2"])]
+    hue = max(STUDY_HUES, key=lambda candidate: min(
+        hue_gap(candidate, accent) for accent in accents))
+    shape = STUDY_SHAPE[scheme]
+    return {key: hls_hex(hue, *shape[key]) for key in shape}
+
+
 def theme_variables(theme, scheme):
     """Every CSS variable one theme sets for light or dark."""
     settings = theme[scheme]
     colors = settings["colors"]
     on_accent = colors["onAccent"]
     stroke = theme["iconStroke"]
+    colors = {**study_colors(colors, scheme), **colors}
     variables = {COLOR_VARIABLES[key]: value
                  for key, value in colors.items()}
     variables.update({

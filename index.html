@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="css/cloud-sync.css">
   <link rel="stylesheet" href="css/flags.css">
   <link rel="stylesheet" href="css/phone.css">
+  <link rel="stylesheet" href="css/scroll-buttons.css">
   <!-- HTRAB (optional overlay): delete this line, the two scripts below
        and the htrab/ folder to remove it. -->
   <link rel="stylesheet" href="htrab/htrab.css">
@@ -431,6 +432,38 @@
       </div>
     </details>
 
+    <details class="panel settings-section hidden" id="sanskrit-section">
+      <summary>
+        <h2>Sanskrit cards</h2>
+        <span class="section-current" id="sanskrit-section-current"></span>
+      </summary>
+      <p class="note settings-note">
+        Choose what a verse card shows: each part of the card, each kind
+        of memory aid, and the font of the verse. Everything is on to
+        begin with. The choice is saved for this book and, when you are
+        signed in, follows you to your other devices. It applies to the
+        cards in every session too.
+      </p>
+      <h3 class="settings-subhead">Parts of the card</h3>
+      <div id="sanskrit-parts-list"></div>
+      <div class="button-row">
+        <button class="button" id="sanskrit-parts-all"
+                type="button">Show all parts</button>
+        <button class="button" id="sanskrit-parts-none"
+                type="button">Hide all parts</button>
+      </div>
+      <h3 class="settings-subhead">Memory aids</h3>
+      <div id="sanskrit-aids-list"></div>
+      <div class="button-row">
+        <button class="button" id="sanskrit-aids-all"
+                type="button">Show all aids</button>
+        <button class="button" id="sanskrit-aids-none"
+                type="button">Hide all aids</button>
+      </div>
+      <h3 class="settings-subhead">Verse font</h3>
+      <div class="choice-group sanskrit-fonts" id="sanskrit-font-choice"></div>
+    </details>
+
     <details class="panel settings-section" id="home-section">
       <summary>
         <h2>Home screen layout</h2>
@@ -731,6 +764,8 @@
 <script src="js/book.js"></script>
 <script src="js/media-store.js"></script>
 <script src="js/rich-content.js"></script>
+<script src="js/study-aids.js"></script>
+<script src="js/scroll-buttons.js"></script>
 <script src="js/progress-storage.js"></script>
 <script src="js/book-settings.js"></script>
 <script src="js/spaced-repetition.js"></script>

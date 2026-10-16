@@ -418,6 +418,296 @@ def test_book_labels(browser):
     page.close()
 
 
+def test_verse_study_card(browser):
+    """A card with verse, word and study blocks shows lines, tappable word
+    chips and its own colour, different from the accent."""
+    print("Verse-study card")
+    book = json.loads(json.dumps(BOOK))
+    card = book["concepts"][0]["card"]
+    card["blocks"] = [
+        {"label": "Verse", "study": True,
+         "lines": ["दीर्घं जीवितम्", "इन्द्रमुग्रतपा"]},
+        {"label": "Words", "study": True,
+         "words": [[{"w": "दीर्घम्", "gloss": "long", "gram": "n. acc. sg."}],
+                   [{"w": "इन्द्रम्", "gloss": "Indra", "gram": "m. acc."}]]},
+        {"label": "Plain", "text": "x"}]
+    page = open_page(browser, book=book)
+    concept = book["concepts"][0]["id"]
+    page.evaluate("(id) => document.querySelector(`.concept-row"
+                  "[data-concept-id='${id}']`).open = true", concept)
+    check("verse lines are shown one per line",
+          page.locator(".verse-line").count() == 2)
+    check("word chips are shown, one row per line",
+          page.locator(".word-row").count() == 2
+          and page.locator(".word-chip").count() == 2)
+    chip = page.locator(".word-chip").first
+    check("the grammar is hidden until the chip is tapped",
+          not chip.locator(".word-gram").is_visible())
+    chip.click()
+    check("tapping a chip shows its grammar",
+          chip.locator(".word-gram").is_visible()
+          and chip.get_attribute("aria-expanded") == "true")
+    page.click(".grammar-toggle")
+    check("the grammar button opens every chip",
+          page.locator(".word-chip.is-open").count() == 2
+          and page.get_attribute(".grammar-toggle", "aria-pressed") == "true")
+    page.click(".grammar-toggle")
+    check("and closes them again",
+          page.locator(".word-chip.is-open").count() == 0)
+    study = page.eval_on_selector(
+        ".idea-block.is-study", "e => getComputedStyle(e).backgroundColor")
+    plain = page.eval_on_selector(
+        ".idea-block:not(.is-study)",
+        "e => getComputedStyle(e).backgroundColor")
+    check("study blocks have their own background", study != plain,
+          f"{study} vs {plain}")
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+SANSKRIT_BLOCKS = [
+    {"label": "Reference", "key": "ref", "text": "Charaka, Su. 1"},
+    {"label": "Verse", "key": "verse", "study": True,
+     "lines": ["दीर्घं जीवितम्"]},
+    {"label": "Words", "key": "words", "study": True,
+     "words": [[{"w": "दीर्घम्", "gloss": "long", "gram": "n. acc."}]]},
+    {"label": "Hindi", "key": "hindi", "study": True, "text": "लम्बा जीवन"},
+    {"label": "English", "key": "english", "study": True,
+     "text": "a long life"},
+    {"label": "Explanation", "key": "explain", "study": True,
+     "text": "why it matters"},
+    {"label": "Aids", "key": "aids", "study": True, "aids": [
+        {"aid": "chain", "label": "Chain", "steps": ["a", "b", "c"]},
+        {"aid": "story", "label": "Story", "text": "a short story",
+         "image": {"src": "images/aids/none.svg",
+                   "alt": "a small picture of a story"}}]},
+    {"label": "Note", "key": "note", "text": "spelling note"}]
+VISIBLE_ITEMS = ("(selector) => Array.from(document.querySelectorAll("
+                 "selector)).filter(e => getComputedStyle(e).display "
+                 "!== 'none').map(e => e.dataset.part || e.dataset.aid)")
+
+
+def sanskrit_book():
+    """A copy of the test book whose first card is a Sanskrit card."""
+    book = json.loads(json.dumps(BOOK))
+    book["concepts"][0]["card"]["blocks"] = json.loads(
+        json.dumps(SANSKRIT_BLOCKS))
+    return book
+
+
+def test_study_aids(browser):
+    """Memory aids show on a card; Settings can switch each kind off, all
+    are on at first, and the choice is saved with the book settings."""
+    print("Memory aids and the Sanskrit settings card")
+    book = sanskrit_book()
+    page = open_page(browser, book=book)
+    concept = book["concepts"][0]["id"]
+    page.evaluate("(id) => document.querySelector(`.concept-row"
+                  "[data-concept-id='${id}']`).open = true", concept)
+    check("every aid is shown at first",
+          page.locator(".aid-item:visible").count() == 2)
+    check("a picture is drawn with its alt text",
+          page.get_attribute(".aid-item[data-aid='story'] img.aid-image",
+                             "alt") == "a small picture of a story")
+    check("steps are drawn as a chain",
+          page.locator(".aid-steps li").count() == 3)
+    page.click("#settings-button")
+    check("the Sanskrit section is shown for a book with such cards",
+          page.is_visible("#sanskrit-section"))
+    check("the Sanskrit section lists every kind",
+          page.locator("#sanskrit-aids-list .choice-group").count() == 13)
+    check("and every part of the card",
+          page.locator("#sanskrit-parts-list .choice-group").count() == 8)
+    check("it starts with all on",
+          page.inner_text("#sanskrit-section-current") == "All on")
+    page.click("#sanskrit-aids-list [data-sanskrit='aid:chain'] "
+               "button[data-value='hide']")
+    check("hiding a kind hides it on the card at once",
+          page.evaluate(VISIBLE_ITEMS, ".aid-item") == ["story"])
+    check("the summary counts what is on",
+          page.inner_text("#sanskrit-section-current") == "20 of 21 on")
+    page.click("#sanskrit-aids-list [data-sanskrit='aid:story'] "
+               "button[data-value='hide']")
+    check("a block with every aid hidden disappears",
+          page.evaluate("getComputedStyle(document.querySelector("
+                        "'.aid-block')).display") == "none")
+    record = page.evaluate(
+        "() => JSON.parse(localStorage.getItem('recall-quiz-book:' + "
+        "RecallQuiz.book.bookId()))")
+    check("the choice is saved in the book settings (version 3)",
+          record["version"] == 3
+          and sorted(record["sanskrit"]["off"])
+          == ["aid:chain", "aid:story"] and record["sanskrit"]["at"] > 0,
+          str(record.get("sanskrit")))
+    page.click("#sanskrit-aids-all")
+    check("Show all aids switches every kind back on",
+          len(page.evaluate(VISIBLE_ITEMS, ".aid-item")) == 2
+          and page.inner_text("#sanskrit-section-current") == "All on")
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_sanskrit_parts_and_font(browser):
+    """Every part of a Sanskrit card can be switched off; the verse font
+    can be chosen; both survive a reload; an old aid choice is moved."""
+    print("Sanskrit cards: parts, verse font, old choice")
+    book = sanskrit_book()
+    concept = book["concepts"][0]["id"]
+    page = open_page(browser, book=book)
+    page.evaluate("(id) => document.querySelector(`.concept-row"
+                  "[data-concept-id='${id}']`).open = true", concept)
+    parts = page.evaluate(VISIBLE_ITEMS, ".idea-block[data-part]")
+    check("all eight parts show at first", len(parts) == 8, str(parts))
+    page.click("#settings-button")
+    for part in ("hindi", "english", "note"):
+        page.click("#sanskrit-parts-list [data-sanskrit='part:" + part
+                   + "'] button[data-value='hide']")
+    parts = page.evaluate(VISIBLE_ITEMS, ".idea-block[data-part]")
+    check("switched-off parts disappear from the card",
+          parts == ["ref", "verse", "words", "explain", "aids"], str(parts))
+    page.click("#sanskrit-parts-list [data-sanskrit='part:aids'] "
+               "button[data-value='hide']")
+    check("hiding the aids part hides the whole aids block",
+          "aids" not in page.evaluate(VISIBLE_ITEMS,
+                                      ".idea-block[data-part]"))
+    page.click("#sanskrit-font-choice [data-font='kalam']")
+    font = page.evaluate("document.documentElement.style"
+                         ".getPropertyValue('--font-verse')")
+    check("the verse font is set", "Kalam" in font, font)
+    verse_font = page.evaluate(
+        "getComputedStyle(document.querySelector('.verse-line')).fontFamily")
+    check("the verse text uses it", "Kalam" in verse_font, verse_font)
+    page.reload()
+    page.wait_for_selector("#where-you-stand .unit-progress",
+                           state="attached")
+    check("the font is kept after a reload",
+          "Kalam" in page.evaluate("document.documentElement.style"
+                                   ".getPropertyValue('--font-verse')"))
+    check("so are the hidden parts",
+          page.evaluate("document.documentElement.getAttribute("
+                        "'data-hide-parts')") == "hindi english aids note"
+          or sorted(page.evaluate("document.documentElement.getAttribute("
+                                  "'data-hide-parts')").split())
+          == ["aids", "english", "hindi", "note"])
+    page.click("#settings-button")
+    page.click("#sanskrit-parts-all")
+    page.click("#sanskrit-font-choice [data-font='']")
+    check("Show all parts and Theme font reset the card",
+          page.inner_text("#sanskrit-section-current") == "All on"
+          and page.evaluate("document.documentElement.style"
+                            ".getPropertyValue('--font-verse')") == "")
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+    page = open_page(browser, book=book, init_script=(
+        "if (!localStorage.getItem('moved')) {"
+        " localStorage.setItem('moved', '1');"
+        " localStorage.setItem('recall-quiz-aids:" + book["id"]
+        + "', JSON.stringify({v: 1, off: ['pegs']})); }"))
+    off = page.evaluate("() => RecallQuiz.bookSettings.readSanskrit().off")
+    check("an old local aid choice is moved into the settings",
+          off == ["aid:pegs"], str(off))
+    page.close()
+
+
+def test_sanskrit_section_hidden_without_cards(browser):
+    """A book with no Sanskrit cards never shows the section."""
+    print("Sanskrit section only for Sanskrit books")
+    page = open_page(browser)
+    page.click("#settings-button")
+    check("the section is hidden", not page.is_visible("#sanskrit-section"))
+    page.close()
+
+
+def test_sanskrit_choice_syncs(browser):
+    """The Sanskrit choice goes to the account and comes back from it."""
+    print("Sanskrit cards: account sync")
+    page = open_synced_page(browser)
+    page.wait_for_selector("#account-body .button-row button",
+                           state="attached")
+    page.evaluate("() => RecallQuiz.bookSettings.saveSanskrit("
+                  "{off: ['part:hindi', 'aid:pegs'], font: 'baloo'})")
+    page.wait_for_function(
+        "(key) => { const t = sessionStorage.getItem(key);"
+        " return t && JSON.parse(t).sanskrit"
+        " && JSON.parse(t).sanskrit.off.length === 2; }",
+        arg=SETTINGS_STORE_KEY, timeout=8000)
+    doc = page.evaluate("(key) => JSON.parse(sessionStorage.getItem(key))",
+                        SETTINGS_STORE_KEY)
+    check("the choice is saved to the account (version 3)",
+          doc["v"] == 3 and doc["sanskrit"]["font"] == "baloo"
+          and doc["sanskrit"]["off"] == ["part:hindi", "aid:pegs"],
+          str(doc)[:200])
+    page.close()
+
+    newer = {"v": 3, "layout": {}, "flags": {}, "ideaFlags": {},
+             "sanskrit": {"off": ["part:note"], "font": "kalam",
+                          "at": 4102444800000}}
+    page = browser.new_page(viewport={"width": 430, "height": 900})
+    page.errors = []
+    page.on("pageerror", lambda error: page.errors.append(str(error)))
+    page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+    page.route("**/js/sync/sync-config.js", lambda route: route.fulfill(
+        content_type="application/javascript",
+        body='window.RecallQuizSyncConfig = {provider: "example-in-browser",'
+             ' saveDelaySeconds: 1, "example-in-browser": {}};'))
+    page.add_init_script(
+        "if (!sessionStorage.getItem('seeded')) {"
+        "sessionStorage.setItem('recall-quiz-example-account', "
+        "'example-user');sessionStorage.setItem('" + SETTINGS_STORE_KEY
+        + "', JSON.stringify(" + json.dumps(newer) + "));"
+        "sessionStorage.setItem('seeded', '1'); }")
+    page.goto(PAGE_URL)
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    page.wait_for_function(
+        "() => RecallQuiz.bookSettings.readSanskrit().font === 'kalam'",
+        timeout=8000)
+    local = page.evaluate("() => RecallQuiz.bookSettings.readSanskrit()")
+    check("a newer account choice is used here",
+          local["off"] == ["part:note"], str(local))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_scroll_buttons(browser):
+    """The jump buttons appear only when the book asks for them."""
+    print("Jump to top / bottom buttons")
+    page = open_page(browser)
+    check("a book that does not ask has no buttons",
+          page.locator(".scroll-jump").count() == 0)
+    page.close()
+    book = json.loads(json.dumps(BOOK))
+    book["scrollButtons"] = True
+    page = open_page(browser, book=book)
+    check("a book that asks gets two buttons",
+          page.locator(".scroll-jump button").count() == 2)
+    page.evaluate("document.body.style.minHeight = '5000px'")
+    page.click("button[aria-label='Go to bottom of page']")
+    page.wait_for_function("window.scrollY > 500", timeout=8000)
+    page.click("button[aria-label='Go to top of page']")
+    page.wait_for_function("window.scrollY === 0", timeout=8000)
+    check("they scroll down and back up", True)
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_book_defaults(browser):
+    """A book can change its start-up theme with RecallQuizBookDefaults."""
+    print("Book start-up defaults")
+    page = open_page(browser, view=None, keep_going=False, init_script=(
+        "window.RecallQuizBookDefaults = {theme: {id: 'parchment-verse'},"
+        " homeLayout: {stand: 'open'}, nonsense: {a: 1}};"))
+    theme = page.evaluate("document.documentElement"
+                          ".getAttribute('data-theme')")
+    check("the book's theme is used for a new reader",
+          theme == "parchment-verse", str(theme))
+    check("an unknown group is ignored",
+          page.evaluate("RecallQuizDefaults.nonsense") is None)
+    check("a layout default is changed",
+          page.evaluate("RecallQuizDefaults.homeLayout.stand") == "open")
+    page.close()
+
+
 def test_sanskrit_answers(browser):
     """Devanagari, IAST and plain Roman spellings count as the same."""
     print("Sanskrit and Devanagari answers in fill-in questions")
@@ -1493,7 +1783,7 @@ def test_idea_flags(browser):
     saved = page.evaluate(
         "() => JSON.parse(localStorage.getItem('recall-quiz-book:' + "
         "RecallQuiz.book.bookId())).version")
-    check("the saved record is version 2", saved == 2, str(saved))
+    check("the saved record is version 3", saved == 3, str(saved))
     page.close()
 
     page = open_page(browser)
@@ -1557,8 +1847,8 @@ def test_idea_flags_upgrade_and_sync(browser):
     saved = page.evaluate(
         "() => JSON.parse(localStorage.getItem('recall-quiz-book:' + "
         "RecallQuiz.book.bookId()))")
-    check("it is saved as version 2 with the idea flag",
-          saved["version"] == 2 and len(saved["ideaFlags"]) == 1
+    check("it is saved as version 3 with the idea flag",
+          saved["version"] == 3 and len(saved["ideaFlags"]) == 1
           and saved["layout"]["timer"] == 30, str(saved))
     page.close()
 
@@ -1574,8 +1864,8 @@ def test_idea_flags_upgrade_and_sync(browser):
         arg=SETTINGS_STORE_KEY, timeout=8000)
     doc = page.evaluate("(key) => JSON.parse(sessionStorage.getItem(key))",
                         SETTINGS_STORE_KEY)
-    check("idea flags are saved to the account (version 2)",
-          doc["v"] == 2 and doc["flags"] == {}, str(doc)[:200])
+    check("idea flags are saved to the account (version 3)",
+          doc["v"] == 3 and doc["flags"] == {}, str(doc)[:200])
     page.close()
 
 
@@ -2377,6 +2667,13 @@ def main():
             test_backup_without_version_keeps_progress(browser)
             test_book_labels(browser)
             test_sanskrit_answers(browser)
+            test_verse_study_card(browser)
+            test_study_aids(browser)
+            test_sanskrit_parts_and_font(browser)
+            test_sanskrit_section_hidden_without_cards(browser)
+            test_sanskrit_choice_syncs(browser)
+            test_scroll_buttons(browser)
+            test_book_defaults(browser)
             test_formulas(browser)
             test_themes(browser)
             test_home_views(browser)

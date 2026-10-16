@@ -1,0 +1,18 @@
+/* Extra touches for the pitta-balance theme. */
+[data-theme="pitta-balance"] h1 {
+  background: none;
+  color: var(--color-accent);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+[data-theme="pitta-balance"] .unit-title,
+[data-theme="pitta-balance"] .verdict,
+[data-theme="pitta-balance"] .panel h2 {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+}
+[data-theme="pitta-balance"] .panel {
+  border-style: solid;
+  border-color: var(--color-border);
+}

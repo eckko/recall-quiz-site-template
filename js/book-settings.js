@@ -7,13 +7,15 @@
  * every book can have its own view. Sign-in is not part of it: that is
  * global.
  *
- * Saved record (version 2), localStorage key "recall-quiz-book:<bookId>":
+ * Saved record (version 3), localStorage key "recall-quiz-book:<bookId>":
  *
  *   {
- *     version: 2,
+ *     version: 3,
  *     layout: { at: 1760000000000, ... },     // see home-layout.js
  *     flags: { "c09-2": { f: ["bad"], a: 1760000000000 } },
- *     ideaFlags: { "i-12": { f: ["important"], a: 1760000000000 } }
+ *     ideaFlags: { "i-12": { f: ["important"], a: 1760000000000 } },
+ *     sanskrit: { off: ["part:hindi", "aid:pegs"], font: "kalam",
+ *                 at: 1760000000000 }          // see study-aids.js
  *   }
  *
  * "f" lists the flags on a question (or idea) and "a" is when they last
@@ -23,7 +25,13 @@
  * Useless are left out of the idea lists only; their questions stay.
  * Question flags and idea flags never affect each other.
  *
+ * "sanskrit" is the choice on the Settings screen's Sanskrit cards
+ * section: which parts of a verse card and which kinds of memory aid are
+ * switched off, and the verse font. Like the layout, the copy changed
+ * last (largest "at") wins as a whole.
+ *
  * History: version 1 had no "ideaFlags"; the step in MIGRATIONS adds it.
+ * Version 2 had no "sanskrit"; the second step adds it (empty, at 0).
  *
  * Versions: every saved record, and the copy in the reader's account,
  * carries a version number. When the format changes, bump
@@ -33,14 +41,15 @@
  *
  * Events sent: "recallquiz:flags-changed" (the reader flagged a
  * question), "recallquiz:idea-flags-changed" (the reader flagged an idea)
- * and "recallquiz:book-settings-applied" (settings arrived from the
- * account; redraw). Cloud sync listens to all three.
+ * "recallquiz:sanskrit-changed" (the reader changed the Sanskrit cards
+ * choice) and "recallquiz:book-settings-applied" (settings arrived from
+ * the account; redraw). Cloud sync listens to all but the last.
  */
 (function setUpBookSettings(quiz) {
   "use strict";
 
   const STORAGE_KEY_PREFIX = "recall-quiz-book:";
-  const CURRENT_VERSION = 2;
+  const CURRENT_VERSION = 3;
   /** Flags a reader can put on a question or idea, in the order shown */
   const FLAG_NAMES = ["bad", "revisit", "useless", "important"];
   /** Flags that remove a question (or idea) from the book */
@@ -50,6 +59,10 @@
     /** 1 to 2: ideas can be flagged too */
     1: function addIdeaFlags(data) {
       return Object.assign({}, data, { ideaFlags: {} });
+    },
+    /** 2 to 3: the Sanskrit cards choice is saved with the settings */
+    2: function addSanskrit(data) {
+      return Object.assign({}, data, { sanskrit: emptySanskrit() });
     },
   };
   /** The two kinds of thing a reader can flag: the record's field name */
@@ -83,9 +96,35 @@
     return upgraded;
   }
 
+  /** @returns {{off: string[], font: string, at: number}} nothing off */
+  function emptySanskrit() {
+    return { off: [], font: "", at: 0 };
+  }
+
+  /**
+   * Keep only well-formed entries of the Sanskrit cards choice.
+   * @param {object} raw  as saved
+   * @returns {{off: string[], font: string, at: number}}
+   */
+  function cleanSanskrit(raw) {
+    if (!isPlainObject(raw)) {
+      return emptySanskrit();
+    }
+    const isId = function isId(value) {
+      return typeof value === "string" && /^[a-z]+:[a-z0-9-]+$/.test(value);
+    };
+    return {
+      off: Array.isArray(raw.off) ? raw.off.filter(isId) : [],
+      font: typeof raw.font === "string" &&
+        /^[a-z0-9-]{0,30}$/.test(raw.font) ? raw.font : "",
+      at: Number(raw.at) || 0,
+    };
+  }
+
   /** @returns {object} a record for a book nothing was saved for */
   function createEmptyRecord() {
-    return { version: CURRENT_VERSION, layout: {}, flags: {}, ideaFlags: {} };
+    return { version: CURRENT_VERSION, layout: {}, flags: {}, ideaFlags: {},
+      sanskrit: emptySanskrit() };
   }
 
   /**
@@ -109,6 +148,7 @@
         layout: isPlainObject(upgraded.layout) ? upgraded.layout : {},
         flags: cleanFlags(upgraded.flags),
         ideaFlags: cleanFlags(upgraded.ideaFlags),
+        sanskrit: cleanSanskrit(upgraded.sanskrit),
       },
       isNewer: false,
     };
@@ -193,6 +233,27 @@
   function saveLayout(layout) {
     store.record.layout = layout;
     saveRecord();
+  }
+
+  // ------------------------------------------------------------ sanskrit
+
+  /** @returns {{off: string[], font: string, at: number}} a copy of the
+   *  Sanskrit cards choice */
+  function readSanskrit() {
+    const saved = store.record.sanskrit;
+    return { off: saved.off.slice(), font: saved.font, at: saved.at };
+  }
+
+  /**
+   * Keep a new Sanskrit cards choice, stamp it with the time and tell
+   * cloud sync.
+   * @param {{off: string[], font: string}} choice
+   */
+  function saveSanskrit(choice) {
+    store.record.sanskrit = cleanSanskrit(
+      { off: choice.off, font: choice.font, at: Date.now() });
+    saveRecord();
+    document.dispatchEvent(new CustomEvent("recallquiz:sanskrit-changed"));
   }
 
   // --------------------------------------------------------------- flags
@@ -352,8 +413,8 @@
 
   /**
    * @returns {{v: number, layout: object, flags: object,
-   *   ideaFlags: object}} the settings in the shape saved in the
-   *   reader's account
+   *   ideaFlags: object, sanskrit: object}} the settings in the shape
+   *   saved in the reader's account
    */
   function readForAccount() {
     return {
@@ -361,6 +422,7 @@
       layout: store.record.layout,
       flags: store.record.flags,
       ideaFlags: store.record.ideaFlags,
+      sanskrit: store.record.sanskrit,
     };
   }
 
@@ -368,8 +430,8 @@
    * Make an account copy safe to use (any older version).
    * @param {object|null} remote
    * @returns {{v: number, layout: object, flags: object,
-   *   ideaFlags: object}|null} null when it is missing or from a newer
-   *   version
+   *   ideaFlags: object, sanskrit: object}|null} null when it is missing
+   *   or from a newer version
    */
   function upgradeAccountCopy(remote) {
     if (!isPlainObject(remote)) {
@@ -386,12 +448,14 @@
       layout: isPlainObject(upgraded.layout) ? upgraded.layout : {},
       flags: cleanFlags(upgraded.flags),
       ideaFlags: cleanFlags(upgraded.ideaFlags),
+      sanskrit: cleanSanskrit(upgraded.sanskrit),
     };
   }
 
   /**
    * Merge settings from the account into this browser: the newer layout
-   * wins, and each question and idea keeps its newer flags.
+   * wins, the newer Sanskrit cards choice wins, and each question and
+   * idea keeps its newer flags.
    * @param {object|null} remote  the account copy, any version
    * @returns {boolean} true if this browser's settings changed
    */
@@ -403,6 +467,9 @@
     const before = JSON.stringify(store.record);
     if ((account.layout.at || 0) > (store.record.layout.at || 0)) {
       store.record.layout = account.layout;
+    }
+    if (account.sanskrit.at > store.record.sanskrit.at) {
+      store.record.sanskrit = account.sanskrit;
     }
     store.record.flags = mergeFlags(store.record.flags, account.flags);
     store.record.ideaFlags = mergeFlags(store.record.ideaFlags,
@@ -443,7 +510,8 @@
     if (!account) {
       return !store.isReadOnly && hasAnythingToSave();
     }
-    if ((store.record.layout.at || 0) > (account.layout.at || 0)) {
+    if ((store.record.layout.at || 0) > (account.layout.at || 0) ||
+        store.record.sanskrit.at > account.sanskrit.at) {
       return true;
     }
     return hasNewerFlags(store.record.flags, account.flags) ||
@@ -464,6 +532,7 @@
   /** @returns {boolean} true once the reader has changed anything */
   function hasAnythingToSave() {
     return (store.record.layout.at || 0) > 0 ||
+      store.record.sanskrit.at > 0 ||
       Object.keys(store.record.flags).length > 0 ||
       Object.keys(store.record.ideaFlags).length > 0;
   }
@@ -476,6 +545,8 @@
     openForBook,
     readLayout,
     saveLayout,
+    readSanskrit,
+    saveSanskrit,
     flagsOf,
     hasFlag,
     toggleFlag,

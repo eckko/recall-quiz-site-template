@@ -43,6 +43,104 @@
   font: 400 1.05rem/1.6 var(--font-heading);
 }
 
+/* Verse-study blocks: their own colour pair, set per theme, so they stand
+   out from the theme's accent. */
+.idea-block.is-study {
+  padding: 8px 12px;
+  border-left-color: var(--color-study);
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
+  background: var(--color-study-bg);
+}
+
+.idea-block.is-study .idea-block-label {
+  color: var(--color-study);
+  font-weight: 600;
+}
+
+.idea-block .verse-line {
+  margin: 4px 0 0;
+  font: 400 1.3rem/1.8 var(--font-verse, var(--font-heading));
+}
+
+.word-list {
+  display: grid;
+  gap: 8px;
+  margin: 6px 0 0;
+}
+
+.grammar-toggle {
+  justify-self: start;
+  padding: 2px 10px;
+  border: var(--border-width) solid var(--color-study);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-study);
+  font: 600 0.75rem var(--font-body);
+  cursor: pointer;
+}
+
+.grammar-toggle[aria-pressed="true"] {
+  background: var(--color-study);
+  color: var(--color-card);
+}
+
+.word-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.word-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.word-chip {
+  min-width: 0;
+  padding: 3px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-card);
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+}
+
+.word-form {
+  display: block;
+  color: var(--color-study);
+  font: 600 1.05rem var(--font-verse, var(--font-heading));
+}
+
+.word-gloss {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.word-gram {
+  display: none;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.word-chip.is-open .word-gram {
+  display: block;
+}
+
+.word-chip:hover,
+.word-chip.is-open {
+  box-shadow: inset 0 0 0 1px var(--color-study);
+}
+
+.word-chip:focus-visible,
+.grammar-toggle:focus-visible {
+  outline: 2px solid var(--color-study);
+  outline-offset: 2px;
+}
+
 .idea-genre {
   display: inline-block;
   margin: 0 0 6px;
@@ -115,4 +213,109 @@
   margin-top: 4px;
   font-size: 0.8rem;
   color: var(--color-text-muted);
+}
+
+/* Memory aids (js/study-aids.js) */
+.aid-list {
+  display: grid;
+  gap: 12px;
+  margin: 6px 0 0;
+}
+
+.aid-item {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--color-study);
+}
+
+.aid-label {
+  color: var(--color-study);
+  font: 600 0.78rem var(--font-body);
+  letter-spacing: 0.02em;
+}
+
+.aid-text,
+.aid-line {
+  margin: 0;
+}
+
+.aid-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 4px;
+  border-radius: 10px;
+}
+
+.aid-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aid-steps li {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--color-card);
+}
+
+.aid-steps li:not(:last-child)::after {
+  content: "\2192";
+  margin-left: 8px;
+  color: var(--color-study);
+}
+
+.aid-tiers {
+  display: grid;
+  gap: 4px;
+}
+
+.aid-tier {
+  display: grid;
+  gap: 2px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--color-card);
+}
+
+.aid-tier[data-tier="1"] { margin-left: 8px; }
+.aid-tier[data-tier="2"] { margin-left: 16px; }
+.aid-tier[data-tier="3"] { margin-left: 24px; }
+
+/* A kind switched off in Settings (the html attribute lists the kinds) */
+html[data-hide-aids~="chain"] .aid-item[data-aid="chain"],
+html[data-hide-aids~="letters"] .aid-item[data-aid="letters"],
+html[data-hide-aids~="seesaw"] .aid-item[data-aid="seesaw"],
+html[data-hide-aids~="sandhi"] .aid-item[data-aid="sandhi"],
+html[data-hide-aids~="frame"] .aid-item[data-aid="frame"],
+html[data-hide-aids~="anchors"] .aid-item[data-aid="anchors"],
+html[data-hide-aids~="diagram"] .aid-item[data-aid="diagram"],
+html[data-hide-aids~="metre"] .aid-item[data-aid="metre"],
+html[data-hide-aids~="chunks"] .aid-item[data-aid="chunks"],
+html[data-hide-aids~="pegs"] .aid-item[data-aid="pegs"],
+html[data-hide-aids~="puns"] .aid-item[data-aid="puns"],
+html[data-hide-aids~="contrast"] .aid-item[data-aid="contrast"],
+html[data-hide-aids~="story"] .aid-item[data-aid="story"] {
+  display: none;
+}
+
+/* A part of the card switched off in Settings (html attribute lists them) */
+html[data-hide-parts~="ref"] .idea-block[data-part="ref"],
+html[data-hide-parts~="verse"] .idea-block[data-part="verse"],
+html[data-hide-parts~="words"] .idea-block[data-part="words"],
+html[data-hide-parts~="hindi"] .idea-block[data-part="hindi"],
+html[data-hide-parts~="english"] .idea-block[data-part="english"],
+html[data-hide-parts~="explain"] .idea-block[data-part="explain"],
+html[data-hide-parts~="aids"] .idea-block[data-part="aids"],
+html[data-hide-parts~="note"] .idea-block[data-part="note"] {
+  display: none;
+}
+
+.aid-block[hidden] {
+  display: none;
 }

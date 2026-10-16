@@ -1,0 +1,3 @@
+/* Extra touches for Shalya Tantra. */
+[data-theme="shalya-tantra"] h1 { background: none; color: var(--color-accent); -webkit-text-fill-color: currentColor; font-family: var(--font-heading); }
+[data-theme="shalya-tantra"] .panel { border-left: 3px solid var(--color-accent2); }

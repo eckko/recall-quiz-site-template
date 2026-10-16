@@ -1,0 +1,69 @@
+{
+  "name": "Copper Plate · ताम्रपत्र",
+  "group": "Vedic & Sanskrit",
+  "fonts": {
+    "body": "\"Amita\",Georgia,serif",
+    "headings": "\"Amita\",Georgia,serif"
+  },
+  "shape": {
+    "radius": "10px",
+    "smallRadius": "7px",
+    "borderWidth": "1px",
+    "strongBorderWidth": "2px"
+  },
+  "iconStroke": {
+    "width": 3,
+    "cap": "round",
+    "join": "round"
+  },
+  "light": {
+    "colors": {
+      "page": "#f1dcc8",
+      "card": "#f9ebdc",
+      "text": "#2e1b10",
+      "textMuted": "#6d4a34",
+      "border": "#d3a888",
+      "accent": "#9a4a22",
+      "accent2": "#1f6f62",
+      "highlight": "#ecd0b4",
+      "correct": "#2f6b34",
+      "wrong": "#a3261c",
+      "partly": "#8a5600",
+      "pop1": "#9a4a22",
+      "pop2": "#1f6f62",
+      "pop3": "#1f6f62",
+      "pop4": "#8a5a2b",
+      "onAccent": "#ffffff",
+      "onHero": "#ffffff"
+    },
+    "background": [
+      "url(background-light.svg) 0 0/120px 120px fixed",
+      "#f1dcc8"
+    ]
+  },
+  "dark": {
+    "colors": {
+      "page": "#1a0f0a",
+      "card": "#25160f",
+      "text": "#f3dfcb",
+      "textMuted": "#bd9c84",
+      "border": "#46291b",
+      "accent": "#e89a6a",
+      "accent2": "#5fc2ae",
+      "highlight": "#33200f",
+      "correct": "#8fd08a",
+      "wrong": "#f09a90",
+      "partly": "#e6b04f",
+      "pop1": "#e89a6a",
+      "pop2": "#5fc2ae",
+      "pop3": "#5fc2ae",
+      "pop4": "#d1a56a",
+      "onAccent": "#1a0f0a",
+      "onHero": "#1a0f0a"
+    },
+    "background": [
+      "url(background-dark.svg) 0 0/120px 120px fixed",
+      "#1a0f0a"
+    ]
+  }
+}
