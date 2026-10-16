@@ -301,24 +301,57 @@
     });
   }
 
-  /** Fill the font choice. */
+  /** The sample shown under the font choice: Devanagari and Latin, in
+   *  regular, semibold and bold (a font without a weight shows the nearest
+   *  one it has). */
+  const SAMPLE_ROWS = [
+    ["Regular", 400, "धर्मार्थकाममोक्षाणामारोग्यं मूलमुत्तमम्"],
+    ["Semibold", 600, "अथातो दीर्घञ्जीवितीयमध्यायं व्याख्यास्यामः"],
+    ["Bold", 700, "चरकसंहिता · सूत्रस्थान · Charaka 123"],
+  ];
+
+  /** Show the sample in the chosen font. */
+  function drawPreview() {
+    const box = document.getElementById("sanskrit-font-preview");
+    if (!box) {
+      return;
+    }
+    const row = FONTS.find(function same(font) {
+      return font[0] === state.font;
+    });
+    loadFont(state.font);
+    box.style.setProperty("--preview-font", row && row[2] ?
+      '"' + row[2] + '", "Noto Sans Devanagari", "Nirmala UI", serif' :
+      "var(--font-heading)");
+    if (box.children.length) {
+      return;
+    }
+    SAMPLE_ROWS.forEach(function add(sample) {
+      const line = document.createElement("div");
+      line.className = "font-preview-row";
+      line.appendChild(Object.assign(document.createElement("small"),
+        { textContent: sample[0] }));
+      const text = document.createElement("span");
+      text.lang = "sa";
+      text.style.fontWeight = String(sample[1]);
+      text.textContent = sample[2];
+      line.appendChild(text);
+      box.appendChild(line);
+    });
+  }
+
+  /** Fill the font dropdown. */
   function buildFonts() {
-    const group = document.getElementById("sanskrit-font-choice");
-    if (!group || group.children.length) {
+    const select = document.getElementById("sanskrit-font-choice");
+    if (!select || select.options.length) {
       return;
     }
     FONTS.forEach(function add(font) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.dataset.font = font[0];
-      button.textContent = font[1];
-      if (font[2]) {
-        button.style.fontFamily = '"' + font[2] + '", serif';
-      }
-      button.addEventListener("click", function choose() {
-        setFont(font[0]);
-      });
-      group.appendChild(button);
+      select.appendChild(Object.assign(document.createElement("option"),
+        { value: font[0], textContent: font[1] }));
+    });
+    select.addEventListener("change", function choose() {
+      setFont(select.value);
     });
   }
 
@@ -346,22 +379,6 @@
     buildList("sanskrit-aids-list", "aid:", KINDS);
     buildFonts();
     buildAllButtons();
-    const section = document.getElementById("sanskrit-section");
-    if (section) {
-      section.addEventListener("toggle", loadPreviewFonts);
-      loadPreviewFonts();
-    }
-  }
-
-  /** Load every font of the picker, but only once the section is open, so
-   *  a closed Settings card costs no font downloads. */
-  function loadPreviewFonts() {
-    const section = document.getElementById("sanskrit-section");
-    if (section && section.open) {
-      FONTS.forEach(function load(font) {
-        loadFont(font[0]);
-      });
-    }
   }
 
   /** Show the chosen buttons and the "n of m on" summary. */
@@ -373,11 +390,11 @@
           String((button.dataset.value === "show") === on));
       });
     });
-    document.querySelectorAll("#sanskrit-font-choice button").forEach(
-      function press(button) {
-        button.setAttribute("aria-pressed",
-          String(button.dataset.font === state.font));
-      });
+    const select = document.getElementById("sanskrit-font-choice");
+    if (select) {
+      select.value = state.font;
+    }
+    drawPreview();
     const current = document.getElementById("sanskrit-section-current");
     if (current) {
       const total = PARTS.length + KINDS.length;
