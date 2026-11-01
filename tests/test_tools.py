@@ -347,8 +347,65 @@ def test_study_colours():
           worst >= 45)
 
 
+def test_subject_pages_and_build():
+    """The encrypted-book pages and the quiz part of build_book.py."""
+    import base64
+    import os
+    import shutil
+    sys.path.insert(0, str(TOOLS))
+    import make_subject_pages
+    import encrypt_media
+    pages = make_subject_pages.make_pages("3.0.0", "A & B", ("quiz",))
+    check("quiz-only book gets index.html and quiz.html only",
+          sorted(pages) == ["index.html", "quiz.html"])
+    check("pages load js/unlock.js from the exact tag",
+          "recall-quiz-site-template@3.0.0/js/unlock.js" in pages["quiz.html"])
+    check("the gate lists only the views the book has",
+          "Test only" in pages["index.html"]
+          and "Read book" not in pages["index.html"])
+    for bad in ("v3.0.0", "main", "3.0"):
+        result = run(TOOLS / "make_subject_pages.py", bad, "x", cwd=ROOT)
+        check(f"refuses tag {bad}", result.returncode != 0)
+    folder = Path(tempfile.mkdtemp())
+    try:
+        book = folder / "book"
+        (book / "media" / "u1").mkdir(parents=True)
+        (book / "questions.json").write_text(json.dumps(
+            {"id": "t1", "book": "T", "questions": []}))
+        (book / "media" / "u1" / "f1.enc").write_bytes(
+            encrypt_media.encrypt(encrypt_media.placeholder_key(),
+                                  "u1/f1", b"picture"))
+        subject_key = base64.b64encode(os.urandom(32)).decode()
+        env = {**os.environ, "SUBJECT_KEY": subject_key}
+        out = folder / "out"
+        result = subprocess.run(
+            [sys.executable, str(TOOLS / "book_build" / "build_book.py"),
+             "--book", str(book), "--template-tag", "3.0.0",
+             "--out", str(out)], capture_output=True, text=True, env=env)
+        check("quiz-only build succeeds", result.returncode == 0)
+        names = sorted(path.name for path in out.iterdir())
+        check("output is only pages, book.json and quiz/",
+              names == ["book.json", "index.html", "quiz", "quiz.html"])
+        picture = out / "quiz" / "media" / "u1" / "f1.enc"
+        key = base64.b64decode(subject_key)
+        check("picture now opens with the subject key, not the placeholder",
+              encrypt_media.decrypt(key, "u1/f1", picture.read_bytes())
+              == b"picture")
+        info = json.loads((out / "book.json").read_text())
+        check("book.json lists only the quiz view",
+              list(info["views"]) == ["quiz"])
+        result = subprocess.run(
+            [sys.executable, str(TOOLS / "book_build" / "build_book.py"),
+             "--book", str(book), "--template-tag", "v3.0.0",
+             "--out", str(out)], capture_output=True, text=True, env=env)
+        check("build refuses a v-prefixed tag", result.returncode != 0)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 if __name__ == "__main__":
     print("Bank tools")
+    test_subject_pages_and_build()
     test_study_blocks()
     test_aids()
     test_study_colours()

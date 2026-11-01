@@ -211,6 +211,9 @@
   function connectMediaKey(user) {
     const provider = sync.provider;
     const bookId = sync.bookId;
+    if (window.RecallQuizSubjectKeyBase64) {
+      return;   // an encrypted book site: js/encrypted-book.js has the key
+    }
     if (!quiz.media || !provider || !provider.readMediaKey) {
       return;
     }
