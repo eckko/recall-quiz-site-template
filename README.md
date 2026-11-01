@@ -40,8 +40,12 @@ holds only ciphertext and tiny pages:
 `users/<uid>/mediaKeys/subject`, or paste it) before either view starts,
 and keeps it for the tab. `tools/book_build/build_book.py` builds a book
 folder from a private book repo (EPUB, notes EPUB, `questions.json`);
-`tools/make_subject_pages.py` writes the three pages. The older plain
-sites (`questions.json` next to `index.html`) still work unchanged.
+`tools/make_subject_pages.py` writes the three pages. `tools/site/` holds the tools for the subject site itself (`build_hub.py`,
+`add_book.py`, `set_template_tag.py`, `publish_book.sh`); the publish workflow
+and the subject site's check run them from this template at the tag, so a
+subject repo holds only the hub, `subject.json` (with `templateTag`) and the
+book folders. The older plain sites (`questions.json` next to `index.html`)
+still work unchanged.
 
 ## Teaching mode (Learn)
 

@@ -6,9 +6,9 @@
 # The plain book never leaves this repo: the job reads the EPUB (and your
 # notes EPUB) and questions.json, encrypts everything with the subject key
 # inside the runner and publishes only the small pages, book.json and
-# *.enc files. The build tools come from eckko/recall-quiz-site-template at
-# TEMPLATE_TAG (the same tag readers load the code from), and the publish
-# script from the subject site.
+# *.enc files. The build tools and the publish script both come from
+# eckko/recall-quiz-site-template at TEMPLATE_TAG (the same tag readers load
+# the code from), so the subject site needs no tools of its own.
 #
 # One-time setup (Settings > Secrets and variables > Actions of this repo):
 #   READER_SUBJECT_REPO_TOKEN  fine-grained token for the subject repo only,
@@ -46,9 +46,9 @@ env:
   # Leave empty for a quiz-only book (no reader).
   BOOK_EPUB: references/YOUR_BOOK.epub
   NOTES_EPUB: ""            # for example references/my-notes.epub; empty = none
-  # An exact tag of eckko/recall-quiz-site-template such as 3.0.0: no "v",
+  # An exact tag of eckko/recall-quiz-site-template such as 3.1.0: no "v",
   # never a branch.
-  TEMPLATE_TAG: 3.0.0
+  TEMPLATE_TAG: 3.1.0
 
 jobs:
   publish:
@@ -70,7 +70,7 @@ jobs:
             echo "::error::The secret SUBJECT_KEY is missing."
             exit 1
           elif ! [[ "$TEMPLATE_TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::TEMPLATE_TAG must be an exact tag like 3.0.0 (no v, no branch)."
+            echo "::error::TEMPLATE_TAG must be an exact tag like 3.1.0 (no v, no branch)."
             exit 1
           fi
 
@@ -120,4 +120,4 @@ jobs:
 
       - name: Publish
         if: steps.setup.outputs.skip != 'true'
-        run: subject/tools/publish_book.sh "$RUNNER_TEMP/site" "$BOOK_FOLDER"
+        run: template/tools/site/publish_book.sh "$RUNNER_TEMP/site" "$BOOK_FOLDER" subject

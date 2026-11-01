@@ -239,3 +239,8 @@ and publishes `window.RecallQuizSubjectKey` (CryptoKey, AES-GCM) and
 hands the base64 key to `media-store.js`, and `cloud-sync.js` then leaves
 the picture key alone. `reader/app.js` is the reader; it also calls
 `SubjectUnlock.ready()`. Pages are written by `tools/make_subject_pages.py`.
+
+`tools/site/` (`build_hub.py`, `add_book.py`, `set_template_tag.py`,
+`publish_book.sh`) works on a subject site checkout (`--subject-root`, default
+the current folder): it checks book folders, writes `books.json`, copies a
+built book in and pushes. Tests: `tests/test_site_tools.py`.
