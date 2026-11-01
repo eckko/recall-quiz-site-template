@@ -22,6 +22,27 @@ AI agents: read [`AGENTS.md`](AGENTS.md) and the
 
 ---
 
+## Encrypted book sites (3.0.0)
+
+One site can hold, for each book, a reader and a quiz, with everything
+book-derived encrypted and one key for the whole subject. A book folder
+holds only ciphertext and tiny pages:
+
+| File | What it is |
+|---|---|
+| `index.html` | the gate: unlocks, then opens `?view=read` or `?view=quiz` (or shows two buttons) |
+| `read.html`, `quiz.html` | tiny pages that load `reader/` or `js/boot.js` from the CDN at an exact tag |
+| `book.json` | public `id`, `title` and `views` (which of read/quiz exist) |
+| `data/`, `media/` | the reader's encrypted chapters and pictures |
+| `quiz/questions.enc`, `quiz/media/` | the quiz's questions and pictures, same key |
+
+`js/unlock.js` gets the key (sign in with Google and read
+`users/<uid>/mediaKeys/subject`, or paste it) before either view starts,
+and keeps it for the tab. `tools/book_build/build_book.py` builds a book
+folder from a private book repo (EPUB, notes EPUB, `questions.json`);
+`tools/make_subject_pages.py` writes the three pages. The older plain
+sites (`questions.json` next to `index.html`) still work unchanged.
+
 ## Teaching mode (Learn)
 
 This template can teach new material, not only test recall. A bank that

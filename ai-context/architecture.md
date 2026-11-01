@@ -226,3 +226,16 @@ no "override" layers. Theme `extra.css` rules are scoped with
 chapters, then topics, each opening to its ideas) or "Ideas" (chapters
 holding a flat list of ideas). A book without ideas shows its topic list in
 the structure view and a short note in the ideas view.
+
+
+## Encrypted book sites (3.0.0)
+
+`js/unlock.js` (loaded first, `window.SubjectUnlock`) gets the subject key
+and publishes `window.RecallQuizSubjectKey` (CryptoKey, AES-GCM) and
+`window.RecallQuizSubjectKeyBase64`. When a page sets
+`window.RecallQuizEncrypted = { questions: "quiz/questions.enc" }`,
+`js/early-questions.js` waits for the key, fetches and decrypts that file
+(RQE1 format, see `tools/book_build/encfmt.py`). `js/encrypted-book.js`
+hands the base64 key to `media-store.js`, and `cloud-sync.js` then leaves
+the picture key alone. `reader/app.js` is the reader; it also calls
+`SubjectUnlock.ready()`. Pages are written by `tools/make_subject_pages.py`.

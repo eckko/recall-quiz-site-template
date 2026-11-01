@@ -30,11 +30,37 @@
   }
 
   /**
+   * Encrypted book site (template v3): the page set
+   * window.RecallQuizEncrypted = { questions: "quiz/questions.enc" } and
+   * unlocked the subject key (js/unlock.js) before starting this file.
+   * @returns {Promise<object>} the decrypted, parsed question bank
+   */
+  function fetchEncryptedQuestions() {
+    const unlock = window.SubjectUnlock;
+    return unlock.ready().then(function download(unlocked) {
+      return fetch(window.RecallQuizEncrypted.questions,
+        { cache: "no-cache" }).then(function read(response) {
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+        return response.arrayBuffer();
+      }).then(function open(buffer) {
+        return unlock.decrypt(buffer, unlocked.key);
+      });
+    }).then(function parse(bytes) {
+      return JSON.parse(new TextDecoder().decode(bytes));
+    });
+  }
+
+  /**
    * Ask for the question bank.
    * @returns {Promise<object>} the parsed JSON; it rejects when the file
    *   cannot be read (for example when the page is opened from a folder)
    */
   function fetchQuestions() {
+    if (window.RecallQuizEncrypted) {
+      return fetchEncryptedQuestions();
+    }
     return fetch(questionsFileName(), { cache: "no-cache" })
       .then(function readJson(response) {
         if (!response.ok) {
