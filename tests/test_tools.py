@@ -451,9 +451,53 @@ def test_extract_epub_in_subfolder():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_add_notes_by_unit():
+    """Notes files are found by the chapter's unit, so bundle prefixes such
+    as u1 work as well as c1."""
+    import os
+    import shutil
+    import zipfile
+    sys.path.insert(0, str(TOOLS / "book_build"))
+    import encfmt
+    folder = Path(tempfile.mkdtemp())
+    try:
+        key = os.urandom(32)
+        (folder / "key.txt").write_text(key.hex())
+        (folder / "site" / "data" / "ch").mkdir(parents=True)
+        manifest = {"chapters": [
+            {"prefix": "u1", "unit": "Chapter 1", "title": "First"}]}
+        node = {"id": "u1-i", "level": 2, "title": "I.", "parent": None,
+                "html": "text", "sectionKey": "I.", "notes": None,
+                "visuals": [], "ideas": [], "questions": []}
+        bundle = {"nodes": [node], "media": [], "ideas": {}, "questions": []}
+        (folder / "site" / "data" / "manifest.enc").write_bytes(
+            encfmt.encrypt(json.dumps(manifest).encode(), key))
+        (folder / "site" / "data" / "ch" / "u1.enc").write_bytes(
+            encfmt.encrypt(json.dumps(bundle).encode(), key))
+        page = ("<html><body>"
+                '<div class="box blue"><p><strong>Place</strong></p>'
+                "<p>chapter note</p></div><h3>I.</h3>"
+                "<ul><li>section note</li></ul></body></html>")
+        with zipfile.ZipFile(folder / "notes.epub", "w") as epub:
+            epub.writestr("OEBPS/u_ch1.xhtml", page)
+        result = run(TOOLS / "book_build" / "add_notes.py",
+                     "--site", folder / "site", "--key", folder / "key.txt",
+                     "--notes-epub", folder / "notes.epub", cwd=ROOT)
+        check("add_notes runs", result.returncode == 0)
+        stored = json.loads(encfmt.decrypt(
+            (folder / "site" / "data" / "ch" / "u1.enc").read_bytes(), key))
+        check("the section note is placed on its section",
+              "section note" in (stored["nodes"][0]["notes"] or ""))
+        check("the blue box becomes the chapter note",
+              "chapter note" in (stored["notesIntro"] or ""))
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 if __name__ == "__main__":
     print("Bank tools")
     test_subject_pages_and_build()
+    test_add_notes_by_unit()
     test_extract_epub_in_subfolder()
     test_study_blocks()
     test_aids()
