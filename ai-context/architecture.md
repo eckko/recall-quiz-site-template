@@ -243,6 +243,27 @@ hands the base64 key to `media-store.js`, and `cloud-sync.js` then leaves
 the picture key alone. `reader/app.js` is the reader; it also calls
 `SubjectUnlock.ready()`.
 
+Building the encrypted book (`tools/book_build/`): `extract_epub.py` cuts
+the EPUB by the chapter map (`book-structure/chapters.json`), `build_site.py`
+places ideas and questions, `add_notes.py` adds the notes EPUB.
+- The navigation is `toc.ncx` next to the package file, or the NCX the
+  package declares (`epubnav.read_ncx`). The cover is the `cover` meta or the
+  item with `properties="cover-image"`.
+- Units named `Chapter N` (and `Appendix`) are cut from their nav entry.
+  Any other unit that lists `sections` (Foreword, Preface, Introduction,
+  Conclusion, Afterword, ...) is cut too: a nav entry belongs to the section
+  whose title starts with the entry's title up to its colon ("Foreword: to the
+  50th ..." belongs to "Foreword to the 50th Anniversary Edition: Ten
+  Lessons ..."). Each such file opens a level-2 node, its split title blocks
+  are dropped, and later sections of the unit are found in the text by title.
+  A unit with no sections has no text: it gets one empty node that holds all
+  its ideas and questions, and its group is "The whole book".
+- Notes: `u_chN.xhtml` or `chapter_N.xhtml` for chapter N. For the other
+  units, a notes file whose `<h1>` is the first words of a section title
+  (`foreword.xhtml` with `<h1>Foreword</h1>`) becomes that section's note;
+  its `h3`/`h4` headings match nodes by title, and any that do not stay on
+  that section.
+
 The reader wears the quiz themes: `reader/style.css` imports
 `css/theme-defaults.css` and `css/reading-panel.css`, maps its old colour
 names to the `--color-*` variables, and `reader/app.js` loads
