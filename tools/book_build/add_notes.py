@@ -4,7 +4,9 @@ encrypted site, matched to chapter / section / subtopic nodes.
 
   add_notes.py --site SITE --key KEY --notes-epub NOTES.epub --report out.json
 
-Chapter files u_chNN.xhtml -> bundle cNN (appendix -> app). Under each chapter:
+Chapter files u_chNN.xhtml -> the chapter with that number, whatever its
+bundle prefix (cNN, uN); u_appendix.xhtml -> Appendix; u_prologue.xhtml
+-> Prologue. Under each chapter:
   h3 = section note, h4 = subtopic note, the blue box before the first h3 is the
   chapter note (bundle.notesIntro). Part pages, architecture, 'how to read' and
   'not summarised' pages go to manifest.notesExtra. Unmatched blocks are kept
@@ -69,9 +71,17 @@ report = {"chapters": {}, "extra": []}
 tot = {"blocks": 0, "matched": 0, "other": 0}
 for c in man["chapters"]:
     pre = c["prefix"]
-    num = pre[1:] if re.fullmatch(r"c\d+", pre) else None
-    names = ["u_appendix"] if pre == "app" else (
-        [f"u_ch{num}", f"u_c{int(num):02d}", f"u_c{num}"] if num else [])
+    unit = c.get("unit", "")
+    chapter = re.fullmatch(r"Chapter (\d+)", unit)
+    num = chapter.group(1) if chapter else (
+        pre[1:] if re.fullmatch(r"c\d+", pre) else None)
+    if pre == "app" or unit == "Appendix":
+        names = ["u_appendix"]
+    elif unit == "Prologue":
+        names = ["u_prologue"]
+    else:
+        names = [f"u_ch{num}", f"u_c{int(num):02d}", f"u_c{num}"] \
+            if num else []
     name = next((n for n in names if f"OEBPS/{n}.xhtml" in z.namelist()), None)
     if not name:
         report["chapters"][pre] = "no notes file"; continue
