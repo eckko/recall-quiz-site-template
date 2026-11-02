@@ -99,6 +99,18 @@ def unit_sections_in_nav(sections):
     return found
 
 
+def unit_nav_file(unit):
+    """For a unit like "Rule #1" or "Part 2 Step 3" whose own navigation
+    entry starts with the unit name ("Rule #1: Work Deeply"): the file that
+    entry points to, else None. Its sections are headings inside the
+    unit's files, not navigation entries of their own."""
+    key = norm(unit)
+    for title, f in nav_files:
+        if f in file_index and re.match(re.escape(key) + r"\b", norm(title)):
+            return f
+    return None
+
+
 # ----- inline cleaning
 def inline(node, media_hook):
     parts = []
@@ -147,9 +159,12 @@ for c in chapters:
                            c["sections"])
     else:
         section_starts = unit_sections_in_nav(c["sections"])
-        if not section_starts:
+        own_file = unit_nav_file(unit) if not section_starts else None
+        if not section_starts and not own_file:
             continue      # the whole-book unit has no text to cut
         files = []
+        if own_file:
+            files = file_range(own_file, c["sections"])
         for start in sorted(section_starts, key=file_index.get):
             files += [x for x in file_range(start, c["sections"])
                       if x not in files]

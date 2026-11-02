@@ -518,6 +518,52 @@ def test_extract_epub_split_chapter():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_rule_units():
+    """A unit like "Rule #1" has one navigation entry ("Rule #1: Name")
+    and its sections are headings inside the file; it is still cut."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        epub.mkdir()
+        files = ["rule1", "rule2"]
+        (epub / "content.opf").write_text(
+            "<package><manifest>"
+            + "".join(f'<item id="{n}" href="{n}.html"/>' for n in files)
+            + "</manifest><spine>"
+            + "".join(f'<itemref idref="{n}"/>' for n in files)
+            + "</spine></package>")
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap>"
+            "<navPoint><navLabel><text>Rule #1: Work Deeply</text>"
+            '</navLabel><content src="rule1.html"/></navPoint>'
+            "<navPoint><navLabel><text>Rule #2: Rest</text></navLabel>"
+            '<content src="rule2.html"/></navPoint></navMap></ncx>')
+        (epub / "rule1.html").write_text(
+            "<html><body><h1>Rule #1: Work Deeply</h1><p>Intro words.</p>"
+            "<h2>Decide Your Depth</h2><p>Depth words.</p></body></html>")
+        (epub / "rule2.html").write_text(
+            "<html><body><h1>Rule #2: Rest</h1><p>Rest words.</p>"
+            "</body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t3", "chapters": [
+            {"unit": "Rule #1", "unitTitle": "Work Deeply",
+             "idPrefix": "r1", "sections": ["Decide Your Depth"]},
+            {"unit": "Rule #2", "unitTitle": "Rest", "idPrefix": "r2",
+             "sections": ["Rest"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on Rule units", result.returncode == 0)
+        first = out / "chapters" / "r1.json"
+        check("a Rule unit gets its text",
+              first.exists() and "Depth words." in first.read_text())
+        check("a Rule unit stops at the next Rule",
+              "Rest words." not in first.read_text())
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_add_notes_by_unit():
     """Notes files are found by the chapter's unit, so bundle prefixes such
     as u1 work as well as c1."""
@@ -727,6 +773,7 @@ if __name__ == "__main__":
     test_extract_epub_in_subfolder()
     test_extract_epub_uppercase_appendix()
     test_extract_epub_split_chapter()
+    test_extract_epub_rule_units()
     test_book_build_front_back_units()
     test_study_blocks()
     test_aids()
