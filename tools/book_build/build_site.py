@@ -11,6 +11,7 @@ Also writes WORK/match-report.json (not published).
 import json, math, re, os, re, sys, secrets
 from pathlib import Path
 from encfmt import encrypt, load_key
+from epubnav import read_ncx
 
 repo, work, site, keyfile, epub = map(Path, sys.argv[1:6])
 if not keyfile.exists():
@@ -29,15 +30,15 @@ import re as _re0
 _c0 = epub / "META-INF" / "container.xml"
 _m0 = _re0.search(r'full-path="([^"]+)"', _c0.read_text(encoding="utf8")) if _c0.exists() else None
 opf_dir = (epub / _m0.group(1)).parent if _m0 else epub
-ncx = (opf_dir / "toc.ncx").read_text(encoding="utf8")
-nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
-                 r'<content src="([^"#]+)', ncx, re.S)
 from bs4 import BeautifulSoup
 import re as _re
 _c = epub / "META-INF" / "container.xml"
 _m = _re.search(r'full-path="([^"]+)"', _c.read_text(encoding="utf8")) if _c.exists() else None
 opf_path = epub / _m.group(1) if _m else epub / "content.opf"
 opf = BeautifulSoup(opf_path.read_text(encoding="utf8"), "xml")
+ncx = read_ncx(opf_dir, opf_path.read_text(encoding="utf8"))
+nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
+                 r'<content src="([^"#]+)', ncx, re.S)
 manifest_items = {i["id"]: i["href"] for i in opf.find_all("item")}
 spine = [manifest_items[r["idref"]] for r in opf.find_all("itemref")]
 pos = {f: i for i, f in enumerate(spine)}
@@ -46,13 +47,19 @@ chapter_start = {int(m.group(1)): pos[f] for t, f in nav
                  if (m := re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", t, re.I))}
 
 
-def group_of(unit):
+def group_of(unit, start_file=None):
+    """The part a unit belongs to. A unit with text is placed by where its
+    first file sits in the book (so a Foreword comes before Part I and a
+    Conclusion falls under the last part); a unit without text (the
+    whole-book unit) is "The whole book"."""
     if unit == "Appendix":
         return "Appendix"
-    if not re.match(r"Chapter \d+$|Appendix$", unit):
+    if re.match(r"Chapter \d+$", unit):
+        here = chapter_start[int(unit.split()[1])]
+    elif start_file in pos:
+        here = pos[start_file]
+    else:
         return "The whole book"
-    n = int(unit.split()[1])
-    here = chapter_start[n]
     best = None
     for title, start in parts:
         if start <= here:
@@ -78,7 +85,8 @@ manifest_chapters, group_order = [], []
 media_ids = []
 for c in chapters:
     unit, prefix = c["unit"], c["idPrefix"]
-    whole = not re.match(r"Chapter \d+$|Appendix$", unit)
+    # a unit with no extracted text (the whole-book unit) gets one empty node
+    whole = not (work / "chapters" / f"{prefix}.json").exists()
     if whole:
         bundle = {"unit": unit, "unitTitle": c["unitTitle"], "idPrefix": prefix,
                   "nodes": [{"id": f"{prefix}-whole", "level": 2,
@@ -89,6 +97,7 @@ for c in chapters:
     else:
         bundle = json.loads((work / "chapters" / f"{prefix}.json")
                             .read_text(encoding="utf8"))
+    start_file = bundle.pop("startFile", None)
     for n in bundle["nodes"]:
         n.setdefault("sectionKey", n["title"] if n["level"] == 2 else None)
         n["notes"] = None
@@ -126,7 +135,8 @@ for c in chapters:
             for q in lst:
                 qs_of.setdefault(q["concept"], []).append(q)
     for (u, sec) in sorted(keys):
-        node = by_title.get(sec)
+        # a unit without text keeps every idea on its single node
+        node = bundle["nodes"][0] if whole else by_title.get(sec)
         for idea in ideas_by.get((u, sec), []):
             if node is None:
                 unmatched += 1
@@ -177,7 +187,7 @@ for c in chapters:
             encrypt(src.read_bytes(), key, compress=False))
     (site / "data" / "ch" / f"{prefix}.enc").write_bytes(encrypt(
         json.dumps(bundle, ensure_ascii=False).encode("utf8"), key))
-    group = group_of(unit)
+    group = group_of(unit, start_file)
     if group not in group_order:
         group_order.append(group)
     manifest_chapters.append({
@@ -192,7 +202,10 @@ cover_meta = opf.find("meta", attrs={"name": "cover"})
 cover_href = None
 if cover_meta is not None:
     cover_href = manifest_items.get(cover_meta.get("content"))
-cover_src = epub / cover_href if cover_href else Path("/nonexistent")
+if cover_href is None:     # EPUB 3 marks the cover image by a property
+    cover_href = next((i["href"] for i in opf.find_all("item")
+                       if "cover-image" in (i.get("properties") or "")), None)
+cover_src = opf_dir / cover_href if cover_href else Path("/nonexistent")
 if cover_src.exists():
     (site / "media" / (cover_id.replace("/", "_") + ".enc")).write_bytes(
         encrypt(cover_src.read_bytes(), key, compress=False))

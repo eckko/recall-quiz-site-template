@@ -494,11 +494,171 @@ def test_add_notes_by_unit():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_book_build_front_back_units():
+    """A Foreword and a Conclusion (units with no number) are cut from the
+    EPUB, get their ideas, questions and notes, and a unit with no text keeps
+    its ideas on one node. The EPUB declares its NCX under another name and
+    marks its cover by property; the notes use chapter_N.xhtml names."""
+    import base64
+    import os
+    import shutil
+    import zipfile
+    sys.path.insert(0, str(TOOLS / "book_build"))
+    import encfmt
+    folder = Path(tempfile.mkdtemp())
+    try:
+        book = folder / "book"
+        (book / "references").mkdir(parents=True)
+        (book / "book-structure").mkdir()
+        page = ("<html><body>%s</body></html>")
+        files = {
+            "META-INF/container.xml": '<container><rootfiles><rootfile '
+            'full-path="OEBPS/content.opf"/></rootfiles></container>',
+            "OEBPS/content.opf": (
+                '<package><metadata><meta name="cover" content="none"/>'
+                '</metadata><manifest>'
+                '<item id="n" href="x_toc.ncx" '
+                'media-type="application/x-dtbncx+xml"/>'
+                '<item id="pic" href="images/c.jpg" properties="cover-image" '
+                'media-type="image/jpeg"/>'
+                '<item id="a" href="text/fw.xhtml"/>'
+                '<item id="b" href="text/ch1.xhtml"/>'
+                '<item id="c" href="text/end.xhtml"/></manifest>'
+                '<spine><itemref idref="a"/><itemref idref="b"/>'
+                '<itemref idref="c"/></spine></package>'),
+            "OEBPS/x_toc.ncx": (
+                '<ncx><navMap>'
+                '<navPoint><navLabel><text>Foreword: to the Edition'
+                '</text></navLabel><content src="text/fw.xhtml#a"/>'
+                '</navPoint><navPoint><navLabel><text>1. First</text>'
+                '</navLabel><content src="text/ch1.xhtml#b"/></navPoint>'
+                '<navPoint><navLabel><text>Conclusion:</text></navLabel>'
+                '<content src="text/end.xhtml#c"/></navPoint></navMap>'
+                '</ncx>'),
+            "OEBPS/images/c.jpg": b"cover bytes",
+            "OEBPS/text/fw.xhtml": page % (
+                '<h2>Foreword</h2><h2>to the Edition</h2>'
+                '<p class="x">Ten Lessons</p><p>Opening words of the '
+                'foreword.</p><p>More foreword words.</p>'),
+            "OEBPS/text/ch1.xhtml": page % (
+                "<p>Alpha</p><p>Alpha body words.</p>"
+                "<p>Beta</p><p>Beta body words.</p>"),
+            "OEBPS/text/end.xhtml": page % (
+                '<h2>Conclusion:</h2><h2>The End</h2>'
+                '<p>Closing words of the book.</p>')}
+        with zipfile.ZipFile(book / "references" / "b.epub", "w") as z:
+            z.writestr("mimetype", "application/epub+zip")
+            for name, data in files.items():
+                z.writestr(name, data)
+        notes = {
+            "OEBPS/foreword.xhtml": page % (
+                '<h1>Foreword</h1><div class="box blue"><p>Place note</p>'
+                '</div><h3>#1: Lesson</h3><ul><li>lesson note</li></ul>'),
+            "OEBPS/conclusion.xhtml": page % (
+                '<h1>Conclusion:</h1><div class="box blue"><p>End note</p>'
+                '</div><ul><li>end text</li></ul>'),
+            "OEBPS/chapter_1.xhtml": page % (
+                '<p class="label">CHAPTER 1</p><h2>First</h2>'
+                '<div class="box blue"><p>Chapter note</p></div>'
+                '<h3>Alpha</h3><ul><li>alpha note</li></ul>')}
+        with zipfile.ZipFile(book / "references" / "n.epub", "w") as z:
+            for name, data in notes.items():
+                z.writestr(name, data)
+        units = [
+            ("Front", "Foreword", "intro",
+             ["Foreword to the Edition: Ten Lessons"]),
+            ("Chapter 1", "First", "c1", ["Alpha", "Beta"]),
+            ("Conclusion", "The End", "end", ["Conclusion: The End"]),
+            ("The end", "The end", "whole", [])]
+        (book / "book-structure" / "chapters.json").write_text(json.dumps({
+            "id": "t1", "chapters": [
+                {"unit": u, "unitTitle": t, "idPrefix": i, "sections": sec}
+                for u, t, i, sec in units]}))
+        sections = {"Front": "Foreword to the Edition: Ten Lessons",
+                    "Chapter 1": "Alpha", "Conclusion": "Conclusion: The End",
+                    "The end": "The whole book"}
+        concepts, questions = [], []
+        for u, t, i, sec in units:
+            for n in range(2):
+                cid = f"{i}-idea-{n}"
+                concepts.append({
+                    "id": cid, "unit": u, "unitTitle": t,
+                    "section": sections[u], "title": f"Idea {n}",
+                    "card": {"blocks": [{"label": "L", "text": "t"}]},
+                    "question": "Q?"})
+                questions.append({
+                    "id": f"{i}-q-{n}", "unit": u, "unitTitle": t,
+                    "section": sections[u], "concept": cid, "kind": "tf",
+                    "q": "True or false: x", "answer": True})
+        (book / "questions.json").write_text(json.dumps(
+            {"id": "t1", "book": "T", "concepts": concepts,
+             "questions": questions}))
+        out = folder / "out"
+        key = os.urandom(32)
+        env = {**os.environ, "SUBJECT_KEY": base64.b64encode(key).decode()}
+        result = subprocess.run(
+            [sys.executable, str(TOOLS / "book_build" / "build_book.py"),
+             "--book", str(book), "--epub", "references/b.epub",
+             "--notes-epub", "references/n.epub", "--template-tag", "3.2.4",
+             "--out", str(out)], capture_output=True, text=True, env=env)
+        if result.returncode != 0:
+            print(result.stdout[-400:], result.stderr[-400:])
+        check("a book with Foreword and Conclusion builds",
+              result.returncode == 0)
+
+        def read(name):
+            """A decrypted JSON file of the output."""
+            return json.loads(encfmt.decrypt(
+                (out / name).read_bytes(), key))
+        manifest = read("data/manifest.enc")
+        check("every idea and question is placed in the reader",
+              sum(c["ideas"] for c in manifest["chapters"]) == 8
+              and sum(c["questions"] for c in manifest["chapters"]) == 8)
+        groups = {c["prefix"]: c["group"] for c in manifest["chapters"]}
+        check("text units share a group; the unit with no text is "
+              "'The whole book'",
+              groups == {"intro": "Before Part I", "c1": "Before Part I",
+                         "end": "Before Part I", "whole": "The whole book"})
+        check("the cover marked by property is found",
+              manifest["book"]["cover"] == "t1/front/cover")
+        front = read("data/ch/intro.enc")
+        node = front["nodes"][0]
+        check("the foreword is cut as one section with its own title",
+              node["title"] == "Foreword to the Edition: Ten Lessons"
+              and "Opening words" in node["html"])
+        check("the split heading is not repeated in the text",
+              "Ten Lessons" not in node["html"]
+              and "<p>Foreword</p>" not in node["html"])
+        check("the foreword has its ideas",
+              len(node["ideas"]) == 2 and len(node["questions"]) == 2)
+        check("the foreword notes land on the foreword; an unmatched "
+              "heading is kept there",
+              "Place note" in (node["notes"] or "")
+              and "lesson note" in (node["notes"] or ""))
+        end = read("data/ch/end.enc")["nodes"][0]
+        check("the conclusion text and notes are placed",
+              "Closing words" in end["html"]
+              and "End note" in (end["notes"] or "")
+              and len(end["ideas"]) == 2)
+        chapter = read("data/ch/c1.enc")
+        check("chapter_N.xhtml notes are found",
+              "Chapter note" in (chapter["notesIntro"] or ""))
+        whole = read("data/ch/whole.enc")["nodes"]
+        check("a unit with no text keeps its ideas on its one node",
+              len(whole) == 1 and len(whole[0]["ideas"]) == 2
+              and len(whole[0]["questions"]) == 2)
+        check("no start file is left in the bundle",
+              "startFile" not in front)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 if __name__ == "__main__":
     print("Bank tools")
     test_subject_pages_and_build()
     test_add_notes_by_unit()
     test_extract_epub_in_subfolder()
+    test_book_build_front_back_units()
     test_study_blocks()
     test_aids()
     test_study_colours()
