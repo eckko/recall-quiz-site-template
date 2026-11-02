@@ -4,9 +4,14 @@ encrypted site, matched to chapter / section / subtopic nodes.
 
   add_notes.py --site SITE --key KEY --notes-epub NOTES.epub --report out.json
 
-Chapter files u_chNN.xhtml -> the chapter with that number, whatever its
-bundle prefix (cNN, uN); u_appendix.xhtml -> Appendix; u_prologue.xhtml
--> Prologue. Under each chapter:
+Chapter files u_chNN.xhtml (or chapter_N.xhtml) -> the chapter with that
+number, whatever its bundle prefix (cNN, uN); u_appendix.xhtml -> Appendix;
+u_prologue.xhtml -> Prologue. A unit with no number (Foreword, Preface,
+Introduction, Conclusion, Afterword, ...) takes every notes file whose
+<h1> is the first word(s) of one of its sections ("Foreword" ->
+"Foreword to the 50th Anniversary Edition: ..."): the blue box and opening
+text become that section's note, h3/h4 headings match nodes by title and
+any that do not match are kept on that section. Under each chapter:
   h3 = section note, h4 = subtopic note, the blue box before the first h3 is the
   chapter note (bundle.notesIntro). Part pages, architecture, 'how to read' and
   'not summarised' pages go to manifest.notesExtra. Unmatched blocks are kept
@@ -65,6 +70,75 @@ def blocks(body):
         (cur[2] if cur else intro).append(clean(el))
     return "".join(intro), [(l, t, "".join(h), o) for l, t, h, o in res]
 
+# notes files that open with an <h1> (Foreword, Preface, Conclusion, ...) and
+# are not chapter or extra pages: they belong to unnumbered units
+NOT_UNIT_FILES = re.compile(
+    r"nav|title|arch|architecture|notsum|u_.*|chapter_\d+")
+heading_files = []
+for entry in z.namelist():
+    found = re.fullmatch(r"OEBPS/([^/]+)\.xhtml", entry)
+    if not found or NOT_UNIT_FILES.fullmatch(found.group(1)):
+        continue
+    h1 = BeautifulSoup(z.read(entry), "html.parser").find("h1")
+    if h1:
+        heading_files.append((entry, norm(h1.get_text(" ", strip=True))))
+
+
+def add_note(target, html):
+    """Append html to a node's note."""
+    target["notes"] = (target["notes"] or "") + html
+
+
+def notes_by_section_files(c, pre):
+    """Notes of an unnumbered unit: one notes file per section node, matched
+    by the file's <h1>. Returns True when at least one file was placed."""
+    bp = site / "data" / "ch" / f"{pre}.enc"
+    b = json.loads(decrypt(bp.read_bytes(), key))
+    nodes = b["nodes"]
+    taken, pairs = set(), []
+    for node in nodes:
+        if node["level"] != 2:
+            continue
+        title = norm(node["title"])
+        for entry, heading in heading_files:
+            if entry not in taken and heading and (
+                    title == heading or title.startswith(heading + " ")):
+                taken.add(entry)
+                pairs.append((node, entry))
+                break
+    if not pairs:
+        return False
+    for n in nodes:
+        n["notes"] = None
+    b["notesIntro"] = None
+    blocks_seen = matched = 0
+    for node, entry in pairs:
+        intro, bl = blocks(BeautifulSoup(z.read(entry), "html.parser").body)
+        add_note(node, intro)
+        for level, title, html, is_open in bl:
+            blocks_seen += 1
+            target = find(title, [n for n in nodes if n is not node])
+            if not html.strip():
+                continue
+            if target is not None:
+                add_note(target, html)
+                matched += 1
+            else:
+                add_note(node, f"<h4>{title}</h4>{html}")
+    with_notes = sum(1 for n in nodes if n["notes"])
+    bp.write_bytes(encrypt(json.dumps(b, ensure_ascii=False).encode("utf8"),
+                           key))
+    c["notes"] = with_notes
+    tot["blocks"] += blocks_seen
+    tot["matched"] += blocks_seen
+    report["chapters"][pre] = {
+        "files": [e for _, e in pairs], "blocks": blocks_seen,
+        "matched_to_nodes": matched,
+        "kept_on_their_section": blocks_seen - matched,
+        "nodes_with_notes": with_notes, "nodes": len(nodes)}
+    return True
+
+
 man_p = site / "data" / "manifest.enc"
 man = json.loads(decrypt(man_p.read_bytes(), key))
 report = {"chapters": {}, "extra": []}
@@ -83,8 +157,10 @@ for c in man["chapters"]:
         names = ["u_intro", "unit0"]
     else:
         names = [f"u_ch{num}", f"u_c{int(num):02d}", f"u_c{num}",
-                 f"unit{num}"] if num else []
+                 f"chapter_{num}", f"unit{num}"] if num else []
     name = next((n for n in names if f"OEBPS/{n}.xhtml" in z.namelist()), None)
+    if not name and not num and notes_by_section_files(c, pre):
+        continue
     if not name:
         report["chapters"][pre] = "no notes file"; continue
     bp = site / "data" / "ch" / f"{pre}.enc"
