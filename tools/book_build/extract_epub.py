@@ -19,6 +19,18 @@ epub, chapters_json, out = map(Path, sys.argv[1:4])
 (out / "media-plain").mkdir(parents=True, exist_ok=True)
 
 
+def find_root(top):
+    """Where the package file is: META-INF/container.xml names it, so
+    EPUBs with an OEBPS/ folder and any file name work."""
+    container = top / "META-INF" / "container.xml"
+    if container.exists():
+        m = re.search(r'full-path="([^"]+)"', container.read_text(encoding="utf8"))
+        if m:
+            return (top / m.group(1)).parent, top / m.group(1)
+    return top, top / "content.opf"
+epub, opf_path = find_root(epub)
+
+
 def norm(text):
     text = text.replace("’", "'").replace("‘", "'")
     return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
@@ -29,7 +41,7 @@ def slug(text):
 
 
 # ----- spine order and navigation
-opf = BeautifulSoup((epub / "content.opf").read_text(encoding="utf8"), "xml")
+opf = BeautifulSoup(opf_path.read_text(encoding="utf8"), "xml")
 manifest = {i["id"]: i["href"] for i in opf.find_all("item")}
 spine = [manifest[r["idref"]] for r in opf.find_all("itemref")]
 ncx = (epub / "toc.ncx").read_text(encoding="utf8")
@@ -47,13 +59,15 @@ def file_range(start_file):
     return spine[first:last + 1]
 
 
-chapters = json.loads(chapters_json.read_text(encoding="utf8"))["chapters"]
+_map = json.loads(chapters_json.read_text(encoding="utf8"))
+chapters = _map["chapters"]
+book_id = _map["id"]
 nav_by_number = {}
 for title, f in nav_files:
-    m = re.match(r"(\d+)\.\s", title)
+    m = re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", title, re.I)
     if m:
         nav_by_number[int(m.group(1))] = f
-appendix_file = next(f for t, f in nav_files if t == "Appendix")
+appendix_file = next((f for t, f in nav_files if t == "Appendix"), None)
 
 
 # ----- inline cleaning
@@ -96,8 +110,8 @@ report = {"chapters": {}, "excluded": [], "images": {"found": 0, "placed": 0,
                                                        "alt_generated": 0}}
 for c in chapters:
     unit = c["unit"]
-    if unit.startswith("Reading the book"):
-        continue
+    if not re.match(r"Chapter \d+$|Appendix$", unit):
+        continue      # the whole-book unit has no text to cut
     if unit == "Appendix":
         files = [appendix_file]
     else:
@@ -117,7 +131,7 @@ for c in chapters:
     def media_hook(img):
         src = img.get("src", "")
         name = Path(src).name
-        mid = f"essentialism/{prefix}/{Path(name).stem}"
+        mid = f"{book_id}/{prefix}/{Path(name).stem}"
         if not any(m["id"] == mid for m in media):
             alt = (img.get("alt") or "").strip()
             gen = not alt
@@ -203,7 +217,7 @@ for c in chapters:
         {"unit": unit, "unitTitle": c["unitTitle"], "idPrefix": prefix,
          "nodes": nodes, "media": media}, ensure_ascii=False, indent=1),
         encoding="utf8")
-report["images"]["found"] = len(list((epub / "images").glob("*.jpg")))
+report["images"]["found"] = len([p for p in epub.rglob("*") if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".gif")])
 (out / "extract-report.json").write_text(json.dumps(report, indent=1))
 for unit, r in report["chapters"].items():
     flag = "" if not r["sections_missing"] else f"  MISSING {r['sections_missing']}"

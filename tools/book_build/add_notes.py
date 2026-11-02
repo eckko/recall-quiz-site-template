@@ -69,8 +69,11 @@ report = {"chapters": {}, "extra": []}
 tot = {"blocks": 0, "matched": 0, "other": 0}
 for c in man["chapters"]:
     pre = c["prefix"]
-    name = "u_appendix" if pre == "app" else f"u_ch{pre[1:]}" if re.fullmatch(r"c\d+", pre) else None
-    if not name or f"OEBPS/{name}.xhtml" not in z.namelist():
+    num = pre[1:] if re.fullmatch(r"c\d+", pre) else None
+    names = ["u_appendix"] if pre == "app" else (
+        [f"u_ch{num}", f"u_c{int(num):02d}", f"u_c{num}"] if num else [])
+    name = next((n for n in names if f"OEBPS/{n}.xhtml" in z.namelist()), None)
+    if not name:
         report["chapters"][pre] = "no notes file"; continue
     bp = site / "data" / "ch" / f"{pre}.enc"
     b = json.loads(decrypt(bp.read_bytes(), key))
@@ -115,12 +118,12 @@ for c in man["chapters"]:
 
 extra = []
 for f, title in [("title.xhtml", "How to read these notes"), ("arch.xhtml", "The architecture of the book"),
-                 ("notsum.xhtml", "Not summarised")] + [(f"u_part{i}.xhtml", f"Part {i} notes") for i in range(1, 5)]:
+                 ("notsum.xhtml", "Not summarised"), ("architecture.xhtml", "The architecture of the book")] + [(f"u_part{i}.xhtml", f"Part {i} notes") for i in range(1, 5)] + [(f"u_p{i:02d}.xhtml", f"Part {i} notes") for i in range(1, 5)]:
     if f"OEBPS/{f}" in z.namelist():
         bd = BeautifulSoup(z.read(f"OEBPS/{f}"), "html.parser").body
         t = bd.find("h1").get_text(" ", strip=True) if bd.find("h1") else title
         html = "".join(clean(e) for e in bd.children if getattr(e, "name", None) and e.name not in ("h1",))
-        extra.append({"id": f.split(".")[0], "title": f"{title}: {t}" if f.startswith("u_part") else t, "html": html})
+        extra.append({"id": f.split(".")[0], "title": f"{title}: {t}" if f.startswith(("u_part", "u_p0")) else t, "html": html})
 man["notesExtra"] = extra
 man_p.write_bytes(encrypt(json.dumps(man, ensure_ascii=False).encode("utf8"), key))
 report["extra"] = [e["title"] for e in extra]; report["totals"] = tot
