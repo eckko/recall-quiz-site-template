@@ -70,8 +70,8 @@
     /** The look: a theme id (a folder in themes/) and light, dark or
         system (follow the device) */
     theme: {
-      id: "sky",
-      mode: "system",
+      id: "classic",
+      mode: "light",
     },
 
     /** Which parts of the home screen are shown. true = shown. */

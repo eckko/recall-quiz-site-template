@@ -1907,8 +1907,8 @@ def test_first_time_defaults(browser):
           .count() == 0)
     root = page.evaluate("() => [document.documentElement.dataset.theme,"
                          " document.documentElement.dataset.mode]")
-    check("the theme starts as Sky, following the system",
-          root == ["sky", "system"], str(root))
+    check("the theme starts as Classic, in light mode",
+          root == ["classic", "light"], str(root))
     page.click("#settings-button")
     sections = page.evaluate(
         "() => [...document.querySelectorAll("
@@ -1974,15 +1974,16 @@ def test_theme_loading(browser):
     page.goto(PAGE_URL)
     page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
     page.wait_for_function(
-        "() => document.documentElement.dataset.theme === 'sky'")
+        "() => document.documentElement.dataset.theme === 'classic'")
     theme_files = [url for url in requests if "/css/themes/" in url]
     check("only the default theme's CSS loads at the start",
-          len(theme_files) == 1 and theme_files[0].endswith("/sky.css"),
+          len(theme_files) == 1 and theme_files[0].endswith("/classic.css"),
           str(theme_files))
     fonts = [url for url in requests if "fonts.googleapis.com" in url]
     check("only that theme's fonts are asked for",
-          len(fonts) == 1 and "family=Nunito" in fonts[0]
-          and fonts[0].count("family=") == 1, str(fonts))
+          len(fonts) == 1 and "family=Instrument+Sans" in fonts[0]
+          and "family=Source+Serif+4" in fonts[0]
+          and fonts[0].count("family=") == 2, str(fonts))
     check("the picker's preview tiles wait until Appearance is opened",
           not any("theme-tiles.css" in url for url in requests))
     check("the page is not left hidden",
@@ -2052,7 +2053,7 @@ def test_book_page_loads_from_a_cdn(browser):
     page.goto(book_url)
     page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
     page.wait_for_function(
-        "() => document.documentElement.dataset.theme === 'sky'")
+        "() => document.documentElement.dataset.theme === 'classic'")
     page.wait_for_function("() => typeof window.katex !== 'undefined'")
     page.evaluate("() => window.RecallQuiz.htrab.useRemote(true)")
     page.click("#settings-button")
@@ -2071,7 +2072,7 @@ def test_book_page_loads_from_a_cdn(browser):
     check("the base is the CDN folder", page.evaluate(
         "() => window.RecallQuizAssetBase") == cdn)
     check("the default theme's CSS comes from the CDN",
-          cdn + "css/themes/sky.css" in requests)
+          cdn + "css/themes/classic.css" in requests)
     check("the picker's preview tiles come from the CDN",
           cdn + "css/theme-tiles.css" in requests)
     check("the maths library comes from the CDN",
@@ -2126,7 +2127,7 @@ def test_book_shell_loads_from_a_cdn(browser):
     page.goto(book_url)
     page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
     page.wait_for_function(
-        "() => document.documentElement.dataset.theme === 'sky'")
+        "() => document.documentElement.dataset.theme === 'classic'")
     leaked = [url for url in requests
               if re.search(r"/book/(css|js|htrab|vendor|themes)/", url)]
     check("the quiz page itself comes from the CDN",
@@ -2138,7 +2139,7 @@ def test_book_shell_loads_from_a_cdn(browser):
     check("the base is the CDN folder", page.evaluate(
         "() => window.RecallQuizAssetBase") == cdn)
     check("the default theme's CSS comes from the CDN",
-          cdn + "css/themes/sky.css" in requests)
+          cdn + "css/themes/classic.css" in requests)
     check("the questions come from the book's own site",
           questions_url in requests)
     check("the address of the page is still the book's",
