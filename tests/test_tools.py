@@ -451,6 +451,61 @@ def test_extract_epub_in_subfolder():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_split_chapter():
+    """A chapter split into two files (Calibre part0007_split_001) whose
+    second file has a navigation entry for one of its own sections is read
+    to its end, not cut at that entry."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        (epub / "text").mkdir(parents=True)
+        files = ["part0001_split_000", "part0001_split_001", "part0002"]
+        (epub / "content.opf").write_text(
+            "<package><manifest>"
+            + "".join(f'<item id="{n}" href="text/{n}.html"/>' for n in files)
+            + "</manifest><spine>"
+            + "".join(f'<itemref idref="{n}"/>' for n in files)
+            + "</spine></package>")
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap>"
+            "<navPoint><navLabel><text>1. First</text></navLabel>"
+            '<content src="text/part0001_split_000.html"/></navPoint>'
+            "<navPoint><navLabel><text>Alpha</text></navLabel>"
+            '<content src="text/part0001_split_000.html#a"/></navPoint>'
+            "<navPoint><navLabel><text>Beta</text></navLabel>"
+            '<content src="text/part0001_split_001.html#b"/></navPoint>'
+            "<navPoint><navLabel><text>2. Second</text></navLabel>"
+            '<content src="text/part0002.html"/></navPoint>'
+            "</navMap></ncx>")
+        page = "<html><body><h2>%s</h2><p>%s</p></body></html>"
+        (epub / "text" / "part0001_split_000.html").write_text(
+            page % ("Alpha", "First half words."))
+        (epub / "text" / "part0001_split_001.html").write_text(
+            page % ("Beta", "Second half words."))
+        (epub / "text" / "part0002.html").write_text(
+            page % ("Gamma", "Next chapter words."))
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t2", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "First", "idPrefix": "u1",
+             "sections": ["Alpha", "Beta"]},
+            {"unit": "Chapter 2", "unitTitle": "Second", "idPrefix": "u2",
+             "sections": ["Gamma"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        if result.returncode != 0:
+            print(result.stderr[-300:])
+        check("extract_epub runs on a split chapter", result.returncode == 0)
+        first = (out / "chapters" / "u1.json").read_text()
+        check("the second file of the split chapter is included",
+              "Second half words." in first)
+        check("the next chapter's text is not pulled in",
+              "Next chapter words." not in first)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_add_notes_by_unit():
     """Notes files are found by the chapter's unit, so bundle prefixes such
     as u1 work as well as c1."""
@@ -499,6 +554,7 @@ if __name__ == "__main__":
     test_subject_pages_and_build()
     test_add_notes_by_unit()
     test_extract_epub_in_subfolder()
+    test_extract_epub_split_chapter()
     test_study_blocks()
     test_aids()
     test_study_colours()
