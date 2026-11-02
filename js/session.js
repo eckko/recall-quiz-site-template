@@ -18,6 +18,9 @@
     questions: [],
     /** Index of the question on screen */
     currentIndex: 0,
+    /** How each step went, by index: "got", "part", "miss", or "seen" for
+        a concept card. A step with nothing here has not been answered. */
+    results: [],
     /** How many answers were right, partly right and missed */
     score: { got: 0, part: 0, miss: 0 },
     /** Questions missed this session, for the results screen */
@@ -112,6 +115,7 @@
     const settings = quiz.settings.current;
     state.questions = plan.questions;
     state.currentIndex = 0;
+    state.results = [];
     state.score = { got: 0, part: 0, miss: 0 };
     state.missedQuestions = [];
     state.rightQuestions = [];
@@ -270,20 +274,86 @@
     if (!quiz.book.hiddenIds.has(questionId)) {
       return;
     }
+    const keptResults = [];
     state.questions = state.questions.filter(
       function isKept(step, index) {
-        return index <= state.currentIndex || step.id !== questionId;
+        const isKept = index <= state.currentIndex ||
+          step.id !== questionId;
+        if (isKept) {
+          keptResults.push(state.results[index]);
+        }
+        return isKept;
       });
+    state.results = keptResults;
   }
 
-  /** Move on: the next question, or the results if time ran out. */
+  /**
+   * Move on: the next question not answered yet (a jump from the session
+   * list can leave answered ones ahead), or the results if time ran out
+   * or nothing is left.
+   */
   function goToNextQuestion() {
     if (state.timeRanOut) {
       quiz.resultsScreen.showResults();
       return;
     }
-    state.currentIndex += 1;
+    let nextIndex = state.currentIndex + 1;
+    while (nextIndex < state.questions.length && state.results[nextIndex]) {
+      nextIndex += 1;
+    }
+    state.currentIndex = nextIndex;
     showCurrentQuestion();
+  }
+
+  /**
+   * Go to a step chosen from the session list. A step not answered yet
+   * is shown as a question; an answered one opens read-only.
+   * @param {number} index
+   */
+  function jumpTo(index) {
+    if (state.results[index]) {
+      showReview(index);
+      return;
+    }
+    state.currentIndex = index;
+    quiz.timers.stopQuestionTimer();
+    showCurrentQuestion();
+  }
+
+  /**
+   * Look at an answered step again. Nothing is recorded; "Back to the
+   * session" shows the question that was on screen.
+   * @param {number} index
+   */
+  function showReview(index) {
+    const step = state.questions[index];
+    quiz.timers.stopQuestionTimer();
+    state.keyHandler = null;
+    const cardElement = openQuestionCard();
+    cardElement.appendChild(createElement("p", "review-banner",
+      "Looking at step " + (index + 1) + " again. This is read-only: " +
+      "nothing is recorded a second time."));
+    cardElement.appendChild(createQuestionMeta(step));
+    cardElement.appendChild(createQuestionText(step));
+    cardElement.appendChild(createReviewBody(step, state.results[index]));
+    cardElement.appendChild(createButton("Back to the session",
+      "button primary", showCurrentQuestion));
+    quiz.titleBar.showQuestion(step);
+  }
+
+  /**
+   * What an answered step shows when looked at again.
+   * @param {object} step
+   * @param {string} result  "got", "part", "miss" or "seen"
+   * @returns {HTMLElement}
+   */
+  function createReviewBody(step, result) {
+    if (step.kind === "lesson") {
+      const concept = quiz.learning.conceptById(step.concept);
+      return concept ? quiz.learning.createCardContent(concept) :
+        createElement("div");
+    }
+    return quiz.answerFeedback.createReview(step, result);
   }
 
   /**
@@ -347,6 +417,7 @@
       /** Move on from a step with nothing to answer (a concept card). */
       continueToNext() {
         state.currentQuestionAnswered = true;
+        state.results[state.currentIndex] = "seen";
         goToNextQuestion();
       },
     };
@@ -368,10 +439,10 @@
     const progress = createElement("div", "question-progress");
     state.questions.forEach(function addSegment(question, index) {
       let className = "";
-      if (index < state.currentIndex) {
-        className = "is-done";
-      } else if (index === state.currentIndex) {
+      if (index === state.currentIndex) {
         className = "is-current";
+      } else if (state.results[index] || index < state.currentIndex) {
+        className = "is-done";
       }
       progress.appendChild(createElement("i", className));
     });
@@ -444,6 +515,7 @@
     findElement("where-you-stand").classList.remove("hidden");
     quiz.homeScreen.refresh();
     window.scrollTo({ top: 0 });
+    document.dispatchEvent(new CustomEvent("recallquiz:home-shown"));
   }
 
   // ---------------------------------------------------------- keyboard
@@ -492,6 +564,7 @@
     startLearning,
     startQuestions,
     goToNextQuestion,
+    jumpTo,
     returnHome,
   };
 })((window.RecallQuiz = window.RecallQuiz || {}));

@@ -1,0 +1,219 @@
+/*
+ * title-bar.css
+ * The bar at the top of the quiz and its two drawers (js/title-bar.js).
+ * The drawers slide over the page; the bar stays in view.
+ */
+
+:root {
+  --title-bar-height: 60px;
+}
+
+/* ------------------------------------------------------------------ */
+/* The bar                                                             */
+/* ------------------------------------------------------------------ */
+
+.title-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: var(--title-bar-height);
+  padding: 0 max(12px, env(safe-area-inset-left));
+  background: var(--color-page);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.title-bar-button {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-text);
+  font-size: 1.6rem;
+  line-height: 1;
+  background: var(--color-card);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.title-bar-text {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.title-bar h1 {
+  margin: 0;
+  overflow: hidden;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title-bar-session small {
+  display: block;
+  overflow: hidden;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title-bar-session b {
+  display: block;
+  overflow: hidden;
+  font: 600 1.05rem var(--font-heading);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------------ */
+/* Drawers                                                             */
+/* ------------------------------------------------------------------ */
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(18, 24, 38, 0.5);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 71;
+  display: flex;
+  flex-direction: column;
+  width: min(88vw, 316px);
+  background: var(--color-card);
+  border: 0 solid var(--color-border);
+}
+
+.drawer-left {
+  left: 0;
+  border-right-width: var(--border-width);
+}
+
+.drawer-right {
+  right: 0;
+  border-left-width: var(--border-width);
+}
+
+.drawer-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--title-bar-height);
+  padding: 0 12px 0 16px;
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.drawer-head b {
+  font: 600 1.05rem var(--font-heading);
+}
+
+.drawer-list {
+  flex: 1;
+  padding: 6px 0 40px;
+  overflow-y: auto;
+}
+
+.drawer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+}
+
+.drawer-row.is-chapter {
+  font-weight: 600;
+}
+
+.drawer-row.is-topic {
+  padding-left: 30px;
+  font-size: 0.9rem;
+}
+
+.drawer-row.is-current {
+  background: var(--color-accent-soft);
+  border-left-color: var(--color-accent);
+}
+
+.drawer-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer-group {
+  padding: 12px 16px 2px;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.drawer-note {
+  margin: 8px 16px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.drawer-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 4px 16px 8px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+/* The mark differs in shape as well as colour. */
+.drawer-mark {
+  flex: none;
+  width: 1.4em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.drawer-row.is-step {
+  justify-content: flex-start;
+}
+
+/* Where the home screen scrolls to, clear of the bar */
+.unit-progress,
+.section-row,
+.concept-row {
+  scroll-margin-top: calc(var(--title-bar-height) + 12px);
+}
+
+/* The "time left" pill sits under the bar */
+.session-pill {
+  position: sticky;
+  top: calc(var(--title-bar-height) + 8px);
+  z-index: 40;
+  width: fit-content;
+  margin: 0 auto 12px;
+}

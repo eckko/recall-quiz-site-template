@@ -143,12 +143,9 @@
   animation: pulse 0.6s ease-in-out infinite;
 }
 
-/* The pill in the top right: "Time left 4:12" or "Questions left 3/10" */
+/* The pill under the bar (its place is set in css/title-bar.css):
+   "Time left 4:12" or "Questions left 3/10" */
 .session-pill {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 40;
   display: flex;
   align-items: baseline;
   gap: 8px;

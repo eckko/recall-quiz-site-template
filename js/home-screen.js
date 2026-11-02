@@ -337,6 +337,7 @@
     const questions = quiz.book.questionsInUnit(unitId);
     const percentSolid = percentSolidOf(questions);
     const details = createElement("details", "unit-progress");
+    details.dataset.unitId = unitId;
     const start = quiz.layout.chaptersStart();
     details.open = start === "open" ||
       (start === "next" && quiz.learning.hasConcepts() &&
@@ -404,6 +405,7 @@
       }, 0);
     const percentSolid = percentSolidOf(topic.questions);
     const row = createElement("details", "section-row");
+    row.dataset.section = topic.section;
     row.open = quiz.layout.innerStartsOpen();
     const summary = createElement("summary");
     summary.appendChild(createElement("span",

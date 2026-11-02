@@ -212,6 +212,14 @@ four `filter*` options are hidden the whole row is hidden and the default
 `filter` is used) and `at` (last change). Theme is per book too:
 `recall-quiz:theme:<bookId>` = `{v: 1, t, m, a}`; the global
 `recall-quiz:theme` is only the last theme shown, to avoid a flash.
+
+Reading settings (font size, font, line spacing, page width, page and text
+colour) are kept per book in `recall-quiz:reading:<bookId>` =
+`{v: 1, fontSize, font, lineSpacing, width, page, text}`; `null` or `""`
+means the view's own default (quiz 16px in the theme font, ereader 18px in a
+serif). The quiz and the ereader read and write the same key, so a book looks
+the same in both. The ereader's own "Show" toggles are in
+`recall-quiz:reader-show:<bookId>`. These are not synced to the account.
 Flags: `flags: {questionId: {f: ["bad"|"revisit"|"useless"|"important"],
 a: time}}`. Bad and Useless hide the question (`quiz.book.setHiddenIds`).
 `ideaFlags` has the same shape, keyed by idea (concept) id, and is kept
@@ -260,7 +268,7 @@ All optional. Banks without them work exactly as before. Checked by
 | `card` | `blocks` | 1 to 6 `{label, text, code, lang, media}` shown after the paragraphs. A card may have blocks and no paragraphs |
 | block | `study` | `true` marks a verse-study block: it uses `--color-study` and `--color-study-bg`, a pair every theme sets so these blocks differ from the theme's own accent. A card with a study block may hold 8 blocks instead of 6 |
 | block | `key` | which part of a Sanskrit card this is: `ref`, `verse`, `words`, `hindi`, `english`, `explain`, `aids`, `note`. Settings > Sanskrit cards can hide each part; the section appears only when the book has blocks with `key` or `aids` |
-| bank | `scrollButtons` | `true` shows two round buttons that jump to the top and bottom of the page |
+| bank | `scrollButtons` | no longer used (the sticky bar replaced the two jump buttons); an old bank that still has it is accepted and ignored |
 | block | `lines` | 1 to 4 lines of verse text, one paragraph each |
 | block | `words` | one list per verse line of `{w, gloss, gram}` word chips (30 per line at most). Tapping a chip shows `gram`; a button above shows or hides all of them. `w` and `gloss` are required. A study block with romanised (IAST) letters in `lines` or `w` gets a warning: write Devanagari |
 | question, block | `code`, `lang` | a code listing, shown as text in a `<pre>` (never parsed) |

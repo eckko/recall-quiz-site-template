@@ -13,10 +13,16 @@
 <aside id="dr-left" class="drawer left" aria-hidden="true" aria-label="Table of contents"><div class="dr-head"><b>Contents</b><button class="icon-btn dr-close" aria-label="Close">&times;</button></div><nav id="toc"></nav></aside>
 <aside id="dr-right" class="drawer right" aria-hidden="true" aria-label="On this page"><div class="dr-head"><b>On this page</b><button class="icon-btn dr-close" aria-label="Close">&times;</button></div><nav id="pagetoc"></nav></aside>
 <div id="scrim" hidden></div>
-<button id="gear" class="fab" aria-label="Reading settings" aria-expanded="false" aria-controls="settings"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM19.4 13.5l1.6 1.2-1.8 3.1-1.9-.6a7.5 7.5 0 0 1-1.7 1l-.4 2h-3.6l-.4-2a7.5 7.5 0 0 1-1.7-1l-1.9.6L5 14.7l1.6-1.2a7.6 7.6 0 0 1 0-3L5 9.3l1.8-3.1 1.9.6a7.5 7.5 0 0 1 1.7-1l.4-2h3.6l.4 2a7.5 7.5 0 0 1 1.7 1l1.9-.6L21 9.3l-1.6 1.2a7.6 7.6 0 0 1 0 3z"/></svg></button>
-<div id="settings" class="panel" role="dialog" aria-label="Reading settings" hidden></div>
 <main id="app"><p class="muted">Loading&hellip;</p></main>`;
   if (!document.getElementById("app")) document.body.insertAdjacentHTML("afterbegin", SHELL);
+  /* The shared files (themes, reading settings, the gear panel) sit beside
+   * this script, in the same tagged copy of the template. */
+  const SCRIPT_ADDRESS = document.currentScript ? document.currentScript.src : "";
+  const SHARED_BASE = SCRIPT_ADDRESS.replace(/reader\/app\.js(\?.*)?$/, "");
+  if (typeof window.RecallQuizAssetBase !== "string") window.RecallQuizAssetBase = SHARED_BASE;
+  /* Loaded in this order: each one needs the one before it. */
+  const SHARED_SCRIPTS = ["js/default-settings.js", "js/themes-list.js", "js/theme-picker.js",
+    "js/helpers.js", "js/reading-settings.js", "js/reading-panel.js"];
   /* Optional <meta name="book-base" content="books/xyz/"> when the encrypted files
    * are not next to the page. */
   const BASE = (document.querySelector('meta[name="book-base"]') || {}).content || "";
@@ -107,81 +113,58 @@
   const HIDING = ["bad", "useless"];
 
   // ------------------------------------------------------------- settings
-  const DEFAULTS = { theme: "auto", fs: 18, font: "serif", lh: 1.6, width: "normal", bg: "", fg: "",
-    notes: true, ideas: true, questions: true, visuals: true };
-  let S = Object.assign({}, DEFAULTS);
-  try { Object.assign(S, JSON.parse(lsGet("trial:settings") || "{}")); } catch (e) { /* defaults */ }
-  const root = document.documentElement;
+  /* Look: the quiz's themes and the shared reading settings (font size, font,
+   * spacing, width, colours), saved per book and the same in the quiz. What is
+   * left here is what only the ereader has: which parts of a section to show. */
+  const SHOW_PARTS = [["notes", "Your notes"], ["visuals", "Visual summaries"], ["ideas", "Ideas"], ["questions", "Questions"]];
+  const SHOW_KEY = "recall-quiz:reader-show:";
+  let SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+  let panel = null;
 
-  function applySettings() {
-    root.dataset.theme = S.theme; root.dataset.font = S.font; root.dataset.width = S.width;
-    root.style.setProperty("--fs", S.fs + "px"); root.style.setProperty("--lh", String(S.lh));
-    if (S.bg) root.style.setProperty("--bg", S.bg); else root.style.removeProperty("--bg");
-    if (S.fg) root.style.setProperty("--fg", S.fg); else root.style.removeProperty("--fg");
-    for (const k of ["notes", "ideas", "questions", "visuals"]) document.body.classList.toggle("hide-" + k, !S[k]);
-    lsSet("trial:settings", JSON.stringify(S));
+  function loadShow() {
+    SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+    try { Object.assign(SHOW, JSON.parse(lsGet(SHOW_KEY + bookId()) || "{}")); } catch (e) { /* defaults */ }
+    applyShow();
   }
 
-  const BG = ["#ffffff", "#faf8f3", "#f4ecd8", "#e6eefb", "#dde8dc", "#2b2b2b", "#17130e", "#000000"];
-  const FG = ["#ffffff", "#000000", "#232019", "#4a3a2a", "#1f3a5f", "#3b3b3b", "#d6d6d6", "#efe5d3", "#f2c879"];
+  function applyShow() {
+    for (const [k] of SHOW_PARTS) document.body.classList.toggle("hide-" + k, !SHOW[k]);
+    lsSet(SHOW_KEY + bookId(), JSON.stringify(SHOW));
+  }
 
-  function renderSettings() {
-    const p = $("#settings"); p.replaceChildren();
-    const sec = (t) => p.appendChild(el("h4", null, t));
-    const seg = (key, opts) => {
-      const d = el("div", "seg");
-      opts.forEach(([v, label]) => {
-        const b = el("button", null, label); b.type = "button";
-        b.setAttribute("aria-pressed", String(S[key] === v));
-        b.addEventListener("click", () => { S[key] = v; applySettings(); renderSettings(); });
-        d.appendChild(b);
-      });
-      p.appendChild(d);
-    };
-    const range = (key, min, max, step, fmt) => {
-      const r = el("div", "fsrow"); const a = el("span", null, "A"); a.style.fontSize = "13px";
-      const inp = el("input"); inp.type = "range"; inp.min = min; inp.max = max; inp.step = step; inp.value = S[key];
-      inp.setAttribute("aria-label", key);
-      const big = el("span", null, "A"); big.style.fontSize = "22px";
-      const val = el("span", "small muted", fmt(S[key]));
-      inp.addEventListener("input", () => { S[key] = Number(inp.value); val.textContent = fmt(S[key]); applySettings(); });
-      r.append(a, inp, big, val); p.appendChild(r);
-    };
-    const swatches = (key, list) => {
-      const d = el("div", "swatches");
-      list.forEach((c) => {
-        const b = el("button", "sw"); b.type = "button"; b.style.background = c; b.setAttribute("aria-label", c);
-        b.setAttribute("aria-pressed", String(S[key] === c));
-        b.addEventListener("click", () => { S[key] = S[key] === c ? "" : c; applySettings(); renderSettings(); });
-        d.appendChild(b);
-      });
-      p.appendChild(d);
-    };
-    sec("Theme");
-    seg("theme", [["auto", "Auto"], ["white", "White"], ["light", "Cream"], ["sepia", "Sepia"], ["dark", "Dark"], ["black", "Black"]]);
-    sec("Font size"); range("fs", 14, 28, 1, (v) => v + " px");
-    sec("Font"); seg("font", [["serif", "Serif"], ["sans", "Sans"]]);
-    sec("Line spacing"); seg("lh", [[1.35, "Tight"], [1.6, "Normal"], [1.9, "Loose"]]);
-    sec("Page width"); seg("width", [["narrow", "Narrow"], ["normal", "Normal"], ["wide", "Wide"]]);
-    sec("Background"); swatches("bg", BG);
-    sec("Text colour"); swatches("fg", FG);
-    sec("Show");
-    [["notes", "Your notes"], ["visuals", "Visual summaries"], ["ideas", "Ideas"], ["questions", "Questions"]].forEach(([k, label]) => {
-      const l = el("label", "tg"); l.appendChild(el("span", null, label));
-      const c = el("input"); c.type = "checkbox"; c.checked = S[k]; c.dataset.setting = k;
-      c.addEventListener("change", () => { S[k] = c.checked; applySettings(); });
-      l.appendChild(c); p.appendChild(l);
+  /* The ereader's own section of the gear panel. */
+  function addShowSection(body) {
+    body.appendChild(el("h4", null, "Show"));
+    SHOW_PARTS.forEach(([k, label]) => {
+      const l = el("label", "reading-toggle"); l.appendChild(el("span", null, label));
+      const c = el("input"); c.type = "checkbox"; c.checked = SHOW[k]; c.dataset.setting = k;
+      c.addEventListener("change", () => { SHOW[k] = c.checked; applyShow(); });
+      l.appendChild(c); body.appendChild(l);
     });
-    const reset = el("button", "btn ghost", "Reset to defaults"); reset.type = "button"; reset.style.marginTop = "10px";
-    reset.addEventListener("click", () => { S = Object.assign({}, DEFAULTS); applySettings(); renderSettings(); });
-    p.appendChild(reset);
   }
 
-  function togglePanel(open) {
-    const p = $("#settings"), g = $("#gear");
-    const want = open == null ? p.hidden : open;
-    if (want) renderSettings();
-    p.hidden = !want; g.setAttribute("aria-expanded", String(want));
+  function resetShow() {
+    SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+    applyShow();
+  }
+
+  function goBookHome() {
+    closeDrawers(); window.scrollTo(0, 0);
+    if (location.hash) location.hash = ""; else route();
+  }
+
+  function setUpPanel() {
+    window.RecallQuiz.reading.configure({ fontSize: 18, font: "serif" });
+    panel = window.RecallQuiz.readingPanel.create({
+      homeLabel: "Book home", onHome: goBookHome,
+      subjectPageAddress: new URL("../", location.href).href,
+      addSections: addShowSection, onReset: resetShow,
+    });
+  }
+
+  function loadShared() {
+    return SHARED_SCRIPTS.reduce((chain, file) => chain.then(() => window.SubjectUnlock.loadScript(SHARED_BASE + file)),
+      Promise.resolve());
   }
 
   // -------------------------------------------------------------- drawers
@@ -444,19 +427,22 @@
     const hidden = list.length - usable.length;
     const items = shuffle(usable);
     const wrap = el("div", "qs-wrap");
-    const head = el("div", "q-head"), count = el("span", null, ""), tools = el("span", "row");
+    const head = el("div", "q-head"), note = el("span", null, hidden ? `${hidden} hidden by flags` : ""), tools = el("span", "row");
     const again = el("button", "pill", "Shuffle again"); again.type = "button";
     again.addEventListener("click", () => buildCarousel(host, list, scope, onClose));
     tools.appendChild(again);
     if (onClose) { const x = el("button", "pill", "Close"); x.type = "button"; x.addEventListener("click", () => { host.replaceChildren(); onClose(); }); tools.appendChild(x); }
-    head.append(count, tools);
+    head.append(note, tools);
     const prog = el("div", "q-progress"), track = el("div", "q-track");
     track.tabIndex = 0; track.setAttribute("aria-label", "Questions: swipe or scroll sideways");
     const segs = [], slides = [], results = [];
     let score = 0, answered = 0, idx = 0;
     const total = items.length;
+    const count = el("b", null, ""), nav = el("div", "q-nav");
+    const prev = el("button", "q-nav-btn", "‹ Back"), next = el("button", "q-nav-btn", "Next ›");
     const refreshCount = () => {
-      count.textContent = idx >= total ? "Round complete" : `Question ${idx + 1} of ${total}` + (hidden ? ` · ${hidden} hidden by flags` : "");
+      count.textContent = idx >= total ? "Round complete" : `Question ${idx + 1} of ${total}`;
+      prev.disabled = idx <= 0; next.disabled = idx >= slides.length - 1;
       segs.forEach((s, i) => s.classList.toggle("is-current", i === idx));
     };
     const fit = () => { const s = slides[Math.min(idx, slides.length - 1)]; if (s) track.style.height = s.offsetHeight + "px"; track.scrollTop = 0; };
@@ -490,11 +476,10 @@
     };
     updateEnd();
     end.appendChild(endCard); slides.push(end); track.appendChild(end);
-    const nav = el("div", "q-nav");
-    const prev = el("button", "icon-btn", "‹"), next = el("button", "icon-btn", "›");
     prev.type = next.type = "button"; prev.setAttribute("aria-label", "Previous question"); next.setAttribute("aria-label", "Next question");
     prev.addEventListener("click", () => goSlide(idx - 1)); next.addEventListener("click", () => goSlide(idx + 1));
-    nav.append(prev, el("span", "small muted", "Swipe or use the arrows"), next);
+    const mid = el("span", "q-nav-mid"); mid.append(count, el("small", null, "Swipe or use the buttons"));
+    nav.append(prev, mid, next);
     let raf = 0, settle = 0;
     track.addEventListener("scroll", () => {
       clearTimeout(settle); settle = setTimeout(fit, 150);   // resize only once scrolling has stopped
@@ -507,7 +492,7 @@
       });
     }, { passive: true });
     if (window.ResizeObserver) { const ro = new ResizeObserver(fit); slides.forEach((s) => ro.observe(s)); }
-    wrap.append(head, prog, track, nav); host.appendChild(wrap);
+    wrap.append(head, prog, nav, track); host.appendChild(wrap);
     refreshCount(); setTimeout(fit, 0);
     if (!total) track.style.height = "auto";
   }
@@ -533,23 +518,40 @@
     return d;
   }
 
+  /* Choose one option, then press "Check answer" to submit it (the quiz works the same way). */
+  function pickThenCheck(area, options, onCheck) {
+    let chosen = -1;
+    const btns = options.map((o, k) => {
+      const b = el("button", "opt", o); b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => {
+        chosen = k; check.disabled = false;
+        btns.forEach((x) => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+      });
+      area.appendChild(b); return b;
+    });
+    const check = el("button", "btn", "Check answer"); check.type = "button"; check.disabled = true;
+    check.addEventListener("click", () => {
+      if (chosen < 0) return;
+      check.disabled = true; btns.forEach((x) => { x.disabled = true; });
+      onCheck(chosen, btns);
+    });
+    area.appendChild(check);
+  }
+
   const KINDS = {
     mcq(q, area, finish) {
-      const btns = q.options.map((o, k) => {
-        const b = el("button", "opt", o); b.type = "button";
-        b.addEventListener("click", () => {
-          btns.forEach((x, j) => { x.disabled = true; if (j === q.answer) x.classList.add("right"); });
-          if (k !== q.answer) b.classList.add("wrong");
-          finish(k === q.answer ? "got" : "miss", (q.optionExplain && q.optionExplain[k]) || q.explain);
-        });
-        area.appendChild(b); return b;
+      pickThenCheck(area, q.options, (k, btns) => {
+        btns.forEach((x, j) => { if (j === q.answer) x.classList.add("right"); });
+        if (k !== q.answer) btns[k].classList.add("wrong");
+        finish(k === q.answer ? "got" : "miss", (q.optionExplain && q.optionExplain[k]) || q.explain);
       });
     },
     tf(q, area, finish) {
-      [true, false].forEach((v) => {
-        const b = el("button", "opt", v ? "True" : "False"); b.type = "button";
-        b.addEventListener("click", () => { area.querySelectorAll("button").forEach((x) => (x.disabled = true)); b.classList.add(v === q.answer ? "right" : "wrong"); finish(v === q.answer ? "got" : "miss"); });
-        area.appendChild(b);
+      pickThenCheck(area, ["True", "False"], (k, btns) => {
+        const v = k === 0;
+        btns[q.answer ? 0 : 1].classList.add("right");
+        if (v !== q.answer) btns[k].classList.add("wrong");
+        finish(v === q.answer ? "got" : "miss");
       });
     },
     multi(q, area, finish) {
@@ -645,21 +647,20 @@
     $("#pagemenu").addEventListener("click", () => ($("#dr-right").classList.contains("open") ? closeDrawers() : openDrawer("right")));
     document.querySelectorAll(".dr-close").forEach((b) => b.addEventListener("click", closeDrawers));
     $("#scrim").addEventListener("click", closeDrawers);
-    $("#gear").addEventListener("click", () => togglePanel());
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeDrawers(); togglePanel(false); } });
-    document.addEventListener("click", (e) => {
-      const p = $("#settings");
-      const path = e.composedPath(); if (!p.hidden && !path.includes(p) && !path.includes($("#gear"))) togglePanel(false);
-    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawers(); });
     $("#kicker").addEventListener("click", () => { location.hash = ""; });
   }
 
-  applySettings();
   wireChrome();
   (async () => {
     try {
+      await loadShared();
+      setUpPanel();
       KEY = await loadKey();
       MANIFEST = await fetchJson("data/manifest.enc");
+      window.RecallQuiz.reading.useBook(bookId());
+      window.RecallQuizTheme.useBook(bookId());
+      loadShow();
       window.__trial.manifestMs = Math.round(performance.now() - T0);
       setIconFromCover();
       window.addEventListener("hashchange", route);

@@ -417,8 +417,22 @@
     }
   }
 
+  /** Redraw when the device switches between light and dark, if the
+      reader chose "system". */
+  function followSystemMode() {
+    if (!darkModeQuery) {
+      return;
+    }
+    listenForSystemModeChanges(function followSystem() {
+      if (choice.mode === "system") {
+        applyChoice();
+      }
+    });
+  }
+
   /** Build the tiles and connect the buttons. Runs once the page loads. */
   function setUpPicker() {
+    followSystemMode();
     const tileArea = document.getElementById("theme-tiles");
     if (!tileArea) {
       return;
@@ -435,18 +449,11 @@
     });
     document.querySelectorAll("#theme-mode-choice button").forEach(
       function connectModeButton(button) {
-        button.addEventListener("click", function chooseMode() {
+        button.addEventListener("click", function chooseModeFromButton() {
           choice.mode = button.getAttribute("data-theme-mode");
           applyChoiceFromReader();
         });
       });
-    if (darkModeQuery) {
-      listenForSystemModeChanges(function followSystem() {
-        if (choice.mode === "system") {
-          applyChoice();
-        }
-      });
-    }
     const section = document.getElementById("appearance-section");
     if (section) {
       section.addEventListener("toggle", function loadWhenOpened() {
@@ -461,15 +468,56 @@
     applyChoice();
   }
 
-  /** Lets js/sync/cloud-sync.js save and restore the choice. */
+  /**
+   * The reader picked a theme somewhere other than the Appearance
+   * section (the reading settings panel).
+   * @param {string} themeId
+   */
+  function chooseTheme(themeId) {
+    if (themes.some(isTheme(themeId))) {
+      choice.themeId = themeId;
+      applyChoiceFromReader();
+    }
+  }
+
+  /**
+   * The reader picked light, dark or system somewhere other than the
+   * Appearance section.
+   * @param {string} mode
+   */
+  function chooseMode(mode) {
+    if (MODES.includes(mode)) {
+      choice.mode = mode;
+      applyChoiceFromReader();
+    }
+  }
+
+  /** Go back to the first-time theme and mode, and tell cloud sync. */
+  function chooseDefaults() {
+    choice.themeId = DEFAULT_THEME;
+    choice.mode = DEFAULT_MODE;
+    applyChoiceFromReader();
+  }
+
+  /** Lets js/sync/cloud-sync.js save and restore the choice, and lets
+      the reading settings panel (js/reading-panel.js) change it. */
   window.RecallQuizTheme = {
     read: function readChoice() {
       return { themeId: choice.themeId, mode: choice.mode, at: choice.at };
     },
     useRemote: useRemoteChoice,
     useBook,
+    chooseTheme,
+    chooseMode,
+    chooseDefaults,
+    loadPickerAssets,
+    themes: themes,
   };
 
   applyChoice();          // before the page is drawn
-  document.addEventListener("DOMContentLoaded", setUpPicker);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setUpPicker);
+  } else {
+    setUpPicker();        // loaded late, by the ereader
+  }
 })();

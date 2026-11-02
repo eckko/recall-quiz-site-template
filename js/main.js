@@ -13,6 +13,13 @@
 
   const { findElement } = quiz.helpers;
 
+  /** What "normal" is in the quiz: 16px (17px on a phone, for easier
+      reading), in the theme's own font */
+  const FONT_SIZE = 16;
+  const PHONE_FONT_SIZE = 17;
+  const PHONE_QUERY = "(max-width: 560px)";
+  const LEAVE_SESSION_TEXT = "End this session?";
+
   /**
    * Use a book's data and show the home screen.
    * @param {object} bookData  the parsed questions.json
@@ -22,6 +29,7 @@
     quiz.book.setBookData(bookData);
     quiz.progress.openForBook(quiz.book.bookId());
     quiz.bookSettings.openForBook(quiz.book.bookId());
+    quiz.reading.useBook(quiz.book.bookId());
     if (window.RecallQuizTheme) {
       window.RecallQuizTheme.useBook(quiz.book.bookId());
     }
@@ -34,6 +42,45 @@
     // Optional add-ons (such as cloud sync) start from this event.
     document.dispatchEvent(new CustomEvent("recallquiz:book-opened",
       { detail: { bookId: quiz.book.bookId() } }));
+  }
+
+  /**
+   * The "Quiz home" button of the reading settings: back to the top of
+   * the home screen, asking first if a session is running.
+   */
+  function goToQuizHome() {
+    const isInSession = document.body.classList.contains("in-session");
+    if (isInSession) {
+      if (!confirm(LEAVE_SESSION_TEXT)) {
+        return;
+      }
+      quiz.session.returnHome();
+    }
+    window.scrollTo({ top: 0 });
+  }
+
+  /**
+   * Where "Subject page" goes: the folder above this book, when the
+   * book is one of an encrypted subject site. Null for any other site.
+   * @returns {string|null}
+   */
+  function subjectPageAddress() {
+    return window.RecallQuizEncrypted
+      ? new URL("../", window.location.href).href : null;
+  }
+
+  /** The gear button and its reading settings panel. */
+  function setUpReadingPanel() {
+    const isPhone = window.matchMedia(PHONE_QUERY).matches;
+    quiz.reading.configure({
+      fontSize: isPhone ? PHONE_FONT_SIZE : FONT_SIZE,
+      font: "theme",
+    });
+    quiz.readingPanel.create({
+      homeLabel: "Quiz home",
+      onHome: goToQuizHome,
+      subjectPageAddress: subjectPageAddress(),
+    });
   }
 
   /** Hide the home screen and offer to pick questions.json by hand. */
@@ -76,5 +123,6 @@
 
   findElement("questions-file-input")
     .addEventListener("change", openPickedQuestionsFile);
+  setUpReadingPanel();
   loadQuestionsFile();
 })((window.RecallQuiz = window.RecallQuiz || {}));

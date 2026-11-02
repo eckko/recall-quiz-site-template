@@ -1,0 +1,280 @@
+/*
+ * reading-panel.css
+ * The gear button, the "Reading settings" panel (js/reading-panel.js)
+ * and the settings it switches on <html> (js/reading-settings.js):
+ * the reading font and the page width. Used by the quiz and the ereader.
+ *
+ * Every colour, radius and shadow comes from the theme variables
+ * (css/theme-defaults.css), so the panel follows the theme.
+ */
+
+/* ------------------------------------------------------------------ */
+/* What the settings switch                                            */
+/* ------------------------------------------------------------------ */
+
+html[data-reading-font="serif"] {
+  --reading-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+html[data-reading-font="sans"] {
+  --reading-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html[data-reading-font="theme"] {
+  --reading-font: var(--font-body);
+}
+
+html[data-width="narrow"] {
+  --reading-width: 620px;
+}
+
+html[data-width="wide"] {
+  --reading-width: 960px;
+}
+
+/* ------------------------------------------------------------------ */
+/* The gear button                                                     */
+/* ------------------------------------------------------------------ */
+
+.reading-gear {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: var(--button-shadow);
+  cursor: pointer;
+}
+
+.reading-gear:active {
+  box-shadow: var(--button-shadow-pressed);
+  transform: translateY(var(--press-depth));
+}
+
+/* ------------------------------------------------------------------ */
+/* The panel: fixed head and foot, a scrolling middle                  */
+/* ------------------------------------------------------------------ */
+
+.reading-panel {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: 80px;
+  z-index: 61;
+  display: flex;
+  flex-direction: column;
+  width: min(92vw, 338px);
+  max-height: min(76vh, 690px);
+  overflow: hidden;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 30px -12px rgba(18, 24, 38, 0.45);
+}
+
+.reading-panel.hidden {
+  display: none;
+}
+
+.reading-panel-head {
+  flex: none;
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 6px 8px -8px rgba(18, 24, 38, 0.4);
+}
+
+.reading-panel-head h3 {
+  margin: 0;
+  font: 600 17px var(--font-heading);
+}
+
+.reading-panel-body {
+  flex: 1;
+  min-height: 0;
+  padding: 0 16px 8px;
+  overflow-y: auto;
+}
+
+.reading-panel-body h4 {
+  margin: 12px 0 5px;
+  color: var(--color-text-muted);
+  font: 600 12px var(--font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reading-panel-foot {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px 12px;
+  background: var(--color-card);
+  border-top: 1px solid var(--color-border);
+}
+
+.reading-panel-foot button {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 4px;
+  color: var(--color-accent);
+  font: 600 13px var(--font-body);
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.reading-panel-foot button.reading-reset {
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+
+/* ------------------------------------------------------------------ */
+/* Controls inside the panel                                           */
+/* ------------------------------------------------------------------ */
+
+.reading-choices {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+}
+
+.reading-choices button {
+  flex: 1;
+  height: 38px;
+  color: var(--color-text);
+  font: 500 14px var(--font-body);
+  background: var(--color-page);
+  border: 0;
+  border-right: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.reading-choices button:last-child {
+  border-right: 0;
+}
+
+.reading-choices button[aria-pressed="true"] {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+}
+
+.reading-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reading-size input {
+  flex: 1;
+  accent-color: var(--color-accent);
+}
+
+.reading-size-small {
+  font-size: 13px;
+}
+
+.reading-size-large {
+  font-size: 22px;
+}
+
+.reading-size-value {
+  min-width: 3.2em;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.reading-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reading-swatch {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.reading-swatch[aria-pressed="true"] {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* The white swatch carries its name, as it is easy to take for blank. */
+.reading-swatch[data-caption]::after {
+  content: attr(data-caption);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 3px;
+  color: var(--color-text-muted);
+  font: 600 10px var(--font-body);
+  transform: translateX(-50%);
+}
+
+.reading-swatches:has(.reading-swatch[data-caption]) {
+  padding-bottom: 14px;
+}
+
+/* The theme row scrolls sideways; each tile previews its theme with the
+   --tile-* colours of css/theme-tiles.css. */
+.reading-themes {
+  display: flex;
+  gap: 8px;
+  padding: 4px 4px 6px;
+  overflow-x: auto;
+}
+
+.reading-theme {
+  flex: none;
+  display: grid;
+  gap: 4px;
+  width: 78px;
+  padding: 5px 4px 6px;
+  color: var(--tile-text, var(--color-text));
+  font: 500 11px var(--font-body);
+  text-align: center;
+  background: var(--tile-page, var(--color-page));
+  border: 2px solid var(--tile-border, var(--color-border));
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.reading-theme[aria-pressed="true"] {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.reading-theme-sample {
+  display: block;
+  height: 22px;
+  background: var(--tile-card, var(--color-card));
+  border-radius: 8px;
+}
+
+.reading-theme-sample b {
+  display: block;
+  width: 55%;
+  height: 100%;
+  background: var(--tile-accent, var(--color-accent));
+  border-radius: 8px;
+}
