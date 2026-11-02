@@ -403,9 +403,58 @@ def test_subject_pages_and_build():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_in_subfolder():
+    """An EPUB whose chapters sit in text/ (images at ../images/) and whose
+    appendix entry reads "Appendix: ..." is cut without error."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        (epub / "text").mkdir(parents=True)
+        (epub / "images").mkdir()
+        (epub / "images" / "a.jpeg").write_bytes(b"not really a picture")
+        (epub / "content.opf").write_text(
+            '<package><manifest>'
+            '<item id="a" href="text/part0001.html"/>'
+            '<item id="b" href="text/part0002.html"/>'
+            '</manifest><spine><itemref idref="a"/><itemref idref="b"/>'
+            '</spine></package>')
+        (epub / "toc.ncx").write_text(
+            '<ncx><navMap>'
+            '<navPoint><navLabel><text>1. First</text></navLabel>'
+            '<content src="text/part0001.html#x"/></navPoint>'
+            '<navPoint><navLabel><text>Appendix: A Guide</text></navLabel>'
+            '<content src="text/part0002.html#y"/></navPoint>'
+            '</navMap></ncx>')
+        page = "<html><body><p>Some words.</p>%s</body></html>"
+        (epub / "text" / "part0001.html").write_text(
+            page % '<p><img src="../images/a.jpeg"/></p>')
+        (epub / "text" / "part0002.html").write_text(page % "")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t1", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "First", "idPrefix": "u1",
+             "sections": ["Only"]},
+            {"unit": "Appendix", "unitTitle": "A Guide", "idPrefix": "ap",
+             "sections": ["Only"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        if result.returncode != 0:
+            print(result.stderr[-300:])
+        check("extract_epub reads a text/ folder and an Appendix: title",
+              result.returncode == 0)
+        check("the picture is copied from ../images/",
+              (out / "media-plain" / "u1-a.jpeg").exists())
+        check("the appendix chapter is written",
+              (out / "chapters" / "ap.json").exists())
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 if __name__ == "__main__":
     print("Bank tools")
     test_subject_pages_and_build()
+    test_extract_epub_in_subfolder()
     test_study_blocks()
     test_aids()
     test_study_colours()

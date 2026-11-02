@@ -7,7 +7,7 @@ existing chapter map); the EPUB is searched for them. Writes one JSON per
 chapter to OUT_DIR/chapters/, the figures to OUT_DIR/media-plain/ (scratch
 only, never committed) and OUT_DIR/extract-report.json.
 """
-import json, re, shutil, sys, warnings
+import json, os, re, shutil, sys, warnings
 from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 from html import escape
@@ -67,7 +67,8 @@ for title, f in nav_files:
     m = re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", title, re.I)
     if m:
         nav_by_number[int(m.group(1))] = f
-appendix_file = next((f for t, f in nav_files if t == "Appendix"), None)
+appendix_file = next(
+    (f for t, f in nav_files if re.match(r"Appendix\b", t)), None)
 
 
 # ----- inline cleaning
@@ -139,7 +140,9 @@ for c in chapters:
             media.append({"id": mid, "file": name,
                           "alt": alt or f"Figure in {section_node['title']}",
                           "altGenerated": gen})
-            shutil.copy(epub / src, out / "media-plain" / f"{prefix}-{name}")
+            # src is relative to the chapter file, which may sit in a folder
+            image = Path(os.path.normpath((epub / f).parent / src))
+            shutil.copy(image, out / "media-plain" / f"{prefix}-{name}")
             report["images"]["placed"] += 1
         return f'<figure data-media="{mid}"></figure>'
 
