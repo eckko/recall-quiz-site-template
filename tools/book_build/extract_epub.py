@@ -11,6 +11,8 @@ import json, os, re, shutil, sys, warnings
 from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 from html import escape
+sys.path.insert(0, str(Path(__file__).parent))
+from epubnav import read_ncx, first_word_key
 from bs4 import XMLParsedAsHTMLWarning
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
@@ -44,7 +46,7 @@ def slug(text):
 opf = BeautifulSoup(opf_path.read_text(encoding="utf8"), "xml")
 manifest = {i["id"]: i["href"] for i in opf.find_all("item")}
 spine = [manifest[r["idref"]] for r in opf.find_all("itemref")]
-ncx = (epub / "toc.ncx").read_text(encoding="utf8")
+ncx = read_ncx(epub, opf_path.read_text(encoding="utf8"))
 nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
                  r'<content src="([^"#]+)', ncx, re.S)
 nav_files = [(t, f) for t, f in nav]
@@ -69,6 +71,25 @@ for title, f in nav_files:
         nav_by_number[int(m.group(1))] = f
 appendix_file = next(
     (f for t, f in nav_files if re.match(r"Appendix\b", t)), None)
+
+
+def unit_sections_in_nav(sections):
+    """For an unnumbered unit with text (Foreword, Introduction, Conclusion,
+    Afterword, ...): {nav file: section title} for each section that has a
+    navigation entry of its own. An entry matches a section when the
+    section title starts with the entry's title up to its colon, so
+    "Foreword: to the 50th ..." finds "Foreword to the 50th Anniversary
+    Edition: Ten Lessons ..."."""
+    found = {}
+    for title, f in nav_files:
+        key = first_word_key(title)
+        if not key or re.match(r"(\d|chapter\b|part\b|appendix\b)", key):
+            continue
+        for section in sections:
+            if re.match(re.escape(key) + r"\b", norm(section)):
+                found.setdefault(f, section)
+                break
+    return found
 
 
 # ----- inline cleaning
@@ -111,12 +132,18 @@ report = {"chapters": {}, "excluded": [], "images": {"found": 0, "placed": 0,
                                                        "alt_generated": 0}}
 for c in chapters:
     unit = c["unit"]
-    if not re.match(r"Chapter \d+$|Appendix$", unit):
-        continue      # the whole-book unit has no text to cut
+    section_starts = {}   # file -> section title it opens (unnumbered units)
     if unit == "Appendix":
         files = [appendix_file]
-    else:
+    elif re.match(r"Chapter \d+$", unit):
         files = file_range(nav_by_number[int(unit.split()[1])])
+    else:
+        section_starts = unit_sections_in_nav(c["sections"])
+        if not section_starts:
+            continue      # the whole-book unit has no text to cut
+        files = []
+        for start in sorted(section_starts, key=file_index.get):
+            files += [x for x in file_range(start) if x not in files]
     prefix = c["idPrefix"]
     wanted = {norm(s): s for s in c["sections"]}
     single = len(c["sections"]) == 1
@@ -150,6 +177,17 @@ for c in chapters:
     for f in files:
         soup = BeautifulSoup((epub / f).read_text(encoding="utf8"), "lxml")
         body = soup.body or soup
+        opens = section_starts.get(f)
+        in_title = bool(opens)    # still inside the file's own title blocks
+        if opens:
+            if single:       # the unit's only section already has its node
+                node = nodes[0]
+            else:
+                node = {"id": f"{prefix}-{slug(opens)}", "level": 2,
+                        "title": opens, "parent": None, "html": []}
+                nodes.append(node)
+            current = section_node = node
+            found_titles.add(opens)
         for block in body.find_all(["p", "div", "li", "blockquote", "h1", "h2", "h3", "h4"],
                                    recursive=True):
             if block.find(["p", "div", "li", "blockquote"]):
@@ -159,6 +197,14 @@ for c in chapters:
             has_img = block.find("img") is not None
             if "mbp_pagebreak" in cls or (not text and not has_img):
                 continue
+            if in_title:
+                # the title is split over several blocks (heading, subtitle,
+                # a title line): the node already carries it
+                if block.name in ("h1", "h2") or (
+                        len(text) < 120 and norm(text) and
+                        norm(text) in norm(opens)):
+                    continue
+                in_title = False
             if cls == "calibre_17" and re.match(r"^CHAPTER \d+$", text):
                 seen_chapter_header = 1
                 continue
@@ -218,7 +264,7 @@ for c in chapters:
                      for n in nodes)}
     (out / "chapters" / f"{prefix}.json").write_text(json.dumps(
         {"unit": unit, "unitTitle": c["unitTitle"], "idPrefix": prefix,
-         "nodes": nodes, "media": media}, ensure_ascii=False, indent=1),
+         "startFile": files[0], "nodes": nodes, "media": media}, ensure_ascii=False, indent=1),
         encoding="utf8")
 report["images"]["found"] = len([p for p in epub.rglob("*") if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".gif")])
 (out / "extract-report.json").write_text(json.dumps(report, indent=1))
