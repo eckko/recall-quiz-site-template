@@ -51,12 +51,19 @@ nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
                  r'<content src="([^"#]+)', ncx, re.S)
 nav_files = [(t, f) for t, f in nav]
 file_index = {f: i for i, f in enumerate(spine)}
-starts = sorted({file_index[f] for _, f in nav_files if f in file_index})
 
 
-def file_range(start_file):
+def file_range(start_file, section_titles=()):
+    """Files of one chapter: from its first file up to the next navigation
+    entry that is not one of its own sections. A section entry can point
+    into a later file of the same chapter (Calibre splits long chapters
+    into part0007_split_000.html, part0007_split_001.html, ...); such an
+    entry must not end the chapter."""
+    skip = {norm(t) for t in section_titles}
     first = file_index[start_file]
-    later = [s for s in starts if s > first]
+    later = sorted({file_index[f] for t, f in nav_files
+                    if f in file_index and file_index[f] > first
+                    and norm(t) not in skip})
     last = (later[0] if later else len(spine)) - 1
     return spine[first:last + 1]
 
@@ -136,14 +143,16 @@ for c in chapters:
     if unit == "Appendix":
         files = [appendix_file]
     elif re.match(r"Chapter \d+$", unit):
-        files = file_range(nav_by_number[int(unit.split()[1])])
+        files = file_range(nav_by_number[int(unit.split()[1])],
+                           c["sections"])
     else:
         section_starts = unit_sections_in_nav(c["sections"])
         if not section_starts:
             continue      # the whole-book unit has no text to cut
         files = []
         for start in sorted(section_starts, key=file_index.get):
-            files += [x for x in file_range(start) if x not in files]
+            files += [x for x in file_range(start, c["sections"])
+                      if x not in files]
     prefix = c["idPrefix"]
     wanted = {norm(s): s for s in c["sections"]}
     single = len(c["sections"]) == 1
