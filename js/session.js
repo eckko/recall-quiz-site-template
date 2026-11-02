@@ -57,6 +57,10 @@
     keyHandler: null,
   };
 
+  /** Index of the step on screen: the live question, or one looked at
+      again (see showReview) */
+  let shownIndex = 0;
+
   // ---------------------------------------------------------- start
 
   /**
@@ -157,9 +161,11 @@
     const isCard = question.kind === "lesson";
     const cardElement = openQuestionCard();
 
+    shownIndex = state.currentIndex;
     cardElement.appendChild(state.isTimed
       ? quiz.timers.createSessionClockBar(state.currentIndex + 1)
       : createProgressSegments());
+    cardElement.appendChild(createStepNav(state.currentIndex));
     if (state.secondsPerQuestion && !isCard) {
       cardElement.appendChild(
         quiz.timers.createQuestionTimer(state.secondsPerQuestion));
@@ -288,9 +294,10 @@
   }
 
   /**
-   * Move on: the next question not answered yet (a jump from the session
-   * list can leave answered ones ahead), or the results if time ran out
-   * or nothing is left.
+   * Move on: the next question not answered yet. A jump or a skip can
+   * leave unanswered ones behind, so after the last step it comes back to
+   * the first of those. The results come when time ran out or nothing is
+   * left.
    */
   function goToNextQuestion() {
     if (state.timeRanOut) {
@@ -300,6 +307,14 @@
     let nextIndex = state.currentIndex + 1;
     while (nextIndex < state.questions.length && state.results[nextIndex]) {
       nextIndex += 1;
+    }
+    if (nextIndex >= state.questions.length) {
+      nextIndex = state.questions.findIndex(function isOpen(step, index) {
+        return !state.results[index] && index !== state.currentIndex;
+      });
+      if (nextIndex < 0) {
+        nextIndex = state.questions.length;
+      }
     }
     state.currentIndex = nextIndex;
     showCurrentQuestion();
@@ -321,6 +336,81 @@
   }
 
   /**
+   * "Back", "Question 3 of 25" and "Next", under the progress bar. The
+   * same buttons (and a sideways swipe) work on a question and on a step
+   * looked at again.
+   * @param {number} index  the step on screen
+   * @returns {HTMLElement}
+   */
+  function createStepNav(index) {
+    const total = state.questions.length;
+    const isCard = state.questions[index].kind === "lesson";
+    const nav = createElement("div", "step-nav");
+    const back = createButton("‹ Back", "step-nav-button",
+      function goBack() {
+        goToStep(index - 1);
+      });
+    back.disabled = index <= 0;
+    const next = createButton("Next ›", "step-nav-button",
+      function goForward() {
+        goToStep(index + 1);
+      });
+    next.disabled = index >= total - 1;
+    const middle = createElement("div", "step-nav-middle");
+    middle.appendChild(createElement("b", null,
+      (isCard ? "Card " : "Question ") + (index + 1) + " of " + total));
+    middle.appendChild(createElement("small", null,
+      "Swipe or use the buttons"));
+    nav.appendChild(back);
+    nav.appendChild(middle);
+    nav.appendChild(next);
+    return nav;
+  }
+
+  /**
+   * Go to the step before or after the one on screen (Back, Next, or a
+   * swipe). An unanswered step is asked; an answered one opens read-only.
+   * @param {number} index
+   */
+  function goToStep(index) {
+    if (index < 0 || index >= state.questions.length) {
+      return;
+    }
+    if (state.timeRanOut) {
+      quiz.resultsScreen.showResults();
+      return;
+    }
+    jumpTo(index);
+  }
+
+  /** Swipe left for the next step, right for the one before. */
+  function setUpSwipe() {
+    const area = findElement("question-card");
+    const SWIPE_FROM = 70;
+    let start = null;
+    area.addEventListener("touchstart", function noteStart(event) {
+      const isOneFinger = event.touches.length === 1;
+      const isInField = Boolean(event.target.closest(
+        "input, textarea, select, pre, table, .katex-display"));
+      start = isOneFinger && !isInField ?
+        { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
+    }, { passive: true });
+    area.addEventListener("touchend", function noteEnd(event) {
+      if (!start || !document.body.classList.contains("in-session")) {
+        return;
+      }
+      const moveX = event.changedTouches[0].clientX - start.x;
+      const moveY = event.changedTouches[0].clientY - start.y;
+      start = null;
+      // Mostly sideways and long enough; a vertical scroll never counts.
+      if (Math.abs(moveX) >= SWIPE_FROM &&
+          Math.abs(moveX) > 1.6 * Math.abs(moveY)) {
+        goToStep(shownIndex + (moveX < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+  }
+
+  /**
    * Look at an answered step again. Nothing is recorded; "Back to the
    * session" shows the question that was on screen.
    * @param {number} index
@@ -330,6 +420,8 @@
     quiz.timers.stopQuestionTimer();
     state.keyHandler = null;
     const cardElement = openQuestionCard();
+    shownIndex = index;
+    cardElement.appendChild(createStepNav(index));
     cardElement.appendChild(createElement("p", "review-banner",
       "Looking at step " + (index + 1) + " again. This is read-only: " +
       "nothing is recorded a second time."));
@@ -555,6 +647,7 @@
       startSession(quiz.settings.chooseQuickSession());
     });
   document.addEventListener("keydown", handleKeyPress);
+  setUpSwipe();
   document.addEventListener("recallquiz:flags-changed",
     dropFlaggedQuestionFromSession);
 

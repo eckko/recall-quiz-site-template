@@ -124,6 +124,15 @@ button {
     background 0.15s;
 }
 
+/* A button that cannot be used yet (for example "Check groups" before
+   every item is placed) looks it, and does nothing when pressed */
+.button[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  box-shadow: none;
+}
+
 button:active:not([disabled]) {
   transform: scale(0.95);
 }

@@ -49,12 +49,24 @@
   line-height: 1.2;
 }
 
+/* The book name can be long: at most two lines, then "...". (base.css
+   makes every h1 inline-block, which would let a long name push the
+   page wider than the screen.) */
 .title-bar h1 {
+  display: -webkit-box;
   margin: 0;
   overflow: hidden;
-  font-size: 1.1rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  font-size: 1rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.title-bar {
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 .title-bar-session small {
@@ -156,6 +168,11 @@
   font-size: 0.9rem;
 }
 
+.drawer-row.is-idea {
+  padding-left: 30px;
+  font-size: 0.9rem;
+}
+
 .drawer-row.is-current {
   background: var(--color-accent-soft);
   border-left-color: var(--color-accent);
@@ -173,6 +190,59 @@
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+/* A chapter that opens and closes: its name, then a chevron button */
+.drawer-chapter-head {
+  display: flex;
+  align-items: stretch;
+}
+
+.drawer-chapter-head .drawer-row {
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer-toggle {
+  flex: none;
+  width: 48px;
+  color: var(--color-text-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.drawer-toggle::before {
+  content: "\203A";
+  display: inline-block;
+  transition: transform 0.15s;
+}
+
+.drawer-chapter.is-open > .drawer-chapter-head .drawer-toggle::before {
+  transform: rotate(90deg);
+}
+
+.drawer-chapter-body[hidden] {
+  display: none;
+}
+
+.drawer-tools {
+  display: flex;
+  gap: 16px;
+  padding: 6px 16px 2px;
+}
+
+.drawer-tools button {
+  padding: 4px 0;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 
 .drawer-note {

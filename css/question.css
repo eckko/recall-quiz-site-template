@@ -564,3 +564,57 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
+/* ------------------------------------------------------------------ */
+/* Back, "Question 3 of 25", Next: under the progress bar              */
+/* ------------------------------------------------------------------ */
+
+/* Swiping sideways changes the question; vertical scrolling and
+   pinch-zoom stay with the browser */
+#question-card {
+  touch-action: pan-y pinch-zoom;
+}
+
+.step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+
+.step-nav-button {
+  flex: none;
+  min-width: 76px;
+  min-height: 40px;
+  padding: 0 12px;
+  color: var(--color-text);
+  font-weight: 600;
+  background: var(--color-card);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.step-nav-button[disabled] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.step-nav-middle {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.step-nav-middle b {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.step-nav-middle small {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+}

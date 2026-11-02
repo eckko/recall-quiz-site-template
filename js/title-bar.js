@@ -5,12 +5,12 @@
  * Home screen:      menu | book name | list
  * Question screen:  menu | "Chapter 1 · Name" over the topic | list
  *
- * Left drawer (both screens): the chapters and their topics. Tapping
- * one scrolls the home screen to it; from a session it asks
- * "End this session?" first.
- * Right drawer, home screen: the chapters and their ideas, with the
- * New / Learning / Solid chip. Tapping an idea scrolls to it and
- * opens it.
+ * Left drawer (both screens): the chapters and their topics. A chapter
+ * opens and closes with its chevron. Tapping a name scrolls the home
+ * screen to it; from a session it asks "End this session?" first.
+ * Right drawer, home screen: the chapters (closed to start with, tap one
+ * to open it) and their ideas, with the New / Learning / Solid chip.
+ * Tapping an idea scrolls to it and opens it.
  * Right drawer, in a session: every step of the session with a mark
  * (right, partly, missed, current, not seen yet). An unseen question
  * is jumped to; an answered one opens read-only, so it is not
@@ -135,28 +135,101 @@
   // ----------------------------------------------- the chapters and topics
 
   /**
-   * The left drawer: chapters, each with its topics.
+   * The left drawer: chapters, each with its topics. A chapter opens and
+   * closes; the one the question on screen belongs to starts open.
    * @param {HTMLElement} list
    */
   function fillContents(list) {
+    list.appendChild(createExpandTools(list));
     quiz.book.unitIds.forEach(function addUnit(unitId) {
       const title = quiz.book.unitTitles[unitId];
-      const unitRow = createDrawerRow(unitId + (title ? " · " + title : ""),
-        "is-chapter" + (isCurrentUnit(unitId) ? " is-current" : ""),
-        function goToUnit() {
+      const topics = topicsOfUnit(unitId);
+      const group = createChapterGroup({
+        label: unitId + (title ? " · " + title : ""),
+        isCurrent: isCurrentUnit(unitId),
+        isOpen: isCurrentUnit(unitId),
+        canOpen: topics.length > 0,
+        onGo: function goToUnit() {
           goToHome({ unitId });
-        });
-      list.appendChild(unitRow);
-      topicsOfUnit(unitId).forEach(function addTopic(topic) {
+        },
+      });
+      topics.forEach(function addTopic(topic) {
         const isCurrent = isCurrentUnit(unitId) &&
           shownQuestion.section === topic;
-        list.appendChild(createDrawerRow(topic,
+        group.body.appendChild(createDrawerRow(topic,
           "is-topic" + (isCurrent ? " is-current" : ""),
           function goToTopic() {
             goToHome({ unitId, section: topic });
           }));
       });
+      list.appendChild(group.element);
     });
+  }
+
+  /**
+   * A chapter that opens and closes. Its name goes to the chapter (when
+   * onGo is given, otherwise the name opens and closes it too); the
+   * chevron button always opens and closes.
+   * @param {{label: string, isCurrent: boolean, isOpen: boolean,
+   *   canOpen: boolean, onGo?: function(): void}} options
+   * @returns {{element: HTMLElement, body: HTMLElement}}
+   */
+  function createChapterGroup(options) {
+    const element = createElement("div", "drawer-chapter");
+    const head = createElement("div", "drawer-chapter-head");
+    const body = createElement("div", "drawer-chapter-body");
+    const toggle = createButton("", "drawer-toggle", function flip() {
+      setGroupOpen(element, !element.classList.contains("is-open"));
+    });
+    const nameRow = createDrawerRow(options.label,
+      "is-chapter" + (options.isCurrent ? " is-current" : ""),
+      options.onGo || function flipFromName() {
+        toggle.click();
+      });
+    head.appendChild(nameRow);
+    if (options.canOpen) {
+      head.appendChild(toggle);
+    }
+    element.appendChild(head);
+    element.appendChild(body);
+    element.toggleButton = toggle;
+    element.chapterName = options.label;
+    setGroupOpen(element, options.isOpen && options.canOpen);
+    return { element, body };
+  }
+
+  /**
+   * Open or close one chapter of a drawer.
+   * @param {HTMLElement} group
+   * @param {boolean} open
+   */
+  function setGroupOpen(group, open) {
+    group.classList.toggle("is-open", open);
+    group.querySelector(".drawer-chapter-body").hidden = !open;
+    group.toggleButton.setAttribute("aria-expanded", String(open));
+    group.toggleButton.setAttribute("aria-label",
+      (open ? "Close " : "Open ") + group.chapterName);
+  }
+
+  /**
+   * "Open all" and "Close all" for the chapters of a drawer list.
+   * @param {HTMLElement} list
+   * @returns {HTMLElement}
+   */
+  function createExpandTools(list) {
+    const tools = createElement("div", "drawer-tools");
+    [["Open all", true], ["Close all", false]].forEach(
+      function addTool(tool) {
+        tools.appendChild(createButton(tool[0], "", function setAll() {
+          list.querySelectorAll(".drawer-chapter").forEach(
+            function apply(group) {
+              if (group.querySelector(".drawer-toggle")) {
+                setGroupOpen(group, tool[1]);
+              }
+            });
+        }));
+      });
+    return tools;
   }
 
   /**
@@ -210,6 +283,7 @@
         "to a " + quiz.book.labels.unit.toLowerCase() + " or topic."));
       return;
     }
+    list.appendChild(createExpandTools(list));
     quiz.book.unitIds.forEach(function addUnit(unitId) {
       const ideas = quiz.learning.concepts().filter(
         function inUnit(concept) {
@@ -218,12 +292,17 @@
       if (!ideas.length) {
         return;
       }
-      list.appendChild(createElement("div", "drawer-group", unitId +
-        (quiz.book.unitTitles[unitId] ?
-          " · " + quiz.book.unitTitles[unitId] : "")));
-      ideas.forEach(function addIdea(concept) {
-        list.appendChild(createIdeaRow(concept));
+      const group = createChapterGroup({
+        label: unitId + (quiz.book.unitTitles[unitId] ?
+          " · " + quiz.book.unitTitles[unitId] : ""),
+        isCurrent: false,
+        isOpen: false,
+        canOpen: true,
       });
+      ideas.forEach(function addIdea(concept) {
+        group.body.appendChild(createIdeaRow(concept));
+      });
+      list.appendChild(group.element);
     });
   }
 

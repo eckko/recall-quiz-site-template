@@ -261,6 +261,17 @@ left drawer = chapters and topics; right drawer = ideas with status chips on
 the home screen, and the steps of the session in a session (`session.state
 .results[i]` holds "got", "part", "miss" or "seen" for a card; `session
 .jumpTo(i)` opens an answered step read-only, or jumps to an unseen one).
+In both drawers a chapter opens and closes with a chevron (closed to
+start with, except the chapter of the question on screen), with "Open all"
+and "Close all" above.
+
+Every step on screen (a question, or one looked at again) has a
+"Back | Question n of N | Next" row under the progress bar, and a sideways
+swipe on `#question-card` does the same (`session.js`: `createStepNav`,
+`goToStep`, `setUpSwipe`; vertical scrolling is left to the browser with
+`touch-action: pan-y pinch-zoom`). Next or a swipe can skip a question;
+`goToNextQuestion` comes back to skipped ones after the last step, so the
+results come only when nothing is left unanswered.
 The bar changes through the events `recallquiz:question-shown`,
 `recallquiz:home-shown` and `recallquiz:results-shown`. Pages are written by `tools/make_subject_pages.py`.
 

@@ -425,8 +425,8 @@
   }
 
   /**
-   * The plan behind "Keep me going": due reviews first (the weakest one
-   * opens the session, as the hardest job comes first), then the next
+   * The plan behind "Keep me going": due reviews first (the weakest ones
+   * are picked, then asked in a random order), then the next
    * idea to teach (pretest, card, ladder), then one easy review so the
    * session ends on something the reader knows. With nothing due and
    * nothing new it falls back to questions the reader finds hard, then
@@ -447,7 +447,7 @@
       return quiz.book.matchesScope(question, scope) &&
         (!options.coreOnly || isCoreQuestion(question));
     };
-    const reviews = quiz.book.allQuestions()
+    const weakest = quiz.book.allQuestions()
       .filter(function isDue(question) {
         return inScope(question) && (
           quiz.memory.isWaitingForReview(question.id) ||
@@ -456,7 +456,9 @@
       .sort(function weakestFirst(first, second) {
         return reviewRank(first) - reviewRank(second);
       })
-      .slice(0, options.maxReviews || KEEP_GOING_REVIEWS)
+      .slice(0, options.maxReviews || KEEP_GOING_REVIEWS);
+    // The weakest ones are chosen, then asked in a random order.
+    const reviews = quiz.helpers.shuffledCopy(weakest)
       .map(function markAsReview(question) {
         return Object.assign({}, question, { isReviewRun: true });
       });

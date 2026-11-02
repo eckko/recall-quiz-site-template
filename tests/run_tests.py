@@ -707,6 +707,20 @@ def test_title_bar_home(browser):
               "#contents-drawer-list .is-chapter").count() ==
           len({q["unit"] for q in BOOK["questions"]}))
     first_topic = page.locator("#contents-drawer-list .is-topic").first
+    check("chapters start closed (no topic is shown)",
+          not first_topic.is_visible())
+    toggle = page.locator("#contents-drawer-list .drawer-toggle").first
+    toggle.click()
+    check("the chevron opens a chapter", first_topic.is_visible())
+    check("and says so for screen readers",
+          toggle.get_attribute("aria-expanded") == "true")
+    toggle.click()
+    check("it closes again", not first_topic.is_visible())
+    page.click("#contents-drawer-list .drawer-tools button >> nth=0")
+    check("Open all opens every chapter", first_topic.is_visible())
+    page.click("#contents-drawer-list .drawer-tools button >> nth=1")
+    check("Close all closes them", not first_topic.is_visible())
+    page.click("#contents-drawer-list .drawer-tools button >> nth=0")
     topic_name = first_topic.inner_text()
     first_topic.click()
     check("tapping a topic closes the drawer",
@@ -717,6 +731,9 @@ def test_title_bar_home(browser):
               "(rows, name) => rows.some(r => r.dataset.section === name"
               " && r.open)", topic_name))
     page.click("#ideas-button")
+    check("idea chapters start closed",
+          not page.locator("#ideas-drawer-list .is-idea").first.is_visible())
+    page.click("#ideas-drawer-list .drawer-tools button >> nth=0")
     chips = page.locator("#ideas-drawer-list .status-chip")
     check("the right drawer lists ideas with status chips",
           chips.count() == len(BOOK["concepts"]), str(chips.count()))
@@ -811,6 +828,125 @@ def test_left_drawer_leaves_a_session(browser):
     check("the home screen is back",
           page.is_visible("#where-you-stand") and
           not page.is_visible("#question-card"))
+    page.close()
+
+
+def swipe(page, move_x, move_y=0):
+    """Send a one-finger swipe to the question card."""
+    page.evaluate(
+        """([moveX, moveY]) => {
+          const card = document.getElementById("question-card");
+          const send = (type, x, y) => {
+            const event = new Event(type, { bubbles: true });
+            const point = [{ clientX: x, clientY: y }];
+            event.touches = type === "touchend" ? [] : point;
+            event.changedTouches = point;
+            card.dispatchEvent(event);
+          };
+          send("touchstart", 200, 300);
+          send("touchend", 200 + moveX, 300 + moveY);
+        }""", [move_x, move_y])
+
+
+def test_session_navigation(browser):
+    """Back, "Question n of N", Next and swipe in a session."""
+    print("Session: Back, Next and swipe")
+    three = [q for q in BOOK["questions"] if q["kind"] == "tf"][:3]
+    page = open_page(browser, questions=three)
+    start_session(page)
+    state = "window.RecallQuiz.session.state"
+    check("it says which question this is",
+          page.inner_text("#question-card .step-nav-middle b") ==
+          "Question 1 of 3")
+    check("Back is off on the first question",
+          page.is_disabled("#question-card .step-nav-button >> nth=0"))
+    page.click("#question-card .step-nav-button >> nth=1")
+    check("Next goes to the second question",
+          page.evaluate(state + ".currentIndex") == 1)
+    check("and the count follows",
+          page.inner_text("#question-card .step-nav-middle b") ==
+          "Question 2 of 3")
+    swipe(page, -120)
+    check("a swipe left goes to the next question",
+          page.evaluate(state + ".currentIndex") == 2)
+    check("Next is off on the last question",
+          page.is_disabled("#question-card .step-nav-button >> nth=1"))
+    swipe(page, 20, 160)
+    check("a mostly vertical drag does nothing",
+          page.evaluate(state + ".currentIndex") == 2)
+    swipe(page, 40)
+    check("a short swipe does nothing",
+          page.evaluate(state + ".currentIndex") == 2)
+    swipe(page, 120)
+    check("a swipe right goes back",
+          page.evaluate(state + ".currentIndex") == 1)
+    page.click("#question-card .step-nav-button >> nth=1")
+    answer_question(page, current_step(page), False)
+    page.wait_for_selector("#question-card .verdict")
+    page.keyboard.press("Enter")
+    check("skipped questions come back after the last one",
+          page.evaluate(state + ".currentIndex") == 0,
+          str(page.evaluate(state + ".currentIndex")))
+    page.click("#question-card .step-nav-button >> nth=1")
+    check("an unanswered question is asked again",
+          page.evaluate(state + ".currentIndex") == 1 and
+          not page.is_visible("#question-card .review-banner"))
+    page.click("#question-card .step-nav-button >> nth=1")
+    check("an answered one opens read-only",
+          page.is_visible("#question-card .review-banner"))
+    check("with the same Back and Next",
+          page.inner_text("#question-card .step-nav-middle b") ==
+          "Question 3 of 3")
+    got = page.evaluate(state + ".score.got")
+    check("looking records nothing more", got == 1, str(got))
+    check("the page scrolls up and down as usual",
+          page.evaluate(
+              "getComputedStyle(document.getElementById("
+              "'question-card')).touchAction").startswith("pan-y"))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_check_button_and_phone_bar(browser):
+    """A button that cannot be used yet looks it; a long book name
+    does not break the bar."""
+    print("Disabled buttons and the bar on a phone")
+    sorts = [q for q in BOOK["questions"] if q["kind"] == "sort"]
+    page = open_page(browser, questions=sorts[:1], width=375)
+    start_session(page)
+    button = ".is-check"
+    check("Check groups is disabled before anything is placed",
+          page.is_disabled(button))
+    opacity = page.eval_on_selector(
+        button, "e => getComputedStyle(e).opacity")
+    check("and looks disabled", float(opacity) < 0.6, opacity)
+    chips = page.locator(".sort-pool .sort-chip").count()
+    for _ in range(chips):
+        page.click(".sort-pool .sort-chip >> nth=0")
+        page.click(".sort-group-head >> nth=0")
+    check("it works once every item is placed",
+          not page.is_disabled(button))
+    page.click(button)
+    check("and checks the groups", page.is_visible("#question-card .verdict"))
+    page.close()
+    page = open_page(browser, width=375, view="structure")
+    page.evaluate(
+        "document.getElementById('book-title').textContent = "
+        "'Essentialism: The Disciplined Pursuit of Less and More Again'")
+    sideways = page.evaluate(
+        "document.documentElement.scrollWidth - window.innerWidth")
+    check("a long book name does not widen the page", sideways <= 0,
+          str(sideways))
+    right_edge = page.eval_on_selector(
+        "#ideas-button", "e => e.getBoundingClientRect().right")
+    check("the right button stays on screen", right_edge <= 375,
+          str(right_edge))
+    gap = page.evaluate(
+        "document.getElementById('ideas-button').getBoundingClientRect()"
+        ".left - document.querySelector('.title-bar-text')"
+        ".getBoundingClientRect().right")
+    check("the name does not run under the button", gap >= 0, str(gap))
+    check("no errors", not page.errors, "; ".join(page.errors))
     page.close()
 
 
@@ -3037,6 +3173,8 @@ def main():
             test_title_bar_session(browser)
             test_session_list_reviews_without_recording(browser)
             test_left_drawer_leaves_a_session(browser)
+            test_session_navigation(browser)
+            test_check_button_and_phone_bar(browser)
             test_reading_panel(browser)
             test_reading_panel_theme_and_home(browser)
             test_reader(browser)
