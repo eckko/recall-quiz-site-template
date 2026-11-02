@@ -25,23 +25,31 @@ chapters = json.loads((repo / "book-structure" / "chapters.json")
                       .read_text(encoding="utf8"))["chapters"]
 
 # ----- parts from the EPUB navigation
-ncx = (epub / "toc.ncx").read_text(encoding="utf8")
+import re as _re0
+_c0 = epub / "META-INF" / "container.xml"
+_m0 = _re0.search(r'full-path="([^"]+)"', _c0.read_text(encoding="utf8")) if _c0.exists() else None
+opf_dir = (epub / _m0.group(1)).parent if _m0 else epub
+ncx = (opf_dir / "toc.ncx").read_text(encoding="utf8")
 nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
                  r'<content src="([^"#]+)', ncx, re.S)
 from bs4 import BeautifulSoup
-opf = BeautifulSoup((epub / "content.opf").read_text(encoding="utf8"), "xml")
+import re as _re
+_c = epub / "META-INF" / "container.xml"
+_m = _re.search(r'full-path="([^"]+)"', _c.read_text(encoding="utf8")) if _c.exists() else None
+opf_path = epub / _m.group(1) if _m else epub / "content.opf"
+opf = BeautifulSoup(opf_path.read_text(encoding="utf8"), "xml")
 manifest_items = {i["id"]: i["href"] for i in opf.find_all("item")}
 spine = [manifest_items[r["idref"]] for r in opf.find_all("itemref")]
 pos = {f: i for i, f in enumerate(spine)}
-parts = [(t, pos[f]) for t, f in nav if t.startswith("Part ")]
+parts = [(t, pos[f]) for t, f in nav if t.lower().startswith("part ")]
 chapter_start = {int(m.group(1)): pos[f] for t, f in nav
-                 if (m := re.match(r"(\d+)\.\s", t))}
+                 if (m := re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", t, re.I))}
 
 
 def group_of(unit):
     if unit == "Appendix":
         return "Appendix"
-    if unit.startswith("Reading the book"):
+    if not re.match(r"Chapter \d+$|Appendix$", unit):
         return "The whole book"
     n = int(unit.split()[1])
     here = chapter_start[n]
@@ -70,7 +78,7 @@ manifest_chapters, group_order = [], []
 media_ids = []
 for c in chapters:
     unit, prefix = c["unit"], c["idPrefix"]
-    whole = unit.startswith("Reading the book")
+    whole = not re.match(r"Chapter \d+$|Appendix$", unit)
     if whole:
         bundle = {"unit": unit, "unitTitle": c["unitTitle"], "idPrefix": prefix,
                   "nodes": [{"id": f"{prefix}-whole", "level": 2,
