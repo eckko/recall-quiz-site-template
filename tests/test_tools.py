@@ -406,6 +406,18 @@ def test_subject_pages_and_build():
 def test_extract_epub_in_subfolder():
     """An EPUB whose chapters sit in text/ (images at ../images/) and whose
     appendix entry reads "Appendix: ..." is cut without error."""
+    check_appendix_label("Appendix: A Guide")
+
+
+def test_extract_epub_uppercase_appendix():
+    """The same EPUB with the appendix entry in capitals ("APPENDIX: ...",
+    as Calibre-converted EPUBs often print it) is cut without error."""
+    check_appendix_label("APPENDIX: A Guide")
+
+
+def check_appendix_label(label):
+    """Build a small EPUB whose appendix navigation entry reads `label`,
+    cut it with extract_epub.py and check the appendix chapter is written."""
     import shutil
     folder = Path(tempfile.mkdtemp())
     try:
@@ -423,7 +435,7 @@ def test_extract_epub_in_subfolder():
             '<ncx><navMap>'
             '<navPoint><navLabel><text>1. First</text></navLabel>'
             '<content src="text/part0001.html#x"/></navPoint>'
-            '<navPoint><navLabel><text>Appendix: A Guide</text></navLabel>'
+            '<navPoint><navLabel><text>%s</text></navLabel>' % label +
             '<content src="text/part0002.html#y"/></navPoint>'
             '</navMap></ncx>')
         page = "<html><body><p>Some words.</p>%s</body></html>"
@@ -441,7 +453,7 @@ def test_extract_epub_in_subfolder():
                      chapters, out, cwd=ROOT)
         if result.returncode != 0:
             print(result.stderr[-300:])
-        check("extract_epub reads a text/ folder and an Appendix: title",
+        check(f"extract_epub reads a text/ folder and {label[:8]!r} title",
               result.returncode == 0)
         check("the picture is copied from ../images/",
               (out / "media-plain" / "u1-a.jpeg").exists())
@@ -713,6 +725,7 @@ if __name__ == "__main__":
     test_subject_pages_and_build()
     test_add_notes_by_unit()
     test_extract_epub_in_subfolder()
+    test_extract_epub_uppercase_appendix()
     test_extract_epub_split_chapter()
     test_book_build_front_back_units()
     test_study_blocks()

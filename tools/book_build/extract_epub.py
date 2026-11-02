@@ -77,7 +77,7 @@ for title, f in nav_files:
     if m:
         nav_by_number[int(m.group(1))] = f
 appendix_file = next(
-    (f for t, f in nav_files if re.match(r"Appendix\b", t)), None)
+    (f for t, f in nav_files if re.match(r"Appendix\b", t, re.I)), None)
 
 
 def unit_sections_in_nav(sections):
