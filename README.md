@@ -31,7 +31,7 @@ holds only ciphertext and tiny pages:
 | File | What it is |
 |---|---|
 | `index.html` | the gate: unlocks, then opens `?view=read` or `?view=quiz` (or shows two buttons) |
-| `read.html`, `quiz.html` | tiny pages that load `reader/` or `js/boot.js` from the CDN at an exact tag |
+| `read.html`, `quiz.html` | tiny pages that load `reader/` or `js/boot.js` from the CDN at an exact tag. Both views use the quiz themes, the same bar and the same gear (reading settings) |
 | `book.json` | public `id`, `title` and `views` (which of read/quiz exist) |
 | `data/`, `media/` | the reader's encrypted chapters and pictures |
 | `quiz/questions.enc`, `quiz/media/` | the quiz's questions and pictures, same key |

@@ -674,26 +674,381 @@ def test_sanskrit_choice_syncs(browser):
     page.close()
 
 
-def test_scroll_buttons(browser):
-    """The jump buttons appear only when the book asks for them."""
-    print("Jump to top / bottom buttons")
-    page = open_page(browser)
-    check("a book that does not ask has no buttons",
-          page.locator(".scroll-jump").count() == 0)
-    page.close()
+def test_scroll_buttons_are_gone(browser):
+    """The jump buttons were replaced by the bar; a book that still asks
+    for them is not an error and gets nothing."""
+    print("No jump to top / bottom buttons")
     book = json.loads(json.dumps(BOOK))
     book["scrollButtons"] = True
     page = open_page(browser, book=book)
-    check("a book that asks gets two buttons",
-          page.locator(".scroll-jump button").count() == 2)
-    page.evaluate("document.body.style.minHeight = '5000px'")
-    page.click("button[aria-label='Go to bottom of page']")
-    page.wait_for_function("window.scrollY > 500", timeout=8000)
-    page.click("button[aria-label='Go to top of page']")
-    page.wait_for_function("window.scrollY === 0", timeout=8000)
-    check("they scroll down and back up", True)
+    check("a book that asks gets no buttons",
+          page.locator(".scroll-jump").count() == 0)
     check("no errors", not page.errors, "; ".join(page.errors))
     page.close()
+
+
+def test_title_bar_home(browser):
+    """The bar on the home screen and its two drawers."""
+    print("Title bar: home screen")
+    page = open_page(browser, view="structure")
+    check("the bar shows the book name",
+          page.inner_text(".title-bar h1") == BOOK["book"])
+    page.evaluate("document.body.style.minHeight = '6000px'")
+    page.evaluate("window.scrollTo(0, 800)")
+    top = page.eval_on_selector(
+        ".title-bar", "e => e.getBoundingClientRect().top")
+    check("the bar stays at the top while the page scrolls", top == 0,
+          str(top))
+    page.evaluate("window.scrollTo(0, 0)")
+    page.click("#contents-button")
+    rows = page.locator("#contents-drawer-list .drawer-row")
+    check("the left drawer lists chapters and topics",
+          rows.count() >= 3 and page.locator(
+              "#contents-drawer-list .is-chapter").count() ==
+          len({q["unit"] for q in BOOK["questions"]}))
+    first_topic = page.locator("#contents-drawer-list .is-topic").first
+    topic_name = first_topic.inner_text()
+    first_topic.click()
+    check("tapping a topic closes the drawer",
+          not page.is_visible("#contents-drawer"))
+    check("and opens that topic on the home screen",
+          page.eval_on_selector_all(
+              "#where-you-stand .section-row",
+              "(rows, name) => rows.some(r => r.dataset.section === name"
+              " && r.open)", topic_name))
+    page.click("#ideas-button")
+    chips = page.locator("#ideas-drawer-list .status-chip")
+    check("the right drawer lists ideas with status chips",
+          chips.count() == len(BOOK["concepts"]), str(chips.count()))
+    page.locator("#ideas-drawer-list .is-idea").nth(1).click()
+    check("tapping an idea opens it on the home screen",
+          page.locator("#where-you-stand .concept-row[open]").count() >= 1)
+    page.click("#contents-button")
+    page.keyboard.press("Escape")
+    check("Escape closes a drawer", not page.is_visible("#contents-drawer"))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_title_bar_session(browser):
+    """The bar and the session list during a session."""
+    print("Title bar: in a session")
+    page = open_page(browser)
+    start_session(page)
+    step = current_step(page)
+    check("the bar shows the topic of the question",
+          page.inner_text("#title-bar-topic") == step["section"])
+    check("and the chapter above it",
+          step["unit"] in page.text_content("#title-bar-kicker"))
+    check("the book name is hidden while a question shows",
+          not page.is_visible(".title-bar h1"))
+    bar_bottom = page.eval_on_selector(
+        ".title-bar", "e => e.getBoundingClientRect().bottom")
+    pill_top = page.eval_on_selector(
+        "#session-pill", "e => e.getBoundingClientRect().top")
+    check("the pill sits under the bar", pill_top >= bar_bottom,
+          f"{pill_top} < {bar_bottom}")
+    page.click("#ideas-button")
+    steps = page.evaluate(
+        "window.RecallQuiz.session.state.questions.length")
+    rows = page.locator("#ideas-drawer-list .is-step")
+    check("the right drawer lists every step", rows.count() == steps,
+          f"{rows.count()} != {steps}")
+    check("the step on screen is marked",
+          page.locator("#ideas-drawer-list .is-step.is-current").count() == 1)
+    last = rows.nth(steps - 1)
+    last.click()
+    index = page.evaluate("window.RecallQuiz.session.state.currentIndex")
+    check("tapping an unseen step jumps to it", index == steps - 1,
+          str(index))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_session_list_reviews_without_recording(browser):
+    """An answered question opens read-only and is not recorded twice."""
+    print("Title bar: answered questions are read-only")
+    question = next(q for q in BOOK["questions"] if q["kind"] == "tf")
+    others = [q for q in BOOK["questions"] if q["kind"] == "tf"][:3]
+    page = open_page(browser, questions=others)
+    start_session(page)
+    first = current_step(page)
+    answer_question(page, first, False)
+    page.wait_for_selector("#question-card .verdict")
+    page.keyboard.press("Enter")
+    page.wait_for_function(
+        "window.RecallQuiz.session.state.currentIndex === 1")
+    page.click("#ideas-button")
+    marks = page.locator("#ideas-drawer-list .drawer-mark").all_inner_texts()
+    check("the answered step has a tick", marks[0] == "\u2713", str(marks))
+    page.locator("#ideas-drawer-list .is-step").first.click()
+    check("it opens with a read-only banner",
+          page.is_visible("#question-card .review-banner"))
+    check("with the verdict", page.is_visible("#question-card .verdict"))
+    got = page.evaluate("window.RecallQuiz.session.state.score.got")
+    check("looking again records nothing", got == 1, str(got))
+    page.click("text=Back to the session")
+    index = page.evaluate("window.RecallQuiz.session.state.currentIndex")
+    check("Back returns to the question that was open", index == 1)
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+    del question
+
+
+def test_left_drawer_leaves_a_session(browser):
+    """The left drawer asks before it leaves a session for the home
+    screen, then scrolls there."""
+    print("Title bar: leaving a session")
+    page = open_page(browser)
+    seen = []
+    page.remove_listener("dialog", page.listeners("dialog")[0]) \
+        if hasattr(page, "listeners") else None
+    page.on("dialog", lambda dialog: seen.append(dialog.message))
+    start_session(page)
+    page.click("#contents-button")
+    page.locator("#contents-drawer-list .is-chapter").first.click()
+    check("it asks before leaving", "End this session?" in seen, str(seen))
+    check("the home screen is back",
+          page.is_visible("#where-you-stand") and
+          not page.is_visible("#question-card"))
+    page.close()
+
+
+def test_reading_panel(browser):
+    """The gear: font, spacing, colours, theme, footer buttons."""
+    print("Reading settings (gear)")
+    page = open_page(browser)
+    check("the gear is in the corner",
+          page.is_visible("#reading-gear"))
+    page.click("#reading-gear")
+    check("the panel opens", page.is_visible("#reading-panel"))
+    titles = page.locator("#reading-panel h4").all_inner_texts()
+    check("it has the reader's sections", titles == [
+        "MODE", "THEME", "FONT SIZE", "FONT", "LINE SPACING",
+        "PAGE WIDTH", "BACKGROUND", "TEXT COLOUR"] or titles == [
+        "Mode", "Theme", "Font size", "Font", "Line spacing",
+        "Page width", "Background", "Text colour"], str(titles))
+    check("white is the first background swatch and is named",
+          page.get_attribute(
+              "#reading-panel .reading-swatches >> nth=0 >> "
+              ".reading-swatch >> nth=0", "data-caption") == "White")
+    page.fill("#reading-panel input[type=range]", "22")
+    page.dispatch_event("#reading-panel input[type=range]", "input")
+    size = page.evaluate(
+        "getComputedStyle(document.documentElement).fontSize")
+    check("the font size scales the page", size == "22px", size)
+    page.click("#reading-panel .reading-choices >> nth=1 >> text=Sans")
+    check("the font is switched",
+          page.get_attribute("html", "data-reading-font") == "sans")
+    page.click("#reading-panel .reading-choices >> nth=3 >> text=Wide")
+    width = page.evaluate(
+        "getComputedStyle(document.querySelector('main')).maxWidth")
+    check("the page width changes", width == "960px", width)
+    page.click("#reading-panel .reading-swatch[aria-label='Background "
+               "#000000']")
+    page_colour = page.evaluate(
+        "getComputedStyle(document.body).backgroundColor")
+    check("a dark page colour is applied",
+          page_colour == "rgb(0, 0, 0)", page_colour)
+    text_colour = page.evaluate("getComputedStyle(document.body).color")
+    check("and the text turns light by itself",
+          text_colour == "rgb(242, 242, 242)", text_colour)
+    page.reload()
+    page.wait_for_selector("#book-title:not(:text-is('Recall Quiz'))")
+    check("the choices are kept for the book",
+          page.evaluate("getComputedStyle(document.documentElement)"
+                        ".fontSize") == "22px")
+    page.click("#reading-gear")
+    page.click("#reading-panel .reading-panel-foot .reading-reset")
+    size = page.evaluate(
+        "getComputedStyle(document.documentElement).fontSize")
+    check("Reset goes back to the quiz's own look (17px on a phone)",
+          size == "17px", size)
+    labels = page.locator(
+        "#reading-panel .reading-panel-foot button").all_inner_texts()
+    check("the footer has Reset and Quiz home (no subject page here)",
+          labels == ["Reset", "Quiz home"], str(labels))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+def test_reading_panel_theme_and_home(browser):
+    """The theme row changes the theme; Quiz home leaves a session."""
+    print("Reading settings: theme and Quiz home")
+    page = open_page(browser)
+    page.click("#reading-gear")
+    tile = page.locator("#reading-panel .reading-theme").nth(2)
+    theme_id = tile.get_attribute("data-theme-id")
+    tile.click()
+    page.wait_for_function(
+        "id => document.documentElement.dataset.theme === id", arg=theme_id)
+    check("a theme tile switches the theme", True)
+    start_session(page)
+    page.click("#reading-gear")
+    page.click("#reading-panel .reading-panel-foot button >> text=Quiz home")
+    page.wait_for_selector("#where-you-stand", state="visible")
+    check("Quiz home returns to the home screen",
+          not page.is_visible("#question-card"))
+    check("no errors", not page.errors, "; ".join(page.errors))
+    page.close()
+
+
+READER_FOLDER = Path(__file__).resolve().parent / "_reader_book"
+READER_URL = f"http://localhost:{PORT}/tests/_reader_book/read.html"
+READER_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reader test</title>
+<script src="/js/unlock.js"></script>
+<link rel="stylesheet" href="/reader/style.css"></head><body>
+<script>SubjectUnlock.ready().then(function () {
+  return SubjectUnlock.loadScript("/reader/app.js");
+});</script></body></html>
+"""
+
+
+def write_reader_book(key_bytes):
+    """A tiny encrypted book (one chapter) in tests/_reader_book/."""
+    sys.path.insert(0, str(SITE_FOLDER / "tools" / "book_build"))
+    import encfmt
+    chapter_folder = READER_FOLDER / "data" / "ch"
+    chapter_folder.mkdir(parents=True, exist_ok=True)
+    outline = [{"id": "s1", "title": "Remainders", "subs": [], "subCount": 0,
+                "ideas": 1, "questions": 2, "figures": 0, "visuals": 0}]
+    manifest = {
+        "book": {"id": "reader-test", "title": "Reader Test Book",
+                 "summary": "A tiny book.", "cover": None},
+        "chapters": [{"prefix": "c01", "title": "Wrapping around",
+                      "unit": "Lesson 1", "group": "Part 1", "sections": 1,
+                      "ideas": 1, "questions": 2, "figures": 0,
+                      "outline": outline}],
+        "notesExtra": []}
+    chapter = {
+        "summary": "", "notesIntro": "", "media": [],
+        "nodes": [{"id": "s1", "title": "Remainders", "level": 2,
+                   "html": "<p>A clock has twelve positions.</p>",
+                   "notes": "", "visuals": [], "ideas": ["i1"],
+                   "questions": ["q1", "q2"]}],
+        "ideas": {"i1": {"title": "Remainders and the clock",
+                         "question": "What does the clock show?",
+                         "card": {"blocks": [{"label": "Core",
+                                              "text": "Only the remainder "
+                                              "matters."}],
+                                  "rule": "Divide by 12.", "limits": ""}}},
+        "questions": [
+            {"id": "q1", "kind": "mcq", "q": "27 hours after 10 o'clock?",
+             "options": ["3", "13", "1", "10"], "answer": 0,
+             "explain": "37 mod 12 is 1; the clock shows 1.", "ideaId": "i1",
+             "role": "apply"},
+            {"id": "q2", "kind": "tf", "q": "15 and 3 are the same place.",
+             "answer": True, "explain": "", "ideaId": "i1",
+             "role": "apply"}]}
+    for path, data in (("data/manifest.enc", manifest),
+                       ("data/ch/c01.enc", chapter)):
+        blob = encfmt.encrypt(json.dumps(data).encode(), key_bytes)
+        (READER_FOLDER / path).write_bytes(blob)
+    (READER_FOLDER / "read.html").write_text(READER_PAGE)
+
+
+def test_reader(browser):
+    """The ereader wears the quiz themes and shares the reading settings."""
+    print("Ereader: themes, gear, questions")
+    import os
+    import shutil
+    key_bytes = os.urandom(32)
+    write_reader_book(key_bytes)
+    try:
+        page = browser.new_page(viewport={"width": 430, "height": 900})
+        page.errors = []
+        page.on("pageerror", lambda error: page.errors.append(str(error)))
+        page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+        page.goto(READER_URL + "#key=" + key_bytes.hex())
+        page.wait_for_selector("body[data-ready='1']", timeout=20000)
+        check("the book home shows the chapter card",
+              page.is_visible(".chcard"))
+        check("the reader starts in the quiz's default theme",
+              page.evaluate("document.documentElement.dataset.theme")
+              == page.evaluate("RecallQuizDefaults.theme.id"))
+        same_colour = page.evaluate("""() => {
+          const probe = document.createElement('div');
+          probe.style.background = 'var(--color-page)';
+          document.body.appendChild(probe);
+          const themed = getComputedStyle(probe).backgroundColor;
+          probe.remove();
+          return themed === getComputedStyle(document.body)
+            .backgroundColor && themed !== 'rgba(0, 0, 0, 0)';
+        }""")
+        check("the page colour is the theme's page colour", same_colour)
+        page.click("#reading-gear")
+        check("the gear opens the shared panel",
+              page.is_visible("#reading-panel"))
+        titles = page.locator("#reading-panel h4").all_inner_texts()
+        check("it has the shared sections and the ereader's Show",
+              [t.lower() for t in titles] == [
+                  "mode", "theme", "font size", "font", "line spacing",
+                  "page width", "background", "text colour", "show"],
+              str(titles))
+        check("the Show section has four toggles",
+              page.locator("#reading-panel .reading-toggle").count() == 4)
+        labels = page.locator(
+            "#reading-panel .reading-panel-foot button").all_inner_texts()
+        check("the footer: Reset, Subject page, Book home",
+              labels == ["Reset", "Subject page", "Book home"], str(labels))
+        tile = page.locator("#reading-panel .reading-theme").nth(3)
+        theme_id = tile.get_attribute("data-theme-id")
+        tile.click()
+        page.wait_for_function(
+            "id => document.documentElement.dataset.theme === id",
+            arg=theme_id)
+        check("a theme tile re-colours the reader", True)
+        page.fill("#reading-panel input[type=range]", "24")
+        page.dispatch_event("#reading-panel input[type=range]", "input")
+        check("font size is shared and applied",
+              page.evaluate("getComputedStyle(document.documentElement)"
+                            ".fontSize") == "24px")
+        saved = page.evaluate(
+            "localStorage.getItem('recall-quiz:reading:reader-test')")
+        check("it is saved under the book's reading key",
+              saved is not None and '"fontSize":24' in saved, str(saved))
+        page.click("#reading-panel input[data-setting='ideas']")
+        check("the Show toggles hide parts",
+              page.evaluate("document.body.classList.contains('hide-ideas')"))
+        page.click("#reading-panel .reading-panel-foot .reading-reset")
+        check("Reset brings back the ereader's own look",
+              page.evaluate("getComputedStyle(document.documentElement)"
+                            ".fontSize") == "18px"
+              and not page.evaluate(
+                  "document.body.classList.contains('hide-ideas')"))
+        page.click("#reading-gear")
+        page.click(".chhead")
+        page.click(".opench")
+        page.wait_for_selector("section#s1 .slot.qs", timeout=10000)
+        page.locator("section#s1 .slot.qs").scroll_into_view_if_needed()
+        page.wait_for_selector(".qs-wrap", timeout=10000)
+        order = page.evaluate(
+            "(() => { const w = document.querySelector('.qs-wrap');"
+            " return Array.from(w.children).map(c => c.className); })()")
+        check("question navigation sits between progress and cards",
+              order.index("q-progress") < order.index("q-nav")
+              < order.index("q-track"), str(order))
+        check("it says which question and how to move",
+              "of" in page.inner_text(".q-nav") and
+              "Swipe" in page.inner_text(".q-nav"))
+        has_check = page.locator(".q-slide >> nth=0 >> text=Check answer")
+        check("a multiple-choice question has a Check answer button",
+              has_check.count() >= 1)
+        first = page.locator(".q-slide").first
+        first_text = first.inner_text()
+        pick = "3" if "27 hours" in first_text else "True"
+        first.locator(".opt", has_text=pick).first.click()
+        check("choosing an option does not answer yet",
+              first.locator(".fb").count() == 0)
+        first.locator("button.btn", has_text="Check answer").click()
+        check("Check answer shows the feedback",
+              first.locator(".fb").count() == 1)
+        check("no errors", not page.errors, "; ".join(page.errors))
+        page.close()
+    finally:
+        shutil.rmtree(READER_FOLDER, ignore_errors=True)
 
 
 def test_book_defaults(browser):
@@ -2677,7 +3032,14 @@ def main():
             test_sanskrit_parts_and_font(browser)
             test_sanskrit_section_hidden_without_cards(browser)
             test_sanskrit_choice_syncs(browser)
-            test_scroll_buttons(browser)
+            test_scroll_buttons_are_gone(browser)
+            test_title_bar_home(browser)
+            test_title_bar_session(browser)
+            test_session_list_reviews_without_recording(browser)
+            test_left_drawer_leaves_a_session(browser)
+            test_reading_panel(browser)
+            test_reading_panel_theme_and_home(browser)
+            test_reader(browser)
             test_book_defaults(browser)
             test_formulas(browser)
             test_themes(browser)

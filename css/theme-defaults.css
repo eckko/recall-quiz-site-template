@@ -1,0 +1,84 @@
+/*
+ * theme-defaults.css
+ * The default value of every theme variable (the Classic light theme).
+ * A theme's own CSS (css/themes/<id>.css, generated) replaces them for
+ * the theme the reader picks. The quiz and the ereader both load this
+ * first, so a variable is never missing.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Default values for the theme variables                              */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Colours */
+  --color-page: #fbf8f1;
+  --color-card: #fbfcfd;
+  --color-text: #121826;
+  --color-text-muted: #5b6578;
+  --color-border: #d5dbe5;
+  --color-accent: #2743d6;
+  --color-accent-2: #7c5cff;
+  --color-highlight: #ffe14d;
+  --color-correct: #1e8a63;
+  --color-wrong: #d4452f;
+  --color-partly: #b07a00;
+  --color-pop-1: #ff5d73;
+  --color-pop-2: #12b5a6;
+  --color-pop-3: #7c5cff;
+  --color-pop-4: #ff9f1c;
+  --color-on-accent: #ffffff;
+  --color-on-hero: #ffffff;
+  --color-study: #2f6f6a;
+  --color-study-bg: #e3f0ee;
+
+  /* Fonts */
+  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* Shape */
+  --radius: 16px;
+  --radius-small: 12px;
+  --border-width: 1px;
+  --border-width-strong: 2px;
+
+  /* Buttons press down by this much and swap to the pressed shadow */
+  --press-depth: 4px;
+  --button-shadow: 0 5px 0
+    color-mix(in srgb, var(--color-accent) 60%, #000);
+  --button-shadow-pressed: 0 1px 0
+    color-mix(in srgb, var(--color-accent) 60%, #000);
+  --panel-shadow:
+    0 6px 0 -2px color-mix(in srgb, var(--color-accent) 10%, transparent),
+    0 14px 30px -18px color-mix(in srgb, var(--color-accent) 40%, transparent);
+
+  --accent-gradient: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-accent-2)
+  );
+
+  /* Soft tints, mixed from the main colours so every theme gets them */
+  --color-accent-soft: color-mix(
+    in srgb, var(--color-accent) 14%, var(--color-card));
+  --color-highlight-soft: color-mix(
+    in srgb, var(--color-highlight) 30%, var(--color-card));
+  --color-correct-soft: color-mix(
+    in srgb, var(--color-correct) 16%, var(--color-card));
+  --color-wrong-soft: color-mix(
+    in srgb, var(--color-wrong) 16%, var(--color-card));
+  --color-partly-soft: color-mix(
+    in srgb, var(--color-partly) 18%, var(--color-card));
+  --color-pop-1-soft: color-mix(
+    in srgb, var(--color-pop-1) 18%, var(--color-card));
+  --color-pop-2-soft: color-mix(
+    in srgb, var(--color-pop-2) 18%, var(--color-card));
+  --color-pop-3-soft: color-mix(
+    in srgb, var(--color-pop-3) 18%, var(--color-card));
+  --color-pop-4-soft: color-mix(
+    in srgb, var(--color-pop-4) 20%, var(--color-card));
+
+  /* The page background; themes add patterns and pictures here */
+  --page-background: var(--color-page);
+}

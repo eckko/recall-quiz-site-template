@@ -5,11 +5,6 @@
  */
 
 @media (max-width: 560px) {
-  /* Every size set in rem grows a little, for easier reading */
-  html {
-    font-size: 17px;
-  }
-
   main {
     padding-right: 14px;
     padding-left: 14px;
@@ -61,13 +56,7 @@
     display: none;
   }
 
-  .in-session main {
-    padding-top: 58px;
-  }
-
   .session-pill {
-    top: 8px;
-    right: 8px;
     font-size: 0.85rem;
   }
 

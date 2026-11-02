@@ -92,6 +92,7 @@
     const session = quiz.session.state;
     session.keyHandler = null;
     const cardElement = openCardForResults();
+    document.dispatchEvent(new CustomEvent("recallquiz:results-shown"));
     const score = session.score;
     const questionCount = score.got + score.part + score.miss;
 

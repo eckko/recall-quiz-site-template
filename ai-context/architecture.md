@@ -53,6 +53,9 @@ adds one namespace to it (`js/theme-picker.js` is separate: it runs in
 | `quiz.session` | session.js | `state` (the running session), `startSession`, `goToNextQuestion`, `returnHome`; global keydown routing |
 | `quiz.resultsScreen` | results-screen.js | `showResults` |
 | `quiz.homeScreen` | home-screen.js | `showBookDetails`, `refresh` |
+| `quiz.reading` | reading-settings.js | per-book font size, font, line spacing, width, page and text colour; `configure`, `useBook`, `current`, `change`, `reset`; writes `--reading-*` and the colour variables on `<html>` |
+| `quiz.readingPanel` | reading-panel.js | `create(options)`: the gear button and the Reading settings panel (shared with the ereader) |
+| `quiz.titleBar` | title-bar.js | the sticky bar and its two drawers: `showHome`, `showQuestion`, `showResults`, `closeDrawers` |
 | `quiz.settings` | session-settings.js | `current` (the panel's choices), `chooseQuestionsForSession`, `sessionMinutes`, `scopeName`, `updateReadySummary` |
 
 Load order matters in four ways, so keep the order in `index.html`:
@@ -238,7 +241,28 @@ and publishes `window.RecallQuizSubjectKey` (CryptoKey, AES-GCM) and
 (RQE1 format, see `tools/book_build/encfmt.py`). `js/encrypted-book.js`
 hands the base64 key to `media-store.js`, and `cloud-sync.js` then leaves
 the picture key alone. `reader/app.js` is the reader; it also calls
-`SubjectUnlock.ready()`. Pages are written by `tools/make_subject_pages.py`.
+`SubjectUnlock.ready()`.
+
+The reader wears the quiz themes: `reader/style.css` imports
+`css/theme-defaults.css` and `css/reading-panel.css`, maps its old colour
+names to the `--color-*` variables, and `reader/app.js` loads
+`js/default-settings.js`, `themes-list.js`, `theme-picker.js`, `helpers.js`,
+`reading-settings.js` and `reading-panel.js` from the same tagged folder as
+itself (the folder is the script's own address). The theme and the reading
+settings are saved per book and shared with the quiz (see data-formats.md).
+Both views use the same gear panel: Mode, Theme, Font size, Font, Line
+spacing, Page width, Background, Text colour, then a footer of Reset, Subject
+page (the folder above the book) and Book home or Quiz home. The ereader adds
+a "Show" section. `data-theme` on `<html>` is the quiz theme id only; the old
+reader values (white, sepia, dark, black) are gone.
+
+The quiz page has a sticky bar (`js/title-bar.js`, markup in `index.html`):
+left drawer = chapters and topics; right drawer = ideas with status chips on
+the home screen, and the steps of the session in a session (`session.state
+.results[i]` holds "got", "part", "miss" or "seen" for a card; `session
+.jumpTo(i)` opens an answered step read-only, or jumps to an unseen one).
+The bar changes through the events `recallquiz:question-shown`,
+`recallquiz:home-shown` and `recallquiz:results-shown`. Pages are written by `tools/make_subject_pages.py`.
 
 `tools/site/` (`build_hub.py`, `add_book.py`, `set_template_tag.py`,
 `publish_book.sh`) works on a subject site checkout (`--subject-root`, default

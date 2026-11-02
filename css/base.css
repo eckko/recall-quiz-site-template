@@ -3,87 +3,10 @@
  * Page-wide basics: default colours, fonts, panels, buttons and small
  * helpers that every screen uses.
  *
- * Colours and fonts are CSS variables. The values below are the Classic
- * light theme and act as a fallback; css/themes.css (generated from the
- * themes/ folder) replaces them for the theme the reader picks.
+ * Colours and fonts are CSS variables. Their defaults (the Classic light
+ * theme) are in css/theme-defaults.css; css/themes/<id>.css (generated
+ * from the themes/ folder) replaces them for the theme the reader picks.
  */
-
-/* ------------------------------------------------------------------ */
-/* Default values for the theme variables                              */
-/* ------------------------------------------------------------------ */
-
-:root {
-  /* Colours */
-  --color-page: #fbf8f1;
-  --color-card: #fbfcfd;
-  --color-text: #121826;
-  --color-text-muted: #5b6578;
-  --color-border: #d5dbe5;
-  --color-accent: #2743d6;
-  --color-accent-2: #7c5cff;
-  --color-highlight: #ffe14d;
-  --color-correct: #1e8a63;
-  --color-wrong: #d4452f;
-  --color-partly: #b07a00;
-  --color-pop-1: #ff5d73;
-  --color-pop-2: #12b5a6;
-  --color-pop-3: #7c5cff;
-  --color-pop-4: #ff9f1c;
-  --color-on-accent: #ffffff;
-  --color-on-hero: #ffffff;
-  --color-study: #2f6f6a;
-  --color-study-bg: #e3f0ee;
-
-  /* Fonts */
-  --font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI",
-    sans-serif;
-
-  /* Shape */
-  --radius: 16px;
-  --radius-small: 12px;
-  --border-width: 1px;
-  --border-width-strong: 2px;
-
-  /* Buttons press down by this much and swap to the pressed shadow */
-  --press-depth: 4px;
-  --button-shadow: 0 5px 0
-    color-mix(in srgb, var(--color-accent) 60%, #000);
-  --button-shadow-pressed: 0 1px 0
-    color-mix(in srgb, var(--color-accent) 60%, #000);
-  --panel-shadow:
-    0 6px 0 -2px color-mix(in srgb, var(--color-accent) 10%, transparent),
-    0 14px 30px -18px color-mix(in srgb, var(--color-accent) 40%, transparent);
-
-  --accent-gradient: linear-gradient(
-    90deg,
-    var(--color-accent),
-    var(--color-accent-2)
-  );
-
-  /* Soft tints, mixed from the main colours so every theme gets them */
-  --color-accent-soft: color-mix(
-    in srgb, var(--color-accent) 14%, var(--color-card));
-  --color-highlight-soft: color-mix(
-    in srgb, var(--color-highlight) 30%, var(--color-card));
-  --color-correct-soft: color-mix(
-    in srgb, var(--color-correct) 16%, var(--color-card));
-  --color-wrong-soft: color-mix(
-    in srgb, var(--color-wrong) 16%, var(--color-card));
-  --color-partly-soft: color-mix(
-    in srgb, var(--color-partly) 18%, var(--color-card));
-  --color-pop-1-soft: color-mix(
-    in srgb, var(--color-pop-1) 18%, var(--color-card));
-  --color-pop-2-soft: color-mix(
-    in srgb, var(--color-pop-2) 18%, var(--color-card));
-  --color-pop-3-soft: color-mix(
-    in srgb, var(--color-pop-3) 18%, var(--color-card));
-  --color-pop-4-soft: color-mix(
-    in srgb, var(--color-pop-4) 20%, var(--color-card));
-
-  /* The page background; themes add patterns and pictures here */
-  --page-background: var(--color-page);
-}
 
 /* ------------------------------------------------------------------ */
 /* Page                                                                */
@@ -93,7 +16,9 @@
   box-sizing: border-box;
 }
 
+/* The reader's font size (js/reading-settings.js) scales every rem. */
 html {
+  font-size: var(--reading-font-size, 16px);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -105,7 +30,8 @@ html.theme-loading body {
 
 body {
   margin: 0;
-  font: 16px/1.55 var(--font-body);
+  font: 1rem/var(--reading-line-height, 1.55)
+    var(--reading-font, var(--font-body));
   color: var(--color-text);
   background-color: var(--color-page);
 }
@@ -127,7 +53,7 @@ body::before {
 }
 
 main {
-  max-width: 720px;
+  max-width: var(--reading-width, 720px);
   margin: 0 auto;
   padding: 22px 16px 72px;
 }

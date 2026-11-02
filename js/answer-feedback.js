@@ -71,6 +71,7 @@
   function recordResult(question, result) {
     const current = session();
     current.currentQuestionAnswered = true;
+    current.results[current.currentIndex] = result;
     if (question.isPretestRun) {
       current.pretestCount += 1;
       quiz.memory.recordPretest(question.id, result);
@@ -365,8 +366,23 @@
     answerArea.classList.remove("is-locked");
   }
 
+  /**
+   * The feedback of an answered question, for looking at again: the
+   * verdict and the teaching parts, nothing recorded and no Next button.
+   * @param {object} question
+   * @param {"got"|"part"|"miss"} result
+   * @returns {HTMLElement}
+   */
+  function createReview(question, result) {
+    const feedback = createElement("div", "review-feedback");
+    feedback.appendChild(createVerdict(question, result, false));
+    appendTeachingFeedback(feedback, question, result, {});
+    return feedback;
+  }
+
   quiz.answerFeedback = {
     showAnswerFeedback,
+    createReview,
     recordResult,
     createRereadHint,
     createConfidenceRow,
