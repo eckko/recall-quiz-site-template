@@ -150,12 +150,14 @@ for c in man["chapters"]:
     num = chapter.group(1) if chapter else (
         pre[1:] if re.fullmatch(r"c\d+", pre) else None)
     if pre == "app" or unit == "Appendix":
-        names = ["u_appendix"]
+        names = ["u_appendix", "unit_appendix"]
     elif unit == "Prologue":
         names = ["u_prologue"]
+    elif unit == "Introduction":
+        names = ["u_intro", "unit0"]
     else:
         names = [f"u_ch{num}", f"u_c{int(num):02d}", f"u_c{num}",
-                 f"chapter_{num}"] if num else []
+                 f"chapter_{num}", f"unit{num}"] if num else []
     name = next((n for n in names if f"OEBPS/{n}.xhtml" in z.namelist()), None)
     if not name and not num and notes_by_section_files(c, pre):
         continue

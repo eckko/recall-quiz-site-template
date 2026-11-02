@@ -138,7 +138,7 @@ for c in chapters:
         # a unit without text keeps every idea on its single node
         node = bundle["nodes"][0] if whole else by_title.get(sec)
         for idea in ideas_by.get((u, sec), []):
-            if node is None:
+            if node is None and not bundle["nodes"]:
                 unmatched += 1
                 continue
             card = idea["card"]
@@ -146,17 +146,28 @@ for c in chapters:
             slim["card"] = {"blocks": card.get("blocks", []),
                             "rule": card.get("rule"),
                             "limits": card.get("limits")}
-            target, level = node, "section"
-            cands = kids.get(node["id"], [])
-            if cands:
-                itext = " ".join([idea["title"], idea.get("question", "")] +
-                                 [b.get("text", "") for b in card.get("blocks", [])])
-                iv = vec(txt(itext))
+            itext = " ".join([idea["title"], idea.get("question", "")] +
+                             [b.get("text", "") for b in card.get("blocks", [])])
+            iv = vec(txt(itext))
+            if node is None:
+                # The bank's section name is not a printed heading (some
+                # books print none). Keep the idea: put it on the block of
+                # this chapter that its text is closest to, else the first.
                 scored = sorted(((sim(iv, vec(txt(c["title"] + " " + c["html"]))), c)
-                                 for c in cands), key=lambda x: -x[0])
-                own = sim(iv, vec(txt(node["title"] + " " + node["html"])))
-                if scored[0][0] >= 0.06 and scored[0][0] > own:
-                    target, level = scored[0][1], "subtopic"
+                                 for c in bundle["nodes"]), key=lambda x: -x[0])
+                first = next((c for c in bundle["nodes"] if c["level"] == 2),
+                             bundle["nodes"][0])
+                target = scored[0][1] if scored[0][0] >= 0.06 else first
+                level = "subtopic" if target["level"] == 3 else "fallback"
+            else:
+                target, level = node, "section"
+                cands = kids.get(node["id"], [])
+                if cands:
+                    scored = sorted(((sim(iv, vec(txt(c["title"] + " " + c["html"]))), c)
+                                     for c in cands), key=lambda x: -x[0])
+                    own = sim(iv, vec(txt(node["title"] + " " + node["html"])))
+                    if scored[0][0] >= 0.06 and scored[0][0] > own:
+                        target, level = scored[0][1], "subtopic"
             ideas[idea["id"]] = slim
             target["ideas"].append(idea["id"])
             placed[level] = placed.get(level, 0) + 1
@@ -224,7 +235,7 @@ print("chapters", len(manifest_chapters), "ideas", tot("ideas"), "of",
       len(bank["concepts"]), "| questions", tot("questions"), "of",
       len(bank["questions"]), "| figures", tot("figures"))
 print("groups:", group_order)
-print("placement", {k: sum(u["placed"].get(k,0) for u in report["units"].values()) for k in ("subtopic","section")})
+print("placement", {k: sum(u["placed"].get(k,0) for u in report["units"].values()) for k in ("subtopic","section","fallback")})
 print("unmatched items:", sum(u["unmatched_items"]
                               for u in report["units"].values()))
 
