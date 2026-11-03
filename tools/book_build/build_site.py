@@ -50,12 +50,15 @@ chapter_start = {int(m.group(1)): pos[f] for t, f in nav
 def group_of(unit, start_file=None):
     """The part a unit belongs to. A unit with text is placed by where its
     first file sits in the book (so a Foreword comes before Part I and a
-    Conclusion falls under the last part); a unit without text (the
+    Conclusion falls under the last part); a numbered chapter is placed by its
+    navigation entry, or by its first file when titles carry no numbers; a
+    unit without text (the
     whole-book unit) is "The whole book"."""
     if unit == "Appendix":
         return "Appendix"
-    if re.match(r"Chapter \d+$", unit):
-        here = chapter_start[int(unit.split()[1])]
+    number = int(unit.split()[1]) if re.match(r"Chapter \d+$", unit) else 0
+    if number in chapter_start:
+        here = chapter_start[number]
     elif start_file in pos:
         here = pos[start_file]
     else:

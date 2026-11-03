@@ -664,7 +664,7 @@ def test_add_notes_by_unit():
         shutil.rmtree(folder, ignore_errors=True)
 
 
-def test_book_build_front_back_units():
+def test_book_build_front_back_units(chapter_label="1. First"):
     """A Foreword and a Conclusion (units with no number) are cut from the
     EPUB, get their ideas, questions and notes, and a unit with no text keeps
     its ideas on one node. The EPUB declares its NCX under another name and
@@ -700,8 +700,9 @@ def test_book_build_front_back_units():
                 '<ncx><navMap>'
                 '<navPoint><navLabel><text>Foreword: to the Edition'
                 '</text></navLabel><content src="text/fw.xhtml#a"/>'
-                '</navPoint><navPoint><navLabel><text>1. First</text>'
-                '</navLabel><content src="text/ch1.xhtml#b"/></navPoint>'
+                '</navPoint><navPoint><navLabel><text>' + chapter_label +
+                '</text></navLabel><content src="text/ch1.xhtml#b"/>'
+                '</navPoint>'
                 '<navPoint><navLabel><text>Conclusion:</text></navLabel>'
                 '<content src="text/end.xhtml#c"/></navPoint></navMap>'
                 '</ncx>'),
@@ -833,6 +834,7 @@ if __name__ == "__main__":
     test_extract_epub_split_chapter()
     test_extract_epub_rule_units()
     test_book_build_front_back_units()
+    test_book_build_front_back_units("First")  # unnumbered title
     test_study_blocks()
     test_aids()
     test_study_colours()
