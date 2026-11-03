@@ -118,11 +118,13 @@
    * left here is what only the ereader has: which parts of a section to show. */
   const SHOW_PARTS = [["notes", "Your notes"], ["visuals", "Visual summaries"], ["ideas", "Ideas"], ["questions", "Questions"]];
   const SHOW_KEY = "recall-quiz:reader-show:";
-  let SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+  // "Your notes" start hidden; the reader turns them on in the gear panel.
+  const defaultShow = () => ({ notes: false, ideas: true, questions: true, visuals: true });
+  let SHOW = defaultShow();
   let panel = null;
 
   function loadShow() {
-    SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+    SHOW = defaultShow();
     try { Object.assign(SHOW, JSON.parse(lsGet(SHOW_KEY + bookId()) || "{}")); } catch (e) { /* defaults */ }
     applyShow();
   }
@@ -144,7 +146,7 @@
   }
 
   function resetShow() {
-    SHOW = { notes: true, ideas: true, questions: true, visuals: true };
+    SHOW = defaultShow();
     applyShow();
   }
 
