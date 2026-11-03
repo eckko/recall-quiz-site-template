@@ -17,7 +17,7 @@ only, never committed) and OUT_DIR/extract-report.json.
 import colorsys, json, os, re, shutil, sys, warnings
 from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
-from html import escape
+from html import escape, unescape
 sys.path.insert(0, str(Path(__file__).parent))
 from epubnav import read_ncx, first_word_key
 from bs4 import XMLParsedAsHTMLWarning
@@ -56,7 +56,8 @@ spine = [manifest[r["idref"]] for r in opf.find_all("itemref")]
 ncx = read_ncx(epub, opf_path.read_text(encoding="utf8"))
 nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
                  r'<content src="([^"#]+)', ncx, re.S)
-nav_files = [(t, f) for t, f in nav]
+# the navigation file writes an apostrophe as &#39; and & as &amp;
+nav_files = [(unescape(t), f) for t, f in nav]
 file_index = {f: i for i, f in enumerate(spine)}
 
 
