@@ -575,6 +575,110 @@ def test_extract_epub_split_chapter():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_keeps_text_colours():
+    """A word the book colours (by a stylesheet class, a class like
+    fg-D50000 or an inline style) is kept as <span class="c-red"> etc.;
+    black and grey text is not, and em and strong are still kept."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        (epub / "text").mkdir(parents=True)
+        (epub / "styles").mkdir()
+        (epub / "content.opf").write_text(
+            '<package><manifest><item id="a" href="text/a.html"/>'
+            '<item id="s" href="styles/s.css" media-type="text/css"/>'
+            '</manifest><spine><itemref idref="a"/></spine></package>')
+        (epub / "styles" / "s.css").write_text(
+            ".hot { color:#D50000; }\n.cool { color:#002BE1; }\n"
+            ".dull { color:#333333; }\n.bg { background-color:#D50000; }\n")
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap><navPoint><navLabel><text>1. First</text>"
+            '</navLabel><content src="text/a.html"/></navPoint>'
+            "</navMap></ncx>")
+        (epub / "text" / "a.html").write_text(
+            "<html><body><h2>Alpha</h2><p>"
+            '<span class="hot">red one</span> '
+            '<strong><span class="cool">blue one</span></strong> '
+            '<span class="fg-00B050">green one</span> '
+            '<span style="color: rgb(123, 47, 191)">purple one</span> '
+            '<span class="dull">grey one</span> '
+            '<span class="bg">no colour</span> <em>slanted</em>'
+            "</p></body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t3", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "First", "idPrefix": "u1",
+             "sections": ["Alpha"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on a book with coloured text",
+              result.returncode == 0)
+        html = json.loads((out / "chapters" / "u1.json").read_text()
+                          )["nodes"][0]["html"]
+        check("a stylesheet class colour is kept",
+              '<span class="c-red">red one</span>' in html)
+        check("a coloured word inside strong is kept",
+              '<strong><span class="c-blue">blue one</span></strong>'
+              in html)
+        check("an fg-RRGGBB class is kept",
+              '<span class="c-green">green one</span>' in html)
+        check("an inline style colour is kept",
+              '<span class="c-purple">purple one</span>' in html)
+        check("grey text and background colours are not kept",
+              "grey one" in html and "no colour" in html
+              and html.count('class="c-') == 4)
+        check("em is still kept", "<em>slanted</em>" in html)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
+def test_extract_epub_navigation_entities():
+    """A navigation title written with &#39; or &amp; matches the section
+    title the chapter map spells with ' or &: the file of that section is
+    part of the chapter, not taken for the start of the next one."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        epub.mkdir()
+        (epub / "content.opf").write_text(
+            '<package><manifest><item id="a" href="a.html"/>'
+            '<item id="b" href="b.html"/></manifest><spine>'
+            '<itemref idref="a"/><itemref idref="b"/></spine></package>')
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap><navPoint><navLabel><text>1. Tom &amp; Jerry"
+            "</text></navLabel>"
+            '<content src="a.html"/></navPoint>'
+            "<navPoint><navLabel><text>Alpha</text></navLabel>"
+            '<content src="a.html#a"/></navPoint>'
+            "<navPoint><navLabel><text>Dijkstra&#39;s</text></navLabel>"
+            '<content src="b.html"/></navPoint></navMap></ncx>')
+        (epub / "a.html").write_text(
+            "<html><body><h1>1. Tom &amp; Jerry</h1><h2>Alpha</h2>"
+            "<p>Intro.</p></body></html>")
+        (epub / "b.html").write_text(
+            "<html><body><h2>Dijkstra&#39;s</h2><p>Shortest paths.</p>"
+            "</body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t4", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "Tom & Jerry",
+             "idPrefix": "u1", "sections": ["Alpha", "Dijkstra's"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on titles written with entities",
+              result.returncode == 0)
+        report = json.loads((out / "extract-report.json").read_text())
+        check("the chapter with & in its title is found",
+              "Chapter 1" in report["chapters"])
+        chapter = report["chapters"].get("Chapter 1", {})
+        check("both sections are found, the one with an apostrophe too",
+              chapter.get("sections_missing") == [])
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_extract_epub_rule_units():
     """A unit like "Rule #1" has one navigation entry ("Rule #1: Name")
     and its sections are headings inside the file; it is still cut."""
@@ -832,6 +936,8 @@ if __name__ == "__main__":
     test_extract_epub_uppercase_appendix()
     test_extract_epub_unnumbered_titles_figures_appendices()
     test_extract_epub_split_chapter()
+    test_extract_epub_keeps_text_colours()
+    test_extract_epub_navigation_entities()
     test_extract_epub_rule_units()
     test_book_build_front_back_units()
     test_book_build_front_back_units("First")  # unnumbered title

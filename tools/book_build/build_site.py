@@ -39,6 +39,9 @@ opf = BeautifulSoup(opf_path.read_text(encoding="utf8"), "xml")
 ncx = read_ncx(opf_dir, opf_path.read_text(encoding="utf8"))
 nav = re.findall(r"<navPoint[^>]*>.*?<text>(.*?)</text>.*?"
                  r'<content src="([^"#]+)', ncx, re.S)
+# the navigation file writes an apostrophe as &#39; and & as &amp;
+from html import unescape as _unescape
+nav = [(_unescape(t), f) for t, f in nav]
 manifest_items = {i["id"]: i["href"] for i in opf.find_all("item")}
 spine = [manifest_items[r["idref"]] for r in opf.find_all("itemref")]
 pos = {f: i for i, f in enumerate(spine)}
