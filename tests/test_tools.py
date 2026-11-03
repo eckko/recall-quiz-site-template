@@ -679,6 +679,60 @@ def test_extract_epub_navigation_entities():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_topics_and_subtopics():
+    """A section the chapter map lists that is printed one heading level
+    below the topic above it (h3 inside h2) is a subtopic of that topic,
+    also when its title repeats under another topic; each node has its
+    own id and the questions of a subtopic are placed on it."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        epub.mkdir()
+        (epub / "content.opf").write_text(
+            '<package><manifest><item id="a" href="a.html"/></manifest>'
+            '<spine><itemref idref="a"/></spine></package>')
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap><navPoint><navLabel><text>1. First</text>"
+            '</navLabel><content src="a.html"/></navPoint></navMap></ncx>')
+        (epub / "a.html").write_text(
+            "<html><body><h1>1. First</h1>"
+            "<h2>1.1 Alpha</h2><p>Alpha words.</p>"
+            "<h3>Sub one</h3><p>Sub one words.</p>"
+            "<h3>Closing notes</h3><p>Alpha closing.</p>"
+            "<h2>1.2 Beta</h2><p>Beta words.</p>"
+            "<h3>Closing notes</h3><p>Beta closing.</p></body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t5", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "First", "idPrefix": "u1",
+             "sections": ["1.1 Alpha", "Sub one", "Closing notes",
+                          "1.2 Beta"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on a chapter with topics and subtopics",
+              result.returncode == 0)
+        nodes = json.loads((out / "chapters" / "u1.json").read_text()
+                           )["nodes"]
+        shape = [(n["title"], n["level"]) for n in nodes
+                 if n["title"] != "Opening"]
+        check("topics are level 2 and their h3 sections level 3",
+              shape == [("1.1 Alpha", 2), ("Sub one", 3),
+                        ("Closing notes", 3), ("1.2 Beta", 2),
+                        ("Closing notes", 3)])
+        by_id = {n["id"]: n for n in nodes}
+        check("every node has its own id", len(by_id) == len(nodes))
+        parents = [by_id[n["parent"]]["title"] for n in nodes
+                   if n["level"] == 3]
+        check("each subtopic sits under the topic printed above it",
+              parents == ["1.1 Alpha", "1.1 Alpha", "1.2 Beta"])
+        check("the text of each stays with its own node",
+              "Beta closing." in nodes[-1]["html"]
+              and "Alpha closing." in nodes[-3]["html"])
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_extract_epub_rule_units():
     """A unit like "Rule #1" has one navigation entry ("Rule #1: Name")
     and its sections are headings inside the file; it is still cut."""
@@ -938,6 +992,7 @@ if __name__ == "__main__":
     test_extract_epub_split_chapter()
     test_extract_epub_keeps_text_colours()
     test_extract_epub_navigation_entities()
+    test_extract_epub_topics_and_subtopics()
     test_extract_epub_rule_units()
     test_book_build_front_back_units()
     test_book_build_front_back_units("First")  # unnumbered title
