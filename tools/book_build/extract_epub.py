@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Cut a Calibre-style EPUB into chapters, sections and subtopics (trial).
 
+Chapters are found by number ("Chapter 3: ...", "3. ...") or, when the
+navigation titles carry no numbers, by the chapter title of chapters.json.
+An appendix unit ("Appendix", "Appendices A and D") reads every file from
+the first appendix entry to the next other entry. A picture placed straight
+in a wrapper div beside its caption is kept.
+
+
 usage: extract_epub.py EPUB_DIR CHAPTERS_JSON OUT_DIR
 EPUB_DIR is the unzipped EPUB. Section titles come from chapters.json (the
 existing chapter map); the EPUB is searched for them. Writes one JSON per
@@ -76,8 +83,27 @@ for title, f in nav_files:
     m = re.match(r"(?:Chapter\s+|#\s*)?(\d+)\s*[-.:]\s", title, re.I)
     if m:
         nav_by_number[int(m.group(1))] = f
-appendix_file = next(
-    (f for t, f in nav_files if re.match(r"Appendix\b", t, re.I)), None)
+APPENDIX_TITLE = r"Appendi(?:x|ces)\b"
+appendix_nav = [(t, f) for t, f in nav_files
+                if re.match(APPENDIX_TITLE, t, re.I)]
+appendix_titles = [t for t, f in appendix_nav]
+appendix_file = appendix_nav[0][1] if appendix_nav else None
+
+
+def chapter_nav_file(number, unit_title):
+    """The navigation file of chapter `number`: the entry numbered
+    "Chapter 3: ..." or "3. ...", else (titles without numbers) the entry
+    whose title is the chapter's title in chapters.json."""
+    if number in nav_by_number:
+        return nav_by_number[number]
+    key = norm(unit_title)
+    for title, f in nav_files:
+        if f in file_index and key and norm(title) == key:
+            return f
+    for title, f in nav_files:
+        if f in file_index and key and norm(title).startswith(key):
+            return f
+    return None
 
 
 def unit_sections_in_nav(sections):
@@ -152,11 +178,17 @@ report = {"chapters": {}, "excluded": [], "images": {"found": 0, "placed": 0,
 for c in chapters:
     unit = c["unit"]
     section_starts = {}   # file -> section title it opens (unnumbered units)
-    if unit == "Appendix":
-        files = [appendix_file]
+    if re.match(APPENDIX_TITLE, unit, re.I):
+        if not appendix_file:
+            continue      # the EPUB has no appendix entry to cut
+        files = file_range(appendix_file, appendix_titles + c["sections"])
     elif re.match(r"Chapter \d+$", unit):
-        files = file_range(nav_by_number[int(unit.split()[1])],
-                           c["sections"])
+        start = chapter_nav_file(int(unit.split()[1]), c["unitTitle"])
+        if not start:
+            print(f"{unit}: no navigation entry numbered {unit.split()[1]} "
+                  f"or titled {c['unitTitle']!r}; skipped")
+            continue
+        files = file_range(start, c["sections"])
     else:
         section_starts = unit_sections_in_nav(c["sections"])
         own_file = unit_nav_file(unit) if not section_starts else None
@@ -215,7 +247,12 @@ for c in chapters:
         for block in body.find_all(["p", "div", "li", "blockquote", "h1", "h2", "h3", "h4"],
                                    recursive=True):
             if block.find(["p", "div", "li", "blockquote"]):
-                continue                      # only leaf blocks
+                # a picture placed straight in a wrapper div beside its
+                # caption paragraph is kept; the wrapper's text blocks
+                # are read on their own
+                for img in block.find_all("img", recursive=False):
+                    current["html"].append(media_hook(img))
+                continue
             cls = " ".join(block.get("class", []))
             text = plain(block)
             has_img = block.find("img") is not None
