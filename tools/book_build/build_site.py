@@ -44,7 +44,7 @@ spine = [manifest_items[r["idref"]] for r in opf.find_all("itemref")]
 pos = {f: i for i, f in enumerate(spine)}
 parts = [(t, pos[f]) for t, f in nav if t.lower().startswith("part ")]
 chapter_start = {int(m.group(1)): pos[f] for t, f in nav
-                 if (m := re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", t, re.I))}
+                 if (m := re.match(r"(?:Chapter\s+|#\s*)?(\d+)\s*[-.:]\s", t, re.I))}
 
 
 def group_of(unit, start_file=None):

@@ -73,7 +73,7 @@ chapters = _map["chapters"]
 book_id = _map["id"]
 nav_by_number = {}
 for title, f in nav_files:
-    m = re.match(r"(?:Chapter\s+)?(\d+)\s*[-.:]\s", title, re.I)
+    m = re.match(r"(?:Chapter\s+|#\s*)?(\d+)\s*[-.:]\s", title, re.I)
     if m:
         nav_by_number[int(m.group(1))] = f
 appendix_file = next(
