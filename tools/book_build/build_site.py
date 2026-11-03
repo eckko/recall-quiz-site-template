@@ -109,8 +109,10 @@ for c in chapters:
         n["notes"] = None
         n["visuals"] = []
         n["ideas"], n["questions"] = [], []
+    # a bank section is a topic, or a subtopic the chapter map lists as a
+    # section (extract_epub.py gives those a sectionKey of their own)
     by_title = {n["sectionKey"]: n for n in bundle["nodes"]
-                if n["level"] == 2 and n["sectionKey"] != "Opening"}
+                if n["sectionKey"] and n["sectionKey"] != "Opening"}
     ideas, questions = {}, []
     keys = {k for k in set(ideas_by) | set(qs_by) if k[0] == unit}
     matched = unmatched = 0

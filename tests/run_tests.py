@@ -1151,6 +1151,13 @@ def test_reader(browser):
             "localStorage.getItem('recall-quiz:reading:reader-test')")
         check("it is saved under the book's reading key",
               saved is not None and '"fontSize":24' in saved, str(saved))
+        check("Your notes are hidden by default, the other parts shown",
+              page.evaluate("document.body.classList.contains('hide-notes')")
+              and not page.evaluate(
+                  "document.body.classList.contains('hide-ideas')")
+              and not page.evaluate(
+                  "document.querySelector("
+                  "\"#reading-panel input[data-setting='notes']\").checked"))
         page.click("#reading-panel input[data-setting='ideas']")
         check("the Show toggles hide parts",
               page.evaluate("document.body.classList.contains('hide-ideas')"))
@@ -1159,7 +1166,9 @@ def test_reader(browser):
               page.evaluate("getComputedStyle(document.documentElement)"
                             ".fontSize") == "18px"
               and not page.evaluate(
-                  "document.body.classList.contains('hide-ideas')"))
+                  "document.body.classList.contains('hide-ideas')")
+              and page.evaluate(
+                  "document.body.classList.contains('hide-notes')"))
         page.click("#reading-gear")
         page.click(".chhead")
         page.click(".opench")

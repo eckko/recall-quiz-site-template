@@ -302,6 +302,16 @@ for c in chapters:
         return f'<figure data-media="{mid}"></figure>'
 
     seen_chapter_header = 0
+    section_depth = None   # heading level (h2 = 2) of the current topic
+
+    def unique_id(base):
+        """A node id nobody has used yet: books repeat titles such as
+        "Closing notes" under several topics."""
+        taken = {n["id"] for n in nodes}
+        candidate, number = base, 2
+        while candidate in taken:
+            candidate, number = f"{base}-{number}", number + 1
+        return candidate
     for f in files:
         soup = BeautifulSoup((epub / f).read_text(encoding="utf8"), "lxml")
         body = soup.body or soup
@@ -353,10 +363,28 @@ for c in chapters:
                 continue
             if key in wanted and len(text) < 120:
                 found_titles.add(wanted[key])
-                node = {"id": f"{prefix}-{slug(wanted[key])}", "level": 2,
-                        "title": wanted[key], "parent": None, "html": []}
+                depth = int(block.name[1]) if re.fullmatch(
+                    r"h[1-6]", block.name) else None
+                if (depth and section_depth and depth > section_depth
+                        and section_node["level"] == 2
+                        and section_node["id"] != f"{prefix}-opening"):
+                    # a deeper heading (h3 inside an h2 topic) that the
+                    # chapter map lists as a section: a subtopic of the
+                    # topic above, not a topic of its own
+                    sub_count += 1
+                    node = {"id": unique_id(f"{prefix}-{slug(wanted[key])}"),
+                            "level": 3, "title": wanted[key],
+                            "parent": section_node["id"],
+                            "sectionKey": wanted[key], "html": []}
+                    nodes.append(node)
+                    current = node
+                    continue
+                node = {"id": unique_id(f"{prefix}-{slug(wanted[key])}"),
+                        "level": 2, "title": wanted[key], "parent": None,
+                        "html": []}
                 nodes.append(node)
                 current = section_node = node
+                section_depth = depth
                 continue
             is_short = len(text) <= 70 and not text.endswith((".", ",", ";"))
             if is_short and cls in ("calibre_31", "calibre_12", "calibre_43") \
