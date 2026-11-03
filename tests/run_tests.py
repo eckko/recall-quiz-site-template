@@ -1042,8 +1042,9 @@ READER_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 """
 
 
-def write_reader_book(key_bytes):
-    """A tiny encrypted book (one chapter) in tests/_reader_book/."""
+def write_reader_book(key_bytes, extra_questions=0):
+    """A tiny encrypted book (one chapter) in tests/_reader_book/, with
+    extra_questions more true/false questions in its section."""
     sys.path.insert(0, str(SITE_FOLDER / "tools" / "book_build"))
     import encfmt
     chapter_folder = READER_FOLDER / "data" / "ch"
@@ -1078,6 +1079,11 @@ def write_reader_book(key_bytes):
             {"id": "q2", "kind": "tf", "q": "15 and 3 are the same place.",
              "answer": True, "explain": "", "ideaId": "i1",
              "role": "apply"}]}
+    for number in range(extra_questions):
+        chapter["questions"].append(
+            {"id": f"x{number}", "kind": "tf", "q": f"Statement {number}.",
+             "answer": True, "explain": "", "ideaId": "i1", "role": "apply"})
+        chapter["nodes"][0]["questions"].append(f"x{number}")
     for path, data in (("data/manifest.enc", manifest),
                        ("data/ch/c01.enc", chapter)):
         blob = encfmt.encrypt(json.dumps(data).encode(), key_bytes)
@@ -1181,6 +1187,42 @@ def test_reader(browser):
         first.locator("button.btn", has_text="Check answer").click()
         check("Check answer shows the feedback",
               first.locator(".fb").count() == 1)
+        check("no errors", not page.errors, "; ".join(page.errors))
+        page.close()
+    finally:
+        shutil.rmtree(READER_FOLDER, ignore_errors=True)
+
+
+def test_reader_many_questions(browser):
+    """A section with hundreds of questions keeps the page as wide as the
+    screen: the progress bar shrinks its segments instead of pushing the
+    page wider (the text then looks small and off to one side)."""
+    print("Ereader: a section with 212 questions on a phone")
+    import os
+    import shutil
+    key_bytes = os.urandom(32)
+    write_reader_book(key_bytes, extra_questions=210)
+    try:
+        page = browser.new_page(viewport={"width": 375, "height": 800})
+        page.errors = []
+        page.on("pageerror", lambda error: page.errors.append(str(error)))
+        page.route("**/fonts.googleapis.com/**", lambda route: route.abort())
+        page.goto(READER_URL + "#key=" + key_bytes.hex())
+        page.wait_for_selector("body[data-ready='1']", timeout=20000)
+        page.click(".chhead")
+        page.click(".opench")
+        page.wait_for_selector("section#s1 .slot.qs", timeout=10000)
+        page.locator("section#s1 .slot.qs").scroll_into_view_if_needed()
+        page.wait_for_selector(".qs-wrap", timeout=10000)
+        check("the progress bar has a segment for every question",
+              page.locator(".q-progress i").count() == 212)
+        check("the progress bar fits inside its column",
+              page.evaluate("(() => { const p = document.querySelector("
+                            "'.q-progress'); return p.scrollWidth <= "
+                            "p.clientWidth; })()"))
+        check("the page does not scroll sideways",
+              page.evaluate("document.documentElement.scrollWidth <= "
+                            "window.innerWidth"))
         check("no errors", not page.errors, "; ".join(page.errors))
         page.close()
     finally:
@@ -3179,6 +3221,7 @@ def main():
             test_reading_panel(browser)
             test_reading_panel_theme_and_home(browser)
             test_reader(browser)
+            test_reader_many_questions(browser)
             test_book_defaults(browser)
             test_formulas(browser)
             test_themes(browser)

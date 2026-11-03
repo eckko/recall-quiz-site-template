@@ -438,6 +438,7 @@
     const segs = [], slides = [], results = [];
     let score = 0, answered = 0, idx = 0;
     const total = items.length;
+    prog.classList.toggle("is-dense", total > 40); // long lists: no gaps, see style.css
     const count = el("b", null, ""), nav = el("div", "q-nav");
     const prev = el("button", "q-nav-btn", "‹ Back"), next = el("button", "q-nav-btn", "Next ›");
     const refreshCount = () => {

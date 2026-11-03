@@ -14,7 +14,7 @@ existing chapter map); the EPUB is searched for them. Writes one JSON per
 chapter to OUT_DIR/chapters/, the figures to OUT_DIR/media-plain/ (scratch
 only, never committed) and OUT_DIR/extract-report.json.
 """
-import json, os, re, shutil, sys, warnings
+import colorsys, json, os, re, shutil, sys, warnings
 from pathlib import Path
 from bs4 import BeautifulSoup, NavigableString, Tag
 from html import escape
@@ -137,6 +137,74 @@ def unit_nav_file(unit):
     return None
 
 
+# ----- text colours
+# The book builder keeps only em, strong, sup and br, but a book that colours
+# words (red variable names, blue terms) loses that when the span is dropped.
+# A clearly coloured span is kept as <span class="c-red"> (or orange, yellow,
+# green, blue, purple); reader/style.css gives each name a colour that stays
+# readable on every reading theme. Black, white and grey are not colours.
+COLOUR_HUES = ((15, "red"), (45, "orange"), (70, "yellow"), (170, "green"),
+               (260, "blue"), (345, "purple"), (361, "red"))
+
+
+def colour_name(value):
+    """"red", "blue", ... for a CSS colour (#rgb, #rrggbb or rgb(r, g, b))
+    that is clearly a colour; "" for black, white, grey or anything else."""
+    value = value.strip().lower()
+    short = re.fullmatch(r"#([0-9a-f])([0-9a-f])([0-9a-f])", value)
+    if short:
+        value = "#" + "".join(c * 2 for c in short.groups())
+    full = re.fullmatch(r"#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})", value)
+    if full:
+        red, green, blue = (int(c, 16) for c in full.groups())
+    else:
+        rgb = re.fullmatch(r"rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)", value)
+        if not rgb:
+            return ""
+        red, green, blue = (int(c) for c in rgb.groups())
+    hue, saturation, bright = colorsys.rgb_to_hsv(red / 255, green / 255,
+                                                  blue / 255)
+    if saturation < 0.4 or bright < 0.25:
+        return ""
+    degrees = hue * 360
+    return next(name for limit, name in COLOUR_HUES if degrees < limit)
+
+
+def class_colours():
+    """Class name -> colour name, from the colour: rules of the EPUB's
+    stylesheets (background-color is not text colour and is skipped)."""
+    found = {}
+    for item in opf.find_all("item"):
+        href = item.get("href", "")
+        if item.get("media-type") != "text/css" and not href.endswith(".css"):
+            continue
+        path = opf_path.parent / href
+        if not path.exists():
+            continue
+        css = path.read_text(encoding="utf8", errors="ignore")
+        for rule in re.finditer(r"\.([\w-]+)\s*\{([^}]*)\}", css):
+            colour = re.search(r"(?<![-\w])color\s*:\s*([^;}]+)", rule.group(2))
+            if colour and colour_name(colour.group(1)):
+                found[rule.group(1)] = colour_name(colour.group(1))
+    return found
+
+
+CLASS_COLOURS = class_colours()
+
+
+def tag_colour(tag):
+    """Colour name of a tag's own text colour: a class that a stylesheet
+    colours, a class like fg-D50000, or an inline style color:."""
+    for name in tag.get("class", []):
+        if name in CLASS_COLOURS:
+            return CLASS_COLOURS[name]
+        hexed = re.fullmatch(r"fg-([0-9A-Fa-f]{6})", name)
+        if hexed and colour_name("#" + hexed.group(1)):
+            return colour_name("#" + hexed.group(1))
+    style = re.search(r"(?<![-\w])color\s*:\s*([^;]+)", tag.get("style", ""))
+    return colour_name(style.group(1)) if style else ""
+
+
 # ----- inline cleaning
 def inline(node, media_hook):
     parts = []
@@ -159,6 +227,9 @@ def inline(node, media_hook):
                 parts.append("<br>")
             else:
                 parts.append(inner)
+            colour = tag_colour(child) if name not in ("img", "br") else ""
+            if colour and inner.strip():
+                parts[-1] = f'<span class="c-{colour}">{parts[-1]}</span>'
     return "".join(parts)
 
 
