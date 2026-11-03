@@ -463,6 +463,63 @@ def check_appendix_label(label):
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_unnumbered_titles_figures_appendices():
+    """Chapter titles without numbers are found by their title, a picture
+    in a div beside its caption is kept, and an appendix unit reads every
+    appendix file (Appendix A, B ...) up to the next other entry."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        (epub / "text").mkdir(parents=True)
+        (epub / "images").mkdir()
+        (epub / "images" / "f.jpeg").write_bytes(b"not really a picture")
+        names = ["part0001", "part0002", "part0003", "part0004"]
+        (epub / "content.opf").write_text(
+            "<package><manifest>" + "".join(
+                f'<item id="{n}" href="text/{n}.html"/>' for n in names) +
+            "</manifest><spine>" + "".join(
+                f'<itemref idref="{n}"/>' for n in names) +
+            "</spine></package>")
+        entries = [("The Quiet Start", "part0001"), ("Appendix A", "part0002"),
+                   ("Appendix B", "part0003"), ("Notes", "part0004")]
+        (epub / "toc.ncx").write_text("<ncx><navMap>" + "".join(
+            f"<navPoint><navLabel><text>{t}</text></navLabel>"
+            f'<content src="text/{f}.html"/></navPoint>'
+            for t, f in entries) + "</navMap></ncx>")
+        page = "<html><body>%s</body></html>"
+        pictured = ('<p>Words before.</p><div class="q"><img src='
+                    '"../images/f.jpeg"/><p class="caption">Figure 1-1: A'
+                    ' thing</p></div>')
+        pages = [pictured, "<p>Alpha text.</p>", "<p>Beta text.</p>",
+                 "<p>Notes text.</p>"]
+        for n, body in zip(names, pages):
+            (epub / "text" / f"{n}.html").write_text(page % body)
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t2", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "The Quiet Start",
+             "idPrefix": "c1", "sections": []},
+            {"unit": "Appendices A and B", "unitTitle": "Appendices",
+             "idPrefix": "app", "sections": []}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        if result.returncode != 0:
+            print(result.stderr[-300:])
+        check("unnumbered chapter titles are read", result.returncode == 0
+              and (out / "chapters" / "c1.json").exists())
+        first = json.loads((out / "chapters" / "c1.json").read_text())
+        check("a picture beside its caption is kept", len(first["media"]) == 1)
+        check("the caption text is kept", "Figure 1-1" in json.dumps(first))
+        appendix = (out / "chapters" / "app.json").read_text()
+        check("both appendix files are read",
+              "Alpha text" in appendix and "Beta text" in appendix)
+        check("the next entry is not part of the appendix",
+              "Notes text" not in appendix)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_extract_epub_split_chapter():
     """A chapter split into two files (Calibre part0007_split_001) whose
     second file has a navigation entry for one of its own sections is read
@@ -772,6 +829,7 @@ if __name__ == "__main__":
     test_add_notes_by_unit()
     test_extract_epub_in_subfolder()
     test_extract_epub_uppercase_appendix()
+    test_extract_epub_unnumbered_titles_figures_appendices()
     test_extract_epub_split_chapter()
     test_extract_epub_rule_units()
     test_book_build_front_back_units()
