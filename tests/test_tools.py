@@ -371,7 +371,10 @@ def test_subject_pages_and_build():
         book = folder / "book"
         (book / "media" / "u1").mkdir(parents=True)
         (book / "questions.json").write_text(json.dumps(
-            {"id": "t1", "book": "T", "questions": []}))
+            {"id": "t1", "book": "T", "questions": [
+                {"id": "q1", "unit": "Chapter 1", "unitTitle": "One",
+                 "section": "A", "kind": "tf", "q": "True or false: x",
+                 "answer": True}]}))
         (book / "media" / "u1" / "f1.enc").write_bytes(
             encrypt_media.encrypt(encrypt_media.placeholder_key(),
                                   "u1/f1", b"picture"))
@@ -399,6 +402,18 @@ def test_subject_pages_and_build():
              "--book", str(book), "--template-tag", "v3.0.0",
              "--out", str(out)], capture_output=True, text=True, env=env)
         check("build refuses a v-prefixed tag", result.returncode != 0)
+        empty = folder / "empty"
+        empty.mkdir()
+        (empty / "questions.json").write_text(json.dumps(
+            {"id": "t2", "book": "T2", "questions": []}))
+        result = subprocess.run(
+            [sys.executable, str(TOOLS / "book_build" / "build_book.py"),
+             "--book", str(empty), "--template-tag", "3.0.0",
+             "--out", str(folder / "empty-out")],
+            capture_output=True, text=True, env=env)
+        check("a book with no questions and no EPUB is refused, so the hub "
+              "never shows a Test button that cannot work",
+              result.returncode != 0)
     finally:
         shutil.rmtree(folder, ignore_errors=True)
 
