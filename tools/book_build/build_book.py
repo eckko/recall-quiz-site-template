@@ -118,6 +118,11 @@ def main(argv=None):
     bank = json.loads((book / "questions.json").read_text(encoding="utf-8"))
     if not ID.match(bank.get("id", "")):
         sys.exit("questions.json needs a lower-case \"id\"")
+    # A book with no questions has no quiz view, so the hub greys out Test.
+    has_quiz = bool(bank.get("questions"))
+    if not has_quiz and not args.epub:
+        sys.exit("questions.json has no questions and no --epub was given: "
+                 "the book would have no view at all")
 
     if out.exists():
         shutil.rmtree(out)
@@ -129,7 +134,7 @@ def main(argv=None):
         os.chmod(keyfile, 0o600)
         work = scratch / "work"
         work.mkdir()
-        views = ["quiz"]
+        views = ["quiz"] if has_quiz else []
         if args.epub:
             views.insert(0, "read")
             epub_dir = scratch / "epub"
@@ -144,7 +149,7 @@ def main(argv=None):
                     "--report", scratch / "notes-report.json")
             run(HERE / "finalize_manifest.py", "--site", out,
                 "--key", keyfile)
-        pictures = build_quiz(book, bank, key, out)
+        pictures = build_quiz(book, bank, key, out) if has_quiz else 0
         for name, text in make_subject_pages.make_pages(
                 args.template_tag, bank["book"], views).items():
             (out / name).write_text(text, encoding="utf-8")
