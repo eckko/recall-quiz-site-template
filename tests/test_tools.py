@@ -748,6 +748,59 @@ def test_extract_epub_topics_and_subtopics():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_tables_numbers_and_subsections():
+    """An EPUB with no heading tags: a play script set as a table keeps its
+    text (one paragraph per speaker), a number line above a title line
+    does not stay behind in the section above, the unit's own title line
+    is not text, and "subsections" in the chapter map makes level-3 nodes."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        epub.mkdir()
+        (epub / "content.opf").write_text(
+            '<package><manifest><item id="a" href="a.html"/></manifest>'
+            '<spine><itemref idref="a"/></spine></package>')
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap><navPoint><navLabel><text>Status</text>"
+            '</navLabel><content src="a.html"/></navPoint></navMap></ncx>')
+        (epub / "a.html").write_text(
+            "<html><body><p>Status</p>"
+            "<p>1</p><p>Alpha</p><p>Alpha words.</p>"
+            "<table><tr><td>POZZO:</td><td>Let us get this</td></tr>"
+            "<tr><td></td><td>clear.</td></tr>"
+            "<tr><td>VLADIMIR:</td><td>Note it.</td></tr></table>"
+            "<p>Sub one</p><p>Sub words.</p>"
+            "<p>2</p><p>Beta</p><p>Beta words.</p></body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t6", "chapters": [
+            {"unit": "Status", "unitTitle": "Status", "idPrefix": "c01",
+             "sections": ["Alpha", "Sub one", "Beta"],
+             "subsections": ["Sub one"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on a table and subsection chapter",
+              result.returncode == 0)
+        nodes = json.loads((out / "chapters" / "c01.json").read_text()
+                           )["nodes"]
+        check("no Opening node is left holding only the unit title",
+              [(n["title"], n["level"]) for n in nodes]
+              == [("Alpha", 2), ("Sub one", 3), ("Beta", 2)])
+        alpha = nodes[0]["html"]
+        check("table rows become one paragraph per speaker",
+              "<p>POZZO: Let us get this" in alpha
+              and "clear.</p>" in alpha and "<p>VLADIMIR:" in alpha
+              and "<table" not in alpha)
+        check("a number line is not left in the section above",
+              "<p>1</p>" not in alpha and "<p>2</p>" not in
+              nodes[1]["html"])
+        check("a subsection sits under the section listed before it",
+              nodes[1]["parent"] == nodes[0]["id"])
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_extract_epub_rule_units():
     """A unit like "Rule #1" has one navigation entry ("Rule #1: Name")
     and its sections are headings inside the file; it is still cut."""
@@ -1008,6 +1061,7 @@ if __name__ == "__main__":
     test_extract_epub_keeps_text_colours()
     test_extract_epub_navigation_entities()
     test_extract_epub_topics_and_subtopics()
+    test_extract_epub_tables_numbers_and_subsections()
     test_extract_epub_rule_units()
     test_book_build_front_back_units()
     test_book_build_front_back_units("First")  # unnumbered title

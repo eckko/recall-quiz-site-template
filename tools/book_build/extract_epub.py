@@ -8,6 +8,11 @@ the first appendix entry to the next other entry. A picture placed straight
 in a wrapper div beside its caption is kept.
 
 
+A chapter may also carry "subsections": the titles from "sections" that are
+subtopics (level 3) of the section listed before them, for books whose EPUB
+has no heading tags to show the nesting. Tables (a play script set as a
+two-column table) are kept as paragraphs, one per speaker.
+
 usage: extract_epub.py EPUB_DIR CHAPTERS_JSON OUT_DIR
 EPUB_DIR is the unzipped EPUB. Section titles come from chapters.json (the
 existing chapter map); the EPUB is searched for them. Writes one JSON per
@@ -245,6 +250,30 @@ def plain(tag):
     return re.sub(r"\s+", " ", "".join(pieces)).strip()
 
 
+def tables_to_paragraphs(soup):
+    """Replace each <table> by paragraphs so its text is not lost. A row
+    whose first cell has text (a speaker's name) starts a paragraph; a row
+    with an empty first cell continues the paragraph above."""
+    for table in soup.find_all("table"):
+        paragraphs = []
+        for row in table.find_all("tr"):
+            cells = row.find_all(["td", "th"])
+            if not cells:
+                continue
+            label = plain(cells[0]) if len(cells) > 1 else ""
+            if label or not paragraphs:
+                paragraphs.append(soup.new_tag("p"))
+            else:
+                paragraphs[-1].append(" ")
+            for k, cell in enumerate(cells):
+                if k and (label or len(paragraphs[-1].contents) > 1):
+                    paragraphs[-1].append(" ")
+                paragraphs[-1].extend(list(cell.contents))
+        for new in paragraphs:
+            table.insert_before(new)
+        table.decompose()
+
+
 report = {"chapters": {}, "excluded": [], "images": {"found": 0, "placed": 0,
                                                        "alt_generated": 0}}
 for c in chapters:
@@ -274,6 +303,7 @@ for c in chapters:
                       if x not in files]
     prefix = c["idPrefix"]
     wanted = {norm(s): s for s in c["sections"]}
+    sub_titles = set(c.get("subsections", []))
     single = len(c["sections"]) == 1
     nodes = [{"id": f"{prefix}-" + (slug(c["sections"][0]) if single
                                       else "opening"), "level": 2,
@@ -315,6 +345,7 @@ for c in chapters:
     for f in files:
         soup = BeautifulSoup((epub / f).read_text(encoding="utf8"), "lxml")
         body = soup.body or soup
+        tables_to_paragraphs(body)
         opens = section_starts.get(f)
         in_title = bool(opens)    # still inside the file's own title blocks
         if opens:
@@ -326,8 +357,9 @@ for c in chapters:
                 nodes.append(node)
             current = section_node = node
             found_titles.add(opens)
-        for block in body.find_all(["p", "div", "li", "blockquote", "h1", "h2", "h3", "h4"],
-                                   recursive=True):
+        block_list = body.find_all(["p", "div", "li", "blockquote", "h1", "h2", "h3", "h4"],
+                                   recursive=True)
+        for position, block in enumerate(block_list):
             if block.find(["p", "div", "li", "blockquote"]):
                 # a picture placed straight in a wrapper div beside its
                 # caption paragraph is kept; the wrapper's text blocks
@@ -358,6 +390,17 @@ for c in chapters:
                     norm(text) == norm(c["unitTitle"]):
                 continue
             key = norm(text)
+            if (re.fullmatch(r"\d{1,3}", text) and key not in wanted
+                    and position + 1 < len(block_list)):
+                # a heading printed as a number line and a title line: the
+                # number belongs to the heading that follows, not to the
+                # text above
+                after = plain(block_list[position + 1])
+                if len(after) < 120 and norm(after) in wanted:
+                    continue
+            if (current is nodes[0] and not single and
+                    key == norm(c["unitTitle"]) and not current["html"]):
+                continue      # the unit's own title line is not text
             if key in wanted and len(text) < 120 and single:
                 found_titles.add(wanted[key])
                 continue
@@ -365,7 +408,9 @@ for c in chapters:
                 found_titles.add(wanted[key])
                 depth = int(block.name[1]) if re.fullmatch(
                     r"h[1-6]", block.name) else None
-                if (depth and section_depth and depth > section_depth
+                listed_sub = wanted[key] in sub_titles
+                if ((listed_sub or (depth and section_depth
+                                    and depth > section_depth))
                         and section_node["level"] == 2
                         and section_node["id"] != f"{prefix}-opening"):
                     # a deeper heading (h3 inside an h2 topic) that the
