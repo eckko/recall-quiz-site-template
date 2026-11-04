@@ -41,6 +41,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ github.ref_name }}
           BASE: ${{ github.event.repository.default_branch }}
+          OWNER: ${{ github.repository_owner }}
         run: |
           if [ "$BRANCH" = "$BASE" ]; then
             echo "$BRANCH is the default branch; no PR needed."
@@ -62,5 +63,8 @@ jobs:
 
           # Title and description come from the commits (--fill): one commit
           # gives its subject and message, several give the branch name and
-          # a list of the commit subjects.
-          gh pr create --base "$BASE" --head "$BRANCH" --fill
+          # a list of the commit subjects. The PR is assigned to the repo
+          # owner, so it shows under "Assigned to me" and "Involved" in the
+          # GitHub app.
+          gh pr create --base "$BASE" --head "$BRANCH" --fill \
+            --assignee "$OWNER"
