@@ -10,7 +10,7 @@
 #
 # Note: a PR opened with the built-in token does not start other workflows
 # (a GitHub rule against loops).
-name: Open pull request for new branches
+name: Auto PR
 
 on:
   push:
