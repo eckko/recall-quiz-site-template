@@ -258,6 +258,13 @@ places ideas and questions, `add_notes.py` adds the notes EPUB.
   are dropped, and later sections of the unit are found in the text by title.
   A unit with no sections has no text: it gets one empty node that holds all
   its ideas and questions, and its group is "The whole book".
+- Books whose EPUB has no heading tags (headings are styled paragraphs):
+  list every heading in `sections`, in book order, and put the titles that
+  are subtopics of the section listed before them in the chapter's
+  `"subsections"` list; they become level-3 nodes. A line holding only a
+  number right above a listed title is left out of the text, a table (a
+  play script) is kept as one paragraph per speaker, and the unit's own
+  title line is not text, so an empty "Opening" node is not made.
 - Notes: `u_chN.xhtml` or `chapter_N.xhtml` for chapter N. For the other
   units, a notes file whose `<h1>` is the first words of a section title
   (`foreword.xhtml` with `<h1>Foreword</h1>`) becomes that section's note;
