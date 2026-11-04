@@ -1,0 +1,66 @@
+# Opens a pull request into the default branch when a branch is pushed for
+# the first time, whatever its name. If the branch already has an open PR,
+# nothing is done (new commits show up in that PR by themselves). A branch
+# with no commits beyond the default branch cannot have a PR, so it gets one
+# on its first push that adds commits.
+#
+# One-time setup: Settings > Actions > General > Workflow permissions, tick
+# "Allow GitHub Actions to create and approve pull requests". Without it the
+# "Open the pull request" step fails with a permissions error.
+#
+# Note: a PR opened with the built-in token does not start other workflows
+# (a GitHub rule against loops).
+name: Open pull request for new branches
+
+on:
+  push:
+    branches-ignore:
+      - main
+      # sample ignore list - not used currently
+      - "chore/sample-ignore-branch/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: auto-pr-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Open the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+          BASE: ${{ github.event.repository.default_branch }}
+        run: |
+          if [ "$BRANCH" = "$BASE" ]; then
+            echo "$BRANCH is the default branch; no PR needed."
+            exit 0
+          fi
+
+          existing=$(gh pr list --head "$BRANCH" --base "$BASE" \
+            --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            echo "PR #$existing is already open for $BRANCH; nothing to do."
+            exit 0
+          fi
+
+          ahead=$(git rev-list --count "origin/$BASE..HEAD")
+          if [ "$ahead" -eq 0 ]; then
+            echo "$BRANCH has no commits that $BASE lacks; no PR needed yet."
+            exit 0
+          fi
+
+          # Title and description come from the commits (--fill): one commit
+          # gives its subject and message, several give the branch name and
+          # a list of the commit subjects.
+          gh pr create --base "$BASE" --head "$BRANCH" --fill
