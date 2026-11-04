@@ -590,6 +590,60 @@ def test_extract_epub_split_chapter():
         shutil.rmtree(folder, ignore_errors=True)
 
 
+def test_extract_epub_title_line_and_quote():
+    """A chapter's own h2 title line that comes again as a real heading is
+    not a second section, and a quoted line that equals a section title
+    is not a section heading."""
+    import shutil
+    folder = Path(tempfile.mkdtemp())
+    try:
+        epub = folder / "epub"
+        (epub / "text").mkdir(parents=True)
+        files = ["part0001", "part0002"]
+        (epub / "content.opf").write_text(
+            "<package><manifest>"
+            + "".join(f'<item id="{n}" href="text/{n}.html"/>' for n in files)
+            + "</manifest><spine>"
+            + "".join(f'<itemref idref="{n}"/>' for n in files)
+            + "</spine></package>")
+        (epub / "toc.ncx").write_text(
+            "<ncx><navMap>"
+            "<navPoint><navLabel><text>1. Tool #1: Non-Hero</text>"
+            '</navLabel><content src="text/part0001.html"/></navPoint>'
+            "<navPoint><navLabel><text>2. Second</text></navLabel>"
+            '<content src="text/part0002.html"/></navPoint>'
+            "</navMap></ncx>")
+        (epub / "text" / "part0001.html").write_text(
+            "<html><body><h2>CHAPTER 1</h2><h2>NON-HERO</h2>"
+            "<p>“Be born funny.”</p><p>Intro words.</p>"
+            "<h3>Non-hero</h3><p>Real section words.</p>"
+            "<h3>Myth</h3><p>“Be born funny.”</p><p>Myth words.</p>"
+            "</body></html>")
+        (epub / "text" / "part0002.html").write_text(
+            "<html><body><h2>Gamma</h2><p>Next words.</p></body></html>")
+        chapters = folder / "chapters.json"
+        chapters.write_text(json.dumps({"id": "t3", "chapters": [
+            {"unit": "Chapter 1", "unitTitle": "Chapter 1 Tool #1: Non-Hero",
+             "idPrefix": "u1", "sections": ["Non-hero", "Myth",
+                                            "Be born funny."]},
+            {"unit": "Chapter 2", "unitTitle": "Second", "idPrefix": "u2",
+             "sections": ["Gamma"]}]}))
+        out = folder / "out"
+        result = run(TOOLS / "book_build" / "extract_epub.py", epub,
+                     chapters, out, cwd=ROOT)
+        check("extract_epub runs on a chapter with a title line",
+              result.returncode == 0)
+        nodes = json.loads(
+            (out / "chapters" / "u1.json").read_text())["nodes"]
+        titles = [n["title"] for n in nodes]
+        check("the title line is not a duplicate section",
+              titles.count("Non-hero") == 1)
+        check("a quoted line is not a section",
+              "Be born funny." not in titles)
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)
+
+
 def test_extract_epub_keeps_text_colours():
     """A word the book colours (by a stylesheet class, a class like
     fg-D50000 or an inline style) is kept as <span class="c-red"> etc.;
@@ -1058,6 +1112,7 @@ if __name__ == "__main__":
     test_extract_epub_uppercase_appendix()
     test_extract_epub_unnumbered_titles_figures_appendices()
     test_extract_epub_split_chapter()
+    test_extract_epub_title_line_and_quote()
     test_extract_epub_keeps_text_colours()
     test_extract_epub_navigation_entities()
     test_extract_epub_topics_and_subtopics()

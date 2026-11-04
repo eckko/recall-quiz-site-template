@@ -274,6 +274,36 @@ def tables_to_paragraphs(soup):
         table.decompose()
 
 
+def title_forms(unit_title):
+    """Every way a chapter's own title line can be written: the whole title,
+    the parts either side of ": ", each without a leading "Chapter N"."""
+    forms = {unit_title}
+    forms |= set(unit_title.split(": "))
+    forms |= {re.sub(r"^chapter\s+\d+\s*", "", f, flags=re.I)
+              for f in list(forms)}
+    return {norm(f) for f in forms if norm(f)}
+
+
+def is_quote_line(block, text):
+    """True for a quoted line that is not a heading tag: a myth or epigraph
+    such as "You have to be born funny." must not open a section that is
+    also a real heading later in the chapter."""
+    quoted = text[:1] in ("“", '"') and text[-1:] in ("”", '"')
+    return quoted and not re.fullmatch(r"h[1-6]", block.name)
+
+
+def is_title_line(block, text, forms, heading_keys):
+    """True for the chapter's own title line written as an h1/h2 before any
+    section: it equals the chapter title (or its tail after "Chapter N" or
+    ": ") and the same words come again as a real heading below it."""
+    key = norm(text)
+    if block.name not in ("h1", "h2") or not key:
+        return False
+    like = key in forms or (len(key) > 3 and any(
+        f.endswith(key) for f in forms))
+    return like and heading_keys.count(key) > 1
+
+
 report = {"chapters": {}, "excluded": [], "images": {"found": 0, "placed": 0,
                                                        "alt_generated": 0}}
 for c in chapters:
@@ -357,6 +387,8 @@ for c in chapters:
                 nodes.append(node)
             current = section_node = node
             found_titles.add(opens)
+        heading_keys = [norm(h.get_text(" ", strip=True)) for h in
+                        body.find_all(["h1", "h2", "h3", "h4"])]
         block_list = body.find_all(["p", "div", "li", "blockquote", "h1", "h2", "h3", "h4"],
                                    recursive=True)
         for position, block in enumerate(block_list):
@@ -383,11 +415,16 @@ for c in chapters:
             if cls == "calibre_17" and re.match(r"^CHAPTER \d+$", text):
                 seen_chapter_header = 1
                 continue
-            if cls == "calibre_17" and not nodes[1:] and \
-                    norm(text) == norm(c["unitTitle"].split(": ")[0]):
+            forms = title_forms(c["unitTitle"])
+            if cls == "calibre_17" and not nodes[1:] and (
+                    norm(text) in forms or (len(norm(text)) > 3 and any(
+                        f.endswith(norm(text)) for f in forms))):
                 continue
             if cls == "calibre_17" and seen_chapter_header and \
                     norm(text) == norm(c["unitTitle"]):
+                continue
+            if not nodes[1:] and is_title_line(
+                    block, text, forms, heading_keys):
                 continue
             key = norm(text)
             if (re.fullmatch(r"\d{1,3}", text) and key not in wanted
@@ -401,6 +438,8 @@ for c in chapters:
             if (current is nodes[0] and not single and
                     key == norm(c["unitTitle"]) and not current["html"]):
                 continue      # the unit's own title line is not text
+            if is_quote_line(block, text):
+                key = ""          # a quotation is never a section heading
             if key in wanted and len(text) < 120 and single:
                 found_titles.add(wanted[key])
                 continue
